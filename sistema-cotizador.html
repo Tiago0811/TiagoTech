@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiagoTech Facturador & Cotizador Express PDF para Técnicos y Profesionales</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Genera cotizaciones, presupuestos y facturas en PDF profesionales en menos de 60 segundos desde tu celular o PC. Con TiagoTech Facturador Express.">
+  <meta name="keywords" content="Cotizador Express PDF, Facturador Freelancers, Presupuestos Talleres, Generador Facturas Técnicos, TiagoTech Cotizador">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .pos-feature-card {
+      min-height: 200px;
+    }
+    .pos-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+    .pos-hero h1 {
+      font-size: 46px;
+      font-weight: 800;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-accent);
+    }
+    .pos-hero p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 680px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+    .invoice-preview-sheet {
+      background: #0d121f;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      font-family: var(--font-code);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🖱️ Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Volver al Inicio</a></li>
+          <li><a href="#demo">Probar Demo</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Adquirir</a></li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="#demo">Probar Demo</a></li>
+      <li class="tech-only"><a href="#precios">Precios</a></li>
+      <li class="tech-only"><a href="#contacto">Adquirir</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 HERO & PRESENTATION
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="pos-hero">
+      <a href="index.html#sistemas" class="back-btn">&larr; Volver a Sistemas</a>
+      <span class="tech-tagline" style="margin-bottom: 8px; display: inline-flex;">COTIZACIONES Y FACTURAS EN 60 SEGUNDOS</span>
+      <h1>Facturador & Cotizador Express PDF</h1>
+      <p>
+        Genera presupuestos, cotizaciones formales y recibos en formato PDF con diseño ejecutivo desde cualquier celular, tablet o computadora. Perfecto para mecánicos, talleres, técnicos de refrigeración, electricistas y freelancers independientes.
+      </p>
+      <div style="display: flex; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap;">
+        <a href="#precios" class="btn">Ver Plan y Adquisición</a>
+        <a href="#demo" class="btn btn-outline">Probar Demostración</a>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20Facturador%20%26%20Cotizador%20Express%20en%20tu%20web%20y%20quiero%20usarlo%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Escribir por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🧪 MICRO-DEMO INTERACTIVA EN VIVO
+         ========================================================================== -->
+    <section id="demo" style="padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="micro-demo-box">
+        <div class="micro-demo-header">
+          <div class="micro-demo-title">
+            <span>📄 Generador de Cotizaciones en Vivo</span>
+            <span class="micro-demo-tag">DEMO EN VIVO</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Completa los datos y compila en 1 clic</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md); margin-top: 15px;">
+          <!-- Formulario Rápido -->
+          <div>
+            <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 10px; font-family: var(--font-accent);">
+              1. Ingresa los datos del servicio o trabajo:
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+              <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 3px;">Nombre del Cliente:</label>
+              <input type="text" id="demo-quote-client" value="Inversiones El Roble C.A." style="width: 100%; padding: 8px 10px; font-size: 12px; border-radius: 4px; border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff;">
+            </div>
+
+            <div style="margin-bottom: 8px;">
+              <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 3px;">Concepto / Partida:</label>
+              <input type="text" id="demo-quote-item" value="Mantenimiento General + Repuestos Originales" style="width: 100%; padding: 8px 10px; font-size: 12px; border-radius: 4px; border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff;">
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+              <div style="flex: 1;">
+                <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 3px;">Cantidad:</label>
+                <input type="number" id="demo-quote-qty" value="1" min="1" style="width: 100%; padding: 8px 10px; font-size: 12px; border-radius: 4px; border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff;">
+              </div>
+              <div style="flex: 1;">
+                <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 3px;">Precio Unitario ($):</label>
+                <input type="number" id="demo-quote-price" value="85.00" step="5" style="width: 100%; padding: 8px 10px; font-size: 12px; border-radius: 4px; border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff;">
+              </div>
+            </div>
+
+            <button type="button" id="demo-quote-update-btn" class="btn btn-outline" style="width: 100%; font-size: 12px; padding: 8px;">
+              ⚡ Actualizar Valores de Cotización
+            </button>
+          </div>
+
+          <!-- Hoja de Vista Previa -->
+          <div class="invoice-preview-sheet">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 10px;">
+              <div>
+                <strong style="color: var(--accent-primary); font-size: 13px;">TIAGOTECH SERVICIOS TÉCNICOS</strong>
+                <div style="font-size: 10px; color: var(--text-muted);">RIF: J-50493821-0 · WHATSAPP OFICIAL TIAGOTECH</div>
+              </div>
+              <div style="text-align: right;">
+                <span style="background: rgba(0,240,255,0.15); color: var(--accent-primary); padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 700;">PRESUPUESTO</span>
+                <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">#COT-2026-089</div>
+              </div>
+            </div>
+
+            <div style="font-size: 11px; margin-bottom: 10px;">
+              <span style="color: var(--text-muted);">Cliente:</span> <strong id="preview-client" style="color: #fff;">Inversiones El Roble C.A.</strong><br>
+              <span style="color: var(--text-muted);">Fecha de Emisión:</span> <span id="preview-date">24/09/2026</span> · Validez: 15 días
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 11px;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.2); text-align: left; color: var(--text-muted);">
+                  <th style="padding: 4px 0;">DESCRIPCIÓN</th>
+                  <th style="text-align: center;">CANT</th>
+                  <th style="text-align: right;">TOTAL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="preview-item" style="padding: 6px 0; color: #fff;">Mantenimiento General + Repuestos</td>
+                  <td id="preview-qty" style="text-align: center; color: var(--text-secondary);">1</td>
+                  <td id="preview-subtotal" style="text-align: right; color: var(--accent-primary);">$85.00</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 6px; text-align: right;">
+              <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 2px;">
+                Subtotal: <span id="preview-calc-sub">$85.00</span> | IVA (16%): <span id="preview-calc-tax">$13.60</span>
+              </div>
+              <div style="font-size: 15px; font-weight: 800; color: #fff;">
+                TOTAL: <span id="preview-total" style="color: var(--accent-primary);">$98.60</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 12px; display: flex; gap: 6px;">
+              <button type="button" id="demo-pdf-dl-btn" class="btn btn-whatsapp-sm" style="flex: 1; font-size: 11px;">
+                <span>📲</span> Enviar PDF a WhatsApp
+              </button>
+            </div>
+            <div id="demo-pdf-alert" style="font-size: 11px; color: #27C93F; text-align: center; margin-top: 6px; display: none;">
+              ✔️ ¡Cotización compilada en formato PDF y lista para compartir!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📦 CARACTERÍSTICAS
+         ========================================================================== -->
+    <section id="features" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">¿Por qué usar el <span>Facturador Express</span>?</h2>
+      
+      <div class="pos-modal-features-grid">
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">⏱️</div>
+          <div>
+            <h4>Cotizaciones en 60 Segundos</h4>
+            <p>Ya no tienes que llegar a la casa u oficina para abrir Word o Excel. Puedes emitir un presupuesto profesional parado al lado del cliente desde tu celular.</p>
+          </div>
+        </div>
+
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">🎨</div>
+          <div>
+            <h4>Imagen de Marca Profesional</h4>
+            <p>Tus cotizaciones llevan el logo de tu empresa, RIF, datos bancarios (Pago Móvil, Binance, Transferencia) y condiciones de garantía, proyectando total seriedad y confianza.</p>
+          </div>
+        </div>
+
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📲</div>
+          <div>
+            <h4>Envío Inmediato a WhatsApp</h4>
+            <p>Con un solo toque, el archivo PDF limpio y ordenado se comparte por WhatsApp con el cliente para que apruebe el trabajo al instante.</p>
+          </div>
+        </div>
+
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📁</div>
+          <div>
+            <h4>Historial y Registro de Clientes</h4>
+            <p>Guarda el historial de presupuestos emitidos, aprobados y pendientes de pago para saber exactamente cuánto dinero tienes por cobrar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💰 PLAN Y ADQUISICIÓN
+         ========================================================================== -->
+    <section id="precios" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Plan y <span>Adquisición</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        La herramienta indispensable para el profesional que cobra y cotiza a diario.
+      </p>
+
+      <div class="modal-pricing-grid single-plan">
+        <div class="glass-card modal-price-card featured" style="text-align: center;">
+          <div class="m-badge">PLAN PROFESIONALES & TALLERES</div>
+          <h4>Cotización Personalizada</h4>
+          <div class="m-price" style="font-size: 20px; font-weight: 700; color: var(--accent-primary); margin: 12px 0;">Plan a la Medida</div>
+          <p style="margin: 15px 0; font-size: 13px;">
+            Incluye generación ilimitada de cotizaciones y facturas en PDF, personalización con tu logotipo comercial, datos bancarios pre-cargados, acceso desde cualquier teléfono o PC y soporte técnico continuo.
+          </p>
+          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+            <a href="#contacto" class="btn plan-btn" data-plan="Facturador Express">Solicitar por Formulario</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20consultar%20sobre%20el%20Facturador%20%26%20Cotizador%20Express%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <span>💬</span> Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💳 Métodos de Pago Aceptados -->
+      <div class="payment-methods-box">
+        <div class="payment-methods-title">Métodos de Pago Aceptados</div>
+        <div class="payment-badges-row">
+          <span class="payment-badge">🇻🇪 Pago Móvil (Bs)</span>
+          <span class="payment-badge">🟡 Binance Pay / USDT</span>
+          <span class="payment-badge">🏦 Transferencia Bancaria</span>
+        </div>
+      </div>
+
+      <!-- 🛡️ Franja de Confianza y Garantías -->
+      <div class="trust-strip">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon">🛠️</div>
+            <div>
+              <h5>Plantilla con tu Logo Personalizada</h5>
+              <p>Te dejamos configurado el membrete con tus datos fiscales y logotipo listos.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">📱</div>
+            <div>
+              <h5>Funciona en Cualquier Celular</h5>
+              <p>No necesitas instalar pesados programas; abre en tu navegador móvil al instante.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">⚡</div>
+            <div>
+              <h5>Descargas Ilimitadas</h5>
+              <p>Emite 10 o 500 cotizaciones al mes sin cobros extras ni restricciones de volumen.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">💬</div>
+            <div>
+              <h5>Soporte Directo por WhatsApp</h5>
+              <p>Atención directa vía WhatsApp para resolver cualquier duda o ajuste.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE ADQUISICIÓN
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Solicitar <span>Facturador Express</span></h2>
+
+      <!-- Opción Rápida WhatsApp -->
+      <div style="max-width: 600px; margin: 0 auto var(--spacing-md) auto; text-align: center; padding: 18px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.25); border-radius: var(--border-radius-sm);">
+        <p style="color: #fff; font-size: 14px; margin-bottom: 12px; font-weight: 600;">
+          ¿Deseas activar tu facturador hoy mismo por WhatsApp?
+        </p>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20solicitar%20el%20Facturador%20Express%20para%20mis%20cotizaciones." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Chatear con TiagoTech
+        </a>
+      </div>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="glass-card" style="padding: var(--spacing-md);">
+          
+          <form id="pos-contact-form">
+            <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
+            <input type="hidden" name="subject" value="Nueva Solicitud de Facturador Express">
+            <input type="hidden" name="from_name" value="Portal Facturador Express">
+            <input type="hidden" name="botcheck" style="display: none;">
+            
+            <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Nombre Personal / Empresa
+                </label>
+                <input type="text" id="form-name" name="name" required placeholder="Escribe tu nombre..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+              
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Correo Electrónico
+                </label>
+                <input type="email" id="form-email" name="email" required placeholder="tu@correo.com" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Sistema Seleccionado
+              </label>
+              <input type="text" id="form-plan" name="plan" readonly value="Facturador & Cotizador Express PDF" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: var(--accent-primary); font-family: var(--font-code); font-weight: 600; outline: none;">
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Detalles del negocio o requerimientos
+              </label>
+              <textarea id="form-msg" name="message" rows="5" required placeholder="Cuéntame sobre tu negocio y qué te gustaría implementar..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); resize: vertical; transition: border-color 0.3s ease;"></textarea>
+            </div>
+            
+            <button type="submit" id="pos-submit-btn" class="btn" style="width: 100%;">
+              <span>Enviar Solicitud</span>
+            </button>
+            <div id="pos-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3); transition: border-color var(--transition-speed) ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+<!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Particle Canvas Theme
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+
+      // 2. Pre-fill form on click pricing plans
+      const selectPlan = document.getElementById('form-plan');
+      const textMsg = document.getElementById('form-msg');
+      const nameInput = document.getElementById('form-name');
+      const planButtons = document.querySelectorAll('.plan-btn');
+
+      planButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const selectedPlan = btn.getAttribute('data-plan');
+          if (selectPlan) selectPlan.value = selectedPlan;
+          if (textMsg) {
+            textMsg.value = `¡Hola Tiago! Estoy sumamente interesado en adquirir la opción de [ ${selectedPlan} ] para mi negocio. Me gustaría coordinar para ver una demo e implementarlo...`;
+          }
+          setTimeout(() => {
+            if (nameInput) nameInput.focus();
+          }, 300);
+        });
+      });
+
+      // 3. Form submission
+      const form = document.getElementById('pos-contact-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const submitBtn = document.getElementById('pos-submit-btn');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>🔌 Enviando solicitud...</span>';
+          
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          })
+          .then(async (response) => {
+            let res = await response.json();
+            if (response.status === 200) {
+              alert('✔️ ¡Solicitud enviada con éxito! Tiago se pondrá en contacto contigo muy pronto.');
+              form.reset();
+            } else {
+              alert('Ups, hubo un problema: ' + res.message);
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert('Error de conexión. Por favor verifica tu red.');
+          })
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          });
+        });
+      }
+
+      // 3. Interactive Quote Micro-Demo Logic
+      const inClient = document.getElementById('demo-quote-client');
+      const inItem = document.getElementById('demo-quote-item');
+      const inQty = document.getElementById('demo-quote-qty');
+      const inPrice = document.getElementById('demo-quote-price');
+      const updateBtn = document.getElementById('demo-quote-update-btn');
+      
+      const outClient = document.getElementById('preview-client');
+      const outItem = document.getElementById('preview-item');
+      const outQty = document.getElementById('preview-qty');
+      const outSubtotal = document.getElementById('preview-subtotal');
+      const outCalcSub = document.getElementById('preview-calc-sub');
+      const outCalcTax = document.getElementById('preview-calc-tax');
+      const outTotal = document.getElementById('preview-total');
+      const dlBtn = document.getElementById('demo-pdf-dl-btn');
+      const alertBox = document.getElementById('demo-pdf-alert');
+
+      function calculateQuote() {
+        const clientVal = inClient ? inClient.value.trim() || 'Cliente General' : 'Cliente General';
+        const itemVal = inItem ? inItem.value.trim() || 'Servicio Profesional' : 'Servicio Profesional';
+        const qtyVal = parseInt(inQty ? inQty.value : 1) || 1;
+        const priceVal = parseFloat(inPrice ? inPrice.value : 0) || 0;
+
+        const subtotal = qtyVal * priceVal;
+        const tax = subtotal * 0.16;
+        const total = subtotal + tax;
+
+        if (outClient) outClient.textContent = clientVal;
+        if (outItem) outItem.textContent = itemVal;
+        if (outQty) outQty.textContent = qtyVal.toString();
+        if (outSubtotal) outSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+        if (outCalcSub) outCalcSub.textContent = `$${subtotal.toFixed(2)}`;
+        if (outCalcTax) outCalcTax.textContent = `$${tax.toFixed(2)}`;
+        if (outTotal) outTotal.textContent = `$${total.toFixed(2)}`;
+        if (alertBox) alertBox.style.display = 'none';
+      }
+
+      if (updateBtn) {
+        updateBtn.addEventListener('click', calculateQuote);
+      }
+      [inClient, inItem, inQty, inPrice].forEach(input => {
+        if (input) input.addEventListener('input', calculateQuote);
+      });
+
+      if (dlBtn && alertBox) {
+        dlBtn.addEventListener('click', () => {
+          alertBox.style.display = 'block';
+          alertBox.innerHTML = `✔️ ¡Documento PDF de <strong>${outTotal.textContent}</strong> generado con éxito! Formateado para enviar a WhatsApp.`;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

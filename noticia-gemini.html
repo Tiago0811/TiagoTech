@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini 1.5 Pro: Contexto de 2M Tokens - TiagoTech News</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="AnÃ¡lisis profundo de Gemini 1.5 Pro y su contexto de 2 millones de tokens. Descubre cÃ³mo revoluciona el anÃ¡lisis de cÃ³digo y datos complejos.">
+  <meta name="keywords" content="Gemini 1.5 Pro, 2 millones de tokens, Contexto LLM, Inteligencia Artificial, Agentes Inteligentes, TiagoTech">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg"><text y=%22.9em%22 font-size=%2290%22>âš¡</text></svg>">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* Article layout specific overrides */
+    .article-container {
+      max-width: 800px;
+      margin: 100px auto var(--spacing-xl) auto;
+      padding: 0 var(--spacing-md);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .article-header {
+      margin-bottom: var(--spacing-md);
+    }
+    .article-title {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.2;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: var(--spacing-xs) 0 var(--spacing-sm) 0;
+      font-family: var(--font-accent);
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-sm);
+    }
+    .article-image-box {
+      width: 100%;
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), var(--glow-shadow);
+      margin-bottom: var(--spacing-lg);
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .article-image-box:hover {
+      transform: scale(1.01);
+      border-color: var(--card-border-hover);
+    }
+    .article-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .article-body {
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: justify;
+    }
+    .article-body p {
+      margin-bottom: var(--spacing-sm);
+    }
+    .article-body h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin: var(--spacing-md) 0 var(--spacing-xs) 0;
+      font-family: var(--font-accent);
+      letter-spacing: 0.5px;
+    }
+    .article-body ul {
+      margin-bottom: var(--spacing-sm);
+      padding-left: var(--spacing-md);
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .quote-box {
+      border-left: 4px solid var(--accent-primary);
+      background: rgba(var(--accent-rgb), 0.04);
+      padding: var(--spacing-sm);
+      border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+      margin: var(--spacing-md) 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    .code-block {
+      background: rgba(10, 15, 26, 0.95);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius-sm);
+      padding: var(--spacing-sm);
+      overflow-x: auto;
+      margin: var(--spacing-md) 0;
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: #a5d6ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎯 Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+
+  <!-- ðŸŒŒ Canvas de PartÃ­culas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ðŸ§­ Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Volver al Inicio</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <!-- 🍔 Botón de Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       ðŸ’» ARTICLE CONTENTS
+       ========================================================================== -->
+  <main class="article-container">
+    <a href="index.html" class="back-btn">&larr; Volver al Inicio</a>
+    
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="news-badge" style="background: rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.3);">MODELOS LLM</span>
+          <span>MAYO 2026</span>
+          <span>â€¢</span>
+          <span>Por: TiagoTech Editorial</span>
+        </div>
+        <h1 class="article-title">Gemini 1.5 Pro: Rompiendo LÃ­mites con 2 Millones de Tokens de Contexto</h1>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="article-image-box">
+        <img class="article-image" src="assets/img/gemini_context_ai.png" alt="Futurista nÃºcleo de Inteligencia Artificial procesando flujos masivos de datos">
+      </div>
+
+      <div class="article-body">
+        <p>
+          El campo de la Inteligencia Artificial Generativa avanza a pasos agigantados, pero pocas innovaciones han tenido un impacto tÃ©cnico tan radical como el despliegue del <strong>contexto de 2 millones de tokens</strong> en la arquitectura de <strong>Gemini 1.5 Pro</strong> de Google. Para poner esto en perspectiva, una ventana de este tamaÃ±o equivale a procesar de una sola vez aproximadamente 30,000 lÃ­neas de cÃ³digo, 1.5 millones de palabras escritas, o hasta 2 horas completas de video en alta definiciÃ³n con audio multi-canal.
+        </p>
+
+        <h3>El Fin de las Limitaciones de Memoria en LLMs</h3>
+        <p>
+          Hasta hace poco, uno de los mayores dolores de cabeza para los desarrolladores de software y cientÃ­ficos de datos era la "amnesia a corto plazo" de los modelos de lenguaje. Para analizar un repositorio de cÃ³digo mediano, era necesario fragmentar el cÃ³digo, indexarlo en bases de datos vectoriales complejas (RAG) y cruzar los dedos para que la IA recuperara el fragmento correcto.
+        </p>
+
+        <div class="quote-box">
+          "Con 2 millones de tokens, la necesidad de estructurar sistemas RAG complejos para repositorios de tamaÃ±o estÃ¡ndar desaparece. El modelo almacena todo el cÃ³digo fuente directamente en su memoria de atenciÃ³n activa, logrando un razonamiento integral sin pÃ©rdida de precisiÃ³n."
+        </div>
+
+        <h3>Revolucionando el AnÃ¡lisis de CÃ³digo y Soporte TÃ©cnico</h3>
+        <p>
+          La capacidad de Gemini 1.5 Pro para analizar colecciones masivas de archivos permite realizar tareas complejas en segundos:
+        </p>
+        <ul>
+          <li><strong>AuditorÃ­as completas de sistemas</strong>: Sube todo el backend de un sistema de ventas (como nuestro TiagoTech POS en PHP/MySQL) y pÃ­dele a la IA que trace flujos de dinero o busque posibles fugas de memoria en la base de datos.</li>
+          <li><strong>AnÃ¡lisis audiovisual instantÃ¡neo</strong>: Es posible cargar grabaciones de cÃ¡maras de seguridad de tu local comercial de varias horas y preguntar cosas como: "Â¿A quÃ© hora entrÃ³ el proveedor con la caja de refrescos y quÃ© prendas vestÃ­a?".</li>
+          <li><strong>MinerÃ­a de soporte al cliente</strong>: Carga toda la documentaciÃ³n del sistema de tu negocio junto con el historial de soporte de 2 aÃ±os, y Gemini actuarÃ¡ como el analista de soporte mÃ¡s experimentado, resolviendo casos difÃ­ciles al instante.</li>
+        </ul>
+
+        <h3>ImplementaciÃ³n PrÃ¡ctica en Python (SDK Moderno)</h3>
+        <p>
+          Para integrar este gigantesco contexto en tu flujo de desarrollo, puedes usar la biblioteca oficial de Google GenAI con el siguiente fragmento de cÃ³digo optimizado:
+        </p>
+
+        <pre class="code-block"><code># InicializaciÃ³n de Gemini 1.5 Pro en Python
+import google.generativeai as genai
+
+# Configura tu clave de API
+genai.configure(api_key="TU_GEMINI_API_KEY")
+
+# Seleccionamos el modelo de contexto extendido
+model = genai.GenerativeModel('gemini-1.5-pro')
+
+# Cargar un archivo masivo (por ejemplo, el repositorio completo zip)
+# e inyectarlo directamente en la llamada de generaciÃ³n
+response = model.generate_content([
+    "Analiza detalladamente este repositorio de cÃ³digo completo. "
+    "Identifica vulnerabilidades de inyecciÃ³n SQL y sugiere la refactorizaciÃ³n "
+    "necesaria en cada archivo afectado.",
+    my_source_code_archive
+])
+
+print(response.text)</code></pre>
+
+        <h3>ConclusiÃ³n</h3>
+        <p>
+          El contexto masivo no es solo una mÃ©trica de vanidad tÃ©cnica; redefine por completo lo que un agente de Inteligencia Artificial puede lograr. Al eliminar las barreras de memoria, Gemini 1.5 Pro se convierte en el copiloto definitivo para desarrolladores de sistemas y un analista inigualable para la toma de decisiones empresariales.
+        </p>
+      </div>
+    </article>
+  </div>
+
+  <!-- ==========================================================================
+       ðŸ’» ARTICLE CONTENTS
+       ========================================================================== -->
+  <main class="article-container">
+    <a href="index.html" class="back-btn">&larr; Volver al Inicio</a>
+    
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="news-badge" style="background: rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.3);">MODELOS LLM</span>
+          <span>MAYO 2026</span>
+          <span>â€¢</span>
+          <span>Por: TiagoTech Editorial</span>
+        </div>
+        <h1 class="article-title">Gemini 1.5 Pro: Rompiendo LÃ­mites con 2 Millones de Tokens de Contexto</h1>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="article-image-box">
+        <img class="article-image" src="assets/img/gemini_context_ai.png" alt="Futurista nÃºcleo de Inteligencia Artificial procesando flujos masivos de datos">
+      </div>
+
+      <div class="article-body">
+        <p>
+          El campo de la Inteligencia Artificial Generativa avanza a pasos agigantados, pero pocas innovaciones han tenido un impacto tÃ©cnico tan radical como el despliegue del <strong>contexto de 2 millones de tokens</strong> en la arquitectura de <strong>Gemini 1.5 Pro</strong> de Google. Para poner esto en perspectiva, una ventana de este tamaÃ±o equivale a procesar de una sola vez aproximadamente 30,000 lÃ­neas de cÃ³digo, 1.5 millones de palabras escritas, o hasta 2 horas completas de video en alta definiciÃ³n con audio multi-canal.
+        </p>
+
+        <h3>El Fin de las Limitaciones de Memoria en LLMs</h3>
+        <p>
+          Hasta hace poco, uno de los mayores dolores de cabeza para los desarrolladores de software y cientÃ­ficos de datos era la "amnesia a corto plazo" de los modelos de lenguaje. Para analizar un repositorio de cÃ³digo mediano, era necesario fragmentar el cÃ³digo, indexarlo en bases de datos vectoriales complejas (RAG) y cruzar los dedos para que la IA recuperara el fragmento correcto.
+        </p>
+
+        <div class="quote-box">
+          "Con 2 millones de tokens, la necesidad de estructurar sistemas RAG complejos para repositorios de tamaÃ±o estÃ¡ndar desaparece. El modelo almacena todo el cÃ³digo fuente directamente en su memoria de atenciÃ³n activa, logrando un razonamiento integral sin pÃ©rdida de precisiÃ³n."
+        </div>
+
+        <h3>Revolucionando el AnÃ¡lisis de CÃ³digo y Soporte TÃ©cnico</h3>
+        <p>
+          La capacidad de Gemini 1.5 Pro para analizar colecciones masivas de archivos permite realizar tareas complejas en segundos:
+        </p>
+        <ul>
+          <li><strong>AuditorÃ­as completas de sistemas</strong>: Sube todo el backend de un sistema de ventas (como nuestro TiagoTech POS en PHP/MySQL) y pÃ­dele a la IA que trace flujos de dinero o busque posibles fugas de memoria en la base de datos.</li>
+          <li><strong>AnÃ¡lisis audiovisual instantÃ¡neo</strong>: Es posible cargar grabaciones de cÃ¡maras de seguridad de tu local comercial de varias horas y preguntar cosas como: "Â¿A quÃ© hora entrÃ³ el proveedor con la caja de refrescos y quÃ© prendas vestÃ­a?".</li>
+          <li><strong>MinerÃ­a de soporte al cliente</strong>: Carga toda la documentaciÃ³n del sistema de tu negocio junto con el historial de soporte de 2 aÃ±os, y Gemini actuarÃ¡ como el analista de soporte mÃ¡s experimentado, resolviendo casos difÃ­ciles al instante.</li>
+        </ul>
+
+        <h3>ImplementaciÃ³n PrÃ¡ctica en Python (SDK Moderno)</h3>
+        <p>
+          Para integrar este gigantesco contexto en tu flujo de desarrollo, puedes usar la biblioteca oficial de Google GenAI con el siguiente fragmento de cÃ³digo optimizado:
+        </p>
+
+        <pre class="code-block"><code># InicializaciÃ³n de Gemini 1.5 Pro en Python
+import google.generativeai as genai
+
+# Configura tu clave de API
+genai.configure(api_key="TU_GEMINI_API_KEY")
+
+# Seleccionamos el modelo de contexto extendido
+model = genai.GenerativeModel('gemini-1.5-pro')
+
+# Cargar un archivo masivo (por ejemplo, el repositorio completo zip)
+# e inyectarlo directamente en la llamada de generaciÃ³n
+response = model.generate_content([
+    "Analiza detalladamente este repositorio de cÃ³digo completo. "
+    "Identifica vulnerabilidades de inyecciÃ³n SQL y sugiere la refactorizaciÃ³n "
+    "necesaria en cada archivo afectado.",
+    my_source_code_archive
+])
+
+print(response.text)</code></pre>
+
+        <h3>ConclusiÃ³n</h3>
+        <p>
+          El contexto masivo no es solo una mÃ©trica de vanidad tÃ©cnica; redefine por completo lo que un agente de Inteligencia Artificial puede lograr. Al eliminar las barreras de memoria, Gemini 1.5 Pro se convierte en el copiloto definitivo para desarrolladores de sistemas y un analista inigualable para la toma de decisiones empresariales.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <!-- ==========================================================================
+       ðŸ¦¶ PIE DE PÃ GINA
+       ========================================================================== -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.2); transition: border-color 0.5s ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+        <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  </div>
+
+  
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      localStorage.setItem('tiago-persona', 'tech');
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+    });
+  </script>
+</body>
+</html>

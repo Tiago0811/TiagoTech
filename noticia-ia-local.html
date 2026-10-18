@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLMs y WebGPU: IA Local en tu Navegador - TiagoTech News</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="AnÃ¡lisis detallado sobre los Small Language Models (SLMs) y WebGPU. Descubre cÃ³mo ejecutar inteligencia artificial avanzada en tu navegador de forma 100% privada.">
+  <meta name="keywords" content="SLMs, WebGPU, IA Local, Privacidad Total, Transformers.js, Software a Medida, TiagoTech">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg"><text y=%22.9em%22 font-size=%2290%22>âš¡</text></svg>">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* Article layout specific overrides */
+    .article-container {
+      max-width: 800px;
+      margin: 100px auto var(--spacing-xl) auto;
+      padding: 0 var(--spacing-md);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .article-header {
+      margin-bottom: var(--spacing-md);
+    }
+    .article-title {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.2;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: var(--spacing-xs) 0 var(--spacing-sm) 0;
+      font-family: var(--font-accent);
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-sm);
+    }
+    .article-image-box {
+      width: 100%;
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), var(--glow-shadow);
+      margin-bottom: var(--spacing-lg);
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .article-image-box:hover {
+      transform: scale(1.01);
+      border-color: var(--card-border-hover);
+    }
+    .article-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .article-body {
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: justify;
+    }
+    .article-body p {
+      margin-bottom: var(--spacing-sm);
+    }
+    .article-body h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin: var(--spacing-md) 0 var(--spacing-xs) 0;
+      font-family: var(--font-accent);
+      letter-spacing: 0.5px;
+    }
+    .article-body ul {
+      margin-bottom: var(--spacing-sm);
+      padding-left: var(--spacing-md);
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .quote-box {
+      border-left: 4px solid var(--accent-primary);
+      background: rgba(var(--accent-rgb), 0.04);
+      padding: var(--spacing-sm);
+      border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+      margin: var(--spacing-md) 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    .code-block {
+      background: rgba(10, 15, 26, 0.95);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius-sm);
+      padding: var(--spacing-sm);
+      overflow-x: auto;
+      margin: var(--spacing-md) 0;
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: #a5d6ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎯 Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+
+  <!-- ðŸŒŒ Canvas de PartÃ­culas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ðŸ§­ Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Volver al Inicio</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <!-- 🍔 Botón de Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       ðŸ’» ARTICLE CONTENTS
+       ========================================================================== -->
+  <main class="article-container">
+    <a href="index.html" class="back-btn">&larr; Volver al Inicio</a>
+    
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="news-badge" style="background: rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.3);">TECNOLOGÃA</span>
+          <span>MAYO 2026</span>
+          <span>â€¢</span>
+          <span>Por: TiagoTech Editorial</span>
+        </div>
+        <h1 class="article-title">SLMs y WebGPU: El Futuro de la IA EjecutÃ¡ndose Localmente en tu Navegador</h1>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="article-image-box">
+        <img class="article-image" src="assets/img/local_browser_slm.png" alt="Laptop mostrando un sistema grÃ¡fico neural ejecutÃ¡ndose de forma acelerada localmente en la GPU del usuario">
+      </div>
+
+      <div class="article-body">
+        <p>
+          HistÃ³ricamente, el uso de Inteligencia Artificial avanzada ha dependido de gigantescos servidores en la nube y carÃ­simas GPUs empresariales alojadas en centros de datos remotos. Esto solÃ­a traducirse en costos recurrentes elevados, vulnerabilidad a la caÃ­da del servidor y tiempos de espera o latencia molestos. Sin embargo, la llegada en 2026 de los **Small Language Models (SLMs)** y el soporte masivo de **WebGPU** ha cambiado las reglas de juego por completo, permitiendo ejecutar inteligencia artificial avanzada de forma 100% privada, instantÃ¡nea y gratuita directamente en la mÃ¡quina del usuario.
+        </p>
+
+        <h3>Â¿QuÃ© son los SLMs (Modelos de Lenguaje PequeÃ±os)?</h3>
+        <p>
+          Los SLMs son modelos de lenguaje hiper-optimizados (tÃ­picamente entre 1.5B y 8B de parÃ¡metros) entrenados con conjuntos de datos altamente filtrados y tÃ©cnicas avanzadas de compresiÃ³n. Modelos como **Microsoft Phi-3**, **Google Gemma** o **Llama 3 8B** logran responder con una coherencia y razonamiento lÃ³gico comparables a sus hermanos mayores (LLMs de la nube), pero con la enorme ventaja de caber cÃ³modamente en la memoria RAM de computadoras de escritorio comunes e incluso en telÃ©fonos inteligentes.
+        </p>
+
+        <div class="quote-box">
+          "Al combinar la compactibilidad de los SLMs con WebGPU, logramos crear herramientas inteligentes autohospedadas que no requieren de APIs costosas de OpenAI o Anthropic, operando al absoluto costo de $0 dÃ³lares mensuales de por vida."
+        </div>
+
+        <h3>El Milagro de WebGPU y la IA en Navegadores</h3>
+        <p>
+          WebGPU es la API web moderna que otorga al cÃ³digo de los navegadores web (como Google Chrome o Microsoft Edge) acceso directo y seguro a la tarjeta grÃ¡fica local de tu computadora para acelerar cÃ¡lculos masivos. Gracias a esto, bibliotecas como **Transformers.js** o **WebLLM** permiten descargar e inferir modelos de lenguaje e inteligencia artificial directamente en la pestaÃ±a del navegador a velocidades de vÃ©rtigo.
+        </p>
+        
+        <h3>Ventajas CrÃ­ticas de la IA Local</h3>
+        <ul>
+          <li><strong>Privacidad 100% Absoluta</strong>: Como todo el procesamiento de datos se realiza en la memoria local de tu computadora, tu informaciÃ³n financiera privada, listados de clientes y arqueos de caja nunca viajan a servidores de terceros.</li>
+          <li><strong>Cero Dependencia de Internet</strong>: Tu sistema e inteligencia artificial continuarÃ¡n operando de forma idÃ©ntica e inmediata incluso si te quedas sin conexiÃ³n a internet en tu tienda.</li>
+          <li><strong>Mantenimiento EconÃ³mico Nulo ($0)</strong>: No mÃ¡s facturaciones ni sorpresas a fin de mes por uso de APIs en la nube. La inteligencia se ejecuta utilizando la energÃ­a y hardware que ya posees.</li>
+        </ul>
+
+        <h3>Ejemplo de Inferencia Local en JavaScript (Transformers.js)</h3>
+        <p>
+          Implementar inteligencia local en una aplicaciÃ³n web moderna es simple y limpio utilizando APIs optimizadas de JavaScript:
+        </p>
+
+        <pre class="code-block"><code>// Inferencia Local de IA en el navegador con Transformers.js
+import { pipeline } from '@xenova/transformers';
+
+async function runLocalAI() {
+  console.log("Cargando modelo SLM optimizado en cachÃ© local...");
+  
+  // Inicializamos la tuberÃ­a de anÃ¡lisis de texto en GPU
+  const classifier = await pipeline('sentiment-analysis', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english', {
+      device: 'webgpu' # Â¡AceleraciÃ³n de hardware activada de forma nativa!
+  });
+  
+  console.log("Â¡Modelo listo!");
+  const output = await classifier("El inventario del sistema POS cuadra perfectamente y las ventas superaron la meta.");
+  
+  console.log(output);
+  // Salida: [{ label: 'POSITIVE', score: 0.9997 }]
+}
+
+runLocalAI();</code></pre>
+
+        <h3>ConclusiÃ³n</h3>
+        <p>
+          La soberanÃ­a de datos y la independencia de infraestructura son los pilares de la ingenierÃ­a de software inteligente del futuro. En TiagoTech, incorporamos y priorizamos la computaciÃ³n local y aceleraciÃ³n por GPU para que los sistemas de tu local comercial operen de manera privada, veloz y libre de suscripciones costosas e innecesarias.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <!-- ==========================================================================
+       ðŸ¦¶ PIE DE PÃGINA
+       ========================================================================== -->
+  </div>
+
+  <!-- ==========================================================================
+       💻 ARTICLE CONTENTS
+       ========================================================================== -->
+  <main class="article-container">
+    <a href="index.html" class="back-btn">&larr; Volver al Inicio</a>
+    
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="news-badge" style="background: rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.3);">TECNOLOGÍA</span>
+          <span>MAYO 2026</span>
+          <span>•</span>
+          <span>Por: TiagoTech Editorial</span>
+        </div>
+        <h1 class="article-title">SLMs y WebGPU: El Futuro de la IA Ejecutándose Localmente en tu Navegador</h1>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="article-image-box">
+        <img class="article-image" src="assets/img/local_browser_slm.png" alt="Laptop mostrando un sistema gráfico neural ejecutándose de forma acelerada localmente en la GPU del usuario">
+      </div>
+
+      <div class="article-body">
+        <p>
+          Históricamente, el uso de Inteligencia Artificial avanzada ha dependido de gigantescos servidores en la nube y carísimas GPUs empresariales alojadas en centros de datos remotos. Esto solía traducirse en costos recurrentes elevados, vulnerabilidad a la caída del servidor y tiempos de espera o latencia molestos. Sin embargo, la llegada en 2026 de los **Small Language Models (SLMs)** y el soporte masivo de **WebGPU** ha cambiado las reglas de juego por completo, permitiendo ejecutar inteligencia artificial avanzada de forma 100% privada, instantánea y gratuita directamente en la máquina del usuario.
+        </p>
+
+        <h3>¿Qué son los SLMs (Modelos de Lenguaje Pequeños)?</h3>
+        <p>
+          Los SLMs son modelos de lenguaje hiper-optimizados (típicamente entre 1.5B y 8B de parámetros) entrenados con conjuntos de datos altamente filtrados y técnicas avanzadas de compresión. Modelos como **Microsoft Phi-3**, **Google Gemma** o **Llama 3 8B** logran responder con una coherencia y razonamiento lógico comparables a sus hermanos mayores (LLMs de la nube), pero con la enorme ventaja de caber cómodamente en la memoria RAM de computadoras de escritorio comunes e incluso en teléfonos inteligentes.
+        </p>
+
+        <div class="quote-box">
+          "Al combinar la compactibilidad de los SLMs con WebGPU, logramos crear herramientas inteligentes autohospedadas que no requieren de APIs costosas de OpenAI o Anthropic, operando al absoluto costo de $0 dólares mensuales de por vida."
+        </div>
+
+        <h3>El Milagro de WebGPU y la IA en Navegadores</h3>
+        <p>
+          WebGPU es la API web moderna que otorga al código de los navegadores web (como Google Chrome o Microsoft Edge) acceso directo y seguro a la tarjeta gráfica local de tu computadora para acelerar cálculos masivos. Gracias a esto, bibliotecas como **Transformers.js** o **WebLLM** permiten descargar e inferir modelos de lenguaje e inteligencia artificial directamente en la pestaña del navegador a velocidades de vértigo.
+        </p>
+        
+        <h3>Ventajas Críticas de la IA Local</h3>
+        <ul>
+          <li><strong>Privacidad 100% Absoluta</strong>: Como todo el procesamiento de datos se realiza en la memoria local de tu computadora, tu información financiera privada, listados de clientes y arqueos de caja nunca viajan a servidores de terceros.</li>
+          <li><strong>Cero Dependencia de Internet</strong>: Tu sistema e inteligencia artificial continuarán operando de forma idéntica e inmediata incluso si te quedas sin conexión a internet en tu tienda.</li>
+          <li><strong>Mantenimiento Económico Nulo ($0)</strong>: No más facturaciones ni sorpresas a fin de mes por uso de APIs en la nube. La inteligencia se ejecuta utilizando la energía y hardware que ya posees.</li>
+        </ul>
+
+        <h3>Ejemplo de Inferencia Local en JavaScript (Transformers.js)</h3>
+        <p>
+          Implementar inteligencia local en una aplicación web moderna es simple y limpio utilizando APIs optimizadas de JavaScript:
+        </p>
+
+        <pre class="code-block"><code>// Inferencia Local de IA en el navegador con Transformers.js
+import { pipeline } from '@xenova/transformers';
+
+async function runLocalAI() {
+  console.log("Cargando modelo SLM optimizado en caché local...");
+  
+  // Inicializamos la tubería de análisis de texto en GPU
+  const classifier = await pipeline('sentiment-analysis', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english', {
+      device: 'webgpu' # ¡Aceleración de hardware activada de forma nativa!
+  });
+  
+  console.log("¡Modelo listo!");
+  const output = await classifier("El inventario del sistema POS cuadra perfectamente y las ventas superaron la meta.");
+  
+  console.log(output);
+  // Salida: [{ label: 'POSITIVE', score: 0.9997 }]
+}
+
+runLocalAI();</code></pre>
+
+        <h3>Conclusión</h3>
+        <p>
+          La soberanía de datos y la independencia de infraestructura son los pilares de la ingeniería de software inteligente del futuro. En TiagoTech, incorporamos y priorizamos la computación local y aceleración por GPU para que los sistemas de tu local comercial operen de manera privada, veloz y libre de suscripciones costosas e innecesarias.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <!-- ==========================================================================
+       🐺 PIE DE PÁGINA
+       ========================================================================== -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.2); transition: border-color 0.5s ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent);">
+        <a href="index.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s;">Inicio</a>
+        <a href="https://www.youtube.com/@TiagoTech" target="_blank" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s;">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  </div>
+
+  
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      localStorage.setItem('tiago-persona', 'tech');
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+    });
+  </script>
+</body>
+</html>

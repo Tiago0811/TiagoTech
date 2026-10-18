@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Despertar de los Agentes AutÃ³nomos de IA - TiagoTech News</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="AnÃ¡lisis exhaustivo del auge de los agentes autÃ³nomos de software en la industria. Descubre cÃ³mo operan mÃºltiples agentes especializados en flujos comerciales.">
+  <meta name="keywords" content="Agentes AutÃ³nomos, CrewAI, LangGraph, Multi-Agente, Sistemas Inteligentes, Software a Medida, TiagoTech">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg"><text y=%22.9em%22 font-size=%2290%22>âš¡</text></svg>">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* Article layout specific overrides */
+    .article-container {
+      max-width: 800px;
+      margin: 100px auto var(--spacing-xl) auto;
+      padding: 0 var(--spacing-md);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .article-header {
+      margin-bottom: var(--spacing-md);
+    }
+    .article-title {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.2;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: var(--spacing-xs) 0 var(--spacing-sm) 0;
+      font-family: var(--font-accent);
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-sm);
+    }
+    .article-image-box {
+      width: 100%;
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), var(--glow-shadow);
+      margin-bottom: var(--spacing-lg);
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .article-image-box:hover {
+      transform: scale(1.01);
+      border-color: var(--card-border-hover);
+    }
+    .article-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .article-body {
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: justify;
+    }
+    .article-body p {
+      margin-bottom: var(--spacing-sm);
+    }
+    .article-body h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin: var(--spacing-md) 0 var(--spacing-xs) 0;
+      font-family: var(--font-accent);
+      letter-spacing: 0.5px;
+    }
+    .article-body ul {
+      margin-bottom: var(--spacing-sm);
+      padding-left: var(--spacing-md);
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .quote-box {
+      border-left: 4px solid var(--accent-primary);
+      background: rgba(var(--accent-rgb), 0.04);
+      padding: var(--spacing-sm);
+      border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+      margin: var(--spacing-md) 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    .code-block {
+      background: rgba(10, 15, 26, 0.95);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius-sm);
+      padding: var(--spacing-sm);
+      overflow-x: auto;
+      margin: var(--spacing-md) 0;
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: #a5d6ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎯 Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+
+  <!-- ðŸŒŒ Canvas de PartÃ­culas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ðŸ§­ Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Volver al Inicio</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <!-- 🍔 Botón de Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       ðŸ’» ARTICLE CONTENTS
+       ========================================================================== -->
+  <main class="article-container">
+    <a href="index.html" class="back-btn">&larr; Volver al Inicio</a>
+    
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="news-badge" style="background: rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.3);">AGENTES</span>
+          <span>MAYO 2026</span>
+          <span>â€¢</span>
+          <span>Por: TiagoTech Editorial</span>
+        </div>
+        <h1 class="article-title">El Despertar de los Agentes AutÃ³nomos de IA: MÃ¡s AllÃ¡ de los Chatbots</h1>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="article-image-box">
+        <img class="article-image" src="assets/img/autonomous_agents_ai.png" alt="MÃºltiples agentes inteligentes interactuando y colaborando en redes complejas">
+      </div>
+
+      <div class="article-body">
+        <p>
+          Durante el Ãºltimo aÃ±o, los asistentes de IA basados en chat y preguntas pasivas han dejado de ser la vanguardia de la tecnologÃ­a. Hoy en dÃ­a, la verdadera revoluciÃ³n radica en el desarrollo de <strong>Agentes de Software AutÃ³nomos</strong>. A diferencia de un chatbot tradicional que responde Ãºnicamente cuando el usuario le escribe, un agente inteligente es reactivo y proactivo: puede razonar, planificar sub-tareas, interactuar con APIs externas, leer y escribir bases de datos y ejecutar flujos comerciales completos de extremo a extremo sin intervenciÃ³n humana.
+        </p>
+
+        <h3>La Era de los Sistemas Multi-Agente Colaborativos</h3>
+        <p>
+          En lugar de diseÃ±ar un Ãºnico modelo de IA masivo e ineficiente para resolver un problema complejo, la ingenierÃ­a moderna de software se estÃ¡ inclinando por las **arquitecturas Multi-Agente**. En este paradigma, un problema se fragmenta y se distribuye a un equipo virtual de agentes especializados que colaboran entre sÃ­, comunicÃ¡ndose a travÃ©s de un canal de datos centralizado.
+        </p>
+
+        <div class="quote-box">
+          "Un agente de software actÃºa como un empleado digital altamente capacitado. Al conectar mÃºltiples agentes (uno experto en ventas, otro en stock y otro en logÃ­stica), las empresas pueden automatizar flujos completos de facturaciÃ³n y despacho con total precisiÃ³n."
+        </div>
+
+        <h3>Impacto Directo en la AutomatizaciÃ³n Comercial</h3>
+        <p>
+          Para los negocios informales y locales comerciales medianos, la integraciÃ³n de agentes autÃ³nomos a medida permite automatizar tareas complejas de forma asequible:
+        </p>
+        <ul>
+          <li><strong>Vendedores Virtuales Inteligentes</strong>: Agentes conectados a WhatsApp Business que no solo envÃ­an textos genÃ©ricos, sino que consultan activamente el stock real del sistema POS, agendan entregas a domicilio y registran las ventas en caja de forma autÃ³noma.</li>
+          <li><strong>ConciliaciÃ³n Financiera Automatizada</strong>: Un agente lee tu correo de facturas, valida que la transferencia o pago mÃ³vil haya ingresado correctamente en el banco y notifica al instante al despachador de la tienda que el pedido estÃ¡ listo para entrega.</li>
+          <li><strong>Mantenimiento AutÃ³nomo de CatÃ¡logos</strong>: Agentes que monitorean los precios de proveedores externos de tu mini-market y actualizan dinÃ¡micamente tus precios de venta para proteger tus mÃ¡rgenes de ganancias de forma automÃ¡tica.</li>
+        </ul>
+
+        <h3>Ejemplo de ImplementaciÃ³n Multi-Agente (CrewAI)</h3>
+        <p>
+          Frameworks como <strong>CrewAI</strong> o <strong>LangGraph</strong> facilitan enormemente el ensamblado de estos flujos estructurados de trabajo colaborativo en Python:
+        </p>
+
+        <pre class="code-block"><code># Ejemplo simple de arquitectura Multi-Agente con CrewAI
+from crewai import Agent, Task, Crew, Process
+
+# Agente 1: Analista de Inventario
+inventary_analyst = Agent(
+    role="Analista de Inventario",
+    goal="Monitorear y optimizar los niveles de stock en el mini-market",
+    backstory="Eres un experto en logÃ­stica con acceso a la API del sistema POS...",
+    verbose=True
+)
+
+# Agente 2: Redactor de Compras
+purchasing_agent = Agent(
+    role="Agente de Compras",
+    goal="Generar Ã³rdenes de compra optimizadas para proveedores",
+    backstory="Eres un negociador hÃ¡bil que evita compras excesivas...",
+    verbose=True
+)
+
+# Tarea: Verificar quiebres de stock y crear un reporte
+task_check_stock = Task(
+    description="Identifica productos con menos de 5 unidades en el POS y redacta la orden de compra",
+    expected_output="Un documento limpio listo para enviar al proveedor por correo.",
+    agent=inventary_analyst
+)
+
+# Ensamblado del equipo de trabajo
+tiagotech_crew = Crew(
+    agents=[inventary_analyst, purchasing_agent],
+    tasks=[task_check_stock],
+    process=Process.sequential
+)
+
+result = tiagotech_crew.kickoff()
+print(result)</code></pre>
+
+        <h3>Hacia un Futuro de Software AutÃ³nomo</h3>
+        <p>
+          El desarrollo de sistemas web a medida estÃ¡ viviendo una era dorada gracias a la autonomÃ­a de la Inteligencia Artificial. Los agentes autÃ³nomos ya no son una promesa de ciencia ficciÃ³n; representan la infraestructura clave que impulsarÃ¡ el crecimiento y la digitalizaciÃ³n de la prÃ³xima generaciÃ³n de negocios y comercios locales inteligentes.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <!-- ==========================================================================
+       ðŸ¦¶ PIE DE PÃGINA
+       ========================================================================== -->
+  </div>
+
+  <!-- ==========================================================================
+       💻 ARTICLE CONTENTS
+       ========================================================================== -->
+  <main class="article-container">
+    <a href="index.html" class="back-btn">&larr; Volver al Inicio</a>
+    
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="news-badge" style="background: rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.3);">AGENTES</span>
+          <span>MAYO 2026</span>
+          <span>•</span>
+          <span>Por: TiagoTech Editorial</span>
+        </div>
+        <h1 class="article-title">El Despertar de los Agentes Autónomos de IA: Más Allá de los Chatbots</h1>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="article-image-box">
+        <img class="article-image" src="assets/img/autonomous_agents_ai.png" alt="Múltiples agentes inteligentes interactuando y colaborando en redes complejas">
+      </div>
+
+      <div class="article-body">
+        <p>
+          Durante el último año, los asistentes de IA basados en chat y preguntas pasivas han dejado de ser la vanguardia de la tecnología. Hoy en día, la verdadera revolución radica en el desarrollo de <strong>Agentes de Software Autónomos</strong>. A diferencia de un chatbot tradicional que responde únicamente cuando el usuario le escribe, un agente inteligente es reactivo y proactivo: puede razonar, planificar sub-tareas, interactuar con APIs externas, leer y escribir bases de datos y ejecutar flujos comerciales completos de extremo a extremo sin intervención humana.
+        </p>
+
+        <h3>La Era de los Sistemas Multi-Agente Colaborativos</h3>
+        <p>
+          En lugar de diseñar un único modelo de IA masivo e ineficiente para resolver un problema complejo, la ingeniería moderna de software se está inclinando por las **arquitecturas Multi-Agente**. En este paradigma, un problema se fragmenta y se distribuye a un equipo virtual de agentes especializados que colaboran entre sí, comunicándose a través de un canal de datos centralizado.
+        </p>
+
+        <div class="quote-box">
+          "Un agente de software actúa como un empleado digital altamente capacitado. Al conectar múltiples agentes (uno experto en ventas, otro en stock y otro en logística), las empresas pueden automatizar flujos completos de facturación y despacho con total precisión."
+        </div>
+
+        <h3>Impacto Directo en la Automatización Comercial</h3>
+        <p>
+          Para los negocios informales y locales comerciales medianos, la integración de agentes autónomos a medida permite automatizar tareas complejas de forma asequible:
+        </p>
+        <ul>
+          <li><strong>Vendedores Virtuales Inteligentes</strong>: Agentes conectados a WhatsApp Business que no solo envían textos genéricos, sino que consultan activamente el stock real del sistema POS, agendan entregas a domicilio y registran las ventas en caja de forma autónoma.</li>
+          <li><strong>Conciliación Financiera Automatizada</strong>: Un agente lee tu correo de facturas, valida que la transferencia o pago móvil haya ingresado correctamente en el banco y notifica al instante al despachador de la tienda que el pedido está listo para entrega.</li>
+          <li><strong>Mantenimiento Autónomo de Catálogos</strong>: Agentes que monitorean los precios de proveedores externos de tu mini-market y actualizan dinámicamente tus precios de venta para proteger tus márgenes de ganancias de forma automática.</li>
+        </ul>
+
+        <h3>Ejemplo de Implementación Multi-Agente (CrewAI)</h3>
+        <p>
+          Frameworks como <strong>CrewAI</strong> o <strong>LangGraph</strong> facilitan enormemente el ensamblado de estos flujos estructurados de trabajo colaborativo en Python:
+        </p>
+
+        <pre class="code-block"><code># Ejemplo simple de arquitectura Multi-Agente con CrewAI
+from crewai import Agent, Task, Crew, Process
+
+# Agente 1: Analista de Inventario
+inventary_analyst = Agent(
+    role="Analista de Inventario",
+    goal="Monitorear y optimizar los niveles de stock en el mini-market",
+    backstory="Eres un experto en logística con acceso a la API del sistema POS...",
+    verbose=True
+)
+
+# Agente 2: Redactor de Compras
+purchasing_agent = Agent(
+    role="Agente de Compras",
+    goal="Generar órdenes de compra optimizadas para proveedores",
+    backstory="Eres un negociador hábil que evita compras excesivas...",
+    verbose=True
+)
+
+# Tarea: Verificar quiebres de stock y crear un reporte
+task_check_stock = Task(
+    description="Identifica productos con menos de 5 unidades en el POS y redacta la orden de compra",
+    expected_output="Un documento limpio listo para enviar al proveedor por correo.",
+    agent=inventary_analyst
+)
+
+# Ensamblado del equipo de trabajo
+tiagotech_crew = Crew(
+    agents=[inventary_analyst, purchasing_agent],
+    tasks=[task_check_stock],
+    process=Process.sequential
+)
+
+result = tiagotech_crew.kickoff()
+print(result)</code></pre>
+
+        <h3>Hacia un Futuro de Software Autónomo</h3>
+        <p>
+          El desarrollo de sistemas web a medida está viviendo una era dorada gracias a la autonomía de la Inteligencia Artificial. Los agentes autónomos ya no son una promesa de ciencia ficción; representan la infraestructura clave que impulsará el crecimiento y la digitalización de la próxima generación de negocios y comercios locales inteligentes.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <!-- ==========================================================================
+       🐺 PIE DE PÁGINA
+       ========================================================================== -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.2); transition: border-color 0.5s ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  </div>
+
+  
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      localStorage.setItem('tiago-persona', 'tech');
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+    });
+  </script>
+</body>
+</html>

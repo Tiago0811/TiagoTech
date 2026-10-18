@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiagoTech Menú Digital QR & Pedidos a WhatsApp para Restaurantes</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Digitaliza la carta de tu restaurante, cafetería o food truck con TiagoTech Menú QR. Sin descargas de apps, escaneo rápido y pedidos organizados a WhatsApp.">
+  <meta name="keywords" content="Menú Digital QR, Carta Digital Restaurante, Pedidos a WhatsApp, Menú Cafetería, TiagoTech Menú QR, Software Gastronómico">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .pos-feature-card {
+      min-height: 200px;
+    }
+    .pos-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+    .pos-hero h1 {
+      font-size: 46px;
+      font-weight: 800;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-accent);
+    }
+    .pos-hero p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 680px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+    .menu-demo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .menu-demo-item:hover {
+      border-color: rgba(0, 240, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- 🖱️ Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Volver al Inicio</a></li>
+          <li><a href="#demo">Probar Demo</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Adquirir</a></li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="#demo">Probar Demo</a></li>
+      <li class="tech-only"><a href="#precios">Precios</a></li>
+      <li class="tech-only"><a href="#contacto">Adquirir</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 HERO & PRESENTATION
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="pos-hero">
+      <a href="index.html#sistemas" class="back-btn">&larr; Volver a Sistemas</a>
+      <span class="tech-tagline" style="margin-bottom: 8px; display: inline-flex;">GASTRONOMÍA & DELIVERY DIGITAL</span>
+      <h1>Menú Digital QR + WhatsApp</h1>
+      <p>
+        Digitaliza la carta de tu restaurante, cafetería, pizzería o food truck. Tus comensales escanean el código QR en la mesa o ven tu catálogo desde casa, eligen sus platillos favoritos y te envían el pedido perfectamente desglosado a tu WhatsApp.
+      </p>
+      <div style="display: flex; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap;">
+        <a href="#precios" class="btn">Ver Plan y Adquisición</a>
+        <a href="#demo" class="btn btn-outline">Probar Demostración</a>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20de%20Men%C3%BA%20Digital%20QR%20en%20tu%20web%20y%20quiero%20implementarlo%20en%20mi%20restaurante." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Escribir por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🧪 MICRO-DEMO INTERACTIVA EN VIVO
+         ========================================================================== -->
+    <section id="demo" style="padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="micro-demo-box">
+        <div class="micro-demo-header">
+          <div class="micro-demo-title">
+            <span>🍽️ Simulador de Menú QR y Pedido</span>
+            <span class="micro-demo-tag">DEMO EN VIVO</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Así verán y pedirán tus comensales</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md); margin-top: 15px;">
+          <!-- Carta de Platillos -->
+          <div>
+            <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; font-family: var(--font-accent);">
+              1. Selecciona platillos para tu mesa:
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="menu-demo-item">
+                <div>
+                  <strong style="color: #fff; font-size: 13px;">🍔 Burger Doble BBQ Bacon</strong>
+                  <div style="font-size: 11px; color: var(--text-muted);">200g carne, cheddar fundido, tocineta crujiente</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-code); font-weight: 700; margin-top: 2px;">$6.50</div>
+                </div>
+                <button type="button" class="btn btn-outline menu-demo-add" data-name="Burger Doble BBQ" data-price="6.50" style="padding: 6px 12px; font-size: 11px;">
+                  + Pedir
+                </button>
+              </div>
+
+              <div class="menu-demo-item">
+                <div>
+                  <strong style="color: #fff; font-size: 13px;">🍕 Pizza Pepperoni Especial</strong>
+                  <div style="font-size: 11px; color: var(--text-muted);">Masa fina artesanal, mozzarella y salsa pomodoro</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-code); font-weight: 700; margin-top: 2px;">$8.00</div>
+                </div>
+                <button type="button" class="btn btn-outline menu-demo-add" data-name="Pizza Pepperoni" data-price="8.00" style="padding: 6px 12px; font-size: 11px;">
+                  + Pedir
+                </button>
+              </div>
+
+              <div class="menu-demo-item">
+                <div>
+                  <strong style="color: #fff; font-size: 13px;">🍟 Papas Rústicas con Queso & Bacon</strong>
+                  <div style="font-size: 11px; color: var(--text-muted);">Papas naturales con dip de queso cheddar</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-code); font-weight: 700; margin-top: 2px;">$3.00</div>
+                </div>
+                <button type="button" class="btn btn-outline menu-demo-add" data-name="Papas Rústicas" data-price="3.00" style="padding: 6px 12px; font-size: 11px;">
+                  + Pedir
+                </button>
+              </div>
+
+              <div class="menu-demo-item">
+                <div>
+                  <strong style="color: #fff; font-size: 13px;">🥤 Bebida / Refresco Refrescante</strong>
+                  <div style="font-size: 11px; color: var(--text-muted);">Refresco frío de lata 355ml</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-code); font-weight: 700; margin-top: 2px;">$1.50</div>
+                </div>
+                <button type="button" class="btn btn-outline menu-demo-add" data-name="Refresco Lata" data-price="1.50" style="padding: 6px 12px; font-size: 11px;">
+                  + Pedir
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carrito de Orden y WhatsApp Sender -->
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 6px; font-size: 11px; color: var(--text-muted); font-family: var(--font-code);">
+                <span>ORDEN PARA COCINA</span>
+                <span>MESA #4 / LOCAL</span>
+              </div>
+              <div id="menu-demo-cart" style="min-height: 80px; max-height: 120px; overflow-y: auto; margin: 8px 0; font-size: 12px; font-family: var(--font-code);">
+                <p style="color: var(--text-muted); text-align: center; margin-top: 25px;">Agrega comida del menú para preparar la comanda...</p>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; color: #fff; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-bottom: 8px;">
+                <span>TOTAL A PAGAR:</span>
+                <span id="menu-demo-total" style="color: var(--accent-primary); font-family: var(--font-code); font-size: 18px;">$0.00</span>
+              </div>
+              <div style="display: flex; gap: 6px;">
+                <button type="button" id="menu-demo-send-btn" class="btn btn-whatsapp-sm" style="flex: 1;" disabled>
+                  <span>💬</span> Enviar Pedido a WhatsApp
+                </button>
+                <button type="button" id="menu-demo-clear-btn" class="btn btn-outline" style="padding: 8px 12px; font-size: 12px;">
+                  Vaciar
+                </button>
+              </div>
+              <div id="menu-demo-msg-preview" style="font-size: 11px; color: #25D366; text-align: left; margin-top: 8px; display: none; background: rgba(37,211,102,0.1); padding: 8px; border-radius: 4px; font-family: var(--font-code); line-height: 1.4;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📦 SECCIÓN DE CARACTERÍSTICAS
+         ========================================================================== -->
+    <section id="features" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">Ventajas del <span>Menú Digital QR</span></h2>
+      
+      <div class="pos-modal-features-grid">
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📲</div>
+          <div>
+            <h4>Cero Descarga de Aplicaciones</h4>
+            <p>El cliente solo abre la cámara de su teléfono, escanea el código QR en la mesa o mostrador y la carta se abre de inmediato en menos de 1 segundo.</p>
+          </div>
+        </div>
+
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">💬</div>
+          <div>
+            <h4>Pedidos Directos y Claros a WhatsApp</h4>
+            <p>Los pedidos llegan a tu WhatsApp con el nombre del cliente, número de mesa o dirección de delivery, cantidades y total exacto calculado para evitar errores de cocina.</p>
+          </div>
+        </div>
+
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">🍔</div>
+          <div>
+            <h4>Actualización de Precios en Segundos</h4>
+            <p>Olvídate de gastar dinero reimprimiendo cartas de papel cada vez que sube un ingrediente. Modifica precios, fotos o pausa platos agotados al instante.</p>
+          </div>
+        </div>
+
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">💰</div>
+          <div>
+            <h4>Sin Comisiones por Pedido</h4>
+            <p>Sin comisiones abusivas de aplicaciones de delivery (que cobran 20% a 30% por pedido). Todo tu beneficio queda íntegramente en tu negocio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💰 PRECIOS Y PLAN
+         ========================================================================== -->
+    <section id="precios" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Plan de <span>Implementación SaaS</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Digitaliza la carta de tu local a un costo accesible para cualquier negocio gastronómico.
+      </p>
+
+      <div class="modal-pricing-grid single-plan">
+        <div class="glass-card modal-price-card featured" style="text-align: center;">
+          <div class="m-badge">PLAN CLOUD GASTRONOMÍA</div>
+          <h4>Suscripción SaaS a Medida</h4>
+          <div class="m-price" style="font-size: 20px; font-weight: 700; color: var(--accent-primary); margin: 12px 0;">Plan a la Medida</div>
+          <p style="margin: 15px 0; font-size: 13px;">
+            Incluye alojamiento en la nube de alta velocidad, generación de código QR listo para imprimir en acrílicos o stickers de mesa, platos y fotos ilimitadas, pedidos directos a tu WhatsApp y soporte técnico continuo.
+          </p>
+          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+            <a href="#contacto" class="btn plan-btn" data-plan="Menú Digital QR">Contratar por Formulario</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Deseo%20activar%20el%20Men%C3%BA%20Digital%20QR%20para%20mi%20restaurante." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <span>💬</span> Activar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💳 Métodos de Pago Aceptados -->
+      <div class="payment-methods-box">
+        <div class="payment-methods-title">Métodos de Pago Aceptados</div>
+        <div class="payment-badges-row">
+          <span class="payment-badge">🇻🇪 Pago Móvil (Bs)</span>
+          <span class="payment-badge">🟡 Binance Pay / USDT</span>
+          <span class="payment-badge">🏦 Transferencia Bancaria</span>
+        </div>
+      </div>
+
+      <!-- 🛡️ Franja de Confianza y Garantías -->
+      <div class="trust-strip">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon">🛠️</div>
+            <div>
+              <h5>Carga Inicial de Platillos Incluida</h5>
+              <p>Te ayudamos a estructurar tu menú y categorías iniciales para que abras sin estrés.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">📱</div>
+            <div>
+              <h5>QR Listo para Imprimir</h5>
+              <p>Te entregamos el diseño en alta resolución para que lo coloques en tus mesas o mostrador.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">⚡</div>
+            <div>
+              <h5>Sin Comisiones por Pedido</h5>
+              <p>No pagas porcentajes de delivery; el 100% del dinero de cada comida va a tu caja.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">💬</div>
+            <div>
+              <h5>Soporte Directo por WhatsApp</h5>
+              <p>Atención directa vía WhatsApp para cambios de carta o dudas técnicas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE ADQUISICIÓN
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Solicitar <span>Menú Digital QR</span></h2>
+
+      <!-- Opción Rápida WhatsApp -->
+      <div style="max-width: 600px; margin: 0 auto var(--spacing-md) auto; text-align: center; padding: 18px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.25); border-radius: var(--border-radius-sm);">
+        <p style="color: #fff; font-size: 14px; margin-bottom: 12px; font-weight: 600;">
+          ¿Quieres activar tu menú QR hoy mismo por WhatsApp?
+        </p>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20solicitar%20el%20Men%C3%BA%20Digital%20QR%20para%20mi%20local." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Chatear con TiagoTech
+        </a>
+      </div>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="glass-card" style="padding: var(--spacing-md);">
+          
+          <form id="pos-contact-form">
+            <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
+            <input type="hidden" name="subject" value="Nueva Solicitud de Menú Digital QR">
+            <input type="hidden" name="from_name" value="Portal Menú QR">
+            <input type="hidden" name="botcheck" style="display: none;">
+            
+            <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Nombre Personal / Restaurante
+                </label>
+                <input type="text" id="form-name" name="name" required placeholder="Escribe tu nombre o negocio..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+              
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Correo Electrónico
+                </label>
+                <input type="email" id="form-email" name="email" required placeholder="tu@correo.com" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Sistema Seleccionado
+              </label>
+              <input type="text" id="form-plan" name="plan" readonly value="Menú Digital QR + WhatsApp" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: var(--accent-primary); font-family: var(--font-code); font-weight: 600; outline: none;">
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Detalles del restaurante o requerimientos
+              </label>
+              <textarea id="form-msg" name="message" rows="5" required placeholder="Cuéntame sobre tu restaurante y qué platillos o secciones necesitas..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); resize: vertical; transition: border-color 0.3s ease;"></textarea>
+            </div>
+            
+            <button type="submit" id="pos-submit-btn" class="btn" style="width: 100%;">
+              <span>Enviar Solicitud</span>
+            </button>
+            <div id="pos-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3); transition: border-color var(--transition-speed) ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Particle Canvas Theme
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+
+      // 2. Form submission
+      const form = document.getElementById('pos-contact-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const submitBtn = document.getElementById('pos-submit-btn');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>🔌 Enviando solicitud...</span>';
+          
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          })
+          .then(async (response) => {
+            let res = await response.json();
+            if (response.status === 200) {
+              alert('✔️ ¡Solicitud enviada con éxito! Tiago se pondrá en contacto contigo muy pronto.');
+              form.reset();
+            } else {
+              alert('Ups, hubo un problema: ' + res.message);
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert('Error de conexión. Por favor verifica tu red.');
+          })
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          });
+        });
+      }
+
+      // 3. Interactive QR Menu Micro-Demo Logic
+      const addBtns = document.querySelectorAll('.menu-demo-add');
+      const cartContainer = document.getElementById('menu-demo-cart');
+      const totalDisplay = document.getElementById('menu-demo-total');
+      const sendBtn = document.getElementById('menu-demo-send-btn');
+      const clearBtn = document.getElementById('menu-demo-clear-btn');
+      const msgPreview = document.getElementById('menu-demo-msg-preview');
+      let orderItems = [];
+
+      function updateMenuCart() {
+        if (!cartContainer || !totalDisplay) return;
+        if (orderItems.length === 0) {
+          cartContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center; margin-top: 25px;">Agrega comida del menú para preparar la comanda...</p>';
+          totalDisplay.textContent = '$0.00';
+          if (sendBtn) sendBtn.disabled = true;
+          if (msgPreview) msgPreview.style.display = 'none';
+          return;
+        }
+
+        let total = 0;
+        cartContainer.innerHTML = orderItems.map(item => {
+          total += item.price;
+          return `<div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dotted rgba(255,255,255,0.06);">
+            <span>${item.name}</span>
+            <span style="color: var(--accent-primary);">$${item.price.toFixed(2)}</span>
+          </div>`;
+        }).join('');
+
+        totalDisplay.textContent = `$${total.toFixed(2)}`;
+        if (sendBtn) sendBtn.disabled = false;
+        if (msgPreview) msgPreview.style.display = 'none';
+      }
+
+      addBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('data-name');
+          const price = parseFloat(btn.getAttribute('data-price')) || 0;
+          orderItems.push({ name, price });
+          updateMenuCart();
+        });
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          orderItems = [];
+          updateMenuCart();
+        });
+      }
+
+      if (sendBtn) {
+        sendBtn.addEventListener('click', () => {
+          if (orderItems.length === 0) return;
+          const itemsText = orderItems.map(i => `• ${i.name} ($${i.price.toFixed(2)})`).join('\n');
+          const simulatedMsg = `*¡NUEVO PEDIDO DESDE MENÚ QR!*\n\n📍 *Ubicación:* Mesa #4\n\n📝 *Detalle del Pedido:*\n${itemsText}\n\n💵 *Total a Cobrar:* ${totalDisplay.textContent}\n\n🕒 *Hora:* ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}\n_¡Listo para enviar a la cocina!_`;
+          
+          if (msgPreview) {
+            msgPreview.style.display = 'block';
+            msgPreview.innerHTML = `<strong>📲 Mensaje preformateado que llegará a tu WhatsApp:</strong><br><br>${simulatedMsg.replace(/\n/g, '<br>')}`;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

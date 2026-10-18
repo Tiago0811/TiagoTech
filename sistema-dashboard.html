@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiagoTech Analytics - Dashboards Interactivos & Reportes PDF para Negocios</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Potencia tu local comercial con TiagoTech Analytics. Transforma tus planillas de Excel, CSV o bases de datos en gráficos en tiempo real y reportes PDF profesionales.">
+  <meta name="keywords" content="TiagoTech Analytics, Dashboard de Ventas, Gráficos Excel a Web, Reportes PDF Automáticos, Visualización de Datos, Negocios Locales">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg"><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* Dedicated Page Styles */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .pos-feature-card {
+      min-height: 200px;
+    }
+    .pos-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+    .pos-hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-accent);
+    }
+    .pos-hero p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 650px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- ?? Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Volver al Inicio</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Cotizar</a></li>
+        </ul>
+
+        <!-- 🍔 Botón de Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="#precios">Precios</a></li>
+      <li class="tech-only"><a href="#contacto">Cotizar</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 ANALYTICS HERO & PRESENTATION
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="pos-hero">
+      <a href="index.html#sistemas" class="back-btn">&larr; Volver a Sistemas</a>
+      <span class="tech-tagline" style="margin-bottom: 8px; display: inline-flex;">DATA VISUALIZATION</span>
+      <h1>TiagoTech Analytics & Dashboards</h1>
+      <p>
+        El sistema definitivo para transformar tus planillas de Excel caóticas, archivos CSV o registros de venta en espectaculares gráficos interactivos en tiempo real y reportes en PDF profesionales para tu negocio.
+      </p>
+      <div style="display: flex; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap;">
+        <a href="#precios" class="btn">Ver Modelos de Integración</a>
+        <a href="#demo" class="btn btn-outline">Probar Demostración</a>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20de%20Dashboards%20y%20Analytics%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20digitalizar%20las%20m%C3%A9tricas%20de%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Escribir por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🧪 MICRO-DEMO INTERACTIVA EN VIVO
+         ========================================================================== -->
+    <section id="demo" style="padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="micro-demo-box">
+        <div class="micro-demo-header">
+          <div class="micro-demo-title">
+            <span>📊 Visor de Métricas en Tiempo Real</span>
+            <span class="micro-demo-tag">SIMULADOR EN VIVO</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Interactúa con las pestañas de métricas</span>
+        </div>
+
+        <!-- Pestañas de Métricas -->
+        <div style="display: flex; gap: 8px; margin: 15px 0 12px 0; flex-wrap: wrap;">
+          <button type="button" class="btn btn-outline dash-tab-btn active" data-tab="ventas" style="padding: 6px 14px; font-size: 12px; border-color: var(--accent-primary); background: rgba(0,240,255,0.1);">
+            📈 Ventas del Mes
+          </button>
+          <button type="button" class="btn btn-outline dash-tab-btn" data-tab="gastos" style="padding: 6px 14px; font-size: 12px;">
+            📉 Gastos & Beneficio
+          </button>
+          <button type="button" class="btn btn-outline dash-tab-btn" data-tab="productos" style="padding: 6px 14px; font-size: 12px;">
+            🏆 Top Productos
+          </button>
+        </div>
+
+        <!-- Vista Dinámica -->
+        <div id="dash-view-container" style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 15px;">
+          <!-- Contenido Ventas (Default) -->
+          <div id="tab-ventas" class="dash-tab-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 15px;">
+              <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <span style="font-size: 11px; color: var(--text-muted); display: block;">Ingreso Bruto</span>
+                <strong style="font-size: 18px; color: var(--accent-primary); font-family: var(--font-code);">$4,850.00</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <span style="font-size: 11px; color: var(--text-muted); display: block;">Transacciones</span>
+                <strong style="font-size: 18px; color: #27C93F; font-family: var(--font-code);">154 ordenes</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <span style="font-size: 11px; color: var(--text-muted); display: block;">Ticket Promedio</span>
+                <strong style="font-size: 18px; color: #FFBD2E; font-family: var(--font-code);">$31.50</strong>
+              </div>
+            </div>
+            <div style="margin-top: 10px;">
+              <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                <span>Progreso hacia Meta Mensual ($5,000)</span>
+                <strong style="color: var(--accent-primary);">97%</strong>
+              </div>
+              <div style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                <div style="width: 97%; height: 100%; background: var(--btn-gradient);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido Gastos (Oculto) -->
+          <div id="tab-gastos" class="dash-tab-content" style="display: none;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 15px;">
+              <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <span style="font-size: 11px; color: var(--text-muted); display: block;">Compras / Stock</span>
+                <strong style="font-size: 18px; color: #FF5F56; font-family: var(--font-code);">$1,320.00</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <span style="font-size: 11px; color: var(--text-muted); display: block;">Servicios / Nómina</span>
+                <strong style="font-size: 18px; color: #FFBD2E; font-family: var(--font-code);">$450.00</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <span style="font-size: 11px; color: var(--text-muted); display: block;">Beneficio Neto Real</span>
+                <strong style="font-size: 18px; color: #27C93F; font-family: var(--font-code);">$3,080.00</strong>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">Margen operativo saludable del 63.5% sobre ventas netas.</p>
+          </div>
+
+          <!-- Contenido Productos (Oculto) -->
+          <div id="tab-productos" class="dash-tab-content" style="display: none;">
+            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">Top 3 Artículos Más Rentables:</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                  <span>1. Combo Ejecutivo Familiar</span>
+                  <span style="color: var(--accent-primary); font-weight: 700;">$1,840 (38%)</span>
+                </div>
+                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 38%; height: 100%; background: #00F0FF;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                  <span>2. Bebida Especial de Temporada</span>
+                  <span style="color: var(--accent-primary); font-weight: 700;">$1,164 (24%)</span>
+                </div>
+                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 24%; height: 100%; background: #53FC18;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                  <span>3. Postre Artesanal de la Casa</span>
+                  <span style="color: var(--accent-primary); font-weight: 700;">$920 (19%)</span>
+                </div>
+                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 19%; height: 100%; background: #FFBD2E;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón de Simulación de Reporte -->
+        <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <button type="button" id="dash-demo-pdf-btn" class="btn btn-outline" style="font-size: 12px; padding: 8px 16px;">
+            📄 Simular Exportación de Balance PDF
+          </button>
+          <span id="dash-pdf-status" style="font-size: 11px; color: #27C93F; display: none;">✔️ Reporte ejecutivo compilado en 0.4s</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📊 SECCIÓN DE CARACTERÍSTICAS TÉCNICAS
+         ========================================================================== -->
+    <section id="features" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">¿Qué te ofrece <span>Analytics</span>?</h2>
+      
+      <div class="pos-modal-features-grid">
+        <!-- Feature 1 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📊</div>
+          <div>
+            <h4>Gráficos Dinámicos en Tiempo Real</h4>
+            <p>Visualiza tus ingresos, productos más vendidos, ganancias mensuales y comportamiento de tus clientes en hermosos gráficos interactivos de barras, líneas y círculos.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📂</div>
+          <div>
+            <h4>Importador Inteligente de Excel / CSV</h4>
+            <p>Solo arrastra tu archivo de ventas de Excel o CSV dentro de la web y el sistema procesará, ordenará y estructurará miles de filas de datos al instante.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📄</div>
+          <div>
+            <h4>Generador de Reportes PDF Profesionales</h4>
+            <p>Exporta balances ejecutivos de pérdidas y ganancias, reportes semanales o mensuales limpios y ordenados en formato PDF con un solo clic, listos para imprimir.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">🔒</div>
+          <div>
+            <h4>Privacidad Local Total</h4>
+            <p>El sistema puede ejecutarse 100% de forma local en tu computadora. Tus datos financieros privados se procesan en tu máquina y nunca viajan a servidores de terceros.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💰 SECCIÓN DE PRECIOS INTEGRADA
+         ========================================================================== -->
+    <section id="precios" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Plan y <span>Adquisición</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Visualiza las métricas clave de tu negocio con actualización continua y soporte garantizado.
+      </p>
+
+      <div class="modal-pricing-grid single-plan">
+        <div class="glass-card modal-price-card featured" style="text-align: center;">
+          <div class="m-badge">PLAN DASHBOARDS & ANALYTICS</div>
+          <h4>Cotización Personalizada</h4>
+          <div class="m-price" style="font-size: 20px; font-weight: 700; color: var(--accent-primary); margin: 12px 0;">Plan a la Medida</div>
+          <p style="margin: 15px 0; font-size: 13px;">
+            Alojamiento cloud gestionado por TiagoTech, procesamiento ilimitado de hojas de cálculo Excel/CSV, gráficos interactivos en tiempo real, exportación de reportes ejecutivos en PDF, soporte técnico directo y mejoras continuas.
+          </p>
+          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+            <a href="#contacto" class="btn plan-btn" data-plan="Dashboards & Analytics">Solicitar por Formulario</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20consultar%20sobre%20el%20sistema%20de%20Dashboards%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <span>💬</span> Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💳 Métodos de Pago Aceptados -->
+      <div class="payment-methods-box">
+        <div class="payment-methods-title">Métodos de Pago Aceptados</div>
+        <div class="payment-badges-row">
+          <span class="payment-badge">🇻🇪 Pago Móvil (Bs)</span>
+          <span class="payment-badge">🟡 Binance Pay / USDT</span>
+          <span class="payment-badge">🏦 Transferencia Bancaria</span>
+        </div>
+      </div>
+
+      <!-- 🛡️ Franja de Confianza y Garantías -->
+      <div class="trust-strip">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon">🛠️</div>
+            <div>
+              <h5>Instalación & Configuración 1 a 1</h5>
+              <p>Conectamos tus hojas de cálculo de Excel o bases de datos paso a paso de forma remota.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🔒</div>
+            <div>
+              <h5>Privacidad Total de tus Finanzas</h5>
+              <p>El sistema se aloja en tu infraestructura o equipo local; tus datos nunca se comparten con terceros.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">📄</div>
+            <div>
+              <h5>Reportes PDF Ilimitados</h5>
+              <p>Exporta balances y resúmenes ejecutivos todas las veces que lo necesites sin costos adicionales.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">💬</div>
+            <div>
+              <h5>Soporte por WhatsApp</h5>
+              <p>Canal directo y prioritario vía WhatsApp para resolver cualquier duda o ajuste.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE ADQUISICIÓN / DEDICADO
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Solicitar <span>Cotización</span> de Dashboard</h2>
+
+      <!-- Opción Rápida WhatsApp -->
+      <div style="max-width: 600px; margin: 0 auto var(--spacing-md) auto; text-align: center; padding: 18px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.25); border-radius: var(--border-radius-sm);">
+        <p style="color: #fff; font-size: 14px; margin-bottom: 12px; font-weight: 600;">
+          ¿Quieres evaluar tus planillas de Excel o consultar en vivo por WhatsApp?
+        </p>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20de%20Dashboards%20y%20Analytics%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20digitalizar%20las%20m%C3%A9tricas%20de%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Chatear con TiagoTech
+        </a>
+      </div>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="glass-card" style="padding: var(--spacing-md);">
+          
+          <form id="pos-contact-form">
+            <!-- Web3Forms Access Key Configuration -->
+            <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
+            <input type="hidden" name="subject" value="Nueva Solicitud de TiagoTech Analytics">
+            <input type="hidden" name="from_name" value="Portal Tiago Analytics">
+            <input type="hidden" name="botcheck" style="display: none;">
+            
+            <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Nombre Personal / Empresa
+                </label>
+                <input type="text" id="form-name" name="name" required placeholder="Escribe tu nombre..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+              
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Correo Electrónico
+                </label>
+                <input type="email" id="form-email" name="email" required placeholder="tu@correo.com" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Sistema Seleccionado
+              </label>
+              <input type="text" id="form-plan" name="plan" readonly value="Dashboards & Reportes Analíticos" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: var(--accent-primary); font-family: var(--font-code); font-weight: 600; outline: none;">
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Detalles del negocio o requerimientos
+              </label>
+              <textarea id="form-msg" name="message" rows="5" required placeholder="Cuéntame sobre tu negocio y qué te gustaría implementar..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); resize: vertical; transition: border-color 0.3s ease;"></textarea>
+            </div>
+            
+            <button type="submit" id="pos-submit-btn" class="btn" style="width: 100%;">
+              <span>Enviar Solicitud</span>
+            </button>
+            <div id="pos-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3); transition: border-color var(--transition-speed) ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+<!-- ==========================================================================
+       ⚙️ SCRIPTS JAVASCRIPT
+       ========================================================================== -->
+  
+  </div>
+
+  
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    // Local script for form submissions and scroll effects inside sistema-dashboard.html
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Sync canvas particle engine theme
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+
+      // 2. Selectors
+      const form = document.getElementById('pos-contact-form');
+      const selectPlan = document.getElementById('form-plan');
+      const textMsg = document.getElementById('form-msg');
+      const nameInput = document.getElementById('form-name');
+      const planButtons = document.querySelectorAll('.plan-btn');
+
+      // 3. Pre-fill form on click pricing plans
+      planButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const selectedPlan = btn.getAttribute('data-plan');
+          
+          if (selectPlan) selectPlan.value = selectedPlan;
+          if (textMsg) {
+            textMsg.value = `¡Hola Tiago! Estoy muy interesado en cotizar y adquirir el [ ${selectedPlan} ] de la plataforma "TiagoTech Analytics" para visualizar y reportar los datos de mi negocio de forma profesional. Me gustaría coordinar...`;
+          }
+          setTimeout(() => {
+            if (nameInput) nameInput.focus();
+          }, 300);
+        });
+      });
+
+      // 4. AJAX Web3Forms Submission
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          const submitBtn = document.getElementById('pos-submit-btn');
+          const originalText = submitBtn.innerHTML;
+          
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>🔌 Enviando solicitud...</span>';
+          
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          })
+          .then(async (response) => {
+            let res = await response.json();
+            if (response.status === 200) {
+              alert('✔️ ¡Solicitud enviada con éxito! Tiago se pondrá en contacto contigo muy pronto para analizar tu caso.');
+              form.reset();
+            } else {
+              alert('Ups, hubo un problema: ' + res.message);
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert('Error de conexión. Por favor verifica tu red.');
+          })
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          });
+        });
+      }
+
+      // 5. Interactive Dashboard Micro-Demo Tab Switching
+      const tabBtns = document.querySelectorAll('.dash-tab-btn');
+      const tabContents = document.querySelectorAll('.dash-tab-content');
+      const pdfBtn = document.getElementById('dash-demo-pdf-btn');
+      const pdfStatus = document.getElementById('dash-pdf-status');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.borderColor = 'var(--card-border)';
+            b.style.background = 'transparent';
+          });
+          btn.classList.add('active');
+          btn.style.borderColor = 'var(--accent-primary)';
+          btn.style.background = 'rgba(0, 240, 255, 0.1)';
+
+          const targetTab = btn.getAttribute('data-tab');
+          tabContents.forEach(content => {
+            if (content.id === `tab-${targetTab}`) {
+              content.style.display = 'block';
+            } else {
+              content.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      if (pdfBtn && pdfStatus) {
+        pdfBtn.addEventListener('click', () => {
+          pdfStatus.style.display = 'inline';
+          pdfStatus.textContent = '⏳ Compilando balance con PDFKit...';
+          setTimeout(() => {
+            pdfStatus.textContent = '✔️ ¡Balance ejecutivo generado con éxito! Listo para imprimir o descargar.';
+          }, 450);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
+

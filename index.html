@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiagoTech - Desarrollo de Software y Sistemas Web a la Medida</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Desarrollo de software y sistemas web personalizados para comercios y empresas: TiagoTech POS, Menú Digital QR, Citas & Agenda, Facturador Express, Gyms, E-Commerce y Dashboards.">
+  <meta name="keywords" content="TiagoTech, Desarrollo de Software, Sistemas Web, POS, Menú QR, Facturador Express, E-Commerce, Venezuela, Dashboards, Automatización">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+</head>
+<body>
+
+  <!-- 🎯 Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Principal -->
+  <header>
+    <div class="container header-container">
+      
+      <!-- Logotipo Interactivo -->
+      <a href="index.html" class="logo" id="main-logo">
+        <span class="code-tag">&lt;</span>TiagoTech<span class="code-tag"> /&gt;</span>
+      </a>
+
+      <!-- Navegación -->
+      <nav>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#sistemas">Sistemas</a></li>
+          <li><a href="#tecnologias">Tecnologías</a></li>
+          <li><a href="#noticias">Noticias Tech</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <!-- 🍔 Botón Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <div class="mobile-identity-box" style="border-bottom: 1px solid var(--card-border); padding-bottom: 15px; margin-bottom: 20px;">
+      <div class="mobile-identity-title" style="font-family: var(--font-code); color: var(--accent-primary); font-size: 14px; font-weight: 700;">
+        <span>⚡</span> &lt;TiagoTech /&gt;
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Soluciones de Software & Automatización</p>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#sistemas" onclick="toggleMobileMenu()">Sistemas</a></li>
+      <li><a href="#tecnologias" onclick="toggleMobileMenu()">Tecnologías</a></li>
+      <li><a href="#noticias" onclick="toggleMobileMenu()">Noticias Tech</a></li>
+      <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="#contacto" onclick="toggleMobileMenu()">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 SECCIÓN HERO DE TIAGOTECH
+       ========================================================================== -->
+  <section class="container tech-section" id="hero-tech-sec" style="padding-top: 100px;">
+    <div class="hero-tech">
+      <div class="hero-tech-content">
+        <div class="tech-tagline">
+          <span>SISTEMAS INTELIGENTES & DESARROLLO PREMIUM</span>
+        </div>
+        <h1 class="hero-title-tech" id="tech-typed-title">
+          Sistemas Web a la Medida de tu Negocio
+        </h1>
+        <p class="hero-subtitle-tech">
+          Desarrollo de software y sistemas web personalizados para locales comerciales (mini-markets, tiendas de ropa, restaurantes, boutiques y más). Adaptados al 100% a los flujos y necesidades de tu negocio.
+        </p>
+        <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
+          <a href="#sistemas" class="btn">Ver Catálogo</a>
+          <a href="#contacto" class="btn btn-outline">Hablemos del Proyecto</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20gustar%C3%ADa%20consultar%20sobre%20un%20sistema%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp" title="Escribir por WhatsApp">
+            <span>💬</span> WhatsApp Directo
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-tech-visual">
+        <!-- Consola de Desarrollo Mockup -->
+        <div class="console-mockup">
+          <div class="console-header">
+            <span class="console-dot red"></span>
+            <span class="console-dot yellow"></span>
+            <span class="console-dot green"></span>
+            <span class="console-title">tiagotech_core.js</span>
+          </div>
+          <div class="console-body" id="console-code-body">
+            <div class="console-line">
+              <span class="console-prompt">&gt;</span>
+              <span class="console-comment">// Inicializando plataforma TiagoTech...</span>
+            </div>
+            <div class="console-line">
+              <span class="console-prompt">&gt;</span>
+              <span>const tiagoTech = new SoftwareStudio("Tiago");</span>
+            </div>
+            <div class="console-line">
+              <span class="console-prompt">&gt;</span>
+              <span>tiagoTech.getSystems();</span>
+            </div>
+            <div class="console-line">
+              <span class="console-prompt">out:</span>
+              <span class="console-output">["POS & Stock", "Menú QR", "Citas 24/7", "Facturador Express", "Gym", "Dashboards", "E-Commerce"]</span>
+            </div>
+            <div class="console-line">
+              <span class="console-prompt">&gt;</span>
+              <span>tiagoTech.getPaymentMethods();</span>
+            </div>
+            <div class="console-line">
+              <span class="console-prompt">out:</span>
+              <span class="console-output">["Pago Móvil (Bs)", "Binance USDT", "Transferencia Bancaria"]</span>
+            </div>
+            <div class="console-line">
+              <span class="console-prompt">&gt;</span>
+              <span>tiagoTech.status();</span>
+            </div>
+            <div class="console-line">
+              <span class="console-prompt">out:</span>
+              <span class="console-output" style="color: var(--accent-primary); text-shadow: var(--glow-shadow);">⚡ 100% Disponible para digitalizar tu negocio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       💻 TIAGOTECH: SHOWROOM DE SISTEMAS
+       ========================================================================== -->
+  <section class="container tech-section" id="sistemas">
+    <h2 class="section-title">Sistemas Creados <span>para tu Local</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 700px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      No importa el rubro de tu negocio. Si necesitas administrar inventarios, registrar ventas, visualizar estadísticas o vender en línea, desarrollo la solución web perfecta adaptada al 100% a tus flujos de trabajo reales. Aquí tienes los 7 sistemas destacados:
+    </p>
+    
+    <div class="systems-grid">
+      <!-- Sistema 1: POS -->
+      <div class="glass-card system-card">
+        <div>
+          <div class="system-icon">🛒</div>
+          <span class="tech-badge" style="margin-bottom: 6px; display: inline-block;">COMERCIO LOCAL</span>
+          <h3>TiagoTech POS & Inventario</h3>
+          <p class="system-description">
+            El sistema de facturación y caja definitivo para pequeños comercios (tiendas de ropa, mini-markets, reposterías, boutiques). Controla stock, registra ventas, arqueos y apartados.
+          </p>
+          <div class="system-tech-stack">
+            <span class="tech-badge">Punto de Venta</span>
+            <span class="tech-badge">Control de Stock</span>
+            <span class="tech-badge">Arqueo de Caja</span>
+            <span class="tech-badge">Cuentas por Cobrar</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="sistema-pos.html" class="btn" style="flex: 1; text-align: center;">Ver Sistema & Demo</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20TiagoTech%20POS%20para%20mi%20local." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Consultar por WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Sistema 2: Menú Digital QR -->
+      <div class="glass-card system-card">
+        <div>
+          <div class="system-icon">🍽️</div>
+          <span class="tech-badge" style="margin-bottom: 6px; display: inline-block; color: #53FC18; border-color: rgba(83,252,24,0.3);">GASTRONOMÍA & DELIVERY</span>
+          <h3>Menú Digital QR + WhatsApp</h3>
+          <p class="system-description">
+            Carta interactiva para restaurantes, cafeterías, pizzerías y food trucks. Cero descargas de apps, escaneo instantáneo, platos con fotos y pedidos ordenados directos a WhatsApp.
+          </p>
+          <div class="system-tech-stack">
+            <span class="tech-badge">Código QR Mesa</span>
+            <span class="tech-badge">Pedidos WhatsApp</span>
+            <span class="tech-badge">Platos Ilimitados</span>
+            <span class="tech-badge">0% Comisiones</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="sistema-menu-qr.html" class="btn" style="flex: 1; text-align: center;">Ver Sistema & Demo</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20Men%C3%BA%20Digital%20QR%20para%20mi%20restaurante." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Consultar por WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Sistema 3: Citas & Agenda -->
+      <div class="glass-card system-card">
+        <div>
+          <div class="system-icon">✂️</div>
+          <span class="tech-badge" style="margin-bottom: 6px; display: inline-block; color: #c499ff; border-color: rgba(196,153,255,0.3);">BELLEZA & SERVICIOS</span>
+          <h3>TiagoTech Citas & Agenda Web</h3>
+          <p class="system-description">
+            Tu negocio reservando clientes 24/7 en piloto automático. Para barberías, peluquerías, salones y spas. Selección de profesional, horarios en tiempo real y recordatorios por WhatsApp.
+          </p>
+          <div class="system-tech-stack">
+            <span class="tech-badge">Reservas 24/7</span>
+            <span class="tech-badge">Barberos / Estilistas</span>
+            <span class="tech-badge">Recordatorio WhatsApp</span>
+            <span class="tech-badge">Cero Huecos</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="sistema-citas.html" class="btn" style="flex: 1; text-align: center;">Ver Sistema & Demo</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20de%20Citas%20y%20Agenda%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Consultar por WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Sistema 4: Facturador Express -->
+      <div class="glass-card system-card">
+        <div>
+          <div class="system-icon">📄</div>
+          <span class="tech-badge" style="margin-bottom: 6px; display: inline-block; color: #FFBD2E; border-color: rgba(255,189,46,0.3);">TÉCNICOS & PROFESIONALES</span>
+          <h3>Facturador & Cotizador Express PDF</h3>
+          <p class="system-description">
+            Emite cotizaciones y recibos PDF de calidad ejecutiva en 60 segundos desde tu celular o PC. Con logo de tu taller o empresa, cálculo automático de IVA y envío instantáneo a WhatsApp.
+          </p>
+          <div class="system-tech-stack">
+            <span class="tech-badge">PDF en 60s</span>
+            <span class="tech-badge">Logo de Empresa</span>
+            <span class="tech-badge">Cálculo de IVA</span>
+            <span class="tech-badge">Envío WhatsApp</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="sistema-cotizador.html" class="btn" style="flex: 1; text-align: center;">Ver Sistema & Demo</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20Facturador%20%26%20Cotizador%20Express." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Consultar por WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Sistema 5: Membresías Gym -->
+      <div class="glass-card system-card">
+        <div>
+          <div class="system-icon">🏋️</div>
+          <span class="tech-badge" style="margin-bottom: 6px; display: inline-block; color: #FF5F56; border-color: rgba(255,95,86,0.3);">FITNESS & ACADEMIAS</span>
+          <h3>Control de Membresías & Gimnasios</h3>
+          <p class="system-description">
+            Control de accesos y socios para gimnasios, dojos de artes marciales y crossfit. Búsqueda rápida por cédula/QR, semáforo de pagos (Al día / Vencido) y aviso de cobro a WhatsApp.
+          </p>
+          <div class="system-tech-stack">
+            <span class="tech-badge">Control de Puerta</span>
+            <span class="tech-badge">Semáforo de Pagos</span>
+            <span class="tech-badge">Cobros WhatsApp</span>
+            <span class="tech-badge">Reporte Ingresos</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="sistema-gym.html" class="btn" style="flex: 1; text-align: center;">Ver Sistema & Demo</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20de%20Control%20de%20Gimnasios." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Consultar por WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Sistema 6: Dashboards -->
+      <div class="glass-card system-card">
+        <div>
+          <div class="system-icon">📊</div>
+          <span class="tech-badge" style="margin-bottom: 6px; display: inline-block;">ANALÍTICA & GESTIÓN</span>
+          <h3>Dashboards & Reportes Analíticos</h3>
+          <p class="system-description">
+            Transforma registros de Excel, CSV o bases de datos en paneles visuales dinámicos en tiempo real, KPIs ejecutivos y balances exportables en PDF para directivos y comercios.
+          </p>
+          <div class="system-tech-stack">
+            <span class="tech-badge">Chart.js</span>
+            <span class="tech-badge">Métricas Excel</span>
+            <span class="tech-badge">Balances PDF</span>
+            <span class="tech-badge">Privacidad Total</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="sistema-dashboard.html" class="btn" style="flex: 1; text-align: center;">Ver Sistema & Demo</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20de%20Dashboards%20y%20Analytics." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Consultar por WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Sistema 7: E-Commerce -->
+      <div class="glass-card system-card">
+        <div>
+          <div class="system-icon">🌐</div>
+          <span class="tech-badge" style="margin-bottom: 6px; display: inline-block;">VENTAS ONLINE</span>
+          <h3>E-Commerce & Portales Web</h3>
+          <p class="system-description">
+            Tiendas online de máxima velocidad, catálogo con carrito express, pasarelas de pago automatizadas, panel administrativo y SEO automatizado para vender en toda la región.
+          </p>
+          <div class="system-tech-stack">
+            <span class="tech-badge">Next.js</span>
+            <span class="tech-badge">Pasarelas de Pago</span>
+            <span class="tech-badge">0% Comisiones</span>
+            <span class="tech-badge">Panel de Catálogo</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="sistema-ecommerce.html" class="btn" style="flex: 1; text-align: center;">Ver Sistema & Demo</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20crear%20una%20tienda%20online%20E-Commerce." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Consultar por WhatsApp">💬</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 💳 Métodos de Pago Aceptados -->
+    <div class="payment-methods-box">
+      <div class="payment-methods-title">Métodos de Pago Aceptados</div>
+      <div class="payment-badges-row">
+        <span class="payment-badge">🇻🇪 Pago Móvil (Bs)</span>
+        <span class="payment-badge">🟡 Binance Pay / USDT</span>
+        <span class="payment-badge">🏦 Transferencia Bancaria</span>
+      </div>
+    </div>
+
+    <!-- 🛡️ Franja de Confianza y Garantías -->
+    <div class="trust-strip">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">🛠️</div>
+          <div>
+            <h5>Instalación Guiada 1 a 1</h5>
+            <p>Acompañamiento remoto vía AnyDesk o nube para dejar tu software 100% operativo.</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🎓</div>
+          <div>
+            <h5>Capacitación Incluida</h5>
+            <p>Te enseñamos a ti y a tus empleados a utilizar cada módulo sin complicaciones.</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">⚡</div>
+          <div>
+            <h5>Sin Comisiones Ocultas</h5>
+            <p>El 100% de lo que cobras en tu local o tienda es tuyo; sin porcentajes por venta.</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">💬</div>
+          <div>
+            <h5>Soporte por WhatsApp</h5>
+            <p>Canal directo y prioritario vía WhatsApp para resolver cualquier duda o ajuste.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       💻 TIAGOTECH: TECNOLOGÍAS & HABILIDADES
+       ========================================================================== -->
+  <section class="container tech-section" id="tecnologias">
+    <h2 class="section-title">Habilidades y <span>Stack</span></h2>
+    <div class="skills-grid">
+      <div class="glass-card skill-pill">
+        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" /></svg>
+        <span>JavaScript (ES6+)</span>
+      </div>
+      <div class="glass-card skill-pill">
+        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" /></svg>
+        <span>Python & IA</span>
+      </div>
+      <div class="glass-card skill-pill">
+        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" /></svg>
+        <span>HTML5 & CSS3 Modern</span>
+      </div>
+      <div class="glass-card skill-pill">
+        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" /></svg>
+        <span>Bases de Datos SQL & NoSQL</span>
+      </div>
+      <div class="glass-card skill-pill">
+        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" /></svg>
+        <span>Node.js & Backend APIs</span>
+      </div>
+      <div class="glass-card skill-pill">
+        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" /></svg>
+        <span>Cloud VPS & Despliegues</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       📰 TIAGOTECH: NOTICIAS & ARTÍCULOS TECH E IA
+       ========================================================================== -->
+  <section class="container tech-section" id="noticias">
+    <h2 class="section-title">Noticias & <span>Artículos Tech</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      Análisis, tendencias de ingeniería de software e Inteligencia Artificial aplicada a la productividad empresarial.
+    </p>
+    
+    <div class="news-grid">
+      <!-- Noticia 1: Agentes Autónomos -->
+      <div class="glass-card news-card" style="padding: 0; overflow: hidden;">
+        <div style="position: relative; height: 180px; overflow: hidden;">
+          <img src="assets/img/autonomous_agents_ai.png" alt="Agentes Autónomos de IA" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(8,12,20,0.95) 100%);"></div>
+          <span class="news-badge" style="position: absolute; top: 12px; right: 12px; background: rgba(0, 240, 255, 0.9); color: #080C14; font-weight: 800;">⚡ IA AVANZADA</span>
+        </div>
+        <div style="padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);">
+          <div class="news-header" style="margin-bottom: 10px;">
+            <span class="news-date">SEPTIEMBRE 2026</span>
+            <span class="news-badge">MULTI-AGENTE</span>
+          </div>
+          <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4;">
+            El Despertar de los Agentes Autónomos de IA en el Software Empresarial
+          </h3>
+          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-sm);">
+            Cómo los sistemas multi-agente (CrewAI, LangGraph) ejecutan flujos comerciales completos, cobranzas y reconciliación de inventarios en piloto automático.
+          </p>
+          <a href="noticia-agentes.html" class="news-link">Leer artículo completo &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Noticia 2: Gemini y Contexto -->
+      <div class="glass-card news-card" style="padding: 0; overflow: hidden;">
+        <div style="position: relative; height: 180px; overflow: hidden;">
+          <img src="assets/img/gemini_context_ai.png" alt="Gemini y Contexto Masivo" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(8,12,20,0.95) 100%);"></div>
+          <span class="news-badge" style="position: absolute; top: 12px; right: 12px; background: rgba(142, 45, 226, 0.9); color: #fff; font-weight: 800;">🧠 LLMs</span>
+        </div>
+        <div style="padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);">
+          <div class="news-header" style="margin-bottom: 10px;">
+            <span class="news-date">SEPTIEMBRE 2026</span>
+            <span class="news-badge">BIG DATA</span>
+          </div>
+          <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4;">
+            Gemini y el Procesamiento de Contexto Masivo: Auditoría de Código
+          </h3>
+          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-sm);">
+            El impacto de las ventanas de contexto millonarias para analizar bases de datos completas, arquitecturas de software legacy y balances contables en un segundo.
+          </p>
+          <a href="noticia-gemini.html" class="news-link">Leer artículo completo &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Noticia 3: Modelos Locales SLM -->
+      <div class="glass-card news-card" style="padding: 0; overflow: hidden;">
+        <div style="position: relative; height: 180px; overflow: hidden;">
+          <img src="assets/img/local_browser_slm.png" alt="SLM y Privacidad Local" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(8,12,20,0.95) 100%);"></div>
+          <span class="news-badge" style="position: absolute; top: 12px; right: 12px; background: rgba(83, 252, 24, 0.9); color: #080C14; font-weight: 800;">🔒 PRIVACIDAD</span>
+        </div>
+        <div style="padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);">
+          <div class="news-header" style="margin-bottom: 10px;">
+            <span class="news-date">SEPTIEMBRE 2026</span>
+            <span class="news-badge">OPEN SOURCE</span>
+          </div>
+          <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4;">
+            Modelos de Lenguaje Locales (SLMs): Privacidad Absoluta para Comercios
+          </h3>
+          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-sm);">
+            Cómo procesar datos sensibles de clientes y balances financieros dentro del servidor local sin enviar información a nubes de terceros.
+          </p>
+          <a href="noticia-ia-local.html" class="news-link">Leer artículo completo &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       📬 FORMULARIO DE CONTACTO TIAGOTECH
+       ========================================================================== -->
+  <section class="container tech-section" id="contacto">
+    <h2 class="section-title">
+      Iniciar Proyecto de <span>Sistemas</span>
+    </h2>
+
+    <!-- Opción Directa WhatsApp para TiagoTech -->
+    <div style="max-width: 600px; margin: 0 auto var(--spacing-md) auto; text-align: center; padding: 18px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.25); border-radius: var(--border-radius-sm);">
+      <p style="color: #fff; font-size: 14px; margin-bottom: 12px; font-weight: 600;">
+        ¿Prefieres atención inmediata y coordinar tu sistema hoy mismo por WhatsApp?
+      </p>
+      <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20interesado%20en%20contratar%20un%20sistema%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+        <span>💬</span> Chatear con TiagoTech por WhatsApp
+      </a>
+    </div>
+    
+    <div style="max-width: 600px; margin: 0 auto;">
+      <div class="glass-card" style="padding: var(--spacing-md);">
+        
+        <form id="contact-form">
+          <!-- Web3Forms Access Key Configuration -->
+          <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
+          <input type="hidden" name="subject" value="Nueva Consulta de Sistemas TiagoTech">
+          <input type="hidden" name="from_name" value="Portal TiagoTech">
+          <input type="hidden" name="botcheck" style="display: none;">
+          
+          <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+              <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Nombre Personal / Empresa
+              </label>
+              <input type="text" id="form-name" name="name" required placeholder="Escribe tu nombre o negocio..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+            </div>
+            
+            <div style="flex: 1; min-width: 250px;">
+              <label for="form-email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Correo Electrónico
+              </label>
+              <input type="email" id="form-email" name="email" required placeholder="tu@correo.com" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+            </div>
+          </div>
+          
+          <div style="margin-bottom: var(--spacing-sm);">
+            <label for="form-service" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+              ¿Qué sistema necesitas adquirir o desarrollar?
+            </label>
+            <select id="form-service" name="service" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              <option value="menu_qr">🍽️ Menú Digital QR + WhatsApp</option>
+              <option value="citas">✂️ TiagoTech Citas & Agenda</option>
+              <option value="cotizador">📄 Facturador & Cotizador Express</option>
+              <option value="pos">🛒 TiagoTech POS & Inventario</option>
+              <option value="gym">🏋️ Control de Membresías Gym</option>
+              <option value="dashboard">📊 Dashboards & Reportes Analíticos</option>
+              <option value="ecommerce">🌐 Tienda Online / E-Commerce</option>
+              <option value="custom">💻 Desarrollo de Software a Medida Personalizado</option>
+            </select>
+          </div>
+          
+          <div style="margin-bottom: var(--spacing-md);">
+            <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+              Detalles del negocio o requerimientos
+            </label>
+            <textarea id="form-msg" name="message" rows="5" required placeholder="Cuéntame sobre tu negocio y qué te gustaría implementar..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); resize: vertical; transition: border-color 0.3s ease;"></textarea>
+          </div>
+          
+          <button type="submit" class="btn" style="width: 100%;">
+            Enviar Requerimientos
+          </button>
+          
+        </form>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       🦶 PIE DE PÁGINA PROFESIONAL
+       ========================================================================== -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3); transition: border-color var(--transition-speed) ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       🤖 CHATBOT ASISTENTE IA DE TIAGOTECH
+       ========================================================================== -->
+  <div class="chatbot-widget" id="tech-chatbot">
+    <!-- Burbuja Pulsante de Chat -->
+    <div class="chatbot-bubble" id="chatbot-bubble" title="Abrir Asistente Virtual TiagoTech">
+      <div class="chatbot-bubble-avatar" id="chatbot-avatar-bubble">🤖</div>
+      <div class="chatbot-pulse"></div>
+    </div>
+    
+    <!-- Ventana de Mensajería Desplegable -->
+    <div class="chatbot-window" id="chatbot-window">
+      <div class="chatbot-header">
+        <div class="chatbot-header-avatar" id="chatbot-avatar-header">🤖</div>
+        <div class="chatbot-header-info">
+          <h4 id="chatbot-title">TiagoTech Assistant</h4>
+          <span id="chatbot-subtitle" style="font-size: 9px; color: var(--accent-primary); font-weight: 700;">En línea // Consultor de Software</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="chatbot-reset-btn" id="chatbot-reset-btn" title="Reiniciar conversación">🔄</button>
+          <button class="chatbot-close-btn" id="chatbot-close" title="Cerrar">&times;</button>
+        </div>
+      </div>
+      
+      <div class="chatbot-messages" id="chatbot-messages">
+        <!-- Inyectado dinámicamente por app.js -->
+      </div>
+      
+      <!-- Indicador de Escritura Animado -->
+      <div class="chatbot-typing" id="chatbot-typing" style="display: none;">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+      <!-- Sugerencias Rápidas Dinámicas -->
+      <div class="chatbot-prompts" id="chatbot-prompts">
+        <!-- Inyectado por app.js -->
+      </div>
+
+      <!-- Barra de Entrada de Texto Libre -->
+      <form class="chatbot-input-bar" id="chatbot-form">
+        <input type="text" id="chatbot-input" class="chatbot-input-field" placeholder="Pregunta sobre sistemas, precios, pagos..." autocomplete="off">
+        <button type="submit" id="chatbot-send-btn" class="chatbot-send-btn" title="Enviar mensaje">➤</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       ⚙️ CARGA DE SCRIPTS JAVASCRIPT
+       ========================================================================== -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

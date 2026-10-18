@@ -1,0 +1,13 @@
+[build]
+  publish = "."
+
+# Opciones opcionales de cabeceras para rendimiento y caché
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

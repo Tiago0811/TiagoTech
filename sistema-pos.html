@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiagoTech POS - Sistema de Ventas e Inventario para Pequeños Negocios</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Conoce TiagoTech POS, el sistema de facturación, caja e inventario definitivo diseñado a la medida para pequeños comercios, tiendas, mini-markets y boutiques.">
+  <meta name="keywords" content="TiagoTech POS, Sistema de Ventas, Control de Inventario, Arqueo de Caja, Cuentas por Cobrar, Pequeños Negocios, Software POS">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg"><text y=%22.9em%22 font-size=%2290%22>🛒</text></svg>">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* Dedicated Page Styling details */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .pos-feature-card {
+      min-height: 200px;
+    }
+    .pos-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+    .pos-hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-accent);
+    }
+    .pos-hero p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 650px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- ?? Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Volver al Inicio</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Adquirir</a></li>
+        </ul>
+
+        <!-- 🍔 Botón de Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="#precios">Precios</a></li>
+      <li class="tech-only"><a href="#contacto">Adquirir</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 POS HERO & PRESENTATION
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="pos-hero">
+      <a href="index.html#sistemas" class="back-btn">&larr; Volver a Sistemas</a>
+      <span class="tech-tagline" style="margin-bottom: 8px;">PRODUCTO ESTRELLA</span>
+      <h1>TiagoTech POS & Inventario</h1>
+      <p>
+        El sistema de administración definitivo diseñado especialmente para digitalizar, controlar y ordenar los flujos de trabajo de pequeños comercios locales (tiendas de ropa, mini-markets, cafeterías, boutiques y más).
+      </p>
+      <div style="display: flex; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap;">
+        <a href="#precios" class="btn">Ver Modelos de Compra</a>
+        <a href="#demo" class="btn btn-outline">Probar Demostración</a>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20TiagoTech%20POS%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20coordinar%20una%20demostraci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Escribir por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🧪 MICRO-DEMO INTERACTIVA EN VIVO
+         ========================================================================== -->
+    <section id="demo" style="padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="micro-demo-box">
+        <div class="micro-demo-header">
+          <div class="micro-demo-title">
+            <span>🛒 Demostración Interactiva</span>
+            <span class="micro-demo-tag">SIMULADOR EN VIVO</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Prueba el flujo de caja en segundos</span>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-md); margin-top: 15px;">
+          <!-- Catálogo Rápido -->
+          <div>
+            <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; font-family: var(--font-accent);">
+              1. Haz clic en productos para cobrar:
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <button type="button" class="btn btn-outline pos-demo-btn" data-name="Café Espresso" data-price="2.50" style="padding: 10px; font-size: 12px; text-align: left;">
+                ☕ Café Espresso<br><strong style="color: var(--accent-primary);">$2.50</strong>
+              </button>
+              <button type="button" class="btn btn-outline pos-demo-btn" data-name="Camisa Casual" data-price="18.00" style="padding: 10px; font-size: 12px; text-align: left;">
+                👕 Camisa Casual<br><strong style="color: var(--accent-primary);">$18.00</strong>
+              </button>
+              <button type="button" class="btn btn-outline pos-demo-btn" data-name="Refresco 500ml" data-price="1.75" style="padding: 10px; font-size: 12px; text-align: left;">
+                🥤 Refresco 500ml<br><strong style="color: var(--accent-primary);">$1.75</strong>
+              </button>
+              <button type="button" class="btn btn-outline pos-demo-btn" data-name="Snack Mixto" data-price="1.50" style="padding: 10px; font-size: 12px; text-align: left;">
+                🍿 Snack Mixto<br><strong style="color: var(--accent-primary);">$1.50</strong>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ticket de Cobro -->
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 6px; font-size: 11px; color: var(--text-muted); font-family: var(--font-code);">
+                <span>TICKET TIAGOTECH POS</span>
+                <span id="pos-demo-time">#0482</span>
+              </div>
+              <div id="pos-demo-list" style="min-height: 80px; max-height: 120px; overflow-y: auto; margin: 10px 0; font-size: 12px; font-family: var(--font-code);">
+                <p style="color: var(--text-muted); text-align: center; margin-top: 25px;">Agrega productos arriba para ver el cálculo...</p>
+              </div>
+            </div>
+            
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; color: #fff; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-bottom: 10px;">
+                <span>TOTAL A COBRAR:</span>
+                <span id="pos-demo-total" style="color: var(--accent-primary); font-family: var(--font-code); font-size: 18px;">$0.00</span>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" id="pos-demo-pay-btn" class="btn btn-whatsapp-sm" style="flex: 1;" disabled>
+                  ⚡ Registrar Venta
+                </button>
+                <button type="button" id="pos-demo-reset-btn" class="btn btn-outline" style="padding: 8px 12px; font-size: 12px;">
+                  Limpiar
+                </button>
+              </div>
+              <div id="pos-demo-alert" style="font-size: 11px; color: #27C93F; text-align: center; margin-top: 8px; display: none; font-weight: 600;">
+                ✔️ ¡Cobro exitoso! Recibo generado e inventario descontado.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📦 SECCIÓN DE CARACTERÍSTICAS TÉCNICAS (LO QUE HACE EL SISTEMA)
+         ========================================================================== -->
+    <section id="features" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">¿Qué hace el <span>Sistema POS</span>?</h2>
+      
+      <div class="pos-modal-features-grid">
+        <!-- Feature 1 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📈</div>
+          <div>
+            <h4>Punto de Venta e Inyección de Caja</h4>
+            <p>Registra transacciones de forma ágil, calcula vueltos al instante y maneja arqueos de caja rápidos para evitar descuadres de dinero en tu local al final de la jornada.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">📦</div>
+          <div>
+            <h4>Inventario y Stock Automatizado</h4>
+            <p>Monitorea todo tu stock en tiempo real, recibe alertas automáticas de productos por agotarse y organiza tus artículos de forma limpia por categorías comerciales.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">💳</div>
+          <div>
+            <h4>Apartados & Cuentas por Cobrar</h4>
+            <p>Permite a tus clientes de confianza apartar productos o pagar en cuotas (créditos) con un registro exacto de abonos, saldos y fechas de vencimiento pendientes.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="glass-card pos-feature-item pos-feature-card">
+          <div class="pos-feature-icon">💸</div>
+          <div>
+            <h4>Registro de Egresos y Proveedores</h4>
+            <p>Lleva el registro de deudas con tus proveedores y los gastos diarios de caja (ej. compras, servicios) para deducirlos de las ventas brutas y calcular tu beneficio neto real.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💰 SECCIÓN DE PRECIOS INTEGRADA
+         ========================================================================== -->
+    <section id="precios" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Plan de <span>Implementación</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Digitaliza el cobro e inventario de tu comercio con una solución personalizada y sin permanencia.
+      </p>
+
+      <div class="modal-pricing-grid single-plan">
+        <div class="glass-card modal-price-card featured" style="text-align: center;">
+          <div class="m-badge">PLAN TIENDAS & COMERCIOS</div>
+          <h4>Suscripción SaaS a Medida</h4>
+          <div class="m-price" style="font-size: 20px; font-weight: 700; color: var(--accent-primary); margin: 12px 0;">Plan a la Medida</div>
+          <p style="margin: 15px 0; font-size: 13px;">
+            Incluye punto de venta táctil ilimitado, control de stock con alertas automáticas de reposición, arqueos de caja, cuentas por cobrar, soporte técnico continuo y actualizaciones sin cargos sorpresa.
+          </p>
+          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+            <a href="#contacto" class="btn plan-btn" data-plan="TiagoTech POS">Contratar por Formulario</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20activar%20el%20sistema%20TiagoTech%20POS%20para%20mi%20local." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <span>💬</span> Activar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💳 Métodos de Pago Aceptados -->
+      <div class="payment-methods-box">
+        <div class="payment-methods-title">Métodos de Pago Aceptados</div>
+        <div class="payment-badges-row">
+          <span class="payment-badge">🇻🇪 Pago Móvil (Bs)</span>
+          <span class="payment-badge">🟡 Binance Pay / USDT</span>
+          <span class="payment-badge">🏦 Transferencia Bancaria</span>
+        </div>
+      </div>
+
+      <!-- 🛡️ Franja de Confianza y Garantías -->
+      <div class="trust-strip">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon">🛠️</div>
+            <div>
+              <h5>Instalación Guiada 1 a 1</h5>
+              <p>Te acompañamos remotamente vía AnyDesk para dejar el sistema listo y funcionando en tu equipo.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🎓</div>
+            <div>
+              <h5>Capacitación Incluida</h5>
+              <p>Te enseñamos a ti y a tus empleados a registrar ventas, cargar inventario y hacer cierres de caja.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">⚡</div>
+            <div>
+              <h5>Sin Comisiones Ocultas</h5>
+              <p>El 100% de tus ventas es tuyo sin comisiones porcentuales ni cargos adicionales.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">💬</div>
+            <div>
+              <h5>Soporte por WhatsApp</h5>
+              <p>Canal directo y prioritario vía WhatsApp para resolver cualquier duda o ajuste.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE ADQUISICIÓN / DEDICADO
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Solicitar <span>Adquisición</span> o Demo</h2>
+
+      <!-- Opción Rápida WhatsApp -->
+      <div style="max-width: 600px; margin: 0 auto var(--spacing-md) auto; text-align: center; padding: 18px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.25); border-radius: var(--border-radius-sm);">
+        <p style="color: #fff; font-size: 14px; margin-bottom: 12px; font-weight: 600;">
+          ¿Prefieres respuesta inmediata o demostración en vivo por WhatsApp?
+        </p>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20interesado%20en%20el%20sistema%20TiagoTech%20POS%20y%20quiero%20m%C3%A1s%20detalles%20para%20mi%20local." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <span>💬</span> Chatear con TiagoTech
+        </a>
+      </div>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="glass-card" style="padding: var(--spacing-md);">
+          
+          <form id="pos-contact-form">
+            <!-- Web3Forms Access Key Configuration -->
+            <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
+            <input type="hidden" name="subject" value="Nueva Solicitud de TiagoTech POS">
+            <input type="hidden" name="from_name" value="Portal Tiago POS">
+            <input type="hidden" name="botcheck" style="display: none;">
+            
+            <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Nombre Personal / Empresa
+                </label>
+                <input type="text" id="form-name" name="name" required placeholder="Escribe tu nombre..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+              
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Correo Electrónico
+                </label>
+                <input type="email" id="form-email" name="email" required placeholder="tu@correo.com" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Sistema Seleccionado
+              </label>
+              <input type="text" id="form-plan" name="plan" readonly value="TiagoTech POS & Inventario" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: var(--accent-primary); font-family: var(--font-code); font-weight: 600; outline: none;">
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Detalles del negocio o requerimientos
+              </label>
+              <textarea id="form-msg" name="message" rows="5" required placeholder="Cuéntame sobre tu negocio y qué te gustaría implementar..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); resize: vertical; transition: border-color 0.3s ease;"></textarea>
+            </div>
+            
+            <button type="submit" id="pos-submit-btn" class="btn" style="width: 100%;">
+              <span>Enviar Solicitud</span>
+            </button>
+            <div id="pos-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3); transition: border-color var(--transition-speed) ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    // Local script for form submissions and scroll effects inside sistema-pos.html
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Sync canvas particle engine theme
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+
+      // 2. Selectors
+      const form = document.getElementById('pos-contact-form');
+      const selectPlan = document.getElementById('form-plan');
+      const textMsg = document.getElementById('form-msg');
+      const nameInput = document.getElementById('form-name');
+      const planButtons = document.querySelectorAll('.plan-btn');
+
+      // 3. Pre-fill form on click pricing plans
+      planButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const selectedPlan = btn.getAttribute('data-plan');
+          
+          if (selectPlan) selectPlan.value = selectedPlan;
+          if (textMsg) {
+            textMsg.value = `¡Hola Tiago! Estoy sumamente interesado en adquirir la opción de [ ${selectedPlan} ] para el sistema TiagoTech POS & Inventario para mi local comercial. Me gustaría coordinar para ver una demo e instalarlo...`;
+          }
+          setTimeout(() => {
+            if (nameInput) nameInput.focus();
+          }, 300);
+        });
+      });
+
+      // 4. AJAX Web3Forms Submission
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          const submitBtn = document.getElementById('pos-submit-btn');
+          const originalText = submitBtn.innerHTML;
+          
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>🔌 Enviando solicitud...</span>';
+          
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          })
+          .then(async (response) => {
+            let res = await response.json();
+            if (response.status === 200) {
+              alert('✔️ ¡Solicitud enviada con éxito! Tiago se pondrá en contacto contigo muy pronto para coordinar.');
+              form.reset();
+            } else {
+              alert('Ups, hubo un problema: ' + res.message);
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert('Error de conexión. Por favor verifica tu red.');
+          })
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          });
+        });
+      }
+
+      // 5. Interactive POS Micro-Demo Logic
+      const demoBtns = document.querySelectorAll('.pos-demo-btn');
+      const demoList = document.getElementById('pos-demo-list');
+      const demoTotal = document.getElementById('pos-demo-total');
+      const demoPayBtn = document.getElementById('pos-demo-pay-btn');
+      const demoResetBtn = document.getElementById('pos-demo-reset-btn');
+      const demoAlert = document.getElementById('pos-demo-alert');
+      let cart = [];
+
+      function updateCartUI() {
+        if (!demoList || !demoTotal) return;
+        if (cart.length === 0) {
+          demoList.innerHTML = '<p style="color: var(--text-muted); text-align: center; margin-top: 25px;">Agrega productos arriba para ver el cálculo...</p>';
+          demoTotal.textContent = '$0.00';
+          if (demoPayBtn) demoPayBtn.disabled = true;
+          return;
+        }
+
+        let total = 0;
+        demoList.innerHTML = cart.map((item, idx) => {
+          total += item.price;
+          return `<div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dotted rgba(255,255,255,0.06);">
+            <span>${item.name}</span>
+            <span style="color: var(--accent-primary);">$${item.price.toFixed(2)}</span>
+          </div>`;
+        }).join('');
+
+        demoTotal.textContent = `$${total.toFixed(2)}`;
+        if (demoPayBtn) demoPayBtn.disabled = false;
+        if (demoAlert) demoAlert.style.display = 'none';
+      }
+
+      demoBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('data-name');
+          const price = parseFloat(btn.getAttribute('data-price')) || 0;
+          cart.push({ name, price });
+          updateCartUI();
+        });
+      });
+
+      if (demoResetBtn) {
+        demoResetBtn.addEventListener('click', () => {
+          cart = [];
+          updateCartUI();
+          if (demoAlert) demoAlert.style.display = 'none';
+        });
+      }
+
+      if (demoPayBtn) {
+        demoPayBtn.addEventListener('click', () => {
+          if (cart.length === 0) return;
+          if (demoAlert) {
+            demoAlert.style.display = 'block';
+            demoAlert.textContent = `✔️ ¡Cobro de ${demoTotal.textContent} procesado con éxito! Recibo impreso y stock descontado.`;
+          }
+          demoPayBtn.disabled = true;
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
+

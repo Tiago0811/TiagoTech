@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+/* ==========================================================================
+   CSS VARIABLES & DESIGN SYSTEM (TECH vs GAMER METAMORPHOSIS)
+   ========================================================================== */
+
+:root {
+  /* Transition Speed */
+  --transition-speed: 0.5s;
+  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Common/Shared Variables */
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 56px;
+  --spacing-xl: 110px;
+
+  /* ==================== 💻 TECH MODE (DEFAULT) ==================== */
+  --bg-primary: #080C14;
+  --bg-secondary: #0F1626;
+  --bg-tertiary: #172237;
+  
+  --card-bg: rgba(15, 22, 38, 0.65);
+  --card-border: rgba(0, 240, 255, 0.15);
+  --card-border-hover: rgba(0, 240, 255, 0.4);
+
+  --accent-primary: #00F0FF;       /* Electric Cyan */
+  --accent-secondary: #8E2DE2;     /* Neon Purple */
+  --accent-tertiary: #4A00E0;      /* Deep Violet */
+  --accent-rgb: 0, 240, 255;       /* RGB of cyan for alpha transparency */
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  --glow-color: rgba(0, 240, 255, 0.35);
+  --glow-shadow: 0 0 20px var(--glow-color);
+  
+  /* Typography */
+  --font-main: 'Inter', sans-serif;
+  --font-accent: 'Inter', sans-serif;
+  --font-code: 'Fira Code', monospace;
+  
+  /* UI Elements */
+  --btn-gradient: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  --text-gradient: linear-gradient(135deg, #FFF 30%, var(--accent-primary) 100%);
+  --toggle-pos: 4px;
+}
+

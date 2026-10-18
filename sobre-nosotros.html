@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros - TiagoTech | Desarrollo de Sistemas a la Medida</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Conoce a TiagoTech: un desarrollador independiente apasionado por transformar negocios locales con sistemas web a la medida, modernos y accesibles.">
+  <meta name="keywords" content="TiagoTech, Sobre Nosotros, Desarrollador Web, Sistemas a Medida, Negocios Locales, Venezuela, Software PHP">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg"><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* ==================== PAGE LAYOUT ==================== */
+    .page-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px var(--spacing-md) var(--spacing-xl) var(--spacing-md);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+
+    /* ==================== HERO ROW ==================== */
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+      align-items: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    @media (max-width: 768px) {
+      .about-hero { grid-template-columns: 1fr; }
+    }
+
+    .about-hero-content .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-primary);
+      font-family: var(--font-code);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+    .about-hero-content .tagline::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      box-shadow: var(--glow-shadow);
+      animation: pulse 1.5s infinite;
+    }
+
+    .about-hero-content h1 {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.1;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-accent);
+    }
+
+    .about-hero-content p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .about-hero-image {
+      position: relative;
+    }
+
+    .about-hero-image img {
+      width: 100%;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--glow-shadow);
+      display: block;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+
+    .about-hero-image img:hover {
+      transform: scale(1.02);
+      border-color: var(--card-border-hover);
+    }
+
+    /* Glow badge over image */
+    .about-hero-image .badge-float {
+      position: absolute;
+      bottom: -18px;
+      left: 24px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius-sm);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), var(--glow-shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .badge-float .badge-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent-primary);
+      font-family: var(--font-accent);
+      text-shadow: var(--glow-shadow);
+    }
+
+    .badge-float .badge-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      max-width: 90px;
+    }
+
+    /* ==================== VALUES GRID ==================== */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .value-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .value-icon {
+      font-size: 28px;
+      width: 56px;
+      height: 56px;
+      border-radius: var(--border-radius-sm);
+      background: rgba(var(--accent-rgb), 0.08);
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .value-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-accent);
+    }
+
+    .value-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ==================== STORY TIMELINE ==================== */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-primary), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      box-shadow: var(--glow-shadow);
+    }
+
+    .timeline-item .year {
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: var(--accent-primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      font-family: var(--font-accent);
+    }
+
+    .timeline-item p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ==================== STACK CHIPS ==================== */
+    .stack-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: var(--spacing-sm);
+    }
+
+    .chip {
+      font-family: var(--font-code);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(var(--accent-rgb), 0.07);
+      border: 1px solid rgba(var(--accent-rgb), 0.2);
+      color: var(--accent-primary);
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .chip:hover {
+      background: rgba(var(--accent-rgb), 0.15);
+      box-shadow: var(--glow-shadow);
+    }
+
+    /* ==================== CTA BANNER ==================== */
+    .cta-banner {
+      text-align: center;
+      padding: var(--spacing-lg) var(--spacing-md);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius-md);
+      background: rgba(var(--accent-rgb), 0.03);
+      backdrop-filter: blur(12px);
+    }
+
+    .cta-banner h2 {
+      font-size: 32px;
+      font-weight: 800;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: var(--font-accent);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .cta-banner p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 560px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎯 Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#sistemas">Sistemas</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+
+        <!-- 🍔 Botón de Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html">Inicio</a></li>
+      <li class="tech-only"><a href="index.html#sistemas">Sistemas</a></li>
+      <li class="tech-only"><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       📖 MAIN ABOUT CONTENT
+       ========================================================================== -->
+  <main class="page-container">
+
+    <a href="index.html" class="back-btn">&larr; Volver al Inicio</a>
+
+    <!-- ══════════ HERO ROW ══════════ -->
+    <div class="about-hero">
+
+      <div class="about-hero-content">
+        <div class="tagline">SOBRE TIAGOTECH</div>
+        <h1>Tecnología Hecha para tu Negocio</h1>
+        <p>
+          Somos un estudio de desarrollo independiente especializado en crear sistemas web y software a la medida para pequeños comercios y negocios informales. Nuestra misión es simple: <strong>darte las herramientas digitales que las grandes empresas tienen, pero adaptadas 100% a tu realidad y a tu bolsillo.</strong>
+        </p>
+        <div class="cta-buttons">
+          <a href="index.html#sistemas" class="btn">Ver Nuestros Sistemas</a>
+          <a href="index.html#contacto" class="btn btn-outline">Contáctanos</a>
+        </div>
+      </div>
+
+      <div class="about-hero-image">
+        <img src="assets/img/LogoTiagoTech.jpeg" alt="Logo oficial de TiagoTech - Desarrollo de sistemas a la medida">
+        <div class="badge-float">
+          <span class="badge-num">3+</span>
+          <span class="badge-label">Años desarrollando sistemas reales</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════ VALORES ══════════ -->
+    <h2 class="section-title">Nuestros <span>Valores</span></h2>
+
+    <div class="values-grid">
+      <div class="glass-card value-card">
+        <div class="value-icon">🎯</div>
+        <h3>Soluciones a la Medida</h3>
+        <p>
+          No vendemos plantillas genéricas. Cada sistema que construimos se diseña desde cero escuchando las necesidades reales de tu negocio, tus flujos de trabajo y tus metas concretas.
+        </p>
+      </div>
+
+      <div class="glass-card value-card">
+        <div class="value-icon">💸</div>
+        <h3>Precios Accesibles y Justos</h3>
+        <p>
+          Creemos que la digitalización no debe ser exclusiva de las grandes empresas. Ofrecemos suscripciones mensuales transparentes y accesibles para que cualquier tienda o comercio pueda modernizarse sin endeudarse ni grandes inversiones iniciales.
+        </p>
+      </div>
+
+      <div class="glass-card value-card">
+        <div class="value-icon">🔒</div>
+        <h3>Privacidad y Control Total</h3>
+        <p>
+          Tu información comercial es tuya y solo tuya. Priorizamos soluciones que se ejecutan localmente en tu computadora, sin enviar tus datos de ventas o clientes a servidores de terceros.
+        </p>
+      </div>
+
+      <div class="glass-card value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Soporte Cercano y Real</h3>
+        <p>
+          No eres un ticket de soporte. Eres un aliado. Respondemos dudas, resolvemos problemas y acompañamos la instalación de cada sistema de forma directa, rápida y personalizada.
+        </p>
+      </div>
+
+      <div class="glass-card value-card">
+        <div class="value-icon">⚡</div>
+        <h3>Tecnología Moderna</h3>
+        <p>
+          Utilizamos el stack tecnológico más actual y estable del mercado para garantizar que tu sistema sea veloz, seguro, responsivo en móviles y capaz de escalar a medida que tu negocio crece.
+        </p>
+      </div>
+
+      <div class="glass-card value-card">
+        <div class="value-icon">🚀</div>
+        <h3>Entrega Ágil</h3>
+        <p>
+          Trabajamos con metodología ágil y compromisos claros. Definimos los requisitos juntos, iteramos rápido y entregamos sistemas funcionales en plazos cortos, sin sorpresas ni retrasos eternos.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════ NUESTRA HISTORIA ══════════ -->
+    <h2 class="section-title">Nuestra <span>Historia</span></h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">2022 — El Inicio</div>
+        <h4>Primeras Líneas de Código</h4>
+        <p>
+          Todo comenzó con una necesidad concreta: un familiar tenía una tienda de ropa y llevaba el inventario y las ventas en cuadernos y hojas de Excel desorganizadas. Aprendimos PHP y MySQL desde cero para construirle una solución simple pero efectiva.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year">2023 — El Primer Sistema Real</div>
+        <h4>Nace TiagoTech POS & Inventario</h4>
+        <p>
+          Tras meses de desarrollo y pruebas reales en el terreno, el sistema de ventas evolucionó hasta convertirse en una plataforma robusta con caja, arqueos, apartados, inventario y gestión de proveedores. El primer cliente externo instaló el sistema ese mismo año.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year">2024 — Expansión de Servicios</div>
+        <h4>Dashboards, Reportes y Portales Web</h4>
+        <p>
+          Crecimos nuestro catálogo incorporando soluciones de visualización de datos con gráficos interactivos, generación de reportes PDF profesionales e iniciamos los primeros proyectos de E-Commerce y portales web institucionales para clientes locales.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year">2025 — Inteligencia Artificial</div>
+        <h4>Integración de IA en los Sistemas</h4>
+        <p>
+          Incorporamos herramientas de Inteligencia Artificial a nuestro flujo de trabajo para acelerar el desarrollo, mejorar la calidad del código y comenzar a ofrecer automatizaciones inteligentes como asistentes virtuales y análisis predictivo de ventas a nuestros clientes.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="year">2026 — Hoy</div>
+        <h4>TiagoTech: Un Estudio Completo</h4>
+        <p>
+          Hoy somos un estudio de desarrollo de software independiente con un catálogo sólido de productos, clientes satisfechos y una visión clara: democratizar la tecnología web para cada pequeño comercio y emprendedor que quiera crecer de forma inteligente.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════ STACK TECNOLÓGICO ══════════ -->
+    <h2 class="section-title">Nuestro <span>Stack Tecnológico</span></h2>
+
+    <div class="glass-card" style="margin-bottom: var(--spacing-xl);">
+      <p style="color: var(--text-secondary); margin-bottom: var(--spacing-sm); font-size: 15px;">
+        Elegimos cada herramienta de nuestra pila tecnológica de forma cuidadosa, priorizando estabilidad, rendimiento, comunidad activa y coste cero de licenciamiento para nuestros clientes.
+      </p>
+      <div class="stack-chips">
+        <span class="chip">PHP 8.3</span>
+        <span class="chip">MySQL / MariaDB</span>
+        <span class="chip">JavaScript ES6+</span>
+        <span class="chip">Next.js 14</span>
+        <span class="chip">React 18</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">Chart.js</span>
+        <span class="chip">PDFKit</span>
+        <span class="chip">ExcelJS</span>
+        <span class="chip">Supabase</span>
+        <span class="chip">Stripe API</span>
+        <span class="chip">TailwindCSS</span>
+        <span class="chip">HTML5 Canvas</span>
+        <span class="chip">Python 3.12</span>
+        <span class="chip">Gemini API</span>
+        <span class="chip">CrewAI</span>
+        <span class="chip">Web3Forms</span>
+        <span class="chip">Netlify / Vercel</span>
+        <span class="chip">Git & GitHub</span>
+        <span class="chip">WebGPU / SLMs</span>
+      </div>
+    </div>
+
+    <!-- ══════════ CTA FINAL ══════════ -->
+    <div class="cta-banner">
+      <h2>¿Listo para Digitalizar tu Negocio?</h2>
+      <p>
+        Platícanos tu idea y en menos de 24 horas te damos un presupuesto claro, sin compromiso y adaptado a tu realidad.
+      </p>
+      <div class="cta-buttons">
+        <a href="index.html#sistemas" class="btn">Ver Catálogo de Sistemas</a>
+        <a href="index.html#contacto" class="btn btn-outline">Iniciar Proyecto</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       🦶 PIE DE PÁGINA
+       ========================================================================== -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.2);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;" title="WhatsApp TiagoTech">💬 WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       ⚙️ SCRIPTS
+       ========================================================================== -->
+  
+  </div>
+
+  
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+    });
+  </script>
+</body>
+</html>
+
