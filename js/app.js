@@ -421,7 +421,186 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Initialize Chatbot on load
-  initChatbot();
+  // ==========================================
+  // 💬 WIDGET FLOTANTE DE WHATSAPP CON POPUP
+  // ==========================================
+  const waPopup = document.getElementById('wa-popup');
+  const waPopupClose = document.getElementById('wa-popup-close');
+
+  if (waPopup) {
+    // Show popup after 3.5 seconds
+    setTimeout(() => {
+      waPopup.classList.add('active');
+    }, 3500);
+
+    if (waPopupClose) {
+      waPopupClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        waPopup.classList.remove('active');
+      });
+    }
+  }
+
+  // ==========================================
+  // ❓ FAQ ACORDEÓN INTERACTIVO
+  // ==========================================
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (question) {
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        faqItems.forEach(other => other.classList.remove('open'));
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    }
+  });
+
+  // ==========================================
+  // 🧭 ASESOR INTERACTIVO EN 3 PASOS (WIZARD)
+  // ==========================================
+  const wizardStep1 = document.getElementById('wizard-step-1');
+  const wizardStep2 = document.getElementById('wizard-step-2');
+  const wizardStep3 = document.getElementById('wizard-step-3');
+  const node1 = document.getElementById('wizard-node-1');
+  const node2 = document.getElementById('wizard-node-2');
+  const node3 = document.getElementById('wizard-node-3');
+  const goalsGrid = document.getElementById('wizard-goals-grid');
+  const backBtn = document.getElementById('wizard-back-btn');
+  const resultBox = document.getElementById('wizard-result-box');
+
+  let selectedBusiness = null;
+  let selectedBusinessLabel = '';
+
+  const BUSINESS_GOALS = {
+    comercio: [
+      { goal: 'pos', title: 'Cobrar rápido y controlar inventario', desc: 'Registrar ventas de mostrador, arqueos de caja y alertas de stock bajo.', system: 'TiagoTech POS & Inventario', icon: '🛒', url: 'sistema-pos.html' },
+      { goal: 'online', title: 'Vender por internet las 24 horas', desc: 'Catálogo web propio con carrito de compra y pagos automatizados.', system: 'E-Commerce & Tienda Online', icon: '🌐', url: 'sistema-ecommerce.html' },
+      { goal: 'facturas', title: 'Emitir presupuestos formales', desc: 'Cotizaciones en PDF con logo y datos bancarios para clientes mayoristas.', system: 'Facturador & Cotizador Express PDF', icon: '📄', url: 'sistema-cotizador.html' }
+    ],
+    gastronomia: [
+      { goal: 'menu_qr', title: 'Carta interactiva con pedidos a WhatsApp', desc: 'Clientes escanean el QR en la mesa y envían el pedido directo a tu cocina.', system: 'Menú Digital QR + WhatsApp', icon: '🍽️', url: 'sistema-menu-qr.html' },
+      { goal: 'pos_food', title: 'Punto de venta y caja rápida', desc: 'Cobrar mesas, tickets de consumo y control de stock de insumos.', system: 'TiagoTech POS & Inventario', icon: '🛒', url: 'sistema-pos.html' },
+      { goal: 'analytics_food', title: 'Controlar costos, mermas y ganancias', desc: 'Dashboards con gráficos de ventas semanales y balance mensual.', system: 'Dashboards & Analytics', icon: '📊', url: 'sistema-dashboard.html' }
+    ],
+    citas: [
+      { goal: 'agenda', title: 'Agendamiento online de turnos', desc: 'Clientes eligen especialista, servicio y hora sin llamadas ni desorden.', system: 'Sistema de Citas & Agenda Online', icon: '📅', url: 'sistema-citas.html' },
+      { goal: 'caja_citas', title: 'Cobro de servicios y comisiones', desc: 'Llevar la cuenta de lo que produjo cada barbero, estilista o doctor.', system: 'TiagoTech POS & Inventario', icon: '🛒', url: 'sistema-pos.html' }
+    ],
+    servicios: [
+      { goal: 'cotizador', title: 'Cotizaciones en PDF en 60 segundos', desc: 'Presupuestos ejecutivos con membrete listos para enviar por WhatsApp al cliente.', system: 'Facturador & Cotizador Express PDF', icon: '📄', url: 'sistema-cotizador.html' },
+      { goal: 'dash_servicios', title: 'Control de proyectos y cobranzas', desc: 'Saber exactamente cuánto dinero tienes por cobrar de trabajos pendientes.', system: 'Dashboards & Analytics', icon: '📊', url: 'sistema-dashboard.html' }
+    ],
+    fitness: [
+      { goal: 'gym', title: 'Control de accesos y mensualidades', desc: 'Saber quién pagó y avisar por WhatsApp cuando la cuota está por vencer.', system: 'Control de Membresías & Gimnasios', icon: '🏋️', url: 'sistema-gym.html' },
+      { goal: 'citas_fit', title: 'Reserva de clases y cupos limitados', desc: 'Gestionar horarios de spinning, yoga, crossfit o artes marciales.', system: 'Sistema de Citas & Agenda Online', icon: '📅', url: 'sistema-citas.html' }
+    ],
+    ecommerce: [
+      { goal: 'store', title: 'Tienda virtual rápida con catálogo propio', desc: 'Vende sin comisiones de terceros con pasarelas de pago listas.', system: 'E-Commerce & Tienda Online', icon: '🌐', url: 'sistema-ecommerce.html' },
+      { goal: 'dash_ecom', title: 'Métricas de pedidos y conversión', desc: 'Gráficos de ventas diarias, clientes recurrentes y productos estrella.', system: 'Dashboards & Analytics', icon: '📊', url: 'sistema-dashboard.html' }
+    ]
+  };
+
+  const choiceBtns = document.querySelectorAll('#wizard-step-1 .wizard-choice-btn');
+  choiceBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedBusiness = btn.getAttribute('data-business');
+      selectedBusinessLabel = btn.getAttribute('data-label');
+
+      choiceBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      renderWizardStep2();
+    });
+  });
+
+  function renderWizardStep2() {
+    if (!goalsGrid || !selectedBusiness) return;
+    const goals = BUSINESS_GOALS[selectedBusiness] || BUSINESS_GOALS.comercio;
+
+    goalsGrid.innerHTML = goals.map(item => `
+      <button type="button" class="wizard-choice-btn" data-system="${item.system}" data-url="${item.url}" data-title="${item.title}">
+        <span class="wizard-choice-icon">${item.icon}</span>
+        <span class="wizard-choice-title">${item.title}</span>
+        <span class="wizard-choice-desc">${item.desc}</span>
+      </button>
+    `).join('');
+
+    goalsGrid.querySelectorAll('.wizard-choice-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const systemName = btn.getAttribute('data-system');
+        const systemUrl = btn.getAttribute('data-url');
+        const goalTitle = btn.getAttribute('data-title');
+        renderWizardStep3(systemName, systemUrl, goalTitle);
+      });
+    });
+
+    wizardStep1.classList.remove('active');
+    wizardStep2.classList.add('active');
+    node1.classList.add('done');
+    node2.classList.add('active');
+  }
+
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      wizardStep2.classList.remove('active');
+      wizardStep1.classList.add('active');
+      node2.classList.remove('active');
+      node1.classList.remove('done');
+      node1.classList.add('active');
+    });
+  }
+
+  function renderWizardStep3(systemName, systemUrl, goalTitle) {
+    if (!resultBox) return;
+
+    const waText = encodeURIComponent(`¡Hola Tiago! Hice el asesor express en tu web:\n• Mi tipo de negocio: ${selectedBusinessLabel}\n• Mi objetivo principal: ${goalTitle}\n• Sistema recomendado: ${systemName}\n\nMe gustaría cotizar la instalación y ver una demostración para mi local...`);
+    const waLink = `https://wa.me/584247046941?text=${waText}`;
+
+    resultBox.innerHTML = `
+      <div style="display: inline-block; background: rgba(39, 201, 63, 0.15); border: 1px solid #27C93F; color: #27C93F; font-size: 11px; font-weight: 800; font-family: var(--font-code); padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;">
+        🎯 SISTEMA 100% RECOMENDADO PARA TI
+      </div>
+      <h3 style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 8px; font-family: var(--font-accent);">
+        ${systemName}
+      </h3>
+      <p style="color: var(--text-secondary); font-size: 14px; max-width: 600px; margin: 0 auto 18px auto; line-height: 1.6;">
+        Basado en tu rubro (<strong>${selectedBusinessLabel}</strong>) y tu meta de <strong>${goalTitle.toLowerCase()}</strong>, esta es la plataforma exacta que resolverá tus tareas diarias sin complicaciones.
+      </p>
+
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" style="font-size: 15px; padding: 12px 24px;">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Cotizar e Instalar por WhatsApp
+        </a>
+        <a href="${systemUrl}" class="btn btn-outline" style="font-size: 14px;">
+          Ver Detalles & Demo en Vivo &rarr;
+        </a>
+        <button type="button" class="btn" id="wizard-restart-btn" style="background: var(--bg-tertiary); border-color: var(--card-border); color: var(--text-muted); font-size: 13px;">
+          🔄 Probar con otro rubro
+        </button>
+      </div>
+    `;
+
+    const restartBtn = document.getElementById('wizard-restart-btn');
+    if (restartBtn) {
+      restartBtn.addEventListener('click', () => {
+        wizardStep3.classList.remove('active');
+        wizardStep1.classList.add('active');
+        node1.className = 'wizard-step-node active';
+        node2.className = 'wizard-step-node';
+        node3.className = 'wizard-step-node';
+        selectedBusiness = null;
+        choiceBtns.forEach(b => b.classList.remove('selected'));
+      });
+    }
+
+    wizardStep2.classList.remove('active');
+    wizardStep3.classList.add('active');
+    node2.classList.remove('active');
+    node2.classList.add('done');
+    node3.classList.add('active');
+  }
 
 });

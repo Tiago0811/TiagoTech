@@ -41,7 +41,8 @@
       <nav>
         <ul class="nav-links" id="nav-menu">
           <li><a href="#sistemas">Sistemas</a></li>
-          <li><a href="#tecnologias">Tecnologías</a></li>
+          <li><a href="#asesor">Asesor Express</a></li>
+          <li><a href="#faq">Preguntas Frecuentes</a></li>
           <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -67,7 +68,8 @@
     </div>
     <ul class="mobile-nav-links">
       <li><a href="#sistemas" onclick="toggleMobileMenu()">Sistemas</a></li>
-      <li><a href="#tecnologias" onclick="toggleMobileMenu()">Tecnologías</a></li>
+      <li><a href="#asesor" onclick="toggleMobileMenu()">Asesor Express</a></li>
+      <li><a href="#faq" onclick="toggleMobileMenu()">Preguntas Frecuentes</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
       <li><a href="#contacto" onclick="toggleMobileMenu()">Contacto</a></li>
     </ul>
@@ -356,6 +358,111 @@
   </section>
 
   <!-- ==========================================================================
+       🧭 ASESOR DE SISTEMAS EN 3 PASOS ("A PRUEBA DE TONTOS")
+       ========================================================================== -->
+  <section class="container tech-section" id="asesor">
+    <h2 class="section-title">¿Qué Sistema <span>Necesita tu Negocio?</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      Responde 2 preguntas rápidas y nuestro asesor inteligente te indicará la solución exacta que multiplicará el orden y las ventas de tu local.
+    </p>
+
+    <div class="wizard-box">
+      <!-- Barra de Pasos -->
+      <div class="wizard-progress-bar">
+        <div class="wizard-step-node active" id="wizard-node-1">
+          <span class="wizard-step-num">1</span>
+          <span>Tu Tipo de Negocio</span>
+        </div>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1); margin: 0 10px;"></div>
+        <div class="wizard-step-node" id="wizard-node-2">
+          <span class="wizard-step-num">2</span>
+          <span>Tu Objetivo Principal</span>
+        </div>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1); margin: 0 10px;"></div>
+        <div class="wizard-step-node" id="wizard-node-3">
+          <span class="wizard-step-num">3</span>
+          <span>Solución Recomendada</span>
+        </div>
+      </div>
+
+      <!-- Paso 1: Tipo de negocio -->
+      <div class="wizard-step-content active" id="wizard-step-1">
+        <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-accent); text-align: center;">
+          Paso 1: ¿A qué rubro pertenece tu comercio o emprendimiento?
+        </h3>
+        <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+          Haz clic en la opción que mejor describa tu actividad:
+        </p>
+
+        <div class="wizard-cards-grid">
+          <button type="button" class="wizard-choice-btn" data-business="comercio" data-label="Comercio / Tienda / Minimarket">
+            <span class="wizard-choice-icon">🛒</span>
+            <span class="wizard-choice-title">Tienda / Minimarket / Ropa</span>
+            <span class="wizard-choice-desc">Venta al detal, boutique, bodegón, repostería o farmacia.</span>
+          </button>
+
+          <button type="button" class="wizard-choice-btn" data-business="gastronomia" data-label="Restaurante / Comida">
+            <span class="wizard-choice-icon">🍽️</span>
+            <span class="wizard-choice-title">Restaurante / Bar / Café</span>
+            <span class="wizard-choice-desc">Pizzería, cafetería, hamburguesería, food truck o sushi.</span>
+          </button>
+
+          <button type="button" class="wizard-choice-btn" data-business="citas" data-label="Servicios con Citas y Turnos">
+            <span class="wizard-choice-icon">📅</span>
+            <span class="wizard-choice-title">Barbería / Spa / Consultorio</span>
+            <span class="wizard-choice-desc">Estética, salón de uñas, odontología, psicología o belleza.</span>
+          </button>
+
+          <button type="button" class="wizard-choice-btn" data-business="servicios" data-label="Servicios Técnicos / Taller">
+            <span class="wizard-choice-icon">🔧</span>
+            <span class="wizard-choice-title">Taller / Técnicos / Freelance</span>
+            <span class="wizard-choice-desc">Mecánica, refrigeración, electricista o contratista.</span>
+          </button>
+
+          <button type="button" class="wizard-choice-btn" data-business="fitness" data-label="Gimnasio / Box / Academia">
+            <span class="wizard-choice-icon">🏋️</span>
+            <span class="wizard-choice-title">Gimnasio / Academia / Dojo</span>
+            <span class="wizard-choice-desc">Crossfit, pilates, artes marciales, danza o natación.</span>
+          </button>
+
+          <button type="button" class="wizard-choice-btn" data-business="ecommerce" data-label="Marca / Tienda Online">
+            <span class="wizard-choice-icon">🌐</span>
+            <span class="wizard-choice-title">Venta Online / E-Commerce</span>
+            <span class="wizard-choice-desc">Tienda digital propia con envíos y pagos automatizados.</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 2: Objetivo principal -->
+      <div class="wizard-step-content" id="wizard-step-2">
+        <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-accent); text-align: center;">
+          Paso 2: ¿Cuál es la mayor dificultad o necesidad que deseas solucionar?
+        </h3>
+        <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+          Selecciona lo que más te urge resolver en tu día a día:
+        </p>
+
+        <div class="wizard-cards-grid" id="wizard-goals-grid">
+          <!-- Inyectado dinámicamente por app.js -->
+        </div>
+
+        <div style="display: flex; justify-content: flex-start; margin-top: 10px;">
+          <button type="button" class="btn btn-outline" id="wizard-back-btn" style="font-size: 12px; padding: 6px 14px;">
+            &larr; Volver al Paso 1
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 3: Resultado / Recomendación Inteligente -->
+      <div class="wizard-step-content" id="wizard-step-3">
+        <div class="wizard-result-box" id="wizard-result-box">
+          <!-- Inyectado por JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
        💻 TIAGOTECH: TECNOLOGÍAS & HABILIDADES
        ========================================================================== -->
   <section class="container tech-section" id="tecnologias">
@@ -388,6 +495,83 @@
     </div>
   </section>
 
+  <!-- ==========================================================================
+       ❓ PREGUNTAS FRECUENTES (FAQ INTERACTIVO)
+       ========================================================================== -->
+  <section class="container tech-section" id="faq">
+    <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      Todo lo que necesitas saber antes de digitalizar tu negocio con TiagoTech. Respuestas directas, claras y sin rodeos técnicos.
+    </p>
+
+    <div class="faq-grid">
+      <!-- Pregunta 1 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Qué equipos necesito en mi local? ¿Tengo que comprar computadoras costosas?</span>
+          <span class="faq-icon-arrow">+</span>
+        </div>
+        <div class="faq-answer">
+          No necesitas gastar en computadoras costosas ni servidores especiales. Todos los sistemas de TiagoTech son ultra ligeros y funcionan en cualquier celular, tablet, laptop o computadora de escritorio que ya tengas (incluso equipos básicos o canaimitas). Solo requieres abrir el navegador web.
+        </div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Qué sucede si se cae el internet o falla el suministro eléctrico?</span>
+          <span class="faq-icon-arrow">+</span>
+        </div>
+        <div class="faq-answer">
+          Los sistemas cuentan con optimización de datos y persistencia en caché. En caso de fallas eléctricas, puedes continuar facturando, consultando tu inventario o tomando pedidos desde cualquier teléfono inteligente utilizando tus datos móviles sin interrupciones.
+        </div>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Cómo me capacitas a mí y a mis empleados para aprender a usarlo?</span>
+          <span class="faq-icon-arrow">+</span>
+        </div>
+        <div class="faq-answer">
+          La entrega de cada sistema incluye una sesión guiada paso a paso (presencial o remota) para ti y tu equipo de trabajo. Además, todas las pantallas están construidas bajo el concepto "a prueba de errores": botones grandes, mensajes claros en español y flujos lógicos para que cualquier empleado lo domine en minutos.
+        </div>
+      </div>
+
+      <!-- Pregunta 4 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Cuánto tiempo tarda la instalación y entrega de mi sistema?</span>
+          <span class="faq-icon-arrow">+</span>
+        </div>
+        <div class="faq-answer">
+          El tiempo promedio de puesta en marcha es de 24 a 72 horas. Te entregamos el sistema 100% listo para operar con el logotipo de tu empresa, tus datos fiscales, catálogo inicial o menú y métodos de pago configurados.
+        </div>
+      </div>
+
+      <!-- Pregunta 5 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Qué métodos de pago aceptas para la contratación?</span>
+          <span class="faq-icon-arrow">+</span>
+        </div>
+        <div class="faq-answer">
+          Aceptamos Pago Móvil en Bolívares (a tasa oficial del BCV), Binance Pay (USDT) y Transferencias Bancarias nacionales (Banesco, Mercantil, Venezuela).
+        </div>
+      </div>
+
+      <!-- Pregunta 6 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Mis datos financieros, clientes e inventario están protegidos?</span>
+          <span class="faq-icon-arrow">+</span>
+        </div>
+        <div class="faq-answer">
+          Totalmente protegidos. Tu base de datos es 100% privada y no se comparte con terceros. Realizamos copias de seguridad continuas y también disponemos de opciones de ejecución local en tu propia computadora si prefieres que la información nunca salga de tu red.
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==========================================================================
        📬 FORMULARIO DE CONTACTO TIAGOTECH
@@ -529,6 +713,32 @@
         <button type="submit" id="chatbot-send-btn" class="chatbot-send-btn" title="Enviar mensaje">➤</button>
       </form>
     </div>
+  </div>
+
+  <!-- ==========================================================================
+       💬 WIDGET FLOTANTE PERMANENTE DE WHATSAPP
+       ========================================================================== -->
+  <div class="floating-wa-container" id="floating-wa">
+    <!-- Mensaje emergente estilo chat bubble -->
+    <div class="floating-wa-popup" id="wa-popup">
+      <button class="wa-popup-close" id="wa-popup-close" aria-label="Cerrar mensaje">&times;</button>
+      <div class="wa-popup-header">
+        <span class="wa-status-dot"></span>
+        <span class="wa-status-text">TiagoTech en línea</span>
+      </div>
+      <p class="wa-popup-msg">
+        👋 ¡Hola! ¿Tienes dudas sobre qué sistema se adapta mejor a tu local? Escríbeme y te asesoro gratis.
+      </p>
+      <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20asesorarme%20sobre%20un%20sistema%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="wa-popup-action">
+        <img src="assets/img/whatsapp.svg" alt="WhatsApp"> Iniciar conversación
+      </a>
+    </div>
+
+    <!-- Botón circular flotante -->
+    <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20asesorarme%20sobre%20un%20sistema%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" id="wa-btn" aria-label="Chatear por WhatsApp" title="Chatear por WhatsApp">
+      <img src="assets/img/whatsapp.svg" alt="WhatsApp">
+      <span class="floating-wa-pulse"></span>
+    </a>
   </div>
 
   <!-- ==========================================================================
