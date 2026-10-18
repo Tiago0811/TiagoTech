@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (directKey === 'whatsapp') {
         const html = `¿Quieres atención inmediata con Tiago para revisar tu proyecto?<br><br>` +
           `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vengo%20del%20asistente%20web%20y%20quiero%20cotizar%20un%20sistema." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none; margin-top:6px;">` +
-          `<span>💬</span> Abrir Chat en WhatsApp (+58 424-7046941)</a>`;
+          `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir Chat en WhatsApp (+58 424-7046941)</a>`;
         appendMessage('bot', html, true);
         return;
       }
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (clean.includes('whatsapp') || clean.includes('contacto') || clean.includes('telefono') || clean.includes('tiago')) {
         const html = `Puedes hablar directamente con Tiago en WhatsApp para una asesoría personalizada:<br><br>` +
           `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20personalizada%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none;">` +
-          `<span>💬</span> Abrir WhatsApp (+58 424-7046941)</a>`;
+          `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir WhatsApp (+58 424-7046941)</a>`;
         appendMessage('bot', html, true);
       } else {
         appendMessage('bot', "Entendido. Para darte la mejor recomendación técnica y cotización exacta para tu caso específico, te sugiero pulsar el botón de WhatsApp para coordinar directamente con Tiago, o selecciona uno de nuestros sistemas en las opciones rápidas.");
