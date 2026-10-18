@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function appendMessage(sender, text, isHtml = false) {
+  function appendMessage(sender, text, isHtml = false, autoScroll = true) {
     if (!chatbotMessages) return;
     const msgDiv = document.createElement('div');
     msgDiv.className = `chatbot-msg chatbot-msg-${sender}`;
@@ -413,7 +413,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     msgDiv.appendChild(contentDiv);
     chatbotMessages.appendChild(msgDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    if (autoScroll) {
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
 
     attachMenuClickHandlers();
   }
@@ -506,18 +508,34 @@ document.addEventListener('DOMContentLoaded', () => {
     chatbotMessages.innerHTML = '';
     if (chatbotPrompts) chatbotPrompts.innerHTML = '';
 
-    const welcomeHtml = `¡Hola! 👋 Bienvenido a <strong>TiagoTech</strong>.<br><br>` +
-      `Soy tu consultor de software especializado. Te presento nuestros sistemas a medida desarrollados para impulsar tu negocio:<br>` +
+    const welcomeHtml = `
+      <div style="margin-bottom: 6px;">
+        ¡Hola! 👋 Bienvenido a <strong style="color: var(--accent-primary, #00f0ff);">TiagoTech</strong>.<br><br>
+        Soy tu consultor de software especializado. Te presento nuestros sistemas a medida desarrollados para impulsar tu negocio:
+      </div>` +
       getSystemsMenuHtml();
 
-    appendMessage('bot', welcomeHtml, true);
+    // autoScroll = false para que el usuario empiece arriba viendo el mensaje de saludo
+    appendMessage('bot', welcomeHtml, true, false);
+
+    chatbotMessages.scrollTop = 0;
+    setTimeout(() => {
+      if (chatbotMessages) chatbotMessages.scrollTop = 0;
+    }, 50);
   }
 
   if (chatbotBubble && chatbotWindow) {
     chatbotBubble.addEventListener('click', () => {
       chatbotWindow.classList.toggle('active');
-      if (chatbotWindow.classList.contains('active') && chatbotMessages && chatbotMessages.children.length === 0) {
-        initChatbot();
+      if (chatbotWindow.classList.contains('active')) {
+        if (chatbotMessages && chatbotMessages.children.length === 0) {
+          initChatbot();
+        } else if (chatbotMessages && chatbotMessages.children.length === 1) {
+          chatbotMessages.scrollTop = 0;
+          setTimeout(() => {
+            if (chatbotMessages) chatbotMessages.scrollTop = 0;
+          }, 50);
+        }
       }
     });
 
