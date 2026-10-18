@@ -256,30 +256,139 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const TECH_PROMPTS = [
-    { label: "🛒 POS & Stock", key: "pos" },
-    { label: "🍽️ Menú QR", key: "menu_qr" },
-    { label: "✂️ Citas & Agenda", key: "citas" },
-    { label: "📄 Facturador PDF", key: "cotizador" },
-    { label: "🏋️ Control Gym", key: "gym" },
-    { label: "🌐 E-Commerce", key: "ecommerce" },
-    { label: "📊 Dashboards", key: "dashboard" },
-    { label: "💳 Métodos de Pago", key: "pagos" },
-    { label: "💬 WhatsApp Directo", key: "whatsapp" }
-  ];
+  function getSystemsMenuHtml() {
+    return `
+      <div class="chatbot-systems-menu">
+        <div class="chatbot-menu-header">📋 Sistemas disponibles (toca uno para ver detalles):</div>
+        <div class="chatbot-systems-vertical-list">
+          <button type="button" class="chatbot-system-row" data-key="pos">
+            <span class="chatbot-sys-icon">🛒</span>
+            <span class="chatbot-sys-info">
+              <strong>POS & Control de Stock</strong>
+              <small>Caja, inventario y facturación ágil</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
 
-  function renderPrompts() {
-    if (!chatbotPrompts) return;
-    chatbotPrompts.innerHTML = '';
-    TECH_PROMPTS.forEach(p => {
-      const chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'chatbot-prompt-chip';
-      chip.innerText = p.label;
-      chip.addEventListener('click', () => {
-        handleUserQuery(p.label, p.key);
+          <button type="button" class="chatbot-system-row" data-key="menu_qr">
+            <span class="chatbot-sys-icon">🍽️</span>
+            <span class="chatbot-sys-info">
+              <strong>Menú Digital QR + WhatsApp</strong>
+              <small>Restaurantes y delivery sin comisiones</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="citas">
+            <span class="chatbot-sys-icon">✂️</span>
+            <span class="chatbot-sys-info">
+              <strong>Citas & Agenda Web 24/7</strong>
+              <small>Barberías, salones y spas</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="cotizador">
+            <span class="chatbot-sys-icon">📄</span>
+            <span class="chatbot-sys-info">
+              <strong>Facturador & Cotizador PDF</strong>
+              <small>Presupuestos y notas express en 60s</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="gym">
+            <span class="chatbot-sys-icon">🏋️</span>
+            <span class="chatbot-sys-info">
+              <strong>Control Gym & Membresías</strong>
+              <small>Acceso en puerta y control de socios</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="ecommerce">
+            <span class="chatbot-sys-icon">🌐</span>
+            <span class="chatbot-sys-info">
+              <strong>E-Commerce & Tienda Online</strong>
+              <small>Catálogo y pedidos directo a WhatsApp</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="dashboard">
+            <span class="chatbot-sys-icon">📊</span>
+            <span class="chatbot-sys-info">
+              <strong>Dashboards & Reportes Analíticos</strong>
+              <small>Gráficos y métricas clave en tiempo real</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="pagos">
+            <span class="chatbot-sys-icon">💳</span>
+            <span class="chatbot-sys-info">
+              <strong>Métodos de Pago Disponibles</strong>
+              <small>Pago Móvil, Binance USDT, Transferencias</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row chatbot-sys-whatsapp" data-key="whatsapp">
+            <span class="chatbot-sys-icon"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon" style="width:16px;height:16px;"></span>
+            <span class="chatbot-sys-info">
+              <strong>Hablar con Tiago en WhatsApp</strong>
+              <small>Asesoría personalizada directa</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function formatSystemResponse(item) {
+    const waText = encodeURIComponent(`¡Hola Tiago! Me interesa cotizar y conocer más detalles sobre ${item.title}.`);
+    const waUrl = `https://wa.me/584247046941?text=${waText}`;
+
+    let bodyHtml = item.text
+      .replace(/\n\n/g, '<br><br>')
+      .replace(/\n/g, '<br>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/• /g, '&bull; ');
+
+    return `
+      <div style="font-weight:700; font-size:13px; color:#00f0ff; margin-bottom:8px;">${item.title}</div>
+      <div style="color:#e2e8f0; font-size:12px; line-height:1.5;">${bodyHtml}</div>
+      <div style="display:flex; flex-direction:column; gap:7px; margin-top:12px;">
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Cotizar en WhatsApp (+58 424-7046941)
+        </a>
+        <button type="button" class="chatbot-back-btn">📋 Ver lista de otros sistemas</button>
+      </div>
+    `;
+  }
+
+  function attachMenuClickHandlers() {
+    if (!chatbotMessages) return;
+
+    chatbotMessages.querySelectorAll('.chatbot-system-row:not([data-bound])').forEach(btn => {
+      btn.setAttribute('data-bound', 'true');
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-key');
+        const strong = btn.querySelector('strong');
+        const label = strong ? strong.innerText : key;
+        handleUserQuery(label, key);
       });
-      chatbotPrompts.appendChild(chip);
+    });
+
+    chatbotMessages.querySelectorAll('.chatbot-back-btn:not([data-bound])').forEach(btn => {
+      btn.setAttribute('data-bound', 'true');
+      btn.addEventListener('click', () => {
+        appendMessage('user', 'Ver lista de sistemas');
+        showTyping(() => {
+          appendMessage('bot', getSystemsMenuHtml(), true);
+        }, 350);
+      });
     });
   }
 
@@ -294,7 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isHtml) {
       contentDiv.innerHTML = text;
     } else {
-      // Basic markdown parser
       let formatted = text
         .replace(/\n\n/g, '<br><br>')
         .replace(/\n/g, '<br>')
@@ -306,6 +414,8 @@ document.addEventListener('DOMContentLoaded', () => {
     msgDiv.appendChild(contentDiv);
     chatbotMessages.appendChild(msgDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    attachMenuClickHandlers();
   }
 
   function showTyping(callback, delay = 600) {
@@ -323,15 +433,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showTyping(() => {
       if (directKey && KNOWLEDGE_BASE[directKey]) {
-        const item = KNOWLEDGE_BASE[directKey];
-        appendMessage('bot', `### ${item.title}\n\n${item.text}`);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE[directKey]), true);
         return;
       }
 
       if (directKey === 'whatsapp') {
-        const html = `¿Quieres atención inmediata con Tiago para revisar tu proyecto?<br><br>` +
-          `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vengo%20del%20asistente%20web%20y%20quiero%20cotizar%20un%20sistema." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none; margin-top:6px;">` +
-          `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir Chat en WhatsApp (+58 424-7046941)</a>`;
+        const html = `¿Quieres atención inmediata con Tiago para revisar o cotizar tu proyecto?<br><br>` +
+          `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vengo%20del%20asistente%20web%20y%20quiero%20cotizar%20un%20sistema." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
+          `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir Chat en WhatsApp (+58 424-7046941)</a>` +
+          `<button type="button" class="chatbot-back-btn" style="margin-top:8px;">📋 Ver lista de otros sistemas</button>`;
         appendMessage('bot', html, true);
         return;
       }
@@ -340,43 +450,53 @@ document.addEventListener('DOMContentLoaded', () => {
       const clean = userText.toLowerCase();
 
       if (clean.includes('pos') || clean.includes('inventario') || clean.includes('stock') || clean.includes('caja') || clean.includes('factura')) {
-        appendMessage('bot', KNOWLEDGE_BASE.pos.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.pos), true);
       } else if (clean.includes('menú') || clean.includes('menu') || clean.includes('restaurante') || clean.includes('comida') || clean.includes('qr')) {
-        appendMessage('bot', KNOWLEDGE_BASE.menu_qr.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.menu_qr), true);
       } else if (clean.includes('cita') || clean.includes('agenda') || clean.includes('barber') || clean.includes('peluquer') || clean.includes('spa')) {
-        appendMessage('bot', KNOWLEDGE_BASE.citas.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.citas), true);
       } else if (clean.includes('cotiz') || clean.includes('presupuesto') || clean.includes('recibo') || clean.includes('pdf')) {
-        appendMessage('bot', KNOWLEDGE_BASE.cotizador.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.cotizador), true);
       } else if (clean.includes('gym') || clean.includes('gimnasio') || clean.includes('socio') || clean.includes('membres')) {
-        appendMessage('bot', KNOWLEDGE_BASE.gym.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.gym), true);
       } else if (clean.includes('dash') || clean.includes('reporte') || clean.includes('excel') || clean.includes('analit')) {
-        appendMessage('bot', KNOWLEDGE_BASE.dashboard.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.dashboard), true);
       } else if (clean.includes('e-commerce') || clean.includes('ecommerce') || clean.includes('tienda') || clean.includes('carrito') || clean.includes('online')) {
-        appendMessage('bot', KNOWLEDGE_BASE.ecommerce.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.ecommerce), true);
       } else if (clean.includes('pago') || clean.includes('binance') || clean.includes('usdt') || clean.includes('transferencia') || clean.includes('dolar') || clean.includes('bolivar')) {
-        appendMessage('bot', KNOWLEDGE_BASE.pagos.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.pagos), true);
       } else if (clean.includes('garant') || clean.includes('soporte') || clean.includes('capacit') || clean.includes('instal')) {
-        appendMessage('bot', KNOWLEDGE_BASE.garantias.text);
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.garantias), true);
+      } else if (clean.includes('sistema') || clean.includes('lista') || clean.includes('opciones')) {
+        appendMessage('bot', getSystemsMenuHtml(), true);
       } else if (clean.includes('precio') || clean.includes('costo') || clean.includes('cuanto vale') || clean.includes('plan')) {
-        appendMessage('bot', "📋 **Planes y Cotización TiagoTech:**\n\n" +
-          "Todos nuestros sistemas se cotizan de forma personalizada y accesible según las características y necesidades de tu negocio, sin tarifas ocultas ni comisiones por venta.\n\n" +
-          "• **Menú Digital QR + WhatsApp**\n" +
-          "• **Citas & Agenda Web 24/7**\n" +
-          "• **Facturador & Cotizador Express PDF**\n" +
-          "• **POS & Control de Inventario**\n" +
-          "• **Control Gym & Membresías**\n" +
-          "• **Dashboards & Métricas Analíticas**\n" +
-          "• **E-Commerce & Tienda Online**\n\n" +
-          "Todos incluyen soporte prioritario vía WhatsApp, hosting seguro y capacitación completa.");
+        const html = `<strong>📋 Planes y Cotización TiagoTech:</strong><br><br>` +
+          `Todos nuestros sistemas se cotizan de forma personalizada y accesible según las características y necesidades de tu negocio, sin tarifas ocultas ni comisiones por venta.<br><br>` +
+          `Todos incluyen soporte prioritario vía WhatsApp, hosting seguro y capacitación completa.<br><br>` +
+          `<div style="display:flex; flex-direction:column; gap:7px;">` +
+            `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20una%20cotizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
+              `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Solicitar Cotización en WhatsApp</a>` +
+            `<button type="button" class="chatbot-back-btn">📋 Ver lista de sistemas</button>` +
+          `</div>`;
+        appendMessage('bot', html, true);
       } else if (clean.includes('hola') || clean.includes('buenas') || clean.includes('saludos') || clean.includes('que tal')) {
-        appendMessage('bot', "¡Hola! 👋 Es un placer saludarte. Soy el asistente virtual inteligente de **TiagoTech**.\n\n¿En qué tipo de negocio te gustaría implementar tecnología hoy? Puedes preguntarme por cualquiera de nuestros sistemas o seleccionar uno de los accesos directos abajo.");
+        const html = `¡Hola! 👋 Es un placer saludarte. Soy el asistente virtual inteligente de <strong>TiagoTech</strong>.<br><br>` +
+          getSystemsMenuHtml();
+        appendMessage('bot', html, true);
       } else if (clean.includes('whatsapp') || clean.includes('contacto') || clean.includes('telefono') || clean.includes('tiago')) {
         const html = `Puedes hablar directamente con Tiago en WhatsApp para una asesoría personalizada:<br><br>` +
-          `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20personalizada%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none;">` +
-          `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir WhatsApp (+58 424-7046941)</a>`;
+          `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20personalizada%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
+          `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir WhatsApp (+58 424-7046941)</a>` +
+          `<button type="button" class="chatbot-back-btn" style="margin-top:8px;">📋 Ver lista de otros sistemas</button>`;
         appendMessage('bot', html, true);
       } else {
-        appendMessage('bot', "Entendido. Para darte la mejor recomendación técnica y cotización exacta para tu caso específico, te sugiero pulsar el botón de WhatsApp para coordinar directamente con Tiago, o selecciona uno de nuestros sistemas en las opciones rápidas.");
+        const html = `Entendido. Para darte la mejor recomendación y cotización exacta para tu caso específico, puedes hablar directamente con Tiago en WhatsApp o elegir uno de nuestros sistemas:<br><br>` +
+          `<div style="display:flex; flex-direction:column; gap:7px;">` +
+            `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
+              `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Escribir a Tiago en WhatsApp</a>` +
+            `<button type="button" class="chatbot-back-btn">📋 Ver lista de sistemas</button>` +
+          `</div>`;
+        appendMessage('bot', html, true);
       }
     });
   }
@@ -384,9 +504,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function initChatbot() {
     if (!chatbotMessages) return;
     chatbotMessages.innerHTML = '';
-    renderPrompts();
+    if (chatbotPrompts) chatbotPrompts.innerHTML = '';
 
-    appendMessage('bot', "¡Hola! 👋 Bienvenido a **TiagoTech**.\n\nSoy tu consultor de software especializado. ¿Te gustaría conocer detalles, precios o ver una demo interactiva de alguno de nuestros 7 sistemas a medida?");
+    const welcomeHtml = `¡Hola! 👋 Bienvenido a <strong>TiagoTech</strong>.<br><br>` +
+      `Soy tu consultor de software especializado. Te presento nuestros sistemas a medida desarrollados para impulsar tu negocio:<br>` +
+      getSystemsMenuHtml();
+
+    appendMessage('bot', welcomeHtml, true);
   }
 
   if (chatbotBubble && chatbotWindow) {
