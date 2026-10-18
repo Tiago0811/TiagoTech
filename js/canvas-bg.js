@@ -23,7 +23,8 @@ class ParticleEngine {
     // Theme configurations
     this.config = {
       tech: {
-        color: '#00F0FF',
+        color: '#0084FF',    // Azul Tecnológico del Logo
+        colorAlt: '#22C55E', // Verde Circuito del Logo
         speedX: 0.5,
         speedY: 0.5,
         sizeMin: 1.5,
@@ -71,7 +72,6 @@ class ParticleEngine {
     
     // Spawn position
     const x = Math.random() * w;
-    // For upward flow, gamer mode spawns mostly at the bottom if initialized dynamically
     const y = randomY ? Math.random() * h : (currentConf.flowDir === 'upward' ? h + 10 : Math.random() * h);
     
     // Particle size
@@ -83,13 +83,13 @@ class ParticleEngine {
     
     if (currentConf.flowDir === 'upward') {
       vx = (Math.random() - 0.5) * 0.8;
-      vy = Math.random() * currentConf.speedY - 0.4; // Force upward bias
+      vy = Math.random() * currentConf.speedY - 0.4;
     }
     
-    // Particle color selection
+    // Particle color selection: mezcla de Azul y Verde del logo oficial
     let color = currentConf.color;
-    if (this.theme === 'gamer' && Math.random() > 0.45) {
-      color = currentConf.colorAlt; // Blend of red and orange
+    if (Math.random() > 0.45 && currentConf.colorAlt) {
+      color = currentConf.colorAlt;
     }
 
     return {

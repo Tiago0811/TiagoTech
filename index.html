@@ -12,7 +12,7 @@
   <meta name="robots" content="index, follow">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
   <!-- Core Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -60,11 +60,14 @@
 
   <!-- 📱 Menú de Navegación Móvil Lateral -->
   <div class="mobile-nav-overlay" id="mobile-nav-menu">
-    <div class="mobile-identity-box" style="border-bottom: 1px solid var(--card-border); padding-bottom: 15px; margin-bottom: 20px;">
-      <div class="mobile-identity-title" style="font-family: var(--font-code); color: var(--accent-primary); font-size: 14px; font-weight: 700;">
-        <span>⚡</span> &lt;TiagoTech /&gt;
+    <div class="mobile-identity-box" style="border-bottom: 1px solid var(--card-border); padding-bottom: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+      <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 32px; height: 32px; object-fit: contain;">
+      <div>
+        <div class="mobile-identity-title" style="color: #fff; font-size: 15px; font-weight: 800;">
+          Tiago<span style="color: var(--accent-secondary);">Tech</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 2px 0 0 0;">Soluciones de Software & Automatización</p>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Soluciones de Software & Automatización</p>
     </div>
     <ul class="mobile-nav-links">
       <li><a href="#sistemas" onclick="toggleMobileMenu()">Sistemas</a></li>
@@ -655,8 +658,9 @@
        ========================================================================== -->
   <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3); transition: border-color var(--transition-speed) ease;">
     <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
-      <p style="font-size: 13px; color: var(--text-muted);">
-        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+      <p style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 20px; height: 20px; vertical-align: middle;">
+        <span>&copy; 2026 <strong style="color: #fff;">Tiago<span style="color: var(--accent-secondary);">Tech</span></strong>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.</span>
       </p>
       <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
         <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;" title="WhatsApp TiagoTech"><img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width: 16px; height: 16px; vertical-align: middle;"> WhatsApp</a>
@@ -673,14 +677,18 @@
   <div class="chatbot-widget" id="tech-chatbot">
     <!-- Burbuja Pulsante de Chat -->
     <div class="chatbot-bubble" id="chatbot-bubble" title="Abrir Asistente Virtual TiagoTech">
-      <div class="chatbot-bubble-avatar" id="chatbot-avatar-bubble">🤖</div>
+      <div class="chatbot-bubble-avatar" id="chatbot-avatar-bubble">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 28px; height: 28px; object-fit: contain;">
+      </div>
       <div class="chatbot-pulse"></div>
     </div>
     
     <!-- Ventana de Mensajería Desplegable -->
     <div class="chatbot-window" id="chatbot-window">
       <div class="chatbot-header">
-        <div class="chatbot-header-avatar" id="chatbot-avatar-header">🤖</div>
+        <div class="chatbot-header-avatar" id="chatbot-avatar-header">
+          <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 24px; height: 24px; object-fit: contain;">
+        </div>
         <div class="chatbot-header-info">
           <h4 id="chatbot-title">TiagoTech Assistant</h4>
           <span id="chatbot-subtitle" style="font-size: 9px; color: var(--accent-primary); font-weight: 700;">En línea // Consultor de Software</span>
