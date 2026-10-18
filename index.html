@@ -42,7 +42,6 @@
         <ul class="nav-links" id="nav-menu">
           <li><a href="#sistemas">Sistemas</a></li>
           <li><a href="#tecnologias">Tecnologías</a></li>
-          <li><a href="#noticias">Noticias Tech</a></li>
           <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -69,7 +68,6 @@
     <ul class="mobile-nav-links">
       <li><a href="#sistemas" onclick="toggleMobileMenu()">Sistemas</a></li>
       <li><a href="#tecnologias" onclick="toggleMobileMenu()">Tecnologías</a></li>
-      <li><a href="#noticias" onclick="toggleMobileMenu()">Noticias Tech</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
       <li><a href="#contacto" onclick="toggleMobileMenu()">Contacto</a></li>
     </ul>
@@ -390,83 +388,6 @@
     </div>
   </section>
 
-  <!-- ==========================================================================
-       📰 TIAGOTECH: NOTICIAS & ARTÍCULOS TECH E IA
-       ========================================================================== -->
-  <section class="container tech-section" id="noticias">
-    <h2 class="section-title">Noticias & <span>Artículos Tech</span></h2>
-    <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
-      Análisis, tendencias de ingeniería de software e Inteligencia Artificial aplicada a la productividad empresarial.
-    </p>
-    
-    <div class="news-grid">
-      <!-- Noticia 1: Agentes Autónomos -->
-      <div class="glass-card news-card" style="padding: 0; overflow: hidden;">
-        <div style="position: relative; height: 180px; overflow: hidden;">
-          <img src="assets/img/autonomous_agents_ai.png" alt="Agentes Autónomos de IA" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
-          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(8,12,20,0.95) 100%);"></div>
-          <span class="news-badge" style="position: absolute; top: 12px; right: 12px; background: rgba(0, 240, 255, 0.9); color: #080C14; font-weight: 800;">⚡ IA AVANZADA</span>
-        </div>
-        <div style="padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);">
-          <div class="news-header" style="margin-bottom: 10px;">
-            <span class="news-date">SEPTIEMBRE 2026</span>
-            <span class="news-badge">MULTI-AGENTE</span>
-          </div>
-          <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4;">
-            El Despertar de los Agentes Autónomos de IA en el Software Empresarial
-          </h3>
-          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-sm);">
-            Cómo los sistemas multi-agente (CrewAI, LangGraph) ejecutan flujos comerciales completos, cobranzas y reconciliación de inventarios en piloto automático.
-          </p>
-          <a href="noticia-agentes.html" class="news-link">Leer artículo completo &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Noticia 2: Gemini y Contexto -->
-      <div class="glass-card news-card" style="padding: 0; overflow: hidden;">
-        <div style="position: relative; height: 180px; overflow: hidden;">
-          <img src="assets/img/gemini_context_ai.png" alt="Gemini y Contexto Masivo" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
-          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(8,12,20,0.95) 100%);"></div>
-          <span class="news-badge" style="position: absolute; top: 12px; right: 12px; background: rgba(142, 45, 226, 0.9); color: #fff; font-weight: 800;">🧠 LLMs</span>
-        </div>
-        <div style="padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);">
-          <div class="news-header" style="margin-bottom: 10px;">
-            <span class="news-date">SEPTIEMBRE 2026</span>
-            <span class="news-badge">BIG DATA</span>
-          </div>
-          <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4;">
-            Gemini y el Procesamiento de Contexto Masivo: Auditoría de Código
-          </h3>
-          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-sm);">
-            El impacto de las ventanas de contexto millonarias para analizar bases de datos completas, arquitecturas de software legacy y balances contables en un segundo.
-          </p>
-          <a href="noticia-gemini.html" class="news-link">Leer artículo completo &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Noticia 3: Modelos Locales SLM -->
-      <div class="glass-card news-card" style="padding: 0; overflow: hidden;">
-        <div style="position: relative; height: 180px; overflow: hidden;">
-          <img src="assets/img/local_browser_slm.png" alt="SLM y Privacidad Local" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;">
-          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(8,12,20,0.95) 100%);"></div>
-          <span class="news-badge" style="position: absolute; top: 12px; right: 12px; background: rgba(83, 252, 24, 0.9); color: #080C14; font-weight: 800;">🔒 PRIVACIDAD</span>
-        </div>
-        <div style="padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);">
-          <div class="news-header" style="margin-bottom: 10px;">
-            <span class="news-date">SEPTIEMBRE 2026</span>
-            <span class="news-badge">OPEN SOURCE</span>
-          </div>
-          <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4;">
-            Modelos de Lenguaje Locales (SLMs): Privacidad Absoluta para Comercios
-          </h3>
-          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-sm);">
-            Cómo procesar datos sensibles de clientes y balances financieros dentro del servidor local sin enviar información a nubes de terceros.
-          </p>
-          <a href="noticia-ia-local.html" class="news-link">Leer artículo completo &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ==========================================================================
        📬 FORMULARIO DE CONTACTO TIAGOTECH
