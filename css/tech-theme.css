@@ -644,6 +644,21 @@
   gap: 6px;
 }
 
+.btn-whatsapp .btn-whatsapp-icon,
+.btn-whatsapp img {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.btn-whatsapp-sm .btn-whatsapp-icon,
+.btn-whatsapp-sm img {
+  width: 18px;
+  height: 18px;
+}
+
 /* ==================== 🛡️ FRANJA DE CONFIANZA Y GARANTÍAS ==================== */
 .trust-strip {
   margin: var(--spacing-lg) 0;
