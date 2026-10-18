@@ -426,17 +426,52 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const waPopup = document.getElementById('wa-popup');
   const waPopupClose = document.getElementById('wa-popup-close');
+  let waAutoCloseTimer = null;
 
   if (waPopup) {
-    // Show popup after 3.5 seconds
-    setTimeout(() => {
-      waPopup.classList.add('active');
-    }, 3500);
+    // Show popup after 3 seconds only if not dismissed before
+    const isDismissed = sessionStorage.getItem('wa_popup_dismissed');
+
+    if (!isDismissed) {
+      setTimeout(() => {
+        waPopup.classList.add('active');
+
+        // Auto-close after 6 seconds so it NEVER blocks client reading
+        waAutoCloseTimer = setTimeout(() => {
+          waPopup.classList.remove('active');
+        }, 6000);
+      }, 3000);
+
+      // Hide immediately as soon as the user starts scrolling to read
+      let scrolled = false;
+      window.addEventListener('scroll', () => {
+        if (!scrolled && waPopup.classList.contains('active')) {
+          scrolled = true;
+          waPopup.classList.remove('active');
+          if (waAutoCloseTimer) clearTimeout(waAutoCloseTimer);
+        }
+      }, { passive: true });
+
+      // Pause auto-close if the user hovers over the popup
+      waPopup.addEventListener('mouseenter', () => {
+        if (waAutoCloseTimer) clearTimeout(waAutoCloseTimer);
+      });
+
+      // Resume auto-close if user leaves the popup
+      waPopup.addEventListener('mouseleave', () => {
+        waAutoCloseTimer = setTimeout(() => {
+          waPopup.classList.remove('active');
+        }, 2000);
+      });
+    }
 
     if (waPopupClose) {
       waPopupClose.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         waPopup.classList.remove('active');
+        sessionStorage.setItem('wa_popup_dismissed', 'true');
+        if (waAutoCloseTimer) clearTimeout(waAutoCloseTimer);
       });
     }
   }
