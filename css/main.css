@@ -9,20 +9,21 @@
   cursor: none !important; /* Hide native cursor globally */
 }
 
-/* ==================== 🎯 CUSTOM CURSOR ==================== */
+/* ==================== 🎯 CUSTOM CURSOR (MAGNETIC BUBBLE) ==================== */
 #cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: var(--accent-primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999999 !important;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary);
-  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.1s ease, opacity 0.3s ease;
+  box-shadow: 0 0 10px var(--accent-primary), 0 0 18px rgba(var(--accent-rgb), 0.6);
+  transition: opacity 0.3s ease, transform 0.15s ease;
+  will-change: left, top, transform;
 }
 
 #cursor-ring {
@@ -36,23 +37,36 @@
   pointer-events: none;
   z-index: 9999998 !important;
   transform: translate(-50%, -50%);
-  opacity: 0.55;
+  opacity: 0.6;
   box-shadow: 0 0 12px rgba(var(--accent-green-rgb), 0.3);
-  transition: background 0.4s ease, border-color 0.4s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.3s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: left, top, width, height, border-radius;
 }
 
-/* Expand ring when hovering clickable elements */
-body.cursor-hover #cursor-ring {
-  width: 54px;
-  height: 54px;
-  opacity: 0.3;
+/* Estado Magnético al abrazar un botón o elemento interactivo */
+body.cursor-magnetic #cursor-ring {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.4);
+  background-color: rgba(var(--accent-rgb), 0.12);
+  box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.4), inset 0 0 12px rgba(var(--accent-green-rgb), 0.2);
+  opacity: 0.95;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
-/* Shrink dot on click */
+body.cursor-magnetic #cursor-dot {
+  transform: translate(-50%, -50%) scale(0.6);
+  background: #ffffff;
+  box-shadow: 0 0 12px #ffffff;
+}
+
+/* Feedback de clic táctil */
+body.cursor-click #cursor-ring {
+  transform: translate(-50%, -50%) scale(0.94);
+  background-color: rgba(var(--accent-rgb), 0.25);
+}
+
 body.cursor-click #cursor-dot {
-  transform: translate(-50%, -50%) scale(0.5);
+  transform: translate(-50%, -50%) scale(0.4);
 }
 
 

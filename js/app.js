@@ -6,14 +6,18 @@
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
 
-  // ==================== 🎯 UNIVERSAL CUSTOM CURSOR CONTROLLER ====================
+  // ==================== 🎯 UNIVERSAL MAGNETIC CURSOR CONTROLLER (OPCIÓN 2) ====================
   const cursorDot = document.getElementById('cursor-dot');
   const cursorRing = document.getElementById('cursor-ring');
 
   if (cursorDot && cursorRing) {
     let mouseX = -100, mouseY = -100;
     let ringX = -100, ringY = -100;
+    let ringWidth = 36, ringHeight = 36;
+    let currentMagneticEl = null;
     let isInitialized = false;
+
+    const DEFAULT_SIZE = 36;
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
@@ -23,44 +27,101 @@ document.addEventListener('DOMContentLoaded', () => {
         ringX = mouseX;
         ringY = mouseY;
         cursorDot.style.opacity = '1';
-        cursorRing.style.opacity = '0.5';
+        cursorRing.style.opacity = '0.6';
         isInitialized = true;
       }
 
       cursorDot.style.left = `${mouseX}px`;
       cursorDot.style.top = `${mouseY}px`;
+
+      // Si está abrazando un elemento magnético, aplicar tirón táctil (magnetic pull)
+      if (currentMagneticEl) {
+        const rect = currentMagneticEl.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (mouseX - centerX) * 0.22;
+        const deltaY = (mouseY - centerY) * 0.22;
+        currentMagneticEl.style.transform = `translate(${deltaX.toFixed(1)}px, ${deltaY.toFixed(1)}px)`;
+      }
     });
 
+    // Loop de animación a 60/120 FPS con interpolación fluida (lerp)
     (function animateRing() {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
+      let targetX = mouseX;
+      let targetY = mouseY;
+      let targetW = DEFAULT_SIZE;
+      let targetH = DEFAULT_SIZE;
+      let targetRadius = '50%';
+
+      if (currentMagneticEl) {
+        const rect = currentMagneticEl.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        // El aro se imanta al centro del elemento con un sutil seguimiento al cursor
+        targetX = centerX + (mouseX - centerX) * 0.12;
+        targetY = centerY + (mouseY - centerY) * 0.12;
+        targetW = rect.width + 12;
+        targetH = rect.height + 12;
+
+        const computedRadius = window.getComputedStyle(currentMagneticEl).borderRadius;
+        targetRadius = computedRadius && computedRadius !== '0px' ? computedRadius : '12px';
+      }
+
+      // Suavizado dinámico
+      const ease = currentMagneticEl ? 0.24 : 0.16;
+      ringX += (targetX - ringX) * ease;
+      ringY += (targetY - ringY) * ease;
+      ringWidth += (targetW - ringWidth) * ease;
+      ringHeight += (targetH - ringHeight) * ease;
 
       cursorRing.style.left = `${ringX}px`;
       cursorRing.style.top = `${ringY}px`;
+      cursorRing.style.width = `${ringWidth.toFixed(1)}px`;
+      cursorRing.style.height = `${ringHeight.toFixed(1)}px`;
+      cursorRing.style.borderRadius = targetRadius;
 
       requestAnimationFrame(animateRing);
     })();
 
-    // Hover state for interactive elements
+    // Elementos que activan el campo magnético
+    const MAGNETIC_TARGETS = 'a, button, .btn, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip';
+
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('a, button, .btn, .glass-card, .chip, input, textarea, select, .system-card, .news-card')) {
-        document.body.classList.add('cursor-hover');
-      } else {
-        document.body.classList.remove('cursor-hover');
+      const target = e.target.closest(MAGNETIC_TARGETS);
+      if (target) {
+        currentMagneticEl = target;
+        document.body.classList.add('cursor-magnetic');
+        target.style.transition = 'transform 0.15s ease-out';
       }
     });
 
+    document.addEventListener('mouseout', (e) => {
+      if (currentMagneticEl && !currentMagneticEl.contains(e.relatedTarget)) {
+        currentMagneticEl.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+        currentMagneticEl.style.transform = '';
+        currentMagneticEl = null;
+        document.body.classList.remove('cursor-magnetic');
+      }
+    });
+
+    // Feedback táctil al hacer clic
     document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
     document.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
 
+    // Salida y entrada de ventana
     document.addEventListener('mouseleave', () => {
       cursorDot.style.opacity = '0';
       cursorRing.style.opacity = '0';
+      if (currentMagneticEl) {
+        currentMagneticEl.style.transform = '';
+        currentMagneticEl = null;
+        document.body.classList.remove('cursor-magnetic');
+      }
     });
 
     document.addEventListener('mouseenter', () => {
       cursorDot.style.opacity = '1';
-      cursorRing.style.opacity = '0.5';
+      cursorRing.style.opacity = '0.6';
     });
   }
 
