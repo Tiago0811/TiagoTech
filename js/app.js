@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/• /g, '&bull; ');
 
     return `
-      <div style="font-weight:700; font-size:13px; color:#00f0ff; margin-bottom:8px;">${item.title}</div>
+      <div style="font-weight:700; font-size:13px; color:var(--accent-primary); margin-bottom:8px;">${item.title}</div>
       <div style="color:#e2e8f0; font-size:12px; line-height:1.5;">${bodyHtml}</div>
       <div style="display:flex; flex-direction:column; gap:7px; margin-top:12px;">
         <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">
@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const welcomeHtml = `
       <div style="margin-bottom: 6px;">
-        ¡Hola! 👋 Bienvenido a <strong style="color: var(--accent-primary, #00f0ff);">TiagoTech</strong>.<br><br>
+        ¡Hola! 👋 Bienvenido a <strong style="color: #FFFFFF;">Tiago<span style="color: var(--accent-secondary);">Tech</span></strong>.<br><br>
         Soy tu consultor de software especializado. Te presento nuestros sistemas a medida desarrollados para impulsar tu negocio:
       </div>` +
       getSystemsMenuHtml();

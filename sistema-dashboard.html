@@ -10,9 +10,23 @@
   <meta name="keywords" content="TiagoTech Analytics, Dashboard de Ventas, Gráficos Excel a Web, Reportes PDF Automáticos, Visualización de Datos, Negocios Locales">
   <meta name="author" content="Tiago">
   <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-dashboard.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="Dashboards & Reportes Analíticos - TiagoTech">
+  <meta property="og:description" content="Transforma datos de Excel y ventas en métricas visuales en tiempo real, KPIs ejecutivos y balances exportables en PDF.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dashboards & Reportes Analíticos - TiagoTech">
+  <meta name="twitter:description" content="Transforma datos de Excel y ventas en métricas visuales en tiempo real, KPIs ejecutivos y balances exportables en PDF.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg"><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
   <!-- Core & Shared Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -73,8 +87,8 @@
   <!-- 🧭 Cabecera Fija Simplificada -->
   <header>
     <div class="container header-container">
-      <a href="index.html" class="logo">
-        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
       </a>
       <nav>
         <ul class="nav-links">
@@ -207,7 +221,7 @@
                   <span style="color: var(--accent-primary); font-weight: 700;">$1,840 (38%)</span>
                 </div>
                 <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
-                  <div style="width: 38%; height: 100%; background: #00F0FF;"></div>
+                  <div style="width: 38%; height: 100%; background: var(--accent-primary);"></div>
                 </div>
               </div>
               <div>
@@ -216,7 +230,7 @@
                   <span style="color: var(--accent-primary); font-weight: 700;">$1,164 (24%)</span>
                 </div>
                 <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
-                  <div style="width: 24%; height: 100%; background: #53FC18;"></div>
+                  <div style="width: 24%; height: 100%; background: var(--accent-secondary);"></div>
                 </div>
               </div>
               <div>
@@ -441,8 +455,6 @@
 <!-- ==========================================================================
        ⚙️ SCRIPTS JAVASCRIPT
        ========================================================================== -->
-  
-  </div>
 
   
     <!-- ==========================================================================
@@ -565,7 +577,7 @@
           });
           btn.classList.add('active');
           btn.style.borderColor = 'var(--accent-primary)';
-          btn.style.background = 'rgba(0, 240, 255, 0.1)';
+          btn.style.background = 'rgba(var(--accent-rgb), 0.15)';
 
           const targetTab = btn.getAttribute('data-tab');
           tabContents.forEach(content => {

@@ -10,9 +10,23 @@
   <meta name="keywords" content="Sistema de Citas, Agenda Web Barbería, Reservas Online Salón de Belleza, Turnos Spa, TiagoTech Citas">
   <meta name="author" content="Tiago">
   <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-citas.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="TiagoTech Citas & Agenda Web 24/7">
+  <meta property="og:description" content="Sistema de reservas online 24/7 y agenda para barberías, peluquerías, salones de belleza y spas con confirmaciones a WhatsApp.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TiagoTech Citas & Agenda Web 24/7">
+  <meta name="twitter:description" content="Sistema de reservas online 24/7 y agenda para barberías, peluquerías, salones de belleza y spas con confirmaciones a WhatsApp.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
   <!-- Core & Shared Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -69,7 +83,7 @@
       transition: all 0.2s ease;
     }
     .slot-pill.active {
-      background: rgba(0, 240, 255, 0.2);
+      background: rgba(var(--accent-rgb), 0.25);
       border-color: var(--accent-primary);
       color: #fff;
       font-weight: 700;
@@ -87,8 +101,8 @@
   <!-- 🧭 Cabecera Fija Simplificada -->
   <header>
     <div class="container header-container">
-      <a href="index.html" class="logo">
-        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
       </a>
       <nav>
         <ul class="nav-links">
@@ -547,7 +561,7 @@
           });
           btn.classList.add('active');
           btn.style.borderColor = 'var(--accent-primary)';
-          btn.style.background = 'rgba(0, 240, 255, 0.1)';
+          btn.style.background = 'rgba(var(--accent-rgb), 0.15)';
 
           currentStaff = btn.getAttribute('data-staff');
           if (viewStaff) viewStaff.textContent = currentStaff;

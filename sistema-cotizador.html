@@ -10,9 +10,23 @@
   <meta name="keywords" content="Cotizador Express PDF, Facturador Freelancers, Presupuestos Talleres, Generador Facturas Técnicos, TiagoTech Cotizador">
   <meta name="author" content="Tiago">
   <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-cotizador.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="Facturador & Cotizador Express PDF - TiagoTech">
+  <meta property="og:description" content="Emite cotizaciones y recibos PDF ejecutivos en 60 segundos desde tu celular o PC con logo de tu empresa y envío directo a WhatsApp.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Facturador & Cotizador Express PDF - TiagoTech">
+  <meta name="twitter:description" content="Emite cotizaciones y recibos PDF ejecutivos en 60 segundos desde tu celular o PC con logo de tu empresa y envío directo a WhatsApp.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
   <!-- Core & Shared Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -60,7 +74,7 @@
     }
     .invoice-preview-sheet {
       background: #0d121f;
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      border: 1px solid rgba(var(--accent-rgb), 0.3);
       border-radius: 8px;
       padding: 16px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
@@ -80,8 +94,8 @@
   <!-- 🧭 Cabecera Fija Simplificada -->
   <header>
     <div class="container header-container">
-      <a href="index.html" class="logo">
-        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
       </a>
       <nav>
         <ul class="nav-links">

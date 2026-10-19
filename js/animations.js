@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (rafId) cancelAnimationFrame(rafId);
 
         rafId = requestAnimationFrame(() => {
-          const primaryAccent = '0, 240, 255';
-          const secondaryAccent = '142, 45, 226';
+          const primaryAccent = '0, 132, 255';
+          const secondaryAccent = '34, 197, 94';
 
           card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
           card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(${primaryAccent}, 0.25)`;

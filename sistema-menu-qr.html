@@ -10,9 +10,23 @@
   <meta name="keywords" content="Menú Digital QR, Carta Digital Restaurante, Pedidos a WhatsApp, Menú Cafetería, TiagoTech Menú QR, Software Gastronómico">
   <meta name="author" content="Tiago">
   <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-menu-qr.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="Menú Digital QR + WhatsApp - TiagoTech">
+  <meta property="og:description" content="Carta digital interactiva para restaurantes, cafeterías y food trucks. Pedidos organizados directos a WhatsApp sin comisiones.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Menú Digital QR + WhatsApp - TiagoTech">
+  <meta name="twitter:description" content="Carta digital interactiva para restaurantes, cafeterías y food trucks. Pedidos organizados directos a WhatsApp sin comisiones.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="assets/img/LogoTiagoTech.jpeg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
   <!-- Core & Shared Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -69,7 +83,7 @@
       transition: all 0.2s ease;
     }
     .menu-demo-item:hover {
-      border-color: rgba(0, 240, 255, 0.3);
+      border-color: rgba(var(--accent-rgb), 0.35);
       background: rgba(255, 255, 255, 0.05);
     }
   </style>
@@ -85,8 +99,8 @@
   <!-- 🧭 Cabecera Fija Simplificada -->
   <header>
     <div class="container header-container">
-      <a href="index.html" class="logo">
-        <span class="code-tag">&lt;</span><span>TiagoTech</span><span class="code-tag"> /&gt;</span>
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
       </a>
       <nav>
         <ul class="nav-links">
