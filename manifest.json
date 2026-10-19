@@ -1,0 +1,29 @@
+{
+  "name": "TiagoTech - Soluciones Digitales & Software a Medida",
+  "short_name": "TiagoTech",
+  "description": "Desarrollo de software y sistemas web personalizados para comercios y empresas locales.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050811",
+  "theme_color": "#0084FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/img/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/tiagotech-symbol.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/tiagotech-symbol.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

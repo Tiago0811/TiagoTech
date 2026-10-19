@@ -27,8 +27,10 @@
   <meta name="twitter:description" content="Sistemas de software y aplicaciones web para comercios y negocios locales: POS & Inventario, Menú Digital QR, Citas 24/7, Facturador Express y E-Commerce.">
   <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
   
-  <!-- Favicon -->
+  <!-- Favicon & PWA Manifest -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#050811">
 
   <!-- Core Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -50,6 +52,7 @@
       
       <!-- Logotipo Interactivo Oficial -->
       <a href="index.html" class="logo" id="main-logo" title="TiagoTech - Inicio">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" class="logo-icon-img">
         <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
       </a>
 
@@ -58,7 +61,8 @@
         <ul class="nav-links" id="nav-menu">
           <li><a href="#sistemas">Sistemas</a></li>
           <li><a href="#asesor">Asesor Express</a></li>
-          <li><a href="#faq">Preguntas Frecuentes</a></li>
+          <li><a href="#testimonios">Casos de Éxito</a></li>
+          <li><a href="#faq">Preguntas</a></li>
           <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -88,6 +92,7 @@
     <ul class="mobile-nav-links">
       <li><a href="#sistemas" onclick="toggleMobileMenu()">Sistemas</a></li>
       <li><a href="#asesor" onclick="toggleMobileMenu()">Asesor Express</a></li>
+      <li><a href="#testimonios" onclick="toggleMobileMenu()">Casos de Éxito</a></li>
       <li><a href="#faq" onclick="toggleMobileMenu()">Preguntas Frecuentes</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
       <li><a href="#contacto" onclick="toggleMobileMenu()">Contacto</a></li>
@@ -195,7 +200,7 @@
           </div>
         </div>
         <div style="display: flex; gap: 8px;">
-          <a href="#contacto" class="btn" style="flex: 1; text-align: center; background: var(--btn-gradient);">Cotizar Proyecto a Medida</a>
+          <a href="sistema-personalizado.html" class="btn" style="flex: 1; text-align: center; background: var(--btn-gradient);">Ver Detalles & Cotizar</a>
           <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Tengo%20un%20proyecto%20de%20software%20a%20la%20medida%20para%20mi%20negocio%20y%20me%20gustar%C3%ADa%20cotizarlo." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" title="Cotizar por WhatsApp"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"></a>
         </div>
       </div>
@@ -527,6 +532,98 @@
       <div class="wizard-step-content" id="wizard-step-3">
         <div class="wizard-result-box" id="wizard-result-box">
           <!-- Inyectado por JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ⭐ CASOS DE ÉXITO & TESTIMONIOS (PRUEBA SOCIAL REAL)
+       ========================================================================== -->
+  <section class="container tech-section" id="testimonios">
+    <h2 class="section-title">Resultados y <span>Casos de Éxito</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      Negocios y comercios que transformaron sus operaciones diarias, eliminaron pérdidas y aumentaron sus ventas gracias a las soluciones de TiagoTech.
+    </p>
+
+    <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md);">
+      <!-- Caso 1: Tienda de Ropa & Calzado -->
+      <div class="glass-card testimonial-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: var(--spacing-md); border-color: rgba(0, 132, 255, 0.25);">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="color: #F59E0B; font-size: 14px;">⭐⭐⭐⭐⭐</div>
+            <span class="tech-badge" style="font-size: 10px; color: var(--accent-secondary); border-color: rgba(34,197,94,0.3);">✓ CLIENTE ACTIVO</span>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-primary); line-height: 1.6; margin-bottom: 14px; font-style: italic;">
+            "Llevaba las ventas en un cuaderno y se me perdía mercancía cada semana. Con el sistema POS y control de inventario de TiagoTech sé exactamente cuánto stock me queda y cuánto dinero entra cada día en divisas y bolívares. El soporte por WhatsApp es súper rápido."
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--card-border); padding-top: 12px; display: flex; align-items: center; gap: 10px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #0084FF, #22C55E); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff;">VM</div>
+          <div>
+            <div style="font-weight: 700; font-size: 13px; color: #fff;">Valeria M.</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">Boutique & Ropa Casual · TiagoTech POS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 2: Barbería & Salón de Belleza -->
+      <div class="glass-card testimonial-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: var(--spacing-md); border-color: rgba(34, 197, 94, 0.25);">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="color: #F59E0B; font-size: 14px;">⭐⭐⭐⭐⭐</div>
+            <span class="tech-badge" style="font-size: 10px; color: var(--accent-secondary); border-color: rgba(34,197,94,0.3);">✓ CLIENTE ACTIVO</span>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-primary); line-height: 1.6; margin-bottom: 14px; font-style: italic;">
+            "Mis clientes ahora reservan su turno directo desde el link de nuestro Instagram las 24 horas. Dejamos de perder horas cuadrando agendas por teléfono y los barberos saben exactamente su comisión del día. La mensualidad es muy accesible y se paga sola."
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--card-border); padding-top: 12px; display: flex; align-items: center; gap: 10px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #22C55E, #0ea5e9); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff;">CR</div>
+          <div>
+            <div style="font-weight: 700; font-size: 13px; color: #fff;">Carlos R.</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">Barbería 'The King Studio' · Citas & Agenda Web</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 3: Empresa / Distribuidora Mayorista (Sistema a la Medida) -->
+      <div class="glass-card testimonial-card popular-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: var(--spacing-md);">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="color: #F59E0B; font-size: 14px;">⭐⭐⭐⭐⭐</div>
+            <span class="tech-badge" style="font-size: 10px; color: #38BDF8; border-color: rgba(56,189,248,0.4);">SISTEMA A LA MEDIDA</span>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-primary); line-height: 1.6; margin-bottom: 14px; font-style: italic;">
+            "Ningún software comercial resolvía nuestras notas de despacho en divisas ni el crédito a 15 días con cobradores en calle. Tiago nos programó un sistema web a la medida exacto a nuestras operaciones. La suscripción mensual nos cubre servidor y soporte sin sorpresas."
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--card-border); padding-top: 12px; display: flex; align-items: center; gap: 10px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #0084FF, #6366f1); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff;">MD</div>
+          <div>
+            <div style="font-weight: 700; font-size: 13px; color: #fff;">Ing. Marcos D.</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">Distribuidora Alimentos · Software a la Medida</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 4: Pizzería / Restaurante -->
+      <div class="glass-card testimonial-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: var(--spacing-md); border-color: rgba(0, 132, 255, 0.25);">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="color: #F59E0B; font-size: 14px;">⭐⭐⭐⭐⭐</div>
+            <span class="tech-badge" style="font-size: 10px; color: var(--accent-secondary); border-color: rgba(34,197,94,0.3);">✓ CLIENTE ACTIVO</span>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-primary); line-height: 1.6; margin-bottom: 14px; font-style: italic;">
+            "El menú digital QR nos quitó el dolor de cabeza de reimprimir cartas cada vez que ajustamos precios. Los comensales escanean en la mesa y el pedido llega formateado con total claridad directo al WhatsApp de cocina. Cero comisiones de apps externas."
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--card-border); padding-top: 12px; display: flex; align-items: center; gap: 10px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #f59e0b); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff;">EP</div>
+          <div>
+            <div style="font-weight: 700; font-size: 13px; color: #fff;">Elena P.</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">Pizzería Gourmet · Menú QR + WhatsApp</div>
+          </div>
         </div>
       </div>
     </div>

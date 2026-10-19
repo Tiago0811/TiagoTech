@@ -731,9 +731,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const BUSINESS_GOALS = {
     custom: [
-      { goal: 'custom_full', title: 'Crear un software desde cero para mi empresa', desc: 'Reglas de negocio propias, bases de datos exclusivas y automatización integral.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '⭐', url: '#sistemas' },
-      { goal: 'custom_rubro', title: 'Digitalizar clínica, distribuidora, logística o colegio', desc: 'Sistemas especializados para sectores específicos que no resuelven apps genéricas.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '💻', url: '#sistemas' },
-      { goal: 'custom_portal', title: 'Portal web exclusivo para clientes y personal', desc: 'Panel privado con accesos por rol, reportes avanzados y sincronización en la nube.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '🌐', url: '#sistemas' }
+      { goal: 'custom_full', title: 'Crear un software desde cero para mi empresa', desc: 'Reglas de negocio propias, bases de datos exclusivas y automatización integral.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '⭐', url: 'sistema-personalizado.html' },
+      { goal: 'custom_rubro', title: 'Digitalizar clínica, distribuidora, logística o colegio', desc: 'Sistemas especializados para sectores específicos que no resuelven apps genéricas.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '💻', url: 'sistema-personalizado.html' },
+      { goal: 'custom_portal', title: 'Portal web exclusivo para clientes y personal', desc: 'Panel privado con accesos por rol, reportes avanzados y sincronización en la nube.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '🌐', url: 'sistema-personalizado.html' }
     ],
     comercio: [
       { goal: 'pos', title: 'Cobrar rápido y controlar inventario', desc: 'Registrar ventas de mostrador, arqueos de caja y alertas de stock bajo.', system: 'TiagoTech POS & Inventario', icon: '🛒', url: 'sistema-pos.html' },

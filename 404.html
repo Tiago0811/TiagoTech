@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Módulo No Encontrado | TiagoTech</title>
+  
+  <!-- SEO & Robots -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Página no encontrada en TiagoTech. Regresa al catálogo de sistemas web o contáctanos directamente.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    .error-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md);
+      position: relative;
+      z-index: 2;
+    }
+    .error-card {
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      padding: var(--spacing-lg) var(--spacing-md);
+      border-radius: var(--border-radius-md);
+      border: 1px solid rgba(0, 132, 255, 0.35);
+      background: linear-gradient(180deg, rgba(10, 20, 36, 0.9) 0%, rgba(5, 8, 17, 0.95) 100%);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 132, 255, 0.2);
+      backdrop-filter: blur(16px);
+    }
+    .error-terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .t-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .t-red { background: #FF5F56; }
+    .t-yellow { background: #FFBD2E; }
+    .t-green { background: #27C93F; }
+    .error-code {
+      font-size: 80px;
+      font-weight: 900;
+      font-family: var(--font-code);
+      background: linear-gradient(135deg, #0084FF 0%, #22C55E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 10px;
+      letter-spacing: -2px;
+    }
+    .error-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      font-family: var(--font-accent);
+      margin-bottom: 12px;
+    }
+    .error-desc {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🏹 Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="error-container">
+    <div class="error-card">
+      <div class="error-terminal-header">
+        <div class="terminal-dots">
+          <span class="t-dot t-red"></span>
+          <span class="t-dot t-yellow"></span>
+          <span class="t-dot t-green"></span>
+        </div>
+        <div style="font-family: var(--font-code); font-size: 11px; color: var(--text-muted);">
+          tiagotech-kernel: error-handler
+        </div>
+      </div>
+
+      <div class="error-code">404</div>
+      <h1 class="error-title">MÓDULO NO ENCONTRADO</h1>
+      <p class="error-desc">
+        [SYSTEM_ALERT]: La ruta a la que intentas ingresar no existe en los módulos de TiagoTech o ha sido reubicada. No te preocupes, tus datos y sistemas están a salvo.
+      </p>
+
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="index.html" class="btn" style="background: var(--btn-gradient);">
+          &larr; Volver al Inicio
+        </a>
+        <a href="index.html#sistemas" class="btn btn-outline">
+          Ver Sistemas Disponibles
+        </a>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Intent%C3%A9%20entrar%20a%20un%20enlace%20en%20tu%20web%20y%20me%20dio%20error%20404." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Reportar en WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+    });
+  </script>
+</body>
+</html>

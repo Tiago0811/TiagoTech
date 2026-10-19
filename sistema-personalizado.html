@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software & Sistemas Web a la Medida - TiagoTech</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Desarrollo de software y sistemas web personalizados a la medida para empresas y negocios. Automatiza flujos únicos con suscripción mensual accesible, base de datos privada y soporte 1 a 1.">
+  <meta name="keywords" content="Software a la Medida, Sistemas Web Personalizados, Desarrollo de Software Venezuela, Programador a Medida, Software Empresarial, TiagoTech">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-personalizado.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="Software & Sistemas Web a la Medida - TiagoTech">
+  <meta property="og:description" content="Automatiza los flujos únicos de tu negocio con software exclusivo programado desde cero. Suscripción mensual accesible con todo incluido y soporte 1 a 1.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Software & Sistemas Web a la Medida - TiagoTech">
+  <meta name="twitter:description" content="Automatiza los flujos únicos de tu negocio con software exclusivo programado desde cero. Suscripción mensual accesible con todo incluido y soporte 1 a 1.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+  
+  <!-- Favicon & PWA Manifest -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#050811">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* Dedicated Custom Page Styling */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .custom-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+    .custom-hero h1 {
+      font-size: 46px;
+      font-weight: 800;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-accent);
+      line-height: 1.15;
+    }
+    .custom-hero p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 720px;
+      margin: 0 auto var(--spacing-md) auto;
+      line-height: 1.7;
+    }
+
+    /* Comparison Table / Cards */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+    .compare-card {
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+    }
+    .compare-card.bad {
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.03);
+    }
+    .compare-card.good {
+      border-color: rgba(34, 197, 94, 0.45);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.08) 0%, rgba(10, 20, 36, 0.85) 100%);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(34, 197, 94, 0.2);
+    }
+    .compare-title {
+      font-size: 18px;
+      font-weight: 800;
+      font-family: var(--font-accent);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .compare-list li {
+      font-size: 13.5px;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .compare-card.bad .compare-list li {
+      color: #cbd5e1;
+    }
+    .compare-card.good .compare-list li {
+      color: #f1f5f9;
+    }
+
+    /* Workflow 4 Steps */
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+    .workflow-card {
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .workflow-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-primary);
+    }
+    .workflow-step-num {
+      font-family: var(--font-code);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-secondary);
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .workflow-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      font-family: var(--font-accent);
+    }
+    .workflow-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Industries Grid */
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+    .industry-card {
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      transition: border-color 0.3s ease;
+    }
+    .industry-card:hover {
+      border-color: var(--accent-primary);
+    }
+    .industry-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .industry-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 6px;
+      font-family: var(--font-accent);
+    }
+    .industry-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Model Advantage Box */
+    .model-box {
+      background: linear-gradient(180deg, rgba(0, 132, 255, 0.08) 0%, rgba(10, 20, 36, 0.9) 100%);
+      border: 1.5px solid var(--accent-primary);
+      border-radius: var(--border-radius-md);
+      padding: var(--spacing-lg) var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 132, 255, 0.2);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🏹 Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" class="logo-icon-img">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Catálogo de Sistemas</a></li>
+          <li><a href="#proceso">Cómo Trabajamos</a></li>
+          <li><a href="#modelo">Modelo Mensual</a></li>
+          <li><a href="#contacto">Cotizar</a></li>
+        </ul>
+
+        <!-- 🍔 Botón de Menú Hamburguesa Móvil -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú de Navegación Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Catálogo de Sistemas</a></li>
+      <li class="tech-only"><a href="#proceso">Cómo Trabajamos</a></li>
+      <li class="tech-only"><a href="#modelo">Modelo Mensual</a></li>
+      <li class="tech-only"><a href="#contacto">Cotizar</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 CUSTOM HERO & PRESENTATION
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="custom-hero">
+      <a href="index.html#sistemas" class="back-btn">&larr; Volver a Todos los Sistemas</a>
+      <div style="margin-bottom: 12px;">
+        <span class="popular-badge-top">⭐ EL SERVICIO MÁS POPULAR & SOLICITADO</span>
+      </div>
+      <h1>Software & Sistemas Web 100% a la Medida</h1>
+      <p>
+        Tu empresa tiene reglas de negocio únicas, flujos que no se parecen a los demás y procesos que ningún software genérico "enlatado" logra resolver. Desarrollamos tu plataforma digital exclusiva desde cero, con <strong>suscripción mensual accesible todo incluido</strong>, base de datos propia y soporte 1 a 1 directo con el programador.
+      </p>
+      <div style="display: flex; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap;">
+        <a href="#contacto" class="btn" style="background: var(--btn-gradient);">Solicitar Diagnóstico & Cotización</a>
+        <a href="#proceso" class="btn btn-outline">Ver Metodología de Trabajo</a>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Tengo%20un%20proyecto%20de%20software%20a%20la%20medida%20para%20mi%20empresa%20y%20me%20gustar%C3%ADa%20cotizarlo." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Hablar con Tiago por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ⚖️ TABLA COMPARATIVA: SOFTWARE GENÉRICO VS TIAGOTECH A LA MEDIDA
+         ========================================================================== -->
+    <section style="padding: var(--spacing-md) 0 var(--spacing-lg) 0;">
+      <h2 class="section-title">¿Por Qué Elegir un <span>Sistema a la Medida?</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-md) auto; font-size: 15px;">
+        Comparativa honesta entre intentar encajar en un software genérico o tener una solución hecha con la medida exacta de tu negocio.
+      </p>
+
+      <div class="comparison-grid">
+        <!-- Tarjeta: Software Genérico Enlatado -->
+        <div class="compare-card bad">
+          <div class="compare-title" style="color: #EF4444;">
+            <span>❌ Software Genérico "Enlatado"</span>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <span>⚠️</span>
+              <div><strong>Lleno de opciones inútiles:</strong> Pantallas saturadas con decenas de botones que tu negocio jamás utilizará y solo confunden a tus empleados.</div>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <div><strong>Tú te adaptas al sistema:</strong> Te obligan a cambiar tus métodos de trabajo porque el software no permite modificar sus reglas.</div>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <div><strong>Soporte por tickets impersonales:</strong> Respuestas automáticas de bots o esperas de días para que alguien atienda una falla de caja.</div>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <div><strong>Cobros sorpresa y licencias rígidas:</strong> Tarifas que suben inesperadamente, cobro extra por cada usuario nuevo o módulos bloqueados.</div>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <div><strong>Tus datos en manos ajenas:</strong> Bases de datos en servidores masivos sin posibilidad de hacer respaldos propios.</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tarjeta: Sistema a la Medida TiagoTech -->
+        <div class="compare-card good">
+          <div class="compare-title" style="color: #22C55E;">
+            <span>✅ Software a la Medida TiagoTech</span>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <span>⭐</span>
+              <div><strong>100% Adaptado a tu Negocio:</strong> Diseñado exactamente para la manera en que tú cobras, despachas, atiendes clientes o administras tu inventario.</div>
+            </li>
+            <li>
+              <span>⭐</span>
+              <div><strong>Interfaz a Prueba de Errores:</strong> Botones limpios, flujos intuitivos y mensajes claros para que tu personal aprenda en minutos.</div>
+            </li>
+            <li>
+              <span>⭐</span>
+              <div><strong>Soporte Directo por WhatsApp:</strong> Hablas directamente con Tiago (+58 424-7046941). Soluciones y ajustes inmediatos sin intermediarios.</div>
+            </li>
+            <li>
+              <span>⭐</span>
+              <div><strong>Suscripción Mensual Justa & Predecible:</strong> Sin compras gigantescas iniciales. Una cuota mensual accesible que incluye desarrollo, servidor, copias de seguridad y mantenimiento continuo.</div>
+            </li>
+            <li>
+              <span>⭐</span>
+              <div><strong>Base de Datos 100% Tuya:</strong> Tu información está protegida y es de tu absoluta propiedad, con respaldos automáticos diarios.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🏢 RUBROS & CASOS DE USO DE ALTO IMPACTO
+         ========================================================================== -->
+    <section style="padding: var(--spacing-md) 0 var(--spacing-lg) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Sistemas Especializados <span>para Cualquier Rubro</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-md) auto; font-size: 15px;">
+        No importa qué tan complejo o específico sea tu rubro; programamos la herramienta exacta que necesitas.
+      </p>
+
+      <div class="industries-grid">
+        <!-- 1. Clínicas y Salud -->
+        <div class="industry-card">
+          <div class="industry-icon">🏥</div>
+          <h4>Clínicas, Consultorios & Laboratorios</h4>
+          <p>
+            Historias médicas digitales, control de turnos y agendas médicas, cálculo de honorarios profesionales por doctor, entrega de resultados y facturación privada.
+          </p>
+        </div>
+
+        <!-- 2. Distribuidoras y Mayoristas -->
+        <div class="industry-card">
+          <div class="industry-icon">📦</div>
+          <h4>Distribuidoras, Almacenes & Mayoristas</h4>
+          <p>
+            Manejo de pedidos por volumen, listas de precios multinivel (detal, mayor, distribuidor), control de despachos en ruta, y cuentas por cobrar en divisas o Bolívares.
+          </p>
+        </div>
+
+        <!-- 3. Transporte y Logística -->
+        <div class="industry-card">
+          <div class="industry-icon">🚚</div>
+          <h4>Logística, Encomiendas & Transporte</h4>
+          <p>
+            Generación de números de guía con seguimiento en tiempo real, asignación de encomiendas a choferes, liquidación de viajes y control de gastos de combustible.
+          </p>
+        </div>
+
+        <!-- 4. Colegios y Academias -->
+        <div class="industry-card">
+          <div class="industry-icon">🎓</div>
+          <h4>Colegios, Institutos & Academias</h4>
+          <p>
+            Matrícula y expedientes de alumnos, carga de notas por docente, control de solvencias administrativas, emisión de boletines y recordatorios automáticos de pago vía WhatsApp.
+          </p>
+        </div>
+
+        <!-- 5. Talleres Mecánicos e Industrias -->
+        <div class="industry-card">
+          <div class="industry-icon">🔧</div>
+          <h4>Talleres, Fabricación & Reparaciones</h4>
+          <p>
+            Órdenes de servicio y reparación con fotos antes/después, control de repuestos consumidos, presupuesto técnico aprobado por WhatsApp y entrega con garantía.
+          </p>
+        </div>
+
+        <!-- 6. Portales Corporativos Privados -->
+        <div class="industry-card">
+          <div class="industry-icon">🏢</div>
+          <h4>Portales Privados para Empleados</h4>
+          <p>
+            Paneles web protegidos con accesos por rol (administrador, supervisor, cajero), control de comisiones por ventas, reportes consolidados y mensajería interna.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🔄 METODOLOGÍA DE TRABAJO EN 4 PASOS
+         ========================================================================== -->
+    <section id="proceso" style="padding: var(--spacing-md) 0 var(--spacing-lg) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Cómo Desarrollamos <span>tu Sistema Paso a Paso</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-md) auto; font-size: 15px;">
+        Un proceso transparente, ágil y sin complicaciones técnicas. Tú nos cuentas lo que necesitas y nosotros nos encargamos de todo el código.
+      </p>
+
+      <div class="workflow-grid">
+        <!-- Paso 1 -->
+        <div class="workflow-card">
+          <span class="workflow-step-num">FASE 01</span>
+          <div style="font-size: 26px; margin-bottom: 8px;">📋</div>
+          <h4>Levantamiento & Diagnóstico 1 a 1</h4>
+          <p>
+            Conversamos contigo por WhatsApp o videollamada para conocer a fondo tus flujos diarios, qué problemas quieres resolver y exactamente qué datos necesitas registrar.
+          </p>
+        </div>
+
+        <!-- Paso 2 -->
+        <div class="workflow-card">
+          <span class="workflow-step-num">FASE 02</span>
+          <div style="font-size: 26px; margin-bottom: 8px;">🎨</div>
+          <h4>Diseño de Prototipo UI/UX</h4>
+          <p>
+            Diseñamos la estructura de las pantallas y botones para que veas cómo lucirá tu sistema antes de programarlo. Ajustamos detalles visuales hasta que estés 100% conforme.
+          </p>
+        </div>
+
+        <!-- Paso 3 -->
+        <div class="workflow-card">
+          <span class="workflow-step-num">FASE 03</span>
+          <div style="font-size: 26px; margin-bottom: 8px;">💻</div>
+          <h4>Programación & Base de Datos</h4>
+          <p>
+            Construimos el software con arquitectura rápida, segura y ligera. Creamos tu base de datos privada a prueba de caídas y probamos cada botón y cálculo matemático.
+          </p>
+        </div>
+
+        <!-- Paso 4 -->
+        <div class="workflow-card">
+          <span class="workflow-step-num">FASE 04</span>
+          <div style="font-size: 26px; margin-bottom: 8px;">🚀</div>
+          <h4>Puesta en Marcha & Capacitación</h4>
+          <p>
+            Desplegamos el sistema en la nube o en tu red local. Te capacitamos a ti y a tus empleados paso a paso y nos mantenemos conectados para soporte y mejoras continuas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💰 MODELO DE SUSCRIPCIÓN MENSUAL TODO INCLUIDO
+         ========================================================================== -->
+    <section id="modelo" style="padding: var(--spacing-md) 0 var(--spacing-lg) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <div class="model-box">
+        <div class="m-badge" style="background: linear-gradient(135deg, #0084FF 0%, #22C55E 100%); color: #fff; display: inline-block; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; margin-bottom: 12px;">
+          EL MODELO MÁS RENTABLE & SEGURO PARA TU NEGOCIO
+        </div>
+        <h3 style="font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 12px; font-family: var(--font-accent);">
+          Desarrollo con Suscripción Mensual Todo Incluido
+        </h3>
+        <p style="color: var(--text-secondary); font-size: 15px; max-width: 650px; margin: 0 auto 20px auto; line-height: 1.7;">
+          Comprar un software a precio fijo tradicional cuesta miles de dólares de golpe, deja al cliente desamparado cuando surgen errores y genera gastos imprevistos de servidores. En <strong>TiagoTech</strong> trabajamos bajo un <strong>modelo de suscripción mensual accesible</strong>: tú pagas una cuota justa y predecible, y nosotros nos encargamos del desarrollo, del servidor en la nube, del soporte técnico y de las mejoras continuas.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; max-width: 750px; margin: 0 auto 25px auto; text-align: left;">
+          <div style="background: rgba(0, 132, 255, 0.06); border: 1px solid rgba(0, 132, 255, 0.2); padding: 12px; border-radius: 8px;">
+            <div style="font-size: 18px; margin-bottom: 4px;">☁️ Servidor Incluido</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Alojamiento en la nube de alta velocidad con 99.9% de actividad garantizada.</div>
+          </div>
+          <div style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.2); padding: 12px; border-radius: 8px;">
+            <div style="font-size: 18px; margin-bottom: 4px;">💾 Respaldos Diarios</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Copias de seguridad automáticas para que tu información nunca se pierda.</div>
+          </div>
+          <div style="background: rgba(0, 132, 255, 0.06); border: 1px solid rgba(0, 132, 255, 0.2); padding: 12px; border-radius: 8px;">
+            <div style="font-size: 18px; margin-bottom: 4px;">💬 Soporte Prioritario</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Canal directo por WhatsApp con el desarrollador ante cualquier eventualidad.</div>
+          </div>
+          <div style="background: rgba(34, 197, 94, 0.06); border: 1px solid rgba(34, 197, 94, 0.2); padding: 12px; border-radius: 8px;">
+            <div style="font-size: 18px; margin-bottom: 4px;">🔄 Mejoras Continuas</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Ajustes de reportes y nuevas funciones sin costos extra a medida que creces.</div>
+          </div>
+        </div>
+
+        <!-- 💳 Métodos de Pago Aceptados -->
+        <div class="payment-methods-box" style="margin-top: 15px;">
+          <div class="payment-methods-title">Métodos de Pago Mensual Aceptados</div>
+          <div class="payment-badges-row">
+            <span class="payment-badge">🇻🇪 Pago Móvil (Bs a tasa oficial)</span>
+            <span class="payment-badge">🟡 Binance Pay / USDT</span>
+            <span class="payment-badge">🏦 Transferencia Bancaria Nacional</span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 25px; flex-wrap: wrap;">
+          <a href="#contacto" class="btn" style="background: var(--btn-gradient); padding: 12px 28px;">Cotizar Mi Proyecto Mensual</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20conocer%20el%20plan%20de%20suscripci%C3%B3n%20mensual%20para%20un%20sistema%20a%20la%20medida." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Consultar Planes por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE COTIZACIÓN DE PROYECTOS A LA MEDIDA
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Cotiza tu Proyecto <span>a la Medida</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-md) auto; font-size: 15px;">
+        Cuéntanos brevemente qué hace tu negocio y qué te gustaría automatizar. Te responderemos con un diagnóstico inicial y una propuesta accesible.
+      </p>
+
+      <!-- Opción Rápida WhatsApp -->
+      <div style="max-width: 600px; margin: 0 auto var(--spacing-md) auto; text-align: center; padding: 18px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.25); border-radius: var(--border-radius-sm);">
+        <p style="color: #fff; font-size: 14px; margin-bottom: 12px; font-weight: 600;">
+          ¿Prefieres respuesta inmediata y asesoría técnica por WhatsApp?
+        </p>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20cotizar%20un%20software%20a%20la%20medida%20para%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Chatear Directamente con Tiago
+        </a>
+      </div>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="glass-card" style="padding: var(--spacing-md);">
+          
+          <form id="custom-contact-form">
+            <!-- Web3Forms Access Key Configuration -->
+            <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
+            <input type="hidden" name="subject" value="Nueva Cotización de Software a la Medida TiagoTech">
+            <input type="hidden" name="from_name" value="Portal Software a la Medida">
+            <input type="hidden" name="botcheck" style="display: none;">
+            
+            <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Nombre Personal / Empresa
+                </label>
+                <input type="text" id="form-name" name="name" required placeholder="Escribe tu nombre o empresa..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+              
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Correo Electrónico
+                </label>
+                <input type="email" id="form-email" name="email" required placeholder="tu@correo.com" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Servicio Seleccionado
+              </label>
+              <input type="text" id="form-plan" name="plan" readonly value="⭐ Software & Sistemas Web a la Medida (Personalizado)" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: var(--accent-primary); font-family: var(--font-code); font-weight: 600; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-rubro" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Rubro o Tipo de Empresa
+              </label>
+              <input type="text" id="form-rubro" name="rubro" placeholder="Ej: Clínica, Distribuidora de Alimentos, Colegio, Transporte..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                ¿Qué proceso deseas automatizar o qué idea tienes en mente?
+              </label>
+              <textarea id="form-msg" name="message" rows="5" required placeholder="Describe brevemente tus necesidades: cuántas personas lo usarán, qué problemas tienes actualmente, etc..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); resize: vertical; transition: border-color 0.3s ease;"></textarea>
+            </div>
+            
+            <button type="submit" id="custom-submit-btn" class="btn" style="width: 100%; background: var(--btn-gradient);">
+              <span>Enviar Requerimientos para Cotización</span>
+            </button>
+            <div id="custom-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+
+          <!-- Tarjeta de Éxito al Enviar Formulario -->
+          <div id="custom-form-success" class="form-success-card" style="display: none; text-align: center; padding: 20px;">
+            <div style="font-size: 38px; margin-bottom: 10px;">🚀</div>
+            <h3 style="color: #fff; font-size: 20px; font-weight: 800; margin-bottom: 8px;">¡Proyecto Recibido con Éxito!</h3>
+            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">
+              Muchas gracias por confiar en TiagoTech. Hemos recibido los detalles de tu requerimiento y te contactaremos a la brevedad con una propuesta.
+            </p>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Acabo%20de%20enviar%20el%20formulario%20de%20software%20a%20la%20medida%20y%20me%20gustar%C3%ADa%20coordinar%20por%20aqu%C3%AD." target="_blank" rel="noopener noreferrer" class="btn-whatsapp" style="width: 100%; justify-content: center;">
+              <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Continuar Asesoría por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ❓ FAQ ESPECIALIZADA EN DESARROLLO A LA MEDIDA
+         ========================================================================== -->
+    <section style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Preguntas Frecuentes sobre <span>Software a la Medida</span></h2>
+
+      <div class="faq-grid" style="max-width: 800px; margin: 0 auto;">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Por qué trabajan con suscripción mensual en lugar de un precio fijo?</span>
+            <span class="faq-icon-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            Cobrar un sistema a precio fijo tradicional obliga a presupuestar miles de dólares de golpe, lo cual descapitaliza a pequeñas y medianas empresas. Además, el software requiere alojamiento seguro en servidores, copias de seguridad continuas y soporte técnico permanente. Con nuestra suscripción mensual accesible, tienes el sistema operando desde el primer mes, con servidor, mantenimiento, seguridad y soporte 1 a 1 todo incluido en una cuota justa.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Cuánto tiempo toma tener mi sistema listo y funcionando?</span>
+            <span class="faq-icon-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            Dependiendo de la magnitud y módulos requeridos, un prototipo funcional suele estar listo en un plazo de 7 a 20 días hábiles. Trabajamos con entregas progresivas para que puedas ir probando los módulos principales mientras avanzamos con las funciones secundarias.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿La base de datos y la información de mi empresa son de mi propiedad?</span>
+            <span class="faq-icon-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            100% de tu propiedad. No compartimos ni vendemos datos a terceros. Tu base de datos es privada, encriptada y puedes solicitar un respaldo descargable completo en cualquier momento.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Mis empleados necesitan computadoras modernas para usarlo?</span>
+            <span class="faq-icon-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            No. Desarrollamos con arquitectura web ligera de ultra alta velocidad. Tu sistema puede abrirse desde cualquier teléfono inteligente, tablet o computadora de escritorio con navegador web (Chrome, Edge, Safari), incluso equipos antiguos con conexiones lentas.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       🦶 PIE DE PÁGINA
+       ========================================================================== -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3); transition: border-color var(--transition-speed) ease;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 20px; height: 20px; vertical-align: middle;">
+        <span>&copy; 2026 <strong style="color: #fff;">Tiago<span style="color: var(--accent-secondary);">Tech</span></strong>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.</span>
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;" title="WhatsApp TiagoTech"><img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width: 16px; height: 16px; vertical-align: middle;"> WhatsApp</a>
+        <a href="index.html#sistemas" style="color: var(--accent-primary); text-decoration: none;" title="Sistemas">Sistemas</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;" title="Sobre Nosotros">Sobre Nosotros</a>
+        <a href="index.html#contacto" style="color: var(--text-secondary); text-decoration: none;" title="Contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       💬 WIDGET FLOTANTE PERMANENTE DE WHATSAPP
+       ========================================================================== -->
+  <div class="floating-wa-container" id="floating-wa">
+    <div class="floating-wa-popup" id="wa-popup">
+      <button class="wa-popup-close" id="wa-popup-close" aria-label="Cerrar mensaje">&times;</button>
+      <div class="wa-popup-header">
+        <span class="wa-status-dot"></span>
+        <span class="wa-status-text">TiagoTech en línea</span>
+      </div>
+      <p class="wa-popup-msg">
+        👋 ¡Hola! ¿Tienes una idea o proyecto de software para tu empresa? Cuéntame y te asesoro sin costo.
+      </p>
+      <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Tengo%20un%20proyecto%20de%20software%20a%20la%20medida%20y%20me%20gustar%C3%ADa%20asesorarme." target="_blank" rel="noopener noreferrer" class="wa-popup-action">
+        <img src="assets/img/whatsapp.svg" alt="WhatsApp"> Iniciar conversación
+      </a>
+    </div>
+
+    <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Tengo%20un%20proyecto%20de%20software%20a%20la%20medida%20y%20me%20gustar%C3%ADa%20asesorarme." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" id="wa-btn" aria-label="Chatear por WhatsApp" title="Chatear por WhatsApp">
+      <img src="assets/img/whatsapp.svg" alt="WhatsApp">
+      <span class="floating-wa-pulse"></span>
+      <span class="floating-wa-badge">1</span>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas && typeof initParticles === 'function') {
+        initParticles(canvas, 'tech');
+      }
+
+      // AJAX Form handling
+      const customForm = document.getElementById('custom-contact-form');
+      const customSuccess = document.getElementById('custom-form-success');
+      const customStatus = document.getElementById('custom-form-status');
+      const customSubmitBtn = document.getElementById('custom-submit-btn');
+
+      if (customForm) {
+        customForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (customSubmitBtn) {
+            customSubmitBtn.disabled = true;
+            customSubmitBtn.innerText = 'Enviando requerimientos...';
+          }
+
+          const formData = new FormData(customForm);
+          const jsonObject = Object.fromEntries(formData.entries());
+
+          try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify(jsonObject)
+            });
+
+            const result = await response.json();
+            if (result.success) {
+              customForm.style.display = 'none';
+              if (customSuccess) customSuccess.style.display = 'block';
+            } else {
+              if (customStatus) {
+                customStatus.innerHTML = '<span style="color:#ef4444;">Error al enviar el formulario. Escríbenos directamente por WhatsApp.</span>';
+              }
+            }
+          } catch (err) {
+            if (customStatus) {
+              customStatus.innerHTML = '<span style="color:#ef4444;">Error de conexión. Escríbenos directamente por WhatsApp.</span>';
+            }
+          } finally {
+            if (customSubmitBtn) {
+              customSubmitBtn.disabled = false;
+              customSubmitBtn.innerText = 'Enviar Requerimientos para Cotización';
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
