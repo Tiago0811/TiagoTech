@@ -139,8 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ==================== 📨 WEB3FORMS AJAX SUBMISSION ====================
+  // ==================== 📨 WEB3FORMS AJAX SUBMISSION & SUCCESS FLOW ====================
   const contactForm = document.getElementById('contact-form');
+  const contactSuccessCard = document.getElementById('contact-form-success');
+  const formSuccessWaBtn = document.getElementById('form-success-wa-btn');
+  const formResetBtn = document.getElementById('form-reset-btn');
+
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -168,14 +172,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json();
 
         if (response.status === 200) {
-          alert('✅ ¡Requerimientos enviados exitosamente! Nos pondremos en contacto contigo a la brevedad posible.');
+          // Personalizar botón de WhatsApp de seguimiento
+          const clientName = (jsonObject.name || '').trim();
+          const serviceSelect = contactForm.querySelector('select[name="service"]');
+          const serviceName = serviceSelect ? serviceSelect.options[serviceSelect.selectedIndex].text : 'un sistema';
+
+          if (formSuccessWaBtn) {
+            const waText = encodeURIComponent(`¡Hola Tiago! Acabo de enviar el formulario web sobre ${serviceName}. Mi nombre o negocio es "${clientName}". Me gustaría consultar detalles y disponibilidad.`);
+            formSuccessWaBtn.href = `https://wa.me/584247046941?text=${waText}`;
+          }
+
+          // Transición elegante en pantalla
+          contactForm.style.display = 'none';
+          if (contactSuccessCard) {
+            contactSuccessCard.style.display = 'block';
+            contactSuccessCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
           contactForm.reset();
         } else {
           alert('⚠️ Ocurrió un inconveniente al enviar: ' + (result.message || 'Inténtalo más tarde o escríbenos por WhatsApp.'));
         }
       } catch (err) {
         console.error('Error al enviar formulario:', err);
-        alert('⚠️ Error de conexión. Si lo prefieres, contáctanos directamente a nuestro WhatsApp oficial.');
+        alert('⚠️ Error de conexión. Si lo prefieres, contáctanos directamente a nuestro WhatsApp oficial (+58 424-7046941).');
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -183,6 +202,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+
+    if (formResetBtn && contactSuccessCard) {
+      formResetBtn.addEventListener('click', () => {
+        contactSuccessCard.style.display = 'none';
+        contactForm.style.display = 'block';
+      });
+    }
   }
 
   // ==================== 🤖 TIAGOTECH AI CHATBOT ENGINE ====================
