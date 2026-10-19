@@ -6,19 +6,39 @@
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
 
-  // ==================== 🎯 UNIVERSAL MAGNETIC CURSOR CONTROLLER (OPCIÓN 2) ====================
+  // ==================== 🏹 TIAGOTECH ARROW CURSOR CONTROLLER (OPCIÓN 1) ====================
   const cursorDot = document.getElementById('cursor-dot');
   const cursorRing = document.getElementById('cursor-ring');
 
   if (cursorDot && cursorRing) {
+    // Limpiar estilos inline remanentes para que las transiciones CSS tengan prioridad total
+    cursorRing.style.width = '';
+    cursorRing.style.height = '';
+    cursorRing.style.borderRadius = '';
+
+    // Inyectar el SVG de la flecha tecnológica con los colores de marca de TiagoTech
+    cursorDot.innerHTML = `
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="tiagoArrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0084FF" />
+            <stop offset="60%" stop-color="#0ea5e9" />
+            <stop offset="100%" stop-color="#22C55E" />
+          </linearGradient>
+          <filter id="tiagoArrowGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="1" stdDeviation="2.5" flood-color="#0084FF" flood-opacity="0.6"/>
+          </filter>
+        </defs>
+        <path d="M2 2L8.5 22.5L12.5 13.5L21.5 9.5L2 2Z" fill="url(#tiagoArrowGrad)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round" filter="url(#tiagoArrowGlow)"/>
+        <circle cx="12.5" cy="13.5" r="1.8" fill="#FFFFFF"/>
+      </svg>
+    `;
+
     let mouseX = -100, mouseY = -100;
     let ringX = -100, ringY = -100;
-    let ringWidth = 36, ringHeight = 36;
-    let currentMagneticEl = null;
     let isInitialized = false;
 
-    const DEFAULT_SIZE = 36;
-
+    // Seguimiento 1:1 inmediato en tiempo real (cero retraso en la punta de la flecha)
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -27,101 +47,49 @@ document.addEventListener('DOMContentLoaded', () => {
         ringX = mouseX;
         ringY = mouseY;
         cursorDot.style.opacity = '1';
-        cursorRing.style.opacity = '0.6';
+        cursorRing.style.opacity = '0.4';
         isInitialized = true;
       }
 
       cursorDot.style.left = `${mouseX}px`;
       cursorDot.style.top = `${mouseY}px`;
-
-      // Si está abrazando un elemento magnético, aplicar tirón táctil (magnetic pull)
-      if (currentMagneticEl) {
-        const rect = currentMagneticEl.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const deltaX = (mouseX - centerX) * 0.22;
-        const deltaY = (mouseY - centerY) * 0.22;
-        currentMagneticEl.style.transform = `translate(${deltaX.toFixed(1)}px, ${deltaY.toFixed(1)}px)`;
-      }
     });
 
-    // Loop de animación a 60/120 FPS con interpolación fluida (lerp)
+    // Seguimiento suave de la retícula orbital HUD (60/120 FPS lerp)
     (function animateRing() {
-      let targetX = mouseX;
-      let targetY = mouseY;
-      let targetW = DEFAULT_SIZE;
-      let targetH = DEFAULT_SIZE;
-      let targetRadius = '50%';
-
-      if (currentMagneticEl) {
-        const rect = currentMagneticEl.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        // El aro se imanta al centro del elemento con un sutil seguimiento al cursor
-        targetX = centerX + (mouseX - centerX) * 0.12;
-        targetY = centerY + (mouseY - centerY) * 0.12;
-        targetW = rect.width + 12;
-        targetH = rect.height + 12;
-
-        const computedRadius = window.getComputedStyle(currentMagneticEl).borderRadius;
-        targetRadius = computedRadius && computedRadius !== '0px' ? computedRadius : '12px';
-      }
-
-      // Suavizado dinámico
-      const ease = currentMagneticEl ? 0.24 : 0.16;
-      ringX += (targetX - ringX) * ease;
-      ringY += (targetY - ringY) * ease;
-      ringWidth += (targetW - ringWidth) * ease;
-      ringHeight += (targetH - ringHeight) * ease;
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
 
       cursorRing.style.left = `${ringX}px`;
       cursorRing.style.top = `${ringY}px`;
-      cursorRing.style.width = `${ringWidth.toFixed(1)}px`;
-      cursorRing.style.height = `${ringHeight.toFixed(1)}px`;
-      cursorRing.style.borderRadius = targetRadius;
 
       requestAnimationFrame(animateRing);
     })();
 
-    // Elementos que activan el campo magnético
-    const MAGNETIC_TARGETS = 'a, button, .btn, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip';
+    // Elementos interactivos que activan la retícula HUD "Target Locked"
+    const TARGETS = 'a, button, .btn, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip, input, select, textarea';
 
     document.addEventListener('mouseover', (e) => {
-      const target = e.target.closest(MAGNETIC_TARGETS);
-      if (target) {
-        currentMagneticEl = target;
-        document.body.classList.add('cursor-magnetic');
-        target.style.transition = 'transform 0.15s ease-out';
+      if (e.target.closest(TARGETS)) {
+        document.body.classList.add('cursor-hover');
+      } else {
+        document.body.classList.remove('cursor-hover');
       }
     });
 
-    document.addEventListener('mouseout', (e) => {
-      if (currentMagneticEl && !currentMagneticEl.contains(e.relatedTarget)) {
-        currentMagneticEl.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-        currentMagneticEl.style.transform = '';
-        currentMagneticEl = null;
-        document.body.classList.remove('cursor-magnetic');
-      }
-    });
-
-    // Feedback táctil al hacer clic
+    // Feedback táctil instantáneo al hacer clic (efecto recoil)
     document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
     document.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
 
-    // Salida y entrada de ventana
+    // Gestión de entrada y salida de la ventana
     document.addEventListener('mouseleave', () => {
       cursorDot.style.opacity = '0';
       cursorRing.style.opacity = '0';
-      if (currentMagneticEl) {
-        currentMagneticEl.style.transform = '';
-        currentMagneticEl = null;
-        document.body.classList.remove('cursor-magnetic');
-      }
     });
 
     document.addEventListener('mouseenter', () => {
       cursorDot.style.opacity = '1';
-      cursorRing.style.opacity = '0.6';
+      cursorRing.style.opacity = '0.4';
     });
   }
 
