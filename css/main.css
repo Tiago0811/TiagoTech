@@ -85,6 +85,108 @@ body {
     font-family var(--transition-speed) var(--transition-ease);
 }
 
+/* ==================== 🌌 CYBER GRID & SPOTLIGHT AURORA BACKGROUND ==================== */
+/* Capa 1: Cuadrícula cibernética milimétrica técnica */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -4;
+  pointer-events: none;
+  background-color: var(--bg-primary);
+  background-image: 
+    linear-gradient(rgba(0, 132, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 132, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(34, 197, 94, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px, 50px 50px, 12.5px 12.5px, 12.5px 12.5px;
+  background-position: center center;
+}
+
+/* Capa 2: Foco interactivo (Spotlight que sigue al ratón) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3;
+  pointer-events: none;
+  background: radial-gradient(
+    650px circle at var(--mouse-x, 50%) var(--mouse-y, 35%),
+    rgba(0, 132, 255, 0.16) 0%,
+    rgba(34, 197, 94, 0.08) 35%,
+    transparent 70%
+  );
+  transition: opacity 0.3s ease;
+}
+
+/* Capa 3: Luces Aurora Ambientales (Glow Líquido Multicapa) */
+.aurora-bg-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.aurora-orb-blue {
+  width: 520px;
+  height: 520px;
+  top: -120px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(0, 132, 255, 0.42) 0%, rgba(0, 132, 255, 0) 70%);
+  animation: auroraFloat1 18s ease-in-out infinite alternate;
+}
+
+.aurora-orb-green {
+  width: 440px;
+  height: 440px;
+  top: 45%;
+  left: -100px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.32) 0%, rgba(34, 197, 94, 0) 70%);
+  animation: auroraFloat2 22s ease-in-out infinite alternate;
+}
+
+.aurora-orb-cyan {
+  width: 480px;
+  height: 480px;
+  bottom: -100px;
+  right: 15%;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.32) 0%, rgba(34, 197, 94, 0.18) 40%, transparent 70%);
+  animation: auroraFloat3 26s ease-in-out infinite alternate;
+}
+
+@keyframes auroraFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, 80px) scale(1.15); }
+  100% { transform: translate(50px, 120px) scale(0.95); }
+}
+
+@keyframes auroraFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, -60px) scale(1.1); }
+  100% { transform: translate(40px, 80px) scale(0.92); }
+}
+
+@keyframes auroraFloat3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-80px, -70px) scale(1.18); }
+  100% { transform: translate(60px, -30px) scale(1); }
+}
+
 /* ==================== 🕸️ CUSTOM SCROLLBAR ==================== */
 ::-webkit-scrollbar {
   width: 10px;
@@ -107,14 +209,14 @@ body {
   box-shadow: var(--glow-shadow);
 }
 
-/* ==================== 🌌 CANVAS BACKGROUND ==================== */
+/* ==================== 🌌 CANVAS BACKGROUND (CHISPAS DIGITALES) ==================== */
 #bg-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -2;
+  z-index: -1;
   pointer-events: none;
   background-color: transparent;
   transition: opacity 0.3s ease;
