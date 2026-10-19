@@ -128,7 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = btn.closest('.system-card');
       if (card && selectDropdown) {
         const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
-        if (title.includes('pos')) selectDropdown.value = 'pos';
+        if (title.includes('personalizado') || title.includes('medida')) selectDropdown.value = 'custom';
+        else if (title.includes('pos')) selectDropdown.value = 'pos';
         else if (title.includes('menú') || title.includes('menu')) selectDropdown.value = 'menu_qr';
         else if (title.includes('cita')) selectDropdown.value = 'citas';
         else if (title.includes('facturador') || title.includes('cotizador')) selectDropdown.value = 'cotizador';
@@ -223,6 +224,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatbotPrompts = document.getElementById('chatbot-prompts');
 
   const KNOWLEDGE_BASE = {
+    custom: {
+      title: "💻 Software & Sistemas Web 100% a la Medida (Personalizado)",
+      text: "¡El servicio más solicitado y de mayor impacto de TiagoTech! Desarrollamos cualquier solución web o software creada desde cero para adaptarse a los flujos únicos de tu empresa.\n\n" +
+            "✨ **¿Cómo trabajamos tu proyecto?**\n" +
+            "• **Levantamiento 1 a 1:** Analizamos cómo opera tu negocio y qué procesos deseas automatizar.\n" +
+            "• **Diseño & Desarrollo Exclusivo:** Construimos tu sistema a prueba de errores para ti y tus empleados.\n" +
+            "• **Base de Datos Privada:** 100% de tu propiedad, sin comisiones ni intermediarios.\n" +
+            "• **Entrega con Instalación y Capacitación:** Todo listo y operativo en tu red o en la nube.\n\n" +
+            "💼 **Cotización:** Presupuestos justos y accesibles adaptados a la magnitud de tu proyecto.\n" +
+            "👉 Escríbeme a WhatsApp para contarnos tu idea y recibir asesoría inicial sin costo."
+    },
     pos: {
       title: "🛒 TiagoTech POS & Control de Inventario",
       text: "El sistema definitivo para puntos de venta locales (tiendas de ropa, mini-markets, cafeterías, boutiques y reposterías).\n\n" +
@@ -316,6 +328,15 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="chatbot-systems-menu">
         <div class="chatbot-menu-header">📋 Sistemas disponibles (toca uno para ver detalles):</div>
         <div class="chatbot-systems-vertical-list">
+          <button type="button" class="chatbot-system-row chatbot-sys-featured" data-key="custom" style="border-color: rgba(0, 132, 255, 0.45); background: linear-gradient(135deg, rgba(0, 132, 255, 0.12) 0%, rgba(34, 197, 94, 0.08) 100%);">
+            <span class="chatbot-sys-icon">⭐</span>
+            <span class="chatbot-sys-info">
+              <strong style="color: #38BDF8;">Software & Sistema a la Medida</strong>
+              <small style="color: #4ADE80; font-weight: 600;">🔥 EL MÁS POPULAR // 100% Personalizado</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
           <button type="button" class="chatbot-system-row" data-key="pos">
             <span class="chatbot-sys-icon">🛒</span>
             <span class="chatbot-sys-info">
@@ -506,7 +527,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Keyword matching NLP
       const clean = userText.toLowerCase();
 
-      if (clean.includes('pos') || clean.includes('inventario') || clean.includes('stock') || clean.includes('caja') || clean.includes('factura')) {
+      if (clean.includes('personaliz') || clean.includes('a la medida') || clean.includes('medida') || clean.includes('custom') || clean.includes('software a medida') || clean.includes('sistema a la medida') || clean.includes('crear sistema') || clean.includes('programar') || clean.includes('desarrollo') || clean.includes('popular')) {
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.custom), true);
+      } else if (clean.includes('pos') || clean.includes('inventario') || clean.includes('stock') || clean.includes('caja') || clean.includes('factura')) {
         appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.pos), true);
       } else if (clean.includes('menú') || clean.includes('menu') || clean.includes('restaurante') || clean.includes('comida') || clean.includes('qr')) {
         appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.menu_qr), true);
@@ -707,6 +730,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedBusinessLabel = '';
 
   const BUSINESS_GOALS = {
+    custom: [
+      { goal: 'custom_full', title: 'Crear un software desde cero para mi empresa', desc: 'Reglas de negocio propias, bases de datos exclusivas y automatización integral.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '⭐', url: '#sistemas' },
+      { goal: 'custom_rubro', title: 'Digitalizar clínica, distribuidora, logística o colegio', desc: 'Sistemas especializados para sectores específicos que no resuelven apps genéricas.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '💻', url: '#sistemas' },
+      { goal: 'custom_portal', title: 'Portal web exclusivo para clientes y personal', desc: 'Panel privado con accesos por rol, reportes avanzados y sincronización en la nube.', system: 'Software & Sistemas Web Personalizados (A la Medida)', icon: '🌐', url: '#sistemas' }
+    ],
     comercio: [
       { goal: 'pos', title: 'Cobrar rápido y controlar inventario', desc: 'Registrar ventas de mostrador, arqueos de caja y alertas de stock bajo.', system: 'TiagoTech POS & Inventario', icon: '🛒', url: 'sistema-pos.html' },
       { goal: 'online', title: 'Vender por internet las 24 horas', desc: 'Catálogo web propio con carrito de compra y pagos automatizados.', system: 'E-Commerce & Tienda Online', icon: '🌐', url: 'sistema-ecommerce.html' },
@@ -807,7 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Cotizar e Instalar por WhatsApp
         </a>
         <a href="${systemUrl}" class="btn btn-outline" style="font-size: 14px;">
-          Ver Detalles & Demo en Vivo &rarr;
+          ${systemUrl.startsWith('#') ? 'Ver en Sistemas Destacados &darr;' : 'Ver Detalles & Demo en Vivo &rarr;'}
         </a>
         <button type="button" class="btn" id="wizard-restart-btn" style="background: var(--bg-tertiary); border-color: var(--card-border); color: var(--text-muted); font-size: 13px;">
           🔄 Probar con otro rubro
