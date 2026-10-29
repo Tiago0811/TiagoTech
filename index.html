@@ -29,8 +29,12 @@
   
   <!-- Favicon & PWA Manifest -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/tiagotech-symbol.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#050811">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TiagoTech">
 
   <!-- Preconnect for High-Speed Webfonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,6 +73,11 @@
           <li><a href="#contacto">Contacto</a></li>
         </ul>
 
+        <!-- 📱 Botón PWA para Instalar App en Móvil / PC -->
+        <button type="button" class="pwa-install-pill" style="display: none;" title="Instalar TiagoTech en tu dispositivo">
+          📱 Instalar App
+        </button>
+
         <!-- 🍔 Botón Menú Hamburguesa Móvil -->
         <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
           <span></span>
@@ -97,6 +106,11 @@
       <li><a href="#faq" onclick="toggleMobileMenu()">Preguntas Frecuentes</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
       <li><a href="#contacto" onclick="toggleMobileMenu()">Contacto</a></li>
+      <li style="margin-top: 15px;">
+        <button type="button" class="pwa-install-pill" style="display: none; width: 100%; justify-content: center; padding: 10px 16px; font-size: 13px;" title="Instalar TiagoTech en tu pantalla de inicio">
+          📱 Instalar App en mi Celular
+        </button>
+      </li>
     </ul>
   </div>
 
@@ -677,6 +691,89 @@
         <div class="faq-answer">
           Totalmente protegidos. Tu base de datos es 100% privada y no se comparte con terceros. Realizamos copias de seguridad continuas y también disponemos de opciones de ejecución local en tu propia computadora si prefieres que la información nunca salga de tu red.
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       🛡️ GARANTÍA TOTAL & CERO RIESGO (TIAGOTECH PRO)
+       ========================================================================== -->
+  <section class="container tech-section" id="garantia">
+    <h2 class="section-title">Garantía Total & <span>Cero Riesgo</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      Sabemos lo valiosa que es cada inversión en tu negocio. Por eso eliminamos cualquier incertidumbre para que compruebes el impacto y la rentabilidad de tu sistema con total tranquilidad.
+    </p>
+
+    <div class="guarantee-grid">
+      <!-- Tarjeta 1: Prueba Guiada -->
+      <div class="glass-card guarantee-card">
+        <div>
+          <div class="guarantee-icon-wrap" style="background: rgba(0, 132, 255, 0.12); border-color: rgba(0, 132, 255, 0.35); color: var(--accent-primary);">
+            🛡️
+          </div>
+          <h3 class="guarantee-card-title">Prueba Guiada de 7 Días</h3>
+          <p class="guarantee-card-desc">
+            Instalamos y adaptamos el sistema con tus datos iniciales. Lo pruebas en tu día a día con ventas reales. Si no ahorra tiempo ni optimiza tus operaciones, cancelas sin ninguna penalización.
+          </p>
+        </div>
+        <span class="guarantee-badge">✓ 100% GARANTIZADO</span>
+      </div>
+
+      <!-- Tarjeta 2: Sin Contratos Forzosos -->
+      <div class="glass-card guarantee-card">
+        <div>
+          <div class="guarantee-icon-wrap" style="background: rgba(34, 197, 94, 0.12); border-color: rgba(34, 197, 94, 0.35); color: var(--accent-secondary);">
+            💳
+          </div>
+          <h3 class="guarantee-card-title">Sin Contratos Forzosos</h3>
+          <p class="guarantee-card-desc">
+            Trabajamos con suscripciones mensuales justas y transparentes que se pagan solas con el control de tus ventas y stock. Te quedas por los resultados y el buen servicio, nunca por ataduras.
+          </p>
+        </div>
+        <span class="guarantee-badge" style="color: var(--accent-secondary); border-color: rgba(34, 197, 94, 0.3);">✓ LIBERTAD TOTAL</span>
+      </div>
+
+      <!-- Tarjeta 3: Soporte Directo 1 a 1 -->
+      <div class="glass-card guarantee-card">
+        <div>
+          <div class="guarantee-icon-wrap" style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8;">
+            ⚡
+          </div>
+          <h3 class="guarantee-card-title">Soporte Directo 1 a 1 por WhatsApp</h3>
+          <p class="guarantee-card-desc">
+            Olvídate de tickets impersonales que tardan días. Tienes comunicación directa con Tiago para resolver cualquier consulta, actualizar precios o coordinar mejoras cuando las necesites.
+          </p>
+        </div>
+        <span class="guarantee-badge" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">✓ ATENCIÓN RÁPIDA</span>
+      </div>
+
+      <!-- Tarjeta 4: Seguridad y Datos Privados -->
+      <div class="glass-card guarantee-card">
+        <div>
+          <div class="guarantee-icon-wrap" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); color: #f59e0b;">
+            🔒
+          </div>
+          <h3 class="guarantee-card-title">Datos 100% Privados y Respaldados</h3>
+          <p class="guarantee-card-desc">
+            Copias de seguridad continuas y cifrado estricto. Tu inventario, tus clientes y tus cuentas son de tu propiedad exclusiva y nunca se comparten con terceros.
+          </p>
+        </div>
+        <span class="guarantee-badge" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">✓ MÁXIMA PRIVACIDAD</span>
+      </div>
+    </div>
+
+    <!-- Franja resumen de confianza -->
+    <div class="guarantee-strip">
+      <div class="guarantee-strip-item">
+        <span class="guarantee-strip-check">✓</span> Puesta en marcha rápida en 24 a 48 horas
+      </div>
+      <div class="guarantee-strip-divider">•</div>
+      <div class="guarantee-strip-item">
+        <span class="guarantee-strip-check">✓</span> Capacitación de uso para ti y tu equipo
+      </div>
+      <div class="guarantee-strip-divider">•</div>
+      <div class="guarantee-strip-item">
+        <span class="guarantee-strip-check">✓</span> Cero costos de mantenimiento sorpresa
       </div>
     </div>
   </section>

@@ -897,4 +897,42 @@ document.addEventListener('DOMContentLoaded', () => {
     node3.classList.add('active');
   }
 
+  // ==========================================
+  // 📱 PWA SERVICE WORKER REGISTRATION & INSTALL PROMPT
+  // ==========================================
+  if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(() => {
+        // Service Worker activo y recursos acelerados en caché
+      }).catch((err) => {
+        console.debug('SW registration skipped:', err.message);
+      });
+    });
+  }
+
+  let deferredInstallPrompt = null;
+  const pwaInstallBtns = document.querySelectorAll('.pwa-install-pill');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    pwaInstallBtns.forEach(btn => {
+      btn.style.display = 'inline-flex';
+      btn.addEventListener('click', async () => {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        const choice = await deferredInstallPrompt.userChoice;
+        if (choice && choice.outcome === 'accepted') {
+          pwaInstallBtns.forEach(b => b.style.display = 'none');
+        }
+        deferredInstallPrompt = null;
+      });
+    });
+  });
+
+  window.addEventListener('appinstalled', () => {
+    pwaInstallBtns.forEach(b => b.style.display = 'none');
+    deferredInstallPrompt = null;
+  });
+
 });
