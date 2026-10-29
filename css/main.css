@@ -21,9 +21,9 @@
   box-shadow: none;
   pointer-events: none;
   z-index: 9999999 !important;
-  transform: translate(-2px, -2px);
-  will-change: left, top, transform;
-  transition: transform 0.15s cubic-bezier(0.2, 0, 0.1, 1), opacity 0.25s ease;
+  will-change: transform;
+  transform: translate3d(-100px, -100px, 0);
+  transition: opacity 0.25s ease;
 }
 
 #cursor-dot svg {
@@ -32,6 +32,8 @@
   height: 100%;
   overflow: visible;
   filter: drop-shadow(0 2px 8px rgba(0, 132, 255, 0.65));
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.1, 1), filter 0.2s ease;
+  transform-origin: 2px 2px;
 }
 
 #cursor-ring {
@@ -40,49 +42,43 @@
   left: 0;
   width: 32px;
   height: 32px;
+  margin-top: -16px;
+  margin-left: -16px;
   border: 1.5px dashed var(--accent-secondary);
   background: transparent;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999998 !important;
-  transform: translate(-50%, -50%);
+  will-change: transform;
+  transform: translate3d(-100px, -100px, 0);
   opacity: 0.4;
   box-shadow: 0 0 10px rgba(var(--accent-green-rgb), 0.25);
-  transition: opacity 0.25s ease, border-color 0.25s ease, width 0.22s ease, height 0.22s ease, box-shadow 0.25s ease;
-  will-change: left, top, transform;
+  transition: opacity 0.25s ease, border-color 0.25s ease, width 0.22s ease, height 0.22s ease, margin 0.22s ease, box-shadow 0.25s ease;
 }
 
 /* Estado al pasar por botones o elementos interactivos (Target Locked) */
-body.cursor-hover #cursor-dot {
-  transform: translate(-2px, -2px) scale(1.18) rotate(-8deg);
-}
-
 body.cursor-hover #cursor-dot svg {
+  transform: scale(1.18) rotate(-8deg);
   filter: drop-shadow(0 0 12px #22C55E);
 }
 
 body.cursor-hover #cursor-ring {
   width: 44px;
   height: 44px;
+  margin-top: -22px;
+  margin-left: -22px;
   border: 2px solid var(--accent-primary);
   border-radius: 50%;
   opacity: 0.9;
   box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.5);
-  animation: reticleSpin 5s linear infinite;
-}
-
-@keyframes reticleSpin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* Feedback de clic táctil (Disparo/Recoil) */
-body.cursor-click #cursor-dot {
-  transform: translate(-1px, -1px) scale(0.85);
+body.cursor-click #cursor-dot svg {
+  transform: scale(0.85);
 }
 
 body.cursor-click #cursor-ring {
-  transform: translate(-50%, -50%) scale(0.65);
   border-color: #ffffff;
   box-shadow: 0 0 20px #ffffff;
 }
@@ -118,7 +114,7 @@ body {
 }
 
 /* ==================== 🌌 CYBER GRID & SPOTLIGHT AURORA BACKGROUND ==================== */
-/* Capa 1: Cuadrícula cibernética milimétrica técnica */
+/* Capa 1: Cuadrícula cibernética milimétrica técnica (GPU Composited) */
 body::before {
   content: '';
   position: fixed;
@@ -135,27 +131,15 @@ body::before {
     linear-gradient(90deg, rgba(34, 197, 94, 0.02) 1px, transparent 1px);
   background-size: 50px 50px, 50px 50px, 12.5px 12.5px, 12.5px 12.5px;
   background-position: center center;
+  transform: translateZ(0);
 }
 
-/* Capa 2: Foco interactivo (Spotlight que sigue al ratón) */
+/* Capa 2: Foco interactivo (Renderizado en Canvas de alta velocidad para 144 FPS) */
 body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -3;
-  pointer-events: none;
-  background: radial-gradient(
-    650px circle at var(--mouse-x, 50%) var(--mouse-y, 35%),
-    rgba(0, 132, 255, 0.16) 0%,
-    rgba(34, 197, 94, 0.08) 35%,
-    transparent 70%
-  );
-  transition: opacity 0.3s ease;
+  display: none;
 }
 
-/* Capa 3: Luces Aurora Ambientales (Glow Líquido Multicapa) */
+/* Capa 3: Luces Aurora Ambientales (Glow Líquido Optimizado) */
 .aurora-bg-container {
   position: fixed;
   inset: 0;
@@ -164,14 +148,16 @@ body::after {
   z-index: -2;
   pointer-events: none;
   overflow: hidden;
+  transform: translateZ(0);
 }
 
 .aurora-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(110px);
+  filter: blur(36px);
   pointer-events: none;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .aurora-orb-blue {
@@ -179,7 +165,7 @@ body::after {
   height: 520px;
   top: -120px;
   right: -60px;
-  background: radial-gradient(circle, rgba(0, 132, 255, 0.42) 0%, rgba(0, 132, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 132, 255, 0.38) 0%, rgba(0, 132, 255, 0) 70%);
   animation: auroraFloat1 18s ease-in-out infinite alternate;
 }
 
@@ -188,7 +174,7 @@ body::after {
   height: 440px;
   top: 45%;
   left: -100px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.32) 0%, rgba(34, 197, 94, 0) 70%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.28) 0%, rgba(34, 197, 94, 0) 70%);
   animation: auroraFloat2 22s ease-in-out infinite alternate;
 }
 
@@ -197,26 +183,26 @@ body::after {
   height: 480px;
   bottom: -100px;
   right: 15%;
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.32) 0%, rgba(34, 197, 94, 0.18) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.28) 0%, rgba(34, 197, 94, 0.16) 40%, transparent 70%);
   animation: auroraFloat3 26s ease-in-out infinite alternate;
 }
 
 @keyframes auroraFloat1 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-60px, 80px) scale(1.15); }
-  100% { transform: translate(50px, 120px) scale(0.95); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-60px, 80px, 0) scale(1.15); }
+  100% { transform: translate3d(50px, 120px, 0) scale(0.95); }
 }
 
 @keyframes auroraFloat2 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(80px, -60px) scale(1.1); }
-  100% { transform: translate(40px, 80px) scale(0.92); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(80px, -60px, 0) scale(1.1); }
+  100% { transform: translate3d(40px, 80px, 0) scale(0.92); }
 }
 
 @keyframes auroraFloat3 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-80px, -70px) scale(1.18); }
-  100% { transform: translate(60px, -30px) scale(1); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-80px, -70px, 0) scale(1.18); }
+  100% { transform: translate3d(60px, -30px, 0) scale(1); }
 }
 
 /* ==================== 🕸️ CUSTOM SCROLLBAR ==================== */
@@ -251,7 +237,8 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background-color: transparent;
-  transition: opacity 0.3s ease;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* ==================== ⚡ GLITCH TRANSITION OVERLAY ==================== */
@@ -455,16 +442,19 @@ nav {
 /* ==================== 🃏 GLASS CARDS & UI ELEMENTS ==================== */
 .glass-card {
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--card-border);
   border-radius: var(--border-radius-md);
   padding: var(--spacing-md);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
   transition: 
     border-color var(--transition-speed) var(--transition-ease),
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
     background-color var(--transition-speed) var(--transition-ease);
 }
 
@@ -478,7 +468,8 @@ nav {
   position: relative;
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.12s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.12s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.3s ease;
+  backface-visibility: hidden;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.3s ease;
 }
 
 .card-glare {

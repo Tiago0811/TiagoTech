@@ -6,12 +6,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
 
-  // ==================== 🏹 TIAGOTECH ARROW CURSOR CONTROLLER (OPCIÓN 1) ====================
+  // ==================== 🏹 TIAGOTECH ARROW CURSOR CONTROLLER (OPCIÓN 1 - GPU ACCELERATED) ====================
   const cursorDot = document.getElementById('cursor-dot');
   const cursorRing = document.getElementById('cursor-ring');
 
   if (cursorDot && cursorRing) {
-    // Limpiar estilos inline remanentes para que las transiciones CSS tengan prioridad total
     cursorRing.style.width = '';
     cursorRing.style.height = '';
     cursorRing.style.borderRadius = '';
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let ringX = -100, ringY = -100;
     let isInitialized = false;
 
-    // Seguimiento 1:1 inmediato en tiempo real (cero retraso en la punta de la flecha)
+    // Seguimiento 1:1 inmediato en tiempo real mediante translate3d (Cero Reflow, 144 FPS)
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -51,17 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
         isInitialized = true;
       }
 
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-    });
+      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+    }, { passive: true });
 
-    // Seguimiento suave de la retícula orbital HUD (60/120 FPS lerp)
+    // Seguimiento suave de la retícula orbital HUD (Hardware-composited Lerp)
     (function animateRing() {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
+      ringX += (mouseX - ringX) * 0.22;
+      ringY += (mouseY - ringY) * 0.22;
 
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
+      cursorRing.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0)`;
 
       requestAnimationFrame(animateRing);
     })();
@@ -69,28 +66,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Elementos interactivos que activan la retícula HUD "Target Locked"
     const TARGETS = 'a, button, .btn, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip, input, select, textarea';
 
+    let isTargetHovered = false;
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(TARGETS)) {
-        document.body.classList.add('cursor-hover');
-      } else {
-        document.body.classList.remove('cursor-hover');
+      const isTarget = !!e.target.closest(TARGETS);
+      if (isTarget !== isTargetHovered) {
+        isTargetHovered = isTarget;
+        document.body.classList.toggle('cursor-hover', isTargetHovered);
       }
-    });
+    }, { passive: true });
 
     // Feedback táctil instantáneo al hacer clic (efecto recoil)
-    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
-    document.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
+    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'), { passive: true });
+    document.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'), { passive: true });
 
     // Gestión de entrada y salida de la ventana
     document.addEventListener('mouseleave', () => {
       cursorDot.style.opacity = '0';
       cursorRing.style.opacity = '0';
-    });
+    }, { passive: true });
 
     document.addEventListener('mouseenter', () => {
       cursorDot.style.opacity = '1';
       cursorRing.style.opacity = '0.4';
-    });
+    }, { passive: true });
   }
 
   // ==================== 🍔 MOBILE MENU INTERACTIVITY ====================

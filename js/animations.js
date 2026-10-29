@@ -132,8 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function onMouseEnter() {
         bounds = card.getBoundingClientRect();
-        card.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out, border-color 0.3s ease';
-        if (glare) glare.style.opacity = '1';
+        card.style.transition = 'transform 0.12s ease-out';
       }
 
       function onMouseMove(e) {
@@ -142,43 +141,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const mouseX = e.clientX - bounds.left;
         const mouseY = e.clientY - bounds.top;
 
-        const width = bounds.width;
-        const height = bounds.height;
+        const xPct = (mouseX / bounds.width - 0.5) * 2;
+        const yPct = (mouseY / bounds.height - 0.5) * 2;
 
-        const xPct = (mouseX / width - 0.5) * 2; // -1 to 1
-        const yPct = (mouseY / height - 0.5) * 2; // -1 to 1
-
-        const maxRotate = 8; // Max tilt degrees
-        const rotX = -yPct * maxRotate;
-        const rotY = xPct * maxRotate;
-
-        const glareX = (mouseX / width) * 100;
-        const glareY = (mouseY / height) * 100;
+        const maxRotate = 5;
+        const rotX = (-yPct * maxRotate).toFixed(2);
+        const rotY = (xPct * maxRotate).toFixed(2);
 
         if (rafId) cancelAnimationFrame(rafId);
 
         rafId = requestAnimationFrame(() => {
-          const primaryAccent = '0, 132, 255';
-          const secondaryAccent = '34, 197, 94';
-
-          card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
-          card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(${primaryAccent}, 0.25)`;
-
-          if (glare) {
-            glare.style.background = `radial-gradient(circle at ${glareX.toFixed(1)}% ${glareY.toFixed(1)}%, rgba(255, 255, 255, 0.35) 0%, rgba(${primaryAccent}, 0.22) 30%, rgba(${secondaryAccent}, 0.12) 60%, transparent 80%)`;
-          }
+          card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.015, 1.015, 1.015)`;
         });
       }
 
       function onMouseLeave() {
         if (rafId) cancelAnimationFrame(rafId);
         bounds = null;
-        card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease';
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        card.style.boxShadow = '';
-        if (glare) {
-          glare.style.opacity = '0';
-        }
+        card.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       }
 
       card.addEventListener('mouseenter', onMouseEnter);
