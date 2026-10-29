@@ -1,7 +1,33 @@
 [build]
   publish = "."
 
-# Opciones opcionales de cabeceras para rendimiento y caché
+# ==============================================================================
+# 🛡️ CABECERAS GLOBALES DE SEGURIDAD & HARDENING (TIAGOTECH)
+# ==============================================================================
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 1. Protección contra Clickjacking (impide incrustar TiagoTech en iframes de terceros)
+    X-Frame-Options = "DENY"
+
+    # 2. Protección contra MIME-Type Sniffing
+    X-Content-Type-Options = "nosniff"
+
+    # 3. Política de Referrer para proteger la privacidad de la navegación
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # 4. Enforzamiento de conexión HTTPS estricta (HSTS) durante 1 año
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # 5. Restricción de hardware y APIs del navegador no requeridas
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+
+    # 6. Content Security Policy (CSP) equilibrada para blindar contra XSS e inyecciones
+    Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://api.web3forms.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com;"
+
+# ==============================================================================
+# ⚡ REGLAS DE RENDIMIENTO & CACHÉ
+# ==============================================================================
 [[headers]]
   for = "/assets/*"
   [headers.values]

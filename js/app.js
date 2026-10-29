@@ -147,6 +147,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      // 🛡️ Hardening Anti-Spam: Rate limiting en cliente (45s cooldown)
+      const lastSubmit = sessionStorage.getItem('tiagotech_form_last_submit');
+      if (lastSubmit && (Date.now() - parseInt(lastSubmit, 10)) < 45000) {
+        alert('⏳ Por seguridad y control de spam, por favor espera unos segundos antes de enviar otra consulta, o escríbenos directamente a WhatsApp (+58 424-7046941).');
+        return;
+      }
+
+      // 🛡️ Hardening: Validación estricta de formato de correo
+      const emailInput = contactForm.querySelector('input[type="email"]');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        alert('⚠️ Por favor ingresa una dirección de correo electrónico válida.');
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn ? submitBtn.innerText : 'Enviar';
 
@@ -171,6 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json();
 
         if (response.status === 200) {
+          // Registrar tiempo de envío exitoso para rate-limiting
+          sessionStorage.setItem('tiagotech_form_last_submit', Date.now().toString());
+
           // Personalizar botón de WhatsApp de seguimiento
           const clientName = (jsonObject.name || '').trim();
           const serviceSelect = contactForm.querySelector('select[name="service"]');
@@ -466,6 +487,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 🛡️ Hardening de Seguridad: Función para escapar entidades HTML y prevenir DOM XSS
+  function escapeHtml(unsafeText) {
+    if (!unsafeText) return '';
+    return String(unsafeText)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   function appendMessage(sender, text, isHtml = false, autoScroll = true) {
     if (!chatbotMessages) return;
     const msgDiv = document.createElement('div');
@@ -477,7 +509,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isHtml) {
       contentDiv.innerHTML = text;
     } else {
-      let formatted = text
+      // 🛡️ Prevención estricta contra DOM-based XSS:
+      // Se neutralizan caracteres HTML peligrosos antes de aplicar el formateo de estilos
+      const safeText = escapeHtml(text);
+      let formatted = safeText
         .replace(/\n\n/g, '<br><br>')
         .replace(/\n/g, '<br>')
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -630,7 +665,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatbotForm && chatbotInput) {
       chatbotForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const text = chatbotInput.value.trim();
+        // 🛡️ Límite de seguridad de 500 caracteres para evitar ataques de DoS o saturación del DOM
+        const text = chatbotInput.value.trim().slice(0, 500);
         if (text) {
           handleUserQuery(text);
           chatbotInput.value = '';

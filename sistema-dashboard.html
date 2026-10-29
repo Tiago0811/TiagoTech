@@ -396,7 +396,7 @@
             <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
             <input type="hidden" name="subject" value="Nueva Solicitud de TiagoTech Analytics">
             <input type="hidden" name="from_name" value="Portal Tiago Analytics">
-            <input type="hidden" name="botcheck" style="display: none;">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
             
             <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
               <div style="flex: 1; min-width: 250px;">
@@ -523,6 +523,13 @@
       if (form) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
+
+          // 🛡️ Hardening Anti-Spam: Rate limiting en cliente (45s cooldown)
+          const lastSubmit = sessionStorage.getItem('tiagotech_form_last_submit');
+          if (lastSubmit && (Date.now() - parseInt(lastSubmit, 10)) < 45000) {
+            alert('⏳ Por seguridad y control de spam, por favor espera unos segundos antes de enviar otra consulta, o escríbenos directamente a WhatsApp (+58 424-7046941).');
+            return;
+          }
           
           const submitBtn = document.getElementById('pos-submit-btn');
           const originalText = submitBtn.innerHTML;
@@ -545,6 +552,7 @@
           .then(async (response) => {
             let res = await response.json();
             if (response.status === 200) {
+              sessionStorage.setItem('tiagotech_form_last_submit', Date.now().toString());
               alert('✔️ ¡Solicitud enviada con éxito! Tiago se pondrá en contacto contigo muy pronto para analizar tu caso.');
               form.reset();
             } else {

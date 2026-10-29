@@ -7,6 +7,9 @@ package-lock.json
 .env.local
 *.log
 
+# Internal dev scripts & tooling
+scripts/
+
 # OS generated files
 .DS_Store
 Thumbs.db
