@@ -11,13 +11,18 @@
 
 
 /* ==================== 💻 HERO SECTION ==================== */
+#hero-tech-sec {
+  padding-top: 80px; /* Compensa la barra fija sin crear espacio muerto */
+}
+
 .hero-tech {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-lg);
   min-height: calc(100vh - 80px);
-  margin-top: 80px;
+  margin-top: 0;
+  padding: 20px 0;
 }
 
 .hero-tech-content {
