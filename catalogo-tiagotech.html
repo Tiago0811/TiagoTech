@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo Oficial TiagoTech - Software & Sistemas Web 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #050811;
+      color: #E2E8F0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      max-height: 297mm;
+      height: 297mm;
+      padding: 16mm 18mm;
+      position: relative;
+      background: radial-gradient(circle at 85% 15%, rgba(0, 132, 255, 0.08) 0%, transparent 45%),
+                  radial-gradient(circle at 15% 85%, rgba(34, 197, 94, 0.06) 0%, transparent 40%),
+                  #050811;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      page-break-after: always;
+      break-after: page;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Page Header */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 14px;
+    }
+
+    .brand-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-logo span.code {
+      color: #0084FF;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .brand-logo span.accent {
+      color: #22C55E;
+    }
+
+    .header-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: #38BDF8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 8px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Page Footer */
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 10.5px;
+      color: #64748B;
+    }
+
+    .footer-wa {
+      color: #22C55E;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      justify-content: center;
+      text-align: center;
+      padding: 25mm 20mm;
+      position: relative;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 132, 255, 0.12);
+      border: 1px solid rgba(0, 132, 255, 0.4);
+      color: #38BDF8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.8px;
+    }
+
+    .cover-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .cover-title span {
+      background: linear-gradient(135deg, #0084FF, #22C55E);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cover-desc {
+      font-size: 15px;
+      color: #94A3B8;
+      max-width: 540px;
+      margin: 0 auto 30px auto;
+      line-height: 1.6;
+    }
+
+    .cover-features-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 580px;
+      margin: 0 auto 35px auto;
+      text-align: left;
+    }
+
+    .cover-feature-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px;
+      border-radius: 8px;
+    }
+
+    .cover-feature-item h4 {
+      font-size: 12px;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .cover-feature-item p {
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.4;
+    }
+
+    .cover-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #22C55E;
+      color: #050811;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 800;
+      font-size: 13.5px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
+    }
+
+    /* Cards Layout */
+    .system-card-block {
+      background: rgba(11, 17, 32, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .system-card-block.featured {
+      border-color: rgba(0, 132, 255, 0.4);
+      background: linear-gradient(145deg, rgba(11, 23, 45, 0.85), rgba(11, 17, 32, 0.75));
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(0, 132, 255, 0.12);
+      border: 1px solid rgba(0, 132, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      font-weight: 700;
+      color: #38BDF8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .card-badge-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #22C55E;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      white-space: nowrap;
+    }
+
+    .card-pain-headline {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #E2E8F0;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 11.5px;
+      color: #94A3B8;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .card-features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 12px;
+      background: rgba(5, 8, 17, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .card-feature-item {
+      font-size: 11px;
+      color: #CBD5E1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-feature-item span.chk {
+      color: #22C55E;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .card-ideal-for {
+      font-size: 11px;
+      color: #38BDF8;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .card-footer-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+
+    .card-benefit-highlight {
+      font-size: 10.5px;
+      color: #22C55E;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .card-wa-link {
+      color: #22C55E;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Trust & Guarantees section */
+    .trust-box {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .trust-box-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-items-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .trust-single-item {
+      background: rgba(5, 8, 17, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .trust-single-item h5 {
+      font-size: 12px;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-single-item p {
+      font-size: 11px;
+      color: #94A3B8;
+      line-height: 1.45;
+    }
+
+    /* Back cover */
+    .backcover-box {
+      background: linear-gradient(135deg, rgba(0, 132, 255, 0.1), rgba(34, 197, 94, 0.08));
+      border: 1px solid rgba(0, 132, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .backcover-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .backcover-subtitle {
+      font-size: 13px;
+      color: #94A3B8;
+      max-width: 500px;
+      margin: 0 auto 20px auto;
+      line-height: 1.5;
+    }
+
+    .contact-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .contact-card {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px;
+      border-radius: 8px;
+    }
+
+    .contact-card-label {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #38BDF8;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .contact-card-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PÁGINA 1: PORTADA EJECUTIVA ==================== -->
+  <div class="page cover-page">
+    <div>
+      <div class="brand-logo" style="justify-content: center; font-size: 28px; margin-bottom: 25px;">
+        <span class="code">&lt;</span>Tiago<span class="accent">Tech</span><span class="code"> /&gt;</span>
+      </div>
+
+      <div class="cover-badge">
+        CATÁLOGO OFICIAL DE SOLUCIONES & SISTEMAS WEB 2026
+      </div>
+
+      <h1 class="cover-title">
+        Software Inteligente Diseñado para <span>Multiplicar tus Ganancias</span>
+      </h1>
+
+      <p class="cover-desc">
+        Elimina pérdidas invisibles de dinero, automatiza tareas operativas y toma el control de tu local comercial o empresa desde cualquier computadora o celular.
+      </p>
+
+      <div class="cover-features-box">
+        <div class="cover-feature-item">
+          <h4>⚡ En 24 a 48 Horas</h4>
+          <p>Instalación guiada y sistema listo para facturar sin demoras.</p>
+        </div>
+        <div class="cover-feature-item">
+          <h4>🛡️ Prueba Guiada 7 Días</h4>
+          <p>Pruebas el sistema en tu local con ventas reales sin riesgo.</p>
+        </div>
+        <div class="cover-feature-item">
+          <h4>💬 Soporte Directo 1 a 1</h4>
+          <p>Atención ágil por WhatsApp sin tickets impersonales.</p>
+        </div>
+      </div>
+
+      <div>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Revis%C3%A9%20el%20cat%C3%A1logo%20PDF%20y%20quiero%20cotizar%20un%20sistema%20para%20mi%20negocio." class="cover-cta-btn">
+          📲 Solicitar Asesoría por WhatsApp (+58 424-7046941)
+        </a>
+      </div>
+    </div>
+
+    <div class="page-footer" style="justify-content: center; gap: 20px;">
+      <span>🌐 Web: <strong>tiagotech.netlify.app</strong></span>
+      <span>•</span>
+      <span>📍 Soluciones de Software a la Medida para Comercios</span>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 2: SISTEMAS 1 Y 2 ==================== -->
+  <div class="page">
+    <div class="page-header">
+      <div class="brand-logo">
+        <span class="code">&lt;</span>Tiago<span class="accent">Tech</span><span class="code"> /&gt;</span>
+      </div>
+      <div class="header-tag">Sistemas Web Destacados</div>
+    </div>
+
+    <div>
+      <!-- Sistema 1 -->
+      <div class="system-card-block featured">
+        <div class="card-top-row">
+          <div class="card-title-group">
+            <div class="card-icon" style="background: rgba(0, 132, 255, 0.18); border-color: #0084FF;">💻</div>
+            <div>
+              <div class="card-title">Software & Sistemas Web Personalizados</div>
+              <div class="card-subtitle">Desarrollo Exclusivo 100% a la Medida</div>
+            </div>
+          </div>
+          <span class="card-badge-pill" style="color: #38BDF8; border-color: rgba(56,189,248,0.4); background: rgba(56,189,248,0.1);">⭐ EL MÁS POPULAR</span>
+        </div>
+        <div class="card-pain-headline">
+          "El software que se adapta a tu empresa, y no tu empresa a un programa genérico."
+        </div>
+        <p class="card-desc">
+          ¿Cansado de programas rígidos que no resuelven tus reglas de negocio o cobran comisiones abusivas? Programamos tu software o plataforma web exclusivo desde cero para que encaje exactamente en tus procesos diarios.
+        </p>
+        <div class="card-features-grid">
+          <div class="card-feature-item"><span class="chk">✓</span> Levantamiento de requerimientos 1 a 1</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Base de datos 100% privada y segura</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Cero limitaciones de pantallas o funciones</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Accesible desde PC, tablet o celular</div>
+        </div>
+        <div class="card-ideal-for">
+          🏢 <strong>Ideal para:</strong> Empresas, distribuidoras mayoristas, clínicas, colegios y logística.
+        </div>
+        <div class="card-footer-action">
+          <span class="card-benefit-highlight">⚡ Automatización exacta sin botones de relleno</span>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20un%20Software%20a%20la%20Medida%20para%20mi%20empresa." class="card-wa-link">Cotizar por WhatsApp &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Sistema 2 -->
+      <div class="system-card-block">
+        <div class="card-top-row">
+          <div class="card-title-group">
+            <div class="card-icon">🛒</div>
+            <div>
+              <div class="card-title">TiagoTech POS & Inventario Bimoneda</div>
+              <div class="card-subtitle">Punto de Venta & Blindaje Antirrobo</div>
+            </div>
+          </div>
+          <span class="card-badge-pill">✓ CONTROL TOTAL</span>
+        </div>
+        <div class="card-pain-headline">
+          "Frena fugas de mercancía y cuadra tu caja en bolívares y divisas en 3 minutos."
+        </div>
+        <p class="card-desc">
+          El sistema definitivo para terminar con los cuadres nocturnos interminables. Facturación ágil en mostrador, alertas de stock mínimo para no quedarte sin mercancía y arqueo diario exacto sin descuadres ni discusiones.
+        </p>
+        <div class="card-features-grid">
+          <div class="card-feature-item"><span class="chk">✓</span> Cobro bimoneda instantáneo (Bs / $)</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Arqueo de caja rápido por cajero y turno</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Lector de código de barras e impresión</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Control de apartados y créditos de clientes</div>
+        </div>
+        <div class="card-ideal-for">
+          🏪 <strong>Ideal para:</strong> Minimarkets, tiendas de ropa, bodegones, ferreterías y reposterías.
+        </div>
+        <div class="card-footer-action">
+          <span class="card-benefit-highlight">⚡ Instalación guiada + capacitación a tu equipo</span>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20instalar%20el%20sistema%20POS%20en%20mi%20local." class="card-wa-link">Solicitar Demo POS &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Página 2 de 6 • TiagoTech Catálogo</span>
+      <a href="https://wa.me/584247046941" class="footer-wa">WhatsApp: +58 424-7046941</a>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 3: SISTEMAS 3 Y 4 ==================== -->
+  <div class="page">
+    <div class="page-header">
+      <div class="brand-logo">
+        <span class="code">&lt;</span>Tiago<span class="accent">Tech</span><span class="code"> /&gt;</span>
+      </div>
+      <div class="header-tag">Gastronomía & Servicios 24/7</div>
+    </div>
+
+    <div>
+      <!-- Sistema 3 -->
+      <div class="system-card-block">
+        <div class="card-top-row">
+          <div class="card-title-group">
+            <div class="card-icon" style="background: rgba(34, 197, 94, 0.15); border-color: #22C55E;">🍽️</div>
+            <div>
+              <div class="card-title">Menú Digital QR + Pedidos WhatsApp</div>
+              <div class="card-subtitle">Gastronomía, Mesas & Delivery</div>
+            </div>
+          </div>
+          <span class="card-badge-pill" style="color: #53FC18; border-color: rgba(83,252,24,0.3);">0% COMISIONES</span>
+        </div>
+        <div class="card-pain-headline">
+          "Ahorra cientos de dólares en impresiones y recibe pedidos limpios y sin confusiones."
+        </div>
+        <p class="card-desc">
+          Carta interactiva para restaurantes, pizzerías y cafeterías. Cero descargas de apps: tus comensales escanean el código QR en la mesa, eligen platos con fotos y envían la orden ordenada directo al WhatsApp de cocina o delivery.
+        </p>
+        <div class="card-features-grid">
+          <div class="card-feature-item"><span class="chk">✓</span> Actualiza precios y platos en 5 segundos</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Selector de extras, combos y salsas</div>
+          <div class="card-feature-item"><span class="chk">✓</span> 0% comisiones: el 100% de la venta es tuyo</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Códigos QR listos para imprimir en mesa</div>
+        </div>
+        <div class="card-ideal-for">
+          🍕 <strong>Ideal para:</strong> Restaurantes, pizzerías, cafeterías, hamburgueserías y food trucks.
+        </div>
+        <div class="card-footer-action">
+          <span class="card-benefit-highlight">⚡ Olvídate de reimprimir cartas cada vez que sube el dólar</span>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20Men%C3%BA%20Digital%20QR." class="card-wa-link">Probar Menú QR &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Sistema 4 -->
+      <div class="system-card-block">
+        <div class="card-top-row">
+          <div class="card-title-group">
+            <div class="card-icon" style="background: rgba(196, 153, 255, 0.15); border-color: #c499ff;">✂️</div>
+            <div>
+              <div class="card-title">TiagoTech Citas & Agenda en Piloto Automático</div>
+              <div class="card-subtitle">Auto-Reserva 24/7 para Negocios de Belleza</div>
+            </div>
+          </div>
+          <span class="card-badge-pill" style="color: #c499ff; border-color: rgba(196,153,255,0.4);">PILOTO AUTOMÁTICO</span>
+        </div>
+        <div class="card-pain-headline">
+          "Tu recepcionista digital que llena tus turnos mientras duermes."
+        </div>
+        <p class="card-desc">
+          Tus clientes reservan directo desde Instagram o WhatsApp a cualquier hora del día. Evita huecos vacíos en la semana, reduce faltas con confirmaciones automáticas y liquida las comisiones de tu personal sin discusiones.
+        </p>
+        <div class="card-features-grid">
+          <div class="card-feature-item"><span class="chk">✓</span> Selección de profesional y horario libre</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Confirmación y aviso por WhatsApp</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Cálculo automático de comisiones del día</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Agenda visual consultable desde el celular</div>
+        </div>
+        <div class="card-ideal-for">
+          💈 <strong>Ideal para:</strong> Barberías, salones de belleza, spas, estéticas y consultorios.
+        </div>
+        <div class="card-footer-action">
+          <span class="card-benefit-highlight">⚡ Cero horas perdidas respondiendo turnos por chat</span>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20el%20sistema%20de%20Citas%20para%20mi%20local." class="card-wa-link">Solicitar Agenda Web &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Página 3 de 6 • TiagoTech Catálogo</span>
+      <a href="https://wa.me/584247046941" class="footer-wa">WhatsApp: +58 424-7046941</a>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 4: SISTEMAS 5 Y 6 (NUEVOS MÓDULOS) ==================== -->
+  <div class="page">
+    <div class="page-header">
+      <div class="brand-logo">
+        <span class="code">&lt;</span>Tiago<span class="accent">Tech</span><span class="code"> /&gt;</span>
+      </div>
+      <div class="header-tag">Talleres & Finanzas B2B</div>
+    </div>
+
+    <div>
+      <!-- Sistema 5 -->
+      <div class="system-card-block">
+        <div class="card-top-row">
+          <div class="card-title-group">
+            <div class="card-icon" style="background: rgba(249, 115, 22, 0.15); border-color: #f97316;">🔧</div>
+            <div>
+              <div class="card-title">Gestión de Talleres & Servicio Técnico</div>
+              <div class="card-subtitle">Órdenes de Servicio & Rastreo en Vivo</div>
+            </div>
+          </div>
+          <span class="card-badge-pill" style="color: #f97316; border-color: rgba(249,115,22,0.4);">NUEVO MÓDULO</span>
+        </div>
+        <div class="card-pain-headline">
+          "Termina con el desorden de papeles sucios y llamadas de '¿Cómo va mi carro?'."
+        </div>
+        <p class="card-desc">
+          Genera órdenes de recepción digitales con fotos del estado del equipo o vehículo, calcula repuestos vs. mano de obra y permite que tus clientes consulten el avance de su reparación en internet con su número de ticket.
+        </p>
+        <div class="card-features-grid">
+          <div class="card-feature-item"><span class="chk">✓</span> Recepción con fotos de golpes/rayones</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Portal web de rastreo en vivo para el cliente</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Desglose transparente de repuestos y mano de obra</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Aviso por WhatsApp: "Tu vehículo/equipo está listo"</div>
+        </div>
+        <div class="card-ideal-for">
+          🚗 <strong>Ideal para:</strong> Talleres mecánicos, autolavados, electroautos y reparación de PCs/celulares.
+        </div>
+        <div class="card-footer-action">
+          <span class="card-benefit-highlight">⚡ Reduce un 80% las llamadas de clientes preguntando estatus</span>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20para%20Talleres%20y%20Servicio%20T%C3%A9cnico." class="card-wa-link">Consultar Taller &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Sistema 6 -->
+      <div class="system-card-block">
+        <div class="card-top-row">
+          <div class="card-title-group">
+            <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); border-color: #10b981;">💵</div>
+            <div>
+              <div class="card-title">Control de Cobranzas & Cuentas por Cobrar</div>
+              <div class="card-subtitle">Recuperación de Cartera & Deudores</div>
+            </div>
+          </div>
+          <span class="card-badge-pill" style="color: #10b981; border-color: rgba(16,185,129,0.4);">RECUPERA TU DINERO</span>
+        </div>
+        <div class="card-pain-headline">
+          "Recupera el dinero que tienes en la calle sin que te dé pena cobrar."
+        </div>
+        <p class="card-desc">
+          Para distribuidoras y comercios que venden a crédito. Visualiza tu cartera de deudores con semáforo inteligente, registra abonos parciales en bolívares o divisas y envía recordatorios amigables de pago por WhatsApp en 1 solo clic.
+        </p>
+        <div class="card-features-grid">
+          <div class="card-feature-item"><span class="chk">✓</span> Semáforo visual: Al día, Por vencer, Morosos</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Botón de cobro formal 1-clic a WhatsApp</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Historial de abonos con recibo digital</div>
+          <div class="card-feature-item"><span class="chk">✓</span> Reporte exacto de cuentas por cobrar en tiempo real</div>
+        </div>
+        <div class="card-ideal-for">
+          📦 <strong>Ideal para:</strong> Mayoristas, distribuidoras, proveedores de insumos y venta a crédito.
+        </div>
+        <div class="card-footer-action">
+          <span class="card-benefit-highlight">⚡ Cobra a tiempo protegiendo tus relaciones comerciales</span>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20de%20Cobranzas%20y%20Cuentas%20por%20Cobrar." class="card-wa-link">Consultar Cobranzas &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Página 4 de 6 • TiagoTech Catálogo</span>
+      <a href="https://wa.me/584247046941" class="footer-wa">WhatsApp: +58 424-7046941</a>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 5: SISTEMAS 7, 8, 9 Y 10 ==================== -->
+  <div class="page">
+    <div class="page-header">
+      <div class="brand-logo">
+        <span class="code">&lt;</span>Tiago<span class="accent">Tech</span><span class="code"> /&gt;</span>
+      </div>
+      <div class="header-tag">Cotizaciones, Gimnasios & Analítica</div>
+    </div>
+
+    <div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <!-- Sistema 7 -->
+        <div class="system-card-block" style="margin-bottom: 0;">
+          <div class="card-top-row">
+            <div class="card-title-group">
+              <div class="card-icon" style="background: rgba(255, 189, 46, 0.15); border-color: #FFBD2E;">📄</div>
+              <div>
+                <div class="card-title" style="font-size: 14px;">Cotizador Express PDF</div>
+                <div class="card-subtitle" style="font-size: 10px;">Presupuestos en 60s</div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc" style="font-size: 11px; margin-bottom: 8px;">
+            Genera cotizaciones ejecutivas con tu logo, desglose de impuestos y condiciones de pago desde tu celular.
+          </p>
+          <div class="card-ideal-for" style="font-size: 10.5px;">
+            👔 Contratistas, técnicos, talleres y consultores.
+          </div>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20Cotizador%20Express%20PDF." class="card-wa-link" style="font-size: 10.5px;">Cotizar Módulo &rarr;</a>
+        </div>
+
+        <!-- Sistema 8 -->
+        <div class="system-card-block" style="margin-bottom: 0;">
+          <div class="card-top-row">
+            <div class="card-title-group">
+              <div class="card-icon" style="background: rgba(255, 95, 86, 0.15); border-color: #FF5F56;">🏋️</div>
+              <div>
+                <div class="card-title" style="font-size: 14px;">Membresías Gym</div>
+                <div class="card-subtitle" style="font-size: 10px;">Control en Puerta</div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc" style="font-size: 11px; margin-bottom: 8px;">
+            Búsqueda por cédula o QR con semáforo de pagos. Detecta deudores en recepción y avisa vencimientos a WhatsApp.
+          </p>
+          <div class="card-ideal-for" style="font-size: 10.5px;">
+            🥊 Gimnasios, dojos de artes marciales y crossfit.
+          </div>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20de%20Membres%C3%ADas%20Gym." class="card-wa-link" style="font-size: 10.5px;">Cotizar Módulo &rarr;</a>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <!-- Sistema 9 -->
+        <div class="system-card-block" style="margin-bottom: 0;">
+          <div class="card-top-row">
+            <div class="card-title-group">
+              <div class="card-icon">📊</div>
+              <div>
+                <div class="card-title" style="font-size: 14px;">Dashboards & Reportes</div>
+                <div class="card-subtitle" style="font-size: 10px;">Control Gerencial</div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc" style="font-size: 11px; margin-bottom: 8px;">
+            Convierte tablas desordenadas de Excel en paneles interactivos con métricas en tiempo real y balances exportables.
+          </p>
+          <div class="card-ideal-for" style="font-size: 10.5px;">
+            📈 Gerentes, directivos y comercios multisede.
+          </div>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20el%20sistema%20de%20Dashboards." class="card-wa-link" style="font-size: 10.5px;">Cotizar Módulo &rarr;</a>
+        </div>
+
+        <!-- Sistema 10 -->
+        <div class="system-card-block" style="margin-bottom: 0;">
+          <div class="card-top-row">
+            <div class="card-title-group">
+              <div class="card-icon">🌐</div>
+              <div>
+                <div class="card-title" style="font-size: 14px;">E-Commerce Propio</div>
+                <div class="card-subtitle" style="font-size: 10px;">Tienda Online 24/7</div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc" style="font-size: 11px; margin-bottom: 8px;">
+            Tu catálogo digital propio de alta velocidad con carrito express, checkout por WhatsApp y pagos automatizados.
+          </p>
+          <div class="card-ideal-for" style="font-size: 10.5px;">
+            👗 Marcas de ropa, calzado, tecnología y envíos.
+          </div>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Me%20interesa%20crear%20una%20tienda%20E-Commerce." class="card-wa-link" style="font-size: 10.5px;">Cotizar Módulo &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Garantías en la misma página 5 -->
+    <div class="trust-box" style="margin-top: 14px;">
+      <div class="trust-box-title">
+        🛡️ Por qué los comercios prefieren TiagoTech:
+      </div>
+      <div class="trust-items-grid">
+        <div class="trust-single-item">
+          <h5>🛠️ Instalación 1 a 1 Incluida</h5>
+          <p>Acompañamiento remoto para dejar el sistema operando con tus datos.</p>
+        </div>
+        <div class="trust-single-item">
+          <h5>🎓 Capacitación Completa</h5>
+          <p>Te enseñamos a ti y a tus empleados a usarlo en menos de 20 minutos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Página 5 de 6 • TiagoTech Catálogo</span>
+      <a href="https://wa.me/584247046941" class="footer-wa">WhatsApp: +58 424-7046941</a>
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 6: CONTRAPORTADA & CONTACTO DIRECTO ==================== -->
+  <div class="page" style="justify-content: space-between;">
+    <div class="page-header">
+      <div class="brand-logo">
+        <span class="code">&lt;</span>Tiago<span class="accent">Tech</span><span class="code"> /&gt;</span>
+      </div>
+      <div class="header-tag">Contacto & Puesta en Marcha</div>
+    </div>
+
+    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="backcover-box">
+        <div style="font-size: 32px; margin-bottom: 10px;">🚀</div>
+        <h2 class="backcover-title">¿Listo para Digitalizar tu Negocio?</h2>
+        <p class="backcover-subtitle">
+          No dejes que el desorden o los procesos manuales sigan consumiendo tus ganancias. Agenda un diagnóstico de 10 minutos y te mostramos cómo trabaja el sistema exacto para tu local.
+        </p>
+
+        <div class="contact-card-grid">
+          <div class="contact-card">
+            <div class="contact-card-label">WhatsApp Oficial Directo</div>
+            <a href="https://wa.me/584247046941" class="contact-card-val" style="color: #22C55E;">+58 424-7046941</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-label">Portal Web & Demos</div>
+            <a href="https://tiagotech.netlify.app" class="contact-card-val" style="color: #38BDF8;">tiagotech.netlify.app</a>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Le%C3%AD%20el%20cat%C3%A1logo%20completo%20y%20quiero%20coordinar%20una%20demostraci%C3%B3n%20para%20mi%20local." class="cover-cta-btn" style="padding: 14px 28px; font-size: 14px;">
+            📲 Escribir Directo a Tiago por WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div style="margin-top: 25px; text-align: center;">
+        <div style="font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #64748B; margin-bottom: 8px;">
+          MÉTODOS DE PAGO ACEPTADOS EN DIVISAS Y BOLÍVARES:
+        </div>
+        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 6px; font-size: 11px; color: #E2E8F0;">🇻🇪 Pago Móvil (Tasa Oficial BCV)</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 6px; font-size: 11px; color: #E2E8F0;">🟡 Binance Pay / USDT</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 6px; font-size: 11px; color: #E2E8F0;">🏦 Transferencias Bancarias</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>© 2026 TiagoTech • Soluciones de Software a la Medida</span>
+      <span>Página 6 de 6</span>
+    </div>
+  </div>
+
+</body>
+</html>

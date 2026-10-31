@@ -464,6 +464,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="chatbot-sys-arrow">›</span>
           </button>
 
+          <a href="Catalogo_TiagoTech_Sistemas_2026.pdf" target="_blank" download="Catalogo_TiagoTech_Sistemas_2026.pdf" class="chatbot-system-row" style="text-decoration:none; color:inherit;">
+            <span class="chatbot-sys-icon">📄</span>
+            <span class="chatbot-sys-info">
+              <strong>Descargar Catálogo Completo PDF</strong>
+              <small>Todos los sistemas en documento listo para imprimir o enviar</small>
+            </span>
+            <span class="chatbot-sys-arrow">↓</span>
+          </a>
+
           <button type="button" class="chatbot-system-row chatbot-sys-whatsapp" data-key="whatsapp">
             <span class="chatbot-sys-icon"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon" style="width:16px;height:16px;"></span>
             <span class="chatbot-sys-info">
