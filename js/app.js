@@ -246,64 +246,82 @@ document.addEventListener('DOMContentLoaded', () => {
     custom: {
       title: "💻 Software & Sistemas Web 100% a la Medida (Personalizado)",
       text: "¡El servicio más solicitado y de mayor impacto de TiagoTech! Desarrollamos cualquier solución web o software creada desde cero para adaptarse a los flujos únicos de tu empresa.\n\n" +
-            "✨ **¿Cómo trabajamos tu proyecto?**\n" +
-            "• **Levantamiento 1 a 1:** Analizamos cómo opera tu negocio y qué procesos deseas automatizar.\n" +
-            "• **Diseño & Desarrollo Exclusivo:** Construimos tu sistema a prueba de errores para ti y tus empleados.\n" +
+            "✨ **¿Por qué elegir un sistema a la medida?**\n" +
+            "• **El sistema se adapta a tu negocio, no tu negocio a una plantilla genérica.**\n" +
+            "• **Levantamiento 1 a 1:** Analizamos cómo opera tu empresa y qué procesos deseas automatizar.\n" +
             "• **Base de Datos Privada:** 100% de tu propiedad, sin comisiones ni intermediarios.\n" +
             "• **Entrega con Instalación y Capacitación:** Todo listo y operativo en tu red o en la nube.\n\n" +
-            "💼 **Cotización:** Presupuestos justos y accesibles adaptados a la magnitud de tu proyecto.\n" +
+            "💼 **Cotización:** Presupuestos justos y planes de suscripción mensual según la magnitud del proyecto.\n" +
             "👉 Escríbeme a WhatsApp para contarnos tu idea y recibir asesoría inicial sin costo."
     },
     pos: {
-      title: "🛒 TiagoTech POS & Control de Inventario",
-      text: "El sistema definitivo para puntos de venta locales (tiendas de ropa, mini-markets, cafeterías, boutiques y reposterías).\n\n" +
-            "✨ **Características principales:**\n" +
-            "• Facturación y emisión de recibos ágiles en mostrador.\n" +
-            "• Control de stock con alertas automáticas de agotamiento.\n" +
-            "• Arqueo y cierre diario de caja (efectivo, Pago Móvil, divisas, transferencias).\n" +
-            "• Módulo de apartados y cuentas por cobrar.\n\n" +
-            "💼 **Planes y Cotización:** Adaptados a las necesidades y tamaño de tu comercio.\n" +
-            "👉 Puedes probar la demo interactiva o solicitar instalación guiada 1 a 1 por WhatsApp."
+      title: "🛒 TiagoTech POS & Inventario Bimoneda",
+      text: "El sistema definitivo para blindar tu comercio contra pérdidas y cuadrar tu caja en 3 minutos.\n\n" +
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• Facturación ultra-rápida en mostrador en bolívares y divisas a tasa del día.\n" +
+            "• Control estricto de inventario con alertas de stock mínimo para evitar roturas de stock.\n" +
+            "• Arqueo diario exacto de caja sin descuadres (Efectivo, Pago Móvil, Zelle, Binance).\n" +
+            "• Módulo de apartados y créditos para clientes frecuentes.\n\n" +
+            "💼 **Planes y Cotización:** Mensualidades accesibles con soporte continuo e instalación guiada 1 a 1."
     },
     menu_qr: {
-      title: "🍽️ Menú Digital QR + WhatsApp",
+      title: "🍽️ Menú Digital QR + Pedidos WhatsApp",
       text: "Carta interactiva de alta velocidad para restaurantes, pizzerías, cafeterías y food trucks.\n\n" +
-            "✨ **Características:**\n" +
-            "• Cero descargas de apps: tus comensales escanean el código QR en la mesa y abren el menú al instante.\n" +
-            "• Fotos en alta resolución, descripciones y platos actualizables en segundos.\n" +
-            "• Carrito express que genera el pedido ordenado y lo envía directo al WhatsApp de tu cocina o delivery.\n" +
-            "• Cero comisiones por pedido: el 100% de la venta es tuyo.\n\n" +
-            "💼 **Planes y Cotización:** Tarifa accesible adaptada a tu local o restaurante."
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• Cero descargas de apps: tus comensales escanean en mesa o delivery y ven la carta al instante.\n" +
+            "• Ahorra cientos de dólares en reimpresiones: cambia precios o platos agotados en 5 segundos desde tu celular.\n" +
+            "• Carrito express que genera el pedido ordenado y lo envía directo al WhatsApp de cocina.\n" +
+            "• 0% comisiones por pedido: el 100% de la venta es tuyo.\n\n" +
+            "💼 **Planes y Cotización:** Mensualidad accesible adaptada al tamaño de tu local."
     },
     citas: {
-      title: "✂️ TiagoTech Citas & Agenda Web",
-      text: "Plataforma de auto-reserva 24/7 en piloto automático para barberías, peluquerías, salones de belleza y spas.\n\n" +
-            "✨ **Características:**\n" +
-            "• Selección de barbero / estilista / especialista preferido.\n" +
-            "• Calendario interactivo con horarios libres en tiempo real (evita cruces y huecos vacíos).\n" +
-            "• Envío automático de confirmación y recordatorio directo al WhatsApp del cliente.\n" +
-            "• Panel administrativo para ver la agenda del día desde cualquier celular.\n\n" +
-            "💼 **Planes y Cotización:** Planes a tu medida según la cantidad de especialistas o sillones."
+      title: "✂️ TiagoTech Citas & Agenda en Piloto Automático",
+      text: "Tu recepcionista digital 24/7 para barberías, peluquerías, salones de belleza, spas y consultorios.\n\n" +
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• Permite que tus clientes se agenden solos desde Instagram o WhatsApp las 24 horas.\n" +
+            "• Reduce ausencias gracias a recordatorios automáticos de confirmación.\n" +
+            "• Calcula comisiones exactas por especialista o barbero sin discusiones al final del día.\n" +
+            "• Agenda visual del día consultable desde cualquier teléfono o tablet.\n\n" +
+            "💼 **Planes y Cotización:** Planes a tu medida según la cantidad de profesionales o sillones."
+    },
+    taller: {
+      title: "🔧 Gestión de Talleres Mecánicos & Servicio Técnico",
+      text: "Control total de órdenes de trabajo, repuestos y avance para talleres automotrices y centros de reparación.\n\n" +
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• Emisión de órdenes de servicio digitales con fotos del estado del vehículo o equipo.\n" +
+            "• Portal web donde el cliente consulta el avance de su reparación en vivo con su ticket (ahorra decenas de llamadas diarias).\n" +
+            "• Desglose transparente de repuestos vs. mano de obra.\n" +
+            "• Aviso automático por WhatsApp cuando el trabajo está listo para entregar y cobrar.\n\n" +
+            "💼 **Planes y Cotización:** Mensualidad con instalación y acompañamiento para tu equipo."
+    },
+    cobranzas: {
+      title: "💵 Control de Cobranzas & Cuentas por Cobrar",
+      text: "La herramienta para distribuidores, mayoristas y comercios que venden a crédito y quieren recuperar su capital a tiempo.\n\n" +
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• Semáforo visual de clientes: Al día, Por vencer, Morosos.\n" +
+            "• Botón de cobro en 1 clic: genera y envía el recordatorio formal por WhatsApp con saldo, número de factura y datos de pago.\n" +
+            "• Registro de abonos parciales en bolívares o divisas con recibo digital.\n" +
+            "• Controla miles de dólares en la calle sin que te dé pena cobrar ni dañar relaciones comerciales.\n\n" +
+            "💼 **Planes y Cotización:** Planes ajustados al volumen de cartera de tu negocio."
     },
     cotizador: {
-      title: "📄 Facturador & Cotizador Express PDF",
-      text: "Herramienta ágil para talleres, técnicos, consultores, carpinterías y profesionales independientes.\n\n" +
-            "✨ **Características:**\n" +
-            "• Genera cotizaciones, presupuestos y notas de entrega ejecutivas en PDF en menos de 60 segundos.\n" +
-            "• Personalizado con el logo y datos de tu empresa.\n" +
-            "• Cálculo automático de IVA, descuentos y subtotales en Bs y Divisas.\n" +
-            "• Botón de compartir PDF directo a WhatsApp o correo del cliente.\n\n" +
+      title: "📄 Cotizador & Presupuestos Express PDF",
+      text: "Herramienta ágil para contratistas, técnicos, carpinteros, herreros y empresas de servicios.\n\n" +
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• Genera cotizaciones y presupuestos ejecutivos con membrete en menos de 60 segundos.\n" +
+            "• Imagen seria y corporativa con tu logotipo, desglose de IVA y condiciones de pago que justifica cobrar más.\n" +
+            "• Envío directo del archivo PDF o resumen a WhatsApp y correo en 1 clic.\n\n" +
             "💼 **Planes y Cotización:** Licencia o suscripción flexible según tus requerimientos."
     },
     gym: {
       title: "🏋️ Control de Membresías & Gimnasios",
       text: "Sistema de recepción y socios para gimnasios, dojos de artes marciales, academias de baile y crossfit.\n\n" +
-            "✨ **Características:**\n" +
-            "• Búsqueda y control de acceso en puerta por cédula o escaneo de código QR.\n" +
-            "• Semáforo visual de estado de cuenta: Verde (Al día) / Rojo (Vencido).\n" +
-            "• Notificación automática de cobro y recordatorio de vencimiento vía WhatsApp al socio.\n" +
-            "• Reporte financiero mensual de socios activos e ingresos totales.\n\n" +
-            "💼 **Planes y Cotización:** Adaptado al volumen de socios y sedes de tu gimnasio."
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• Check-in rápido en puerta por cédula o QR con semáforo visual (Al día / Vencido).\n" +
+            "• Cero entrenamientos gratis: detecta inmediatamente a quienes tienen la cuota vencida.\n" +
+            "• Mensajes de cobro y recordatorio amigables preconfigurados para WhatsApp.\n" +
+            "• Reporte de ingresos del mes y nuevos socios inscritos.\n\n" +
+            "💼 **Planes y Cotización:** Mensualidades accesibles adaptadas al número de socios activos."
     },
     dashboard: {
       title: "📊 Dashboards & Reportes Analíticos",
@@ -379,6 +397,24 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="chatbot-sys-info">
               <strong>Citas & Agenda Web 24/7</strong>
               <small>Barberías, salones y spas</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="taller">
+            <span class="chatbot-sys-icon">🔧</span>
+            <span class="chatbot-sys-info">
+              <strong>Talleres & Servicio Técnico</strong>
+              <small>Órdenes digitales y rastreo en vivo</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
+          <button type="button" class="chatbot-system-row" data-key="cobranzas">
+            <span class="chatbot-sys-icon">💵</span>
+            <span class="chatbot-sys-info">
+              <strong>Cobranzas & Cuentas por Cobrar</strong>
+              <small>Semáforo de deudas y cobros 1-clic</small>
             </span>
             <span class="chatbot-sys-arrow">›</span>
           </button>
@@ -784,6 +820,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { goal: 'caja_citas', title: 'Cobro de servicios y comisiones', desc: 'Llevar la cuenta de lo que produjo cada barbero, estilista o doctor.', system: 'TiagoTech POS & Inventario', icon: '🛒', url: 'sistema-pos.html' }
     ],
     servicios: [
+      { goal: 'taller', title: 'Órdenes de servicio y rastreo de reparación', desc: 'Gestionar equipos/vehículos, repuestos y avisar por WhatsApp cuando estén listos.', system: 'Gestión de Talleres & Servicio Técnico', icon: '🔧', url: '#sistemas' },
+      { goal: 'cobranzas', title: 'Control de clientes morosos y cuentas por cobrar', desc: 'Semáforo de deudores y recordatorios formales de pago en 1 clic.', system: 'Control de Cobranzas & Cuentas por Cobrar', icon: '💵', url: '#sistemas' },
       { goal: 'cotizador', title: 'Cotizaciones en PDF en 60 segundos', desc: 'Presupuestos ejecutivos con membrete listos para enviar por WhatsApp al cliente.', system: 'Facturador & Cotizador Express PDF', icon: '📄', url: 'sistema-cotizador.html' },
       { goal: 'dash_servicios', title: 'Control de proyectos y cobranzas', desc: 'Saber exactamente cuánto dinero tienes por cobrar de trabajos pendientes.', system: 'Dashboards & Analytics', icon: '📊', url: 'sistema-dashboard.html' }
     ],
