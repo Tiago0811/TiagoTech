@@ -97,6 +97,23 @@ class CyberBackgroundEngine {
       }, 150);
     }, { passive: true });
 
+    // Pause canvas animation while user is scrolling for 144 FPS buttery smooth scroll
+    let scrollPauseTimer = null;
+    window.addEventListener('scroll', () => {
+      this.isScrolling = true;
+      if (this.rafId) {
+        cancelAnimationFrame(this.rafId);
+        this.rafId = null;
+      }
+      clearTimeout(scrollPauseTimer);
+      scrollPauseTimer = setTimeout(() => {
+        this.isScrolling = false;
+        if (this.isRunning && !this.rafId) {
+          this.animate();
+        }
+      }, 100);
+    }, { passive: true });
+
     window.addEventListener('mousemove', (e) => {
       this.mouse.targetX = e.clientX;
       this.mouse.targetY = e.clientY;
@@ -110,7 +127,7 @@ class CyberBackgroundEngine {
     // Pause rendering when tab is hidden to save 100% of GPU/CPU resources
     document.addEventListener('visibilitychange', () => {
       this.isRunning = !document.hidden;
-      if (this.isRunning && !this.rafId) {
+      if (this.isRunning && !this.rafId && !this.isScrolling) {
         this.animate();
       }
     });
@@ -198,7 +215,7 @@ class CyberBackgroundEngine {
   }
 
   animate() {
-    if (!this.isRunning) {
+    if (!this.isRunning || this.isScrolling) {
       this.rafId = null;
       return;
     }

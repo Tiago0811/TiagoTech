@@ -9,9 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   style.textContent = `
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(18px);
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     }
     .reveal.visible {
       opacity: 1;
@@ -100,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    threshold: 0.01, // Trigger instantly when 1% enters the screen
-    rootMargin: '0px' // Clean edge triggers
+    threshold: 0.01,
+    rootMargin: '140px 0px' // Pre-reveal 140px before entering screen for ultra-responsive feel
   });
 
   revealElements.forEach(el => revealObserver.observe(el));
@@ -113,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isTouch) return;
 
     const tiltCards = document.querySelectorAll(
-      '.game-card, .download-card, .news-card, .system-card, .hud-box, .stat-card'
+      '.game-card, .download-card, .news-card, .hud-box, .stat-card'
     );
 
     tiltCards.forEach(card => {

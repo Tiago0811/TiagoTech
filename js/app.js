@@ -9,27 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==================== 🏹 TIAGOTECH ARROW CURSOR CONTROLLER (OPCIÓN 1 - GPU ACCELERATED) ====================
   const cursorDot = document.getElementById('cursor-dot');
   const cursorRing = document.getElementById('cursor-ring');
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth < 992;
 
-  if (cursorDot && cursorRing) {
+  if (isTouchDevice) {
+    if (cursorDot) cursorDot.style.display = 'none';
+    if (cursorRing) cursorRing.style.display = 'none';
+  } else if (cursorDot && cursorRing) {
     cursorRing.style.width = '';
     cursorRing.style.height = '';
     cursorRing.style.borderRadius = '';
 
-    // Inyectar el SVG de la flecha tecnológica con los colores de marca de TiagoTech
+    // Inyectar el SVG de la flecha tecnológica ultra-optimizada (Vector limpio, Cero filtro SVG)
     cursorDot.innerHTML = `
-      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="tiagoArrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#0084FF" />
             <stop offset="60%" stop-color="#0ea5e9" />
             <stop offset="100%" stop-color="#22C55E" />
           </linearGradient>
-          <filter id="tiagoArrowGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="1" stdDeviation="2.5" flood-color="#0084FF" flood-opacity="0.6"/>
-          </filter>
         </defs>
-        <path d="M2 2L8.5 22.5L12.5 13.5L21.5 9.5L2 2Z" fill="url(#tiagoArrowGrad)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round" filter="url(#tiagoArrowGlow)"/>
-        <circle cx="12.5" cy="13.5" r="1.8" fill="#FFFFFF"/>
+        <path d="M2 2L8.5 22.5L12.5 13.5L21.5 9.5L2 2Z" fill="url(#tiagoArrowGrad)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/>
+        <circle cx="12.5" cy="13.5" r="1.6" fill="#FFFFFF"/>
       </svg>
     `;
 
