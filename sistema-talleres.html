@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiagoTech Gestión de Talleres & Servicio Técnico | Órdenes y Seguimiento Online</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Software de gestión para talleres mecánicos, electroauto, motos y servicio técnico de celulares o PCs. Órdenes digitales, control de repuestos y rastreo web para clientes.">
+  <meta name="keywords" content="Software para Talleres Mecánicos, Gestión Servicio Técnico, Órdenes de Trabajo Taller, Rastreo Reparación Cliente, TiagoTech Talleres">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-talleres.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="Gestión de Talleres & Servicio Técnico - TiagoTech">
+  <meta property="og:description" content="Órdenes de servicio digitales, control de repuestos vs mano de obra y rastreo en vivo para clientes. Con TiagoTech Talleres.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gestión de Talleres & Servicio Técnico - TiagoTech">
+  <meta name="twitter:description" content="Órdenes de servicio digitales, control de repuestos vs mano de obra y rastreo en vivo para clientes.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .pos-feature-card {
+      min-height: 200px;
+    }
+    .pos-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+    .status-step-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.25s ease;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-step-btn:hover {
+      border-color: rgba(249, 115, 22, 0.5);
+      color: #fff;
+    }
+    .status-step-btn.active {
+      background: rgba(249, 115, 22, 0.2);
+      border-color: #f97316;
+      color: #fff;
+      box-shadow: 0 0 14px rgba(249, 115, 22, 0.3);
+    }
+    .order-selector-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+    .order-selector-pill:hover,
+    .order-selector-pill.active {
+      background: rgba(0, 132, 255, 0.15);
+      border-color: var(--accent-primary);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🖱️ Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Volver al Inicio</a></li>
+          <li><a href="#demo">Probar Demo</a></li>
+          <li><a href="#features">Características</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Adquirir</a></li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="#demo">Probar Demo</a></li>
+      <li class="tech-only"><a href="#features">Características</a></li>
+      <li class="tech-only"><a href="#precios">Precios</a></li>
+      <li class="tech-only"><a href="#contacto">Adquirir</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 HERO & PRESENTATION (2-COLUMN SAAS CON T-BOT SHOWCASE)
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="pos-hero" style="text-align: left; padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="system-hero-container">
+        <div class="system-hero-content">
+          <a href="index.html#sistemas" class="back-btn">&larr; Volver a Sistemas</a>
+          <span class="tech-tagline" style="margin-bottom: 8px; display: inline-flex; color: #f97316; border-color: rgba(249, 115, 22, 0.4);">ÓRDENES DIGITALES & SEGUIMIENTO EN VIVO</span>
+          <h1>Gestión de Talleres & Servicio Técnico</h1>
+          <p>
+            Elimina el desorden de papeles grasosos, notas perdidas y llamadas insistentes de clientes. Emite órdenes de servicio digitales con fotos del estado del vehículo o equipo, controla repuestos vs. mano de obra y permite que tus clientes rastreen el avance en vivo por internet con su número de ticket.
+          </p>
+          <div class="system-hero-actions">
+            <a href="#precios" class="btn" style="background: linear-gradient(135deg, #f97316 0%, #0084FF 100%);">Ver Plan y Adquisición</a>
+            <a href="#demo" class="btn btn-outline">Probar Demostración</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20de%20Gesti%C3%B3n%20para%20Talleres%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20implementarlo%20en%20mi%20local." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="system-hero-visual">
+          <div class="tbot-hero-card">
+            <picture>
+              <source srcset="assets/img/T-Bot/TALLERES.webp" type="image/webp">
+              <img src="assets/img/T-Bot/TALLERES.webp" alt="T-Bot Especialista en Talleres y Servicio Técnico" width="800" height="1071" fetchpriority="high">
+            </picture>
+            <div class="tbot-hero-overlay"></div>
+            <div class="tbot-hero-badge">
+              <span><span class="status-dot"></span>T-Bot Taller & Órdenes</span>
+              <span style="font-size: 10.5px; color: #f97316; font-weight: 700;">TICKETS EN VIVO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🧪 MICRO-DEMO INTERACTIVA EN VIVO
+         ========================================================================== -->
+    <section id="demo" style="padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="micro-demo-box">
+        <div class="micro-demo-header">
+          <div class="micro-demo-title">
+            <span>🔧 Simulador de Orden de Servicio Técnico & Rastreo Web</span>
+            <span class="micro-demo-tag" style="background: rgba(249, 115, 22, 0.2); color: #f97316; border-color: rgba(249, 115, 22, 0.5);">DEMO EN VIVO</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Prueba el cambio de fase y aviso a WhatsApp</span>
+        </div>
+
+        <div style="padding: var(--spacing-md); background: rgba(5, 10, 20, 0.75);">
+          <!-- Selector de Ordenes Ejemplo -->
+          <div style="margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Órdenes de Prueba:</span>
+            <button type="button" class="order-selector-pill active" data-type="auto">🚗 Toyota Corolla (Placa: AB123CD)</button>
+            <button type="button" class="order-selector-pill" data-type="celular">📱 iPhone 13 Pro (Pantalla & Batería)</button>
+            <button type="button" class="order-selector-pill" data-type="moto">🏍️ Empire Keeway 150 (Mantenimiento)</button>
+          </div>
+
+          <!-- Tarjeta de Orden Activa -->
+          <div class="glass-card" style="background: rgba(10, 20, 36, 0.95); border: 1px solid rgba(249, 115, 22, 0.3); padding: 18px; border-radius: 12px; margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+              <div>
+                <span id="order-id" style="font-family: var(--font-code); font-size: 14px; color: #f97316; font-weight: 800; letter-spacing: 1px;">ORD-8492</span>
+                <h3 id="order-title" style="margin: 4px 0 2px 0; font-size: 18px; color: #fff;">Toyota Corolla 2018 - Gris Plomo</h3>
+                <p id="order-client" style="font-size: 13px; color: var(--text-secondary); margin: 0;">Cliente: <strong>Carlos Mendoza</strong> | Tel: +58 414-1234567</p>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 11px; color: var(--text-muted); display: block;">Estado Actual:</span>
+                <span id="order-badge-status" style="display: inline-block; padding: 4px 12px; border-radius: 12px; background: rgba(0, 132, 255, 0.2); color: #38BDF8; font-weight: 700; font-size: 12px; border: 1px solid rgba(56, 189, 248, 0.4);">
+                  🔧 En Banco de Trabajo
+                </span>
+              </div>
+            </div>
+
+            <!-- Fases del Proceso -->
+            <div style="margin-bottom: 20px;">
+              <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">
+                Fases de Avance (Haz clic para cambiar fase):
+              </span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="status-step-btn" data-step="1">📋 1. Recibido & Diagnóstico</button>
+                <button type="button" class="status-step-btn" data-step="2">📦 2. Esperando Repuestos</button>
+                <button type="button" class="status-step-btn active" data-step="3">🔧 3. En Reparación</button>
+                <button type="button" class="status-step-btn" data-step="4">✅ 4. Listo para Entrega</button>
+              </div>
+            </div>
+
+            <!-- Desglose de Costos -->
+            <div style="background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 14px; border: 1px solid rgba(255, 255, 255, 0.06); display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 16px;">
+              <div>
+                <span style="font-size: 11px; color: var(--text-muted);">Mano de Obra Especializada:</span>
+                <div id="cost-labor" style="font-size: 16px; font-weight: 700; color: #fff;">$45.00</div>
+              </div>
+              <div>
+                <span style="font-size: 11px; color: var(--text-muted);">Repuestos & Materiales:</span>
+                <div id="cost-parts" style="font-size: 16px; font-weight: 700; color: #fff;">$60.00 (Pastillas + Líquido)</div>
+              </div>
+              <div>
+                <span style="font-size: 11px; color: #38BDF8;">Total a Pagar (Bimoneda):</span>
+                <div id="cost-total" style="font-size: 18px; font-weight: 800; color: var(--accent-secondary);">$105.00 <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(Aprox. 4.410 Bs)</span></div>
+              </div>
+            </div>
+
+            <!-- Boton de WhatsApp -->
+            <div>
+              <button type="button" id="send-status-btn" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #000; font-weight: 700;">
+                <img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width: 18px; height: 18px; filter: invert(1);">
+                <span>Generar Mensaje WhatsApp Automático al Cliente</span>
+              </button>
+              <div id="whatsapp-preview-box" style="display: none; margin-top: 12px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.35); padding: 12px 16px; border-radius: 8px; font-size: 13px; color: #E2E8F0; line-height: 1.5;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ⭐ VENTAJAS & CARACTERÍSTICAS TÉCNICAS
+         ========================================================================== -->
+    <section id="features" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">Beneficios Clave para tu <span>Taller o Servicio Técnico</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Desarrollado para resolver los problemas diarios reales de mecánicos, electromecánicos, talleres de motos y técnicos de celulares o computadoras.
+      </p>
+
+      <div class="pos-modal-features-grid">
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(249, 115, 22, 0.15); border-color: rgba(249, 115, 22, 0.5); color: #f97316;">📋</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Órdenes Digitales & Blindaje Legal</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Registra el estado de entrada con fotos de rayones, kilometraje y pertenencias. El cliente firma digitalmente en pantalla y evitas reclamos injustos.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(0, 132, 255, 0.15); border-color: var(--accent-primary); color: #fff;">🔎</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Rastreo Web Autónomo para el Cliente</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Tus clientes ingresan a tu página web con su número de ticket y ven fotos del avance. Cero llamadas interrumpiendo a tus mecánicos a mitad de una reparación.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(34, 197, 94, 0.15); border-color: var(--accent-secondary); color: var(--accent-secondary);">⚙️</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Control de Repuestos vs. Mano de Obra</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Descuenta automáticamente del inventario las piezas y lubricantes instalados. Calcula el porcentaje de comisión para el técnico sin descuadres contables.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.5); color: #38BDF8;">📲</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Aviso "Listo para Entrega" en 1 Clic</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Cuando el trabajo finaliza, el sistema genera el mensaje formal con el desglose de pago en bolívares y dólares directo al WhatsApp del dueño.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💳 PLANES Y MODELOS DE ADQUISICIÓN
+         ========================================================================== -->
+    <section id="precios" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Modelos de <span>Adquisición</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Elige la modalidad que mejor se adapte al flujo y tamaño de tu taller o centro de servicio.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md); max-width: 800px; margin: 0 auto;">
+        <!-- Plan Mensual Cloud -->
+        <div class="glass-card" style="border: 1.5px solid rgba(249, 115, 22, 0.5); background: linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(10, 20, 36, 0.95) 100%); padding: 24px;">
+          <span class="tech-badge" style="color: #f97316; border-color: rgba(249, 115, 22, 0.4);">MODALIDAD SUSCRIPCIÓN</span>
+          <h3 style="font-size: 22px; margin: 8px 0;">Plan Mensual Todo Incluido</h3>
+          <div style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px;">$25 <span style="font-size: 14px; color: var(--text-muted); font-weight: normal;">/ mes</span></div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 13.5px; color: var(--text-secondary); line-height: 2;">
+            <li>✓ Órdenes ilimitadas mensuales</li>
+            <li>✓ Módulo de fotos de entrada (evita reclamos)</li>
+            <li>✓ Enlace de rastreo web para clientes</li>
+            <li>✓ Control de repuestos y mano de obra</li>
+            <li>✓ Soporte técnico directo y respaldos diarios</li>
+          </ul>
+          <a href="#contacto" class="btn" style="width: 100%; text-align: center; background: linear-gradient(135deg, #f97316 0%, #0084FF 100%);">Solicitar Plan Mensual</a>
+        </div>
+
+        <!-- Plan Licencia Vitalicia -->
+        <div class="glass-card" style="border: 1.5px solid rgba(255, 255, 255, 0.15); padding: 24px;">
+          <span class="tech-badge">PAGO ÚNICO</span>
+          <h3 style="font-size: 22px; margin: 8px 0;">Licencia Vitalicia Completa</h3>
+          <div style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px;">$180 <span style="font-size: 14px; color: var(--text-muted); font-weight: normal;">pago único</span></div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 13.5px; color: var(--text-secondary); line-height: 2;">
+            <li>✓ El sistema es 100% de tu taller para siempre</li>
+            <li>✓ Instalación guiada en tus computadoras</li>
+            <li>✓ Base de datos privada sin mensualidades</li>
+            <li>✓ Formatos de ticket con tu logo y membrete</li>
+            <li>✓ 6 meses de garantía y soporte técnico</li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline" style="width: 100%; text-align: center;">Comprar Licencia Vitalicia</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE ADQUISICIÓN / CONTACTO
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Comenzar con <span>TiagoTech Talleres</span></h2>
+
+      <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20digitalizar%20las%20%C3%B3rdenes%20de%20mi%20taller%20o%20servicio%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer" class="btn-whatsapp" style="width: 100%; justify-content: center; font-size: 16px; padding: 14px 24px; margin-bottom: 24px;">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon" style="width: 22px; height: 22px;"> Hablar Directo por WhatsApp (+58 424-7046941)
+        </a>
+
+        <div class="glass-card" style="padding: 24px; text-align: left;">
+          <form id="pos-lead-form">
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Tu Nombre o Empresa</label>
+              <input type="text" id="form-name" name="name" required placeholder="Ej. Carlos Mendoza - Taller Mecánico Central" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-phone" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Número de Teléfono / WhatsApp</label>
+              <input type="tel" id="form-phone" name="phone" required placeholder="Ej. +58 414 1234567" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Sistema</label>
+              <input type="text" id="form-plan" name="plan" readonly value="TiagoTech Gestión de Talleres & Servicio Técnico" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: #f97316; font-family: var(--font-code); font-weight: 700; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">¿Qué tipo de taller tienes y cuántos técnicos operan?</label>
+              <textarea id="form-msg" name="message" rows="4" placeholder="Ej. Taller automotriz con 3 mecánicos, queremos ordenar los repuestos y enviar tickets por WhatsApp..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; background: linear-gradient(135deg, #f97316 0%, #0084FF 100%);">Enviar Solicitud</button>
+            <div id="pos-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="index.html#sistemas" style="color: var(--text-secondary); text-decoration: none;">Ver Todos los Sistemas</a>
+        <a href="Catalogo_TiagoTech_Sistemas_2026.pdf" target="_blank" style="color: var(--text-secondary); text-decoration: none;">Catálogo PDF</a>
+        <a href="https://wa.me/584247046941" target="_blank" style="color: var(--accent-secondary); text-decoration: none;">WhatsApp Soporte</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Script interactivo de la Micro-Demo de Talleres -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const orders = {
+        auto: {
+          id: 'ORD-8492',
+          title: 'Toyota Corolla 2018 - Gris Plomo (Placa: AB123CD)',
+          client: 'Cliente: <strong>Carlos Mendoza</strong> | Tel: +58 414-1234567',
+          labor: '$45.00 (Mantenimiento de Frenos y Cambio de Rodamientos)',
+          parts: '$60.00 (Pastillas Cerámicas + Líquido DOT4)',
+          total: '$105.00',
+          totalBs: 'Aprox. 4.410 Bs',
+          statusStep: 3,
+          statusLabel: '🔧 En Reparación'
+        },
+        celular: {
+          id: 'ORD-5120',
+          title: 'iPhone 13 Pro 128GB - Grafito (IMEI: ****8912)',
+          client: 'Cliente: <strong>Mariana Rivas</strong> | Tel: +58 424-9876543',
+          labor: '$25.00 (Instalación & Sellado IP68)',
+          parts: '$70.00 (Pantalla OLED Original + Batería 100%)',
+          total: '$95.00',
+          totalBs: 'Aprox. 3.990 Bs',
+          statusStep: 2,
+          statusLabel: '📦 Esperando Repuestos'
+        },
+        moto: {
+          id: 'ORD-3301',
+          title: 'Empire Keeway 150cc - Rojo (Placa: AE8899)',
+          client: 'Cliente: <strong>José Luis Pérez</strong> | Tel: +58 412-5551234',
+          labor: '$20.00 (Entonación & Limpieza Carburador)',
+          parts: '$18.00 (Bujía Iridium + Aceite 20W50 Mineral)',
+          total: '$38.00',
+          totalBs: 'Aprox. 1.596 Bs',
+          statusStep: 4,
+          statusLabel: '✅ Listo para Entrega'
+        }
+      };
+
+      let currentType = 'auto';
+      let currentStep = 3;
+
+      const orderIdEl = document.getElementById('order-id');
+      const orderTitleEl = document.getElementById('order-title');
+      const orderClientEl = document.getElementById('order-client');
+      const orderBadgeStatusEl = document.getElementById('order-badge-status');
+      const costLaborEl = document.getElementById('cost-labor');
+      const costPartsEl = document.getElementById('cost-parts');
+      const costTotalEl = document.getElementById('cost-total');
+      const stepBtns = document.querySelectorAll('.status-step-btn');
+      const pillBtns = document.querySelectorAll('.order-selector-pill');
+      const sendBtn = document.getElementById('send-status-btn');
+      const previewBox = document.getElementById('whatsapp-preview-box');
+
+      function updateUI() {
+        const o = orders[currentType];
+        orderIdEl.textContent = o.id;
+        orderTitleEl.textContent = o.title;
+        orderClientEl.innerHTML = o.client;
+        costLaborEl.textContent = o.labor;
+        costPartsEl.textContent = o.parts;
+        costTotalEl.innerHTML = `${o.total} <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(${o.totalBs})</span>`;
+
+        stepBtns.forEach(btn => {
+          const step = parseInt(btn.getAttribute('data-step'));
+          if (step === currentStep) {
+            btn.classList.add('active');
+            orderBadgeStatusEl.textContent = btn.textContent;
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        if (currentStep === 4) {
+          orderBadgeStatusEl.style.background = 'rgba(34, 197, 94, 0.2)';
+          orderBadgeStatusEl.style.color = '#22C55E';
+          orderBadgeStatusEl.style.borderColor = 'rgba(34, 197, 94, 0.5)';
+        } else {
+          orderBadgeStatusEl.style.background = 'rgba(249, 115, 22, 0.2)';
+          orderBadgeStatusEl.style.color = '#f97316';
+          orderBadgeStatusEl.style.borderColor = 'rgba(249, 115, 22, 0.5)';
+        }
+      }
+
+      pillBtns.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pillBtns.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentType = pill.getAttribute('data-type');
+          currentStep = orders[currentType].statusStep;
+          if (previewBox) previewBox.style.display = 'none';
+          updateUI();
+        });
+      });
+
+      stepBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentStep = parseInt(btn.getAttribute('data-step'));
+          if (previewBox) previewBox.style.display = 'none';
+          updateUI();
+        });
+      });
+
+      if (sendBtn && previewBox) {
+        sendBtn.addEventListener('click', () => {
+          const o = orders[currentType];
+          const stepText = document.querySelector(`.status-step-btn[data-step="${currentStep}"]`).textContent.trim();
+          
+          let actionText = '';
+          if (currentStep === 4) {
+            actionText = `🎉 Tu equipo/vehículo está <strong>LISTO PARA RETIRAR</strong>. Puedes pasar por nuestro taller en horario laboral.`;
+          } else {
+            actionText = `ℹ️ Estado actual: <strong>${stepText}</strong>. Estamos trabajando en tu orden.`;
+          }
+
+          previewBox.style.display = 'block';
+          previewBox.innerHTML = `
+            <div style="font-weight: 700; color: #25D366; margin-bottom: 6px;">💬 Mensaje generado para WhatsApp:</div>
+            <em>"¡Hola! Te escribimos de <strong>Taller Especializado</strong>. Le notificamos que su orden <strong>${o.id}</strong> (${o.title.split('-')[0].trim()}):<br>
+            ${actionText}<br>
+            Total a cancelar: <strong>${o.total}</strong>.<br>
+            Puedes verificar las fotos y el desglose en vivo en: <span style="text-decoration: underline; color: #38BDF8;">tiagotech.app/ticket/${o.id}</span>"</em>
+          `;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

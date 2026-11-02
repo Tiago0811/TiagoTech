@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiagoTech Control de Cobranzas & Cuentas por Cobrar | Recuperación de Capital B2B</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Software de gestión de cuentas por cobrar, semáforo de deudores y recordatorios automáticos por WhatsApp. Recupera tu capital a tiempo con TiagoTech Cobranzas.">
+  <meta name="keywords" content="Control de Cobranzas, Software Cuentas por Cobrar, Semáforo de Morosos, Cobranza WhatsApp, TiagoTech Cobranzas">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-cobranzas.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="Control de Cobranzas & Cuentas por Cobrar - TiagoTech">
+  <meta property="og:description" content="Semáforo visual de deudores, abonos parciales bimoneda y cobro amigable en 1 clic por WhatsApp.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Control de Cobranzas & Cuentas por Cobrar - TiagoTech">
+  <meta name="twitter:description" content="Semáforo visual de deudores, abonos parciales bimoneda y cobro amigable en 1 clic por WhatsApp.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .pos-feature-card {
+      min-height: 200px;
+    }
+    .pos-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+    .debtor-row-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.25s ease;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .debtor-row-btn:hover,
+    .debtor-row-btn.active {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+    .traffic-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .traffic-green {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22C55E;
+      color: #22C55E;
+    }
+    .traffic-yellow {
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid #EAB308;
+      color: #FACC15;
+    }
+    .traffic-red {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #EF4444;
+      color: #F87171;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🖱️ Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Volver al Inicio</a></li>
+          <li><a href="#demo">Probar Demo</a></li>
+          <li><a href="#features">Características</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Adquirir</a></li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="#demo">Probar Demo</a></li>
+      <li class="tech-only"><a href="#features">Características</a></li>
+      <li class="tech-only"><a href="#precios">Precios</a></li>
+      <li class="tech-only"><a href="#contacto">Adquirir</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 HERO & PRESENTATION (2-COLUMN SAAS CON T-BOT SHOWCASE)
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="pos-hero" style="text-align: left; padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="system-hero-container">
+        <div class="system-hero-content">
+          <a href="index.html#sistemas" class="back-btn">&larr; Volver a Sistemas</a>
+          <span class="tech-tagline" style="margin-bottom: 8px; display: inline-flex; color: #10b981; border-color: rgba(16, 185, 129, 0.4);">RECUPERACIÓN DE CAPITAL & AUTOMATIZACIÓN</span>
+          <h1>Control de Cobranzas & Cuentas por Cobrar</h1>
+          <p>
+            Recupera el dinero que tienes en la calle sin que te dé pena cobrar ni dañar relaciones comerciales. Clasifica clientes con un semáforo visual inteligente (Al día, Por vencer, Morosos), registra abonos parciales bimoneda ($ y Bs.) y envía recordatorios cordiales a WhatsApp en un solo clic.
+          </p>
+          <div class="system-hero-actions">
+            <a href="#precios" class="btn" style="background: linear-gradient(135deg, #10b981 0%, #0084FF 100%);">Ver Plan y Adquisición</a>
+            <a href="#demo" class="btn btn-outline">Probar Demostración</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20de%20Control%20de%20Cobranzas%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20implementarlo%20en%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="system-hero-visual">
+          <div class="tbot-hero-card">
+            <picture>
+              <source srcset="assets/img/T-Bot/CONTROLDECOBRANZAS.webp" type="image/webp">
+              <img src="assets/img/T-Bot/CONTROLDECOBRANZAS.webp" alt="T-Bot Especialista en Cobranzas y Cuentas por Cobrar" width="800" height="1071" fetchpriority="high">
+            </picture>
+            <div class="tbot-hero-overlay"></div>
+            <div class="tbot-hero-badge">
+              <span><span class="status-dot"></span>T-Bot Cobranzas & Capital</span>
+              <span style="font-size: 10.5px; color: #10b981; font-weight: 700;">SEMÁFORO ACTIVO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🧪 MICRO-DEMO INTERACTIVA EN VIVO
+         ========================================================================== -->
+    <section id="demo" style="padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="micro-demo-box">
+        <div class="micro-demo-header">
+          <div class="micro-demo-title">
+            <span>💵 Simulador de Semáforo de Cobranza & Aviso WhatsApp en 1 Clic</span>
+            <span class="micro-demo-tag" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border-color: rgba(16, 185, 129, 0.5);">DEMO EN VIVO</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Selecciona un cliente y simula abonos o recordatorios</span>
+        </div>
+
+        <div style="padding: var(--spacing-md); background: rgba(5, 10, 20, 0.75);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md);">
+            
+            <!-- Columna Izquierda: Tabla de Clientes -->
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px;">
+                Cartera de Clientes Activa:
+              </div>
+
+              <div id="debtors-list">
+                <button type="button" class="debtor-row-btn active" data-id="1">
+                  <div>
+                    <strong style="display: block; font-size: 13.5px;">Comercial Santa Elena</strong>
+                    <span style="font-size: 11px; color: var(--text-muted);">Factura #2091 • Vence en 48h</span>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="font-weight: 800; font-size: 14px; color: #fff;">$340.00</div>
+                    <span class="traffic-pill traffic-yellow">🟡 Por Vencer</span>
+                  </div>
+                </button>
+
+                <button type="button" class="debtor-row-btn" data-id="2">
+                  <div>
+                    <strong style="display: block; font-size: 13.5px;">Inversiones El Sol 2021 C.A.</strong>
+                    <span style="font-size: 11px; color: var(--text-muted);">Factura #1842 • Vencido hace 16d</span>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="font-weight: 800; font-size: 14px; color: #fff;">$580.00</div>
+                    <span class="traffic-pill traffic-red">🔴 Moroso</span>
+                  </div>
+                </button>
+
+                <button type="button" class="debtor-row-btn" data-id="3">
+                  <div>
+                    <strong style="display: block; font-size: 13.5px;">Distribuidora Los Andes</strong>
+                    <span style="font-size: 11px; color: var(--text-muted);">Factura #2104 • Vence en 14d</span>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="font-weight: 800; font-size: 14px; color: #fff;">$120.00</div>
+                    <span class="traffic-pill traffic-green">🟢 Al Día</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Detalle de Ficha y Cobro -->
+            <div class="glass-card" style="background: rgba(10, 20, 36, 0.95); border: 1px solid rgba(16, 185, 129, 0.3); padding: 18px; border-radius: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div>
+                  <span id="client-code" style="font-family: var(--font-code); font-size: 12px; color: #10b981; font-weight: 700;">RIF: J-40819201-9</span>
+                  <h3 id="client-name" style="margin: 2px 0; font-size: 18px; color: #fff;">Comercial Santa Elena</h3>
+                  <p id="client-contact" style="font-size: 12px; color: var(--text-muted); margin: 0;">Contacto: Lcdo. Ricardo Silva • Tel: +58 424-9123456</p>
+                </div>
+                <div id="traffic-status-container">
+                  <span class="traffic-pill traffic-yellow">🟡 Por Vencer (48h)</span>
+                </div>
+              </div>
+
+              <!-- Saldo Bimoneda -->
+              <div style="background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 12px 16px; border: 1px solid rgba(255, 255, 255, 0.06); margin-bottom: 16px;">
+                <span style="font-size: 11px; color: var(--text-muted);">Saldo Pendiente por Cobrar:</span>
+                <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 2px;">
+                  <span id="client-balance" style="font-size: 24px; font-weight: 800; color: #fff;">$340.00</span>
+                  <span id="client-balance-bs" style="font-size: 13px; color: var(--accent-secondary); font-weight: 600;">(Aprox. 14.280 Bs)</span>
+                </div>
+              </div>
+
+              <!-- Simulador de Abono -->
+              <div style="margin-bottom: 14px;">
+                <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">
+                  Simulador de Abonos Parciales:
+                </span>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-outline pay-sim-btn" data-pay="50" style="padding: 6px 12px; font-size: 11px;">+ Abonar $50</button>
+                  <button type="button" class="btn btn-outline pay-sim-btn" data-pay="100" style="padding: 6px 12px; font-size: 11px;">+ Abonar $100</button>
+                  <button type="button" class="btn btn-outline pay-reset-btn" style="padding: 6px 12px; font-size: 11px; border-color: rgba(239, 68, 68, 0.4); color: #F87171;">Reiniciar Deuda</button>
+                </div>
+              </div>
+
+              <!-- Generador de WhatsApp -->
+              <div>
+                <button type="button" id="generate-remind-btn" class="btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #000; font-weight: 700;">
+                  <img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width: 18px; height: 18px; filter: invert(1);">
+                  <span>Generar Recordatorio Cordial WhatsApp</span>
+                </button>
+                <div id="cobranza-preview-box" style="display: none; margin-top: 12px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.35); padding: 12px 16px; border-radius: 8px; font-size: 13px; color: #E2E8F0; line-height: 1.5;"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ⭐ VENTAJAS & CARACTERÍSTICAS TÉCNICAS
+         ========================================================================== -->
+    <section id="features" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">Beneficios Clave para el <span>Control de Cuentas por Cobrar</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Diseñado para distribuidores, mayoristas, negocios con ventas a crédito y prestadores de servicios corporativos.
+      </p>
+
+      <div class="pos-modal-features-grid">
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.5); color: #10b981;">🚦</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Semáforo de Deudores en Vivo</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Detecta en 1 segundo quién tiene facturas vigentes, quién está a punto de vencer y quién está en mora crítica para suspender nuevos despachos.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(0, 132, 255, 0.15); border-color: var(--accent-primary); color: #fff;">💬</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Cobranza Diplomática sin Fricciones</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Mensajes pre-redactados de manera cordial y profesional para WhatsApp. Recuerda fechas de pago sin dar pena y sin deteriorar relaciones comerciales.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(34, 197, 94, 0.15); border-color: var(--accent-secondary); color: var(--accent-secondary);">💵</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Abonos Parciales Bimoneda ($ / Bs)</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Acepta abonos en Pago Móvil, Zelle o divisas en efectivo. El sistema actualiza el saldo remanente al instante y emite un recibo digital en PDF.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.5); color: #38BDF8;">📊</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Reporte de Cartera & Flujo de Caja</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Conoce con total exactitud cuánto dinero tienes en la calle y cuánto capital recuperas semanalmente para negociar mejores precios con proveedores.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💳 PLANES Y MODELOS DE ADQUISICIÓN
+         ========================================================================== -->
+    <section id="precios" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Modelos de <span>Adquisición</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Elige cómo prefieres incorporar este módulo en la administración de tu negocio.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md); max-width: 800px; margin: 0 auto;">
+        <!-- Plan Mensual Cloud -->
+        <div class="glass-card" style="border: 1.5px solid rgba(16, 185, 129, 0.5); background: linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, rgba(10, 20, 36, 0.95) 100%); padding: 24px;">
+          <span class="tech-badge" style="color: #10b981; border-color: rgba(16, 185, 129, 0.4);">MODALIDAD SUSCRIPCIÓN</span>
+          <h3 style="font-size: 22px; margin: 8px 0;">Plan Mensual Todo Incluido</h3>
+          <div style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px;">$25 <span style="font-size: 14px; color: var(--text-muted); font-weight: normal;">/ mes</span></div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 13.5px; color: var(--text-secondary); line-height: 2;">
+            <li>✓ Clientes y facturas ilimitadas</li>
+            <li>✓ Semáforo de riesgo y alertas automáticas</li>
+            <li>✓ Generador de recordatorios por WhatsApp</li>
+            <li>✓ Registro de abonos bimoneda y recibos</li>
+            <li>✓ Respaldos diarios y soporte técnico 1 a 1</li>
+          </ul>
+          <a href="#contacto" class="btn" style="width: 100%; text-align: center; background: linear-gradient(135deg, #10b981 0%, #0084FF 100%);">Solicitar Plan Mensual</a>
+        </div>
+
+        <!-- Plan Licencia Vitalicia -->
+        <div class="glass-card" style="border: 1.5px solid rgba(255, 255, 255, 0.15); padding: 24px;">
+          <span class="tech-badge">PAGO ÚNICO</span>
+          <h3 style="font-size: 22px; margin: 8px 0;">Licencia Vitalicia Completa</h3>
+          <div style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px;">$180 <span style="font-size: 14px; color: var(--text-muted); font-weight: normal;">pago único</span></div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 13.5px; color: var(--text-secondary); line-height: 2;">
+            <li>✓ Licencia permanente para tu empresa</li>
+            <li>✓ Instalación local o en servidor propio</li>
+            <li>✓ Base de datos privada sin mensualidades</li>
+            <li>✓ Reportes ejecutivos exportables a PDF y Excel</li>
+            <li>✓ 6 meses de garantía y soporte técnico</li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline" style="width: 100%; text-align: center;">Comprar Licencia Vitalicia</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE ADQUISICIÓN / CONTACTO
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Comenzar con <span>TiagoTech Cobranzas</span></h2>
+
+      <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20ordenar%20las%20cobranzas%20y%20cuentas%20por%20cobrar%20de%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp" style="width: 100%; justify-content: center; font-size: 16px; padding: 14px 24px; margin-bottom: 24px;">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon" style="width: 22px; height: 22px;"> Hablar Directo por WhatsApp (+58 424-7046941)
+        </a>
+
+        <div class="glass-card" style="padding: 24px; text-align: left;">
+          <form id="pos-lead-form">
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Tu Nombre o Empresa</label>
+              <input type="text" id="form-name" name="name" required placeholder="Ej. Ricardo Silva - Distribuidora Los Andes" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-phone" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Número de Teléfono / WhatsApp</label>
+              <input type="tel" id="form-phone" name="phone" required placeholder="Ej. +58 414 1234567" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Sistema</label>
+              <input type="text" id="form-plan" name="plan" readonly value="TiagoTech Control de Cobranzas & Cuentas por Cobrar" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: #10b981; font-family: var(--font-code); font-weight: 700; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">¿Cómo manejas tus cuentas por cobrar actualmente?</label>
+              <textarea id="form-msg" name="message" rows="4" placeholder="Ej. Llevamos cuadernos o Excel con ventas a crédito y nos cuesta recordar las fechas de pago..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #0084FF 100%);">Enviar Solicitud</button>
+            <div id="pos-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="index.html#sistemas" style="color: var(--text-secondary); text-decoration: none;">Ver Todos los Sistemas</a>
+        <a href="Catalogo_TiagoTech_Sistemas_2026.pdf" target="_blank" style="color: var(--text-secondary); text-decoration: none;">Catálogo PDF</a>
+        <a href="https://wa.me/584247046941" target="_blank" style="color: var(--accent-secondary); text-decoration: none;">WhatsApp Soporte</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Script interactivo de la Micro-Demo de Cobranzas -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const debtors = {
+        '1': {
+          code: 'RIF: J-40819201-9',
+          name: 'Comercial Santa Elena',
+          contact: 'Contacto: Lcdo. Ricardo Silva • Tel: +58 424-9123456',
+          invoice: 'Factura #2091',
+          initialBalance: 340.00,
+          currentBalance: 340.00,
+          status: 'yellow',
+          statusText: '🟡 Por Vencer (48h)',
+          rate: 42.0
+        },
+        '2': {
+          code: 'RIF: J-31298401-2',
+          name: 'Inversiones El Sol 2021 C.A.',
+          contact: 'Contacto: Ing. Roberto Méndez • Tel: +58 414-8899112',
+          invoice: 'Factura #1842',
+          initialBalance: 580.00,
+          currentBalance: 580.00,
+          status: 'red',
+          statusText: '🔴 Moroso (+16 días)',
+          rate: 42.0
+        },
+        '3': {
+          code: 'RIF: J-50112839-4',
+          name: 'Distribuidora Los Andes',
+          contact: 'Contacto: Sra. Elena Gómez • Tel: +58 412-3344556',
+          invoice: 'Factura #2104',
+          initialBalance: 120.00,
+          currentBalance: 120.00,
+          status: 'green',
+          statusText: '🟢 Al Día (Vence en 14d)',
+          rate: 42.0
+        }
+      };
+
+      let currentId = '1';
+
+      const clientCodeEl = document.getElementById('client-code');
+      const clientNameEl = document.getElementById('client-name');
+      const clientContactEl = document.getElementById('client-contact');
+      const clientBalanceEl = document.getElementById('client-balance');
+      const clientBalanceBsEl = document.getElementById('client-balance-bs');
+      const statusContainerEl = document.getElementById('traffic-status-container');
+      const debtorBtns = document.querySelectorAll('.debtor-row-btn');
+      const payBtns = document.querySelectorAll('.pay-sim-btn');
+      const resetBtn = document.querySelector('.pay-reset-btn');
+      const generateBtn = document.getElementById('generate-remind-btn');
+      const previewBox = document.getElementById('cobranza-preview-box');
+
+      function updateUI() {
+        const d = debtors[currentId];
+        clientCodeEl.textContent = d.code;
+        clientNameEl.textContent = d.name;
+        clientContactEl.textContent = d.contact;
+        clientBalanceEl.textContent = `$${d.currentBalance.toFixed(2)}`;
+        
+        const bs = (d.currentBalance * d.rate).toLocaleString('es-VE', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        clientBalanceBsEl.textContent = `(Aprox. ${bs} Bs)`;
+
+        let pillClass = 'traffic-green';
+        if (d.status === 'yellow') pillClass = 'traffic-yellow';
+        if (d.status === 'red') pillClass = 'traffic-red';
+
+        statusContainerEl.innerHTML = `<span class="traffic-pill ${pillClass}">${d.statusText}</span>`;
+      }
+
+      debtorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          debtorBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentId = btn.getAttribute('data-id');
+          if (previewBox) previewBox.style.display = 'none';
+          updateUI();
+        });
+      });
+
+      payBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const amount = parseFloat(btn.getAttribute('data-pay'));
+          const d = debtors[currentId];
+          d.currentBalance = Math.max(0, d.currentBalance - amount);
+          
+          if (d.currentBalance === 0) {
+            d.status = 'green';
+            d.statusText = '🟢 Solvente / Deuda Pagada';
+          } else if (d.status === 'red' && d.currentBalance < 200) {
+            d.status = 'yellow';
+            d.statusText = '🟡 Por Vencer (Parcial cubierto)';
+          }
+
+          if (previewBox) previewBox.style.display = 'none';
+          updateUI();
+        });
+      });
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          const d = debtors[currentId];
+          d.currentBalance = d.initialBalance;
+          if (currentId === '1') { d.status = 'yellow'; d.statusText = '🟡 Por Vencer (48h)'; }
+          if (currentId === '2') { d.status = 'red'; d.statusText = '🔴 Moroso (+16 días)'; }
+          if (currentId === '3') { d.status = 'green'; d.statusText = '🟢 Al Día (Vence en 14d)'; }
+          if (previewBox) previewBox.style.display = 'none';
+          updateUI();
+        });
+      }
+
+      if (generateBtn && previewBox) {
+        generateBtn.addEventListener('click', () => {
+          const d = debtors[currentId];
+          const bs = (d.currentBalance * d.rate).toLocaleString('es-VE');
+          
+          let tone = '';
+          if (d.currentBalance === 0) {
+            tone = `🎉 ¡Muchas gracias! Su cuenta se encuentra <strong>100% SOLVENTE</strong>. Apreciamos su compromiso y puntualidad.`;
+          } else if (d.status === 'red') {
+            tone = `Estimado cliente, nos comunicamos cordialmente para recordar que su ${d.invoice} presenta un saldo vencido de <strong>$${d.currentBalance.toFixed(2)} (${bs} Bs)</strong>. Agradecemos su apoyo realizando el abono hoy para mantener activa su línea de despacho sin interrupciones.`;
+          } else {
+            tone = `Estimado cliente, le compartimos un cordial recordatorio sobre su ${d.invoice} por un saldo de <strong>$${d.currentBalance.toFixed(2)} (${bs} Bs)</strong> con fecha límite esta semana.`;
+          }
+
+          previewBox.style.display = 'block';
+          previewBox.innerHTML = `
+            <div style="font-weight: 700; color: #25D366; margin-bottom: 6px;">💬 Mensaje automático preparado para WhatsApp:</div>
+            <em>"${tone}<br><br>
+            <strong>Datos de Pago:</strong> Pago Móvil Banesco (0134) - CI: 12.345.678 - Tel: 0414-1234567 // Zelle / Binance Pay disponibles.<br>
+            Al transferir, favor remitir el comprobante por este medio. ¡Feliz día!"</em>
+          `;
+        });
+      }
+    });
+  </script>
+</body>
+</html>
