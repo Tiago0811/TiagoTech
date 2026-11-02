@@ -229,6 +229,90 @@
   will-change: transform;
 }
 
+/* ==========================================================================
+   T-BOT PRODUCT BANNERS EN TARJETAS DE SISTEMAS
+   ========================================================================== */
+.system-card-banner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: radial-gradient(circle at center, rgba(0, 132, 255, 0.12) 0%, rgba(5, 12, 24, 0.95) 100%);
+  border: 1px solid rgba(0, 132, 255, 0.22);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  display: block;
+}
+
+.system-card-banner picture,
+.system-card-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  will-change: transform;
+}
+
+.system-card:hover .system-card-banner-img {
+  transform: scale(1.05);
+}
+
+.system-card-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(6, 13, 26, 0.85) 100%);
+  pointer-events: none;
+}
+
+.system-card-banner .popular-badge-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  margin-bottom: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.tbot-role-tag {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 3;
+  background: rgba(10, 20, 36, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 132, 255, 0.35);
+  color: #E2E8F0;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.3px;
+}
+
+.tbot-role-tag::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-secondary);
+  box-shadow: 0 0 8px var(--accent-secondary);
+}
+
+@media (max-width: 480px) {
+  .system-card-banner {
+    height: 180px;
+  }
+}
+
 /* Tarjeta Destacada "El Más Popular" */
 .system-card.popular-card {
   border: 1.5px solid var(--accent-primary);
