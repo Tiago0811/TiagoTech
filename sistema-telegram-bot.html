@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bots de Telegram para Personas & Empresas | TiagoTech Automatización</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Automatiza la atención de tu negocio, monetiza canales VIP con accesos automáticos y recibe alertas de ventas en tiempo real con los Bots de Telegram de TiagoTech.">
+  <meta name="keywords" content="Bot de Telegram, Bots para Empresas, Bot Canales VIP, Automatización Telegram, Bot Telegram Venezuela, TiagoTech Telegram">
+  <meta name="author" content="Tiago">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiagotech.netlify.app/sistema-telegram-bot.html">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="Bots de Telegram para Personas & Empresas - TiagoTech">
+  <meta property="og:description" content="Atención 24/7, cobros automáticos, canales VIP y alertas de ventas directas a tu celular con Telegram.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+
+  <!-- Twitter / X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bots de Telegram para Personas & Empresas - TiagoTech">
+  <meta name="twitter:description" content="Atención 24/7, cobros automáticos, canales VIP y alertas de ventas directas a tu celular con Telegram.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/img/LogoTiagoTech.jpeg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Core & Shared Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--font-accent);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-btn:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+    .pos-feature-card {
+      min-height: 200px;
+    }
+    .pos-hero {
+      text-align: center;
+      padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+      margin-top: 40px;
+    }
+
+    /* ==================== TELEGRAM SIMULATOR UI ==================== */
+    .tg-sim-container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #0e1621;
+      border: 1px solid rgba(42, 171, 238, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(42, 171, 238, 0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .tg-sim-header {
+      background: #17212b;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 2;
+    }
+
+    .tg-sim-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tg-avatar-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #fff;
+      font-size: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(42, 171, 238, 0.6);
+    }
+
+    .tg-avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tg-sim-info h4 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tg-verified-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      background: #2AABEE;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 9px;
+    }
+
+    .tg-sim-status {
+      font-size: 12px;
+      color: #2AABEE;
+      margin-top: 2px;
+    }
+
+    .tg-chat-body {
+      flex: 1;
+      padding: 18px;
+      overflow-y: auto;
+      background: #0e1621 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      scroll-behavior: smooth;
+    }
+
+    /* Message Bubbles */
+    .tg-msg {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      position: relative;
+      animation: tgFadeIn 0.25s ease-out;
+      word-wrap: break-word;
+    }
+
+    @keyframes tgFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tg-msg-bot {
+      align-self: flex-start;
+      background: #182533;
+      color: #E2E8F0;
+      border-bottom-left-radius: 3px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tg-msg-user {
+      align-self: flex-end;
+      background: #2b5278;
+      color: #fff;
+      border-bottom-right-radius: 3px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .tg-msg-time {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.45);
+      float: right;
+      margin-left: 12px;
+      margin-top: 4px;
+    }
+
+    /* Inline Keyboard */
+    .tg-inline-keyboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 550px) {
+      .tg-inline-keyboard { grid-template-columns: 1fr; }
+    }
+
+    .tg-inline-btn {
+      background: #242f3d;
+      border: 1px solid rgba(42, 171, 238, 0.3);
+      color: #2AABEE;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .tg-inline-btn:hover {
+      background: #2b5278;
+      color: #fff;
+      border-color: #2AABEE;
+      transform: translateY(-1px);
+    }
+
+    /* Chat Input Bar */
+    .tg-input-bar {
+      background: #17212b;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tg-chat-input {
+      flex: 1;
+      background: #242f3d;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 10px 16px;
+      color: #fff;
+      font-size: 13.5px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .tg-chat-input:focus {
+      border-color: #2AABEE;
+    }
+
+    .tg-send-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #2AABEE;
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .tg-send-btn:hover {
+      transform: scale(1.08);
+      background: #229ED9;
+    }
+
+    .tg-typing-indicator {
+      font-size: 11.5px;
+      color: #2AABEE;
+      font-style: italic;
+      padding: 4px 10px;
+      display: none;
+      animation: pulse 1.2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🖱️ Puntero Personalizado -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Canvas de Partículas de Fondo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera Fija Simplificada -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#sistemas">Volver al Inicio</a></li>
+          <li><a href="#demo">Probar Bot en Vivo</a></li>
+          <li><a href="#features">Características</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Solicitar Bot</a></li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú Móvil Lateral Glassmorphic -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <ul class="mobile-nav-links">
+      <li class="tech-only"><a href="index.html#sistemas">Volver al Inicio</a></li>
+      <li class="tech-only"><a href="#demo">Probar Bot en Vivo</a></li>
+      <li class="tech-only"><a href="#features">Características</a></li>
+      <li class="tech-only"><a href="#precios">Precios</a></li>
+      <li class="tech-only"><a href="#contacto">Solicitar Bot</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       💻 HERO & PRESENTATION (2-COLUMN SAAS CON T-BOT SHOWCASE)
+       ========================================================================== -->
+  <main class="container" style="padding-top: 80px;">
+    
+    <section class="pos-hero" style="text-align: left; padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="system-hero-container">
+        <div class="system-hero-content">
+          <a href="index.html#sistemas" class="back-btn">&larr; Volver a Sistemas</a>
+          <span class="tech-tagline" style="margin-bottom: 8px; display: inline-flex; color: #2AABEE; border-color: rgba(42, 171, 238, 0.4);">TELEGRAM BOT ARCHITECTURE & AUTOMATIZACIÓN 24/7</span>
+          <h1>Bots de Telegram para Personas & Empresas</h1>
+          <p>
+            Automatiza la atención de tu negocio, monetiza canales VIP con cobro automático de suscripciones, recibe notificaciones de ventas en tiempo real o atiende a miles de clientes simultáneos. Desarrollamos bots a la medida con botones interactivos, conexión a bases de datos y cero límites.
+          </p>
+          <div class="system-hero-actions">
+            <a href="#precios" class="btn" style="background: linear-gradient(135deg, #2AABEE 0%, #0084FF 100%);">Ver Plan y Cotización</a>
+            <a href="#demo" class="btn btn-outline" style="border-color: rgba(42, 171, 238, 0.6); color: #38BDF8;">Probar Simulador en Vivo</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vi%20el%20sistema%20de%20Bots%20de%20Telegram%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20desarrollar%20uno%20para%20mi%20proyecto." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="system-hero-visual">
+          <div class="tbot-hero-card">
+            <picture>
+              <source srcset="assets/img/T-Bot/TELEGRAM.webp" type="image/webp">
+              <img src="assets/img/T-Bot/TELEGRAM.webp" onerror="this.onerror=null;this.src='assets/img/T-Bot/CONTACTO.webp';" alt="T-Bot Especialista en Bots de Telegram y Canales VIP" width="800" height="1071" fetchpriority="high">
+            </picture>
+            <div class="tbot-hero-overlay"></div>
+            <div class="tbot-hero-badge">
+              <span><span class="status-dot"></span>T-Bot Telegram Specialist</span>
+              <span style="font-size: 10.5px; color: #2AABEE; font-weight: 700;">BOT ONLINE 24/7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         🧪 SIMULADOR INTERACTIVO DE TELEGRAM EN VIVO
+         ========================================================================== -->
+    <section id="demo" style="padding: var(--spacing-sm) 0 var(--spacing-md) 0;">
+      <div class="micro-demo-box">
+        <div class="micro-demo-header">
+          <div class="micro-demo-title">
+            <span>🤖 Simulador Real de Bot de Telegram con Botones Inline</span>
+            <span class="micro-demo-tag" style="background: rgba(42, 171, 238, 0.2); color: #2AABEE; border-color: rgba(42, 171, 238, 0.5);">INTERACTIVO</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Haz clic en los botones interactivos o escribe un mensaje abajo</span>
+        </div>
+
+        <div style="padding: var(--spacing-md); background: rgba(5, 10, 20, 0.75);">
+          
+          <div class="tg-sim-container">
+            <!-- Header Telegram -->
+            <div class="tg-sim-header">
+              <div class="tg-sim-user">
+                <div class="tg-avatar-box">
+                  <img src="assets/img/T-Bot/CONTACTO_thumb.webp" alt="T-Bot Telegram">
+                </div>
+                <div class="tg-sim-info">
+                  <h4>TiagoTech Copilot Bot <span class="tg-verified-badge">✓</span></h4>
+                  <div class="tg-sim-status" id="tg-status-text">bot • en línea 24/7</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" id="tg-reset-btn" class="btn btn-outline" style="padding: 4px 10px; font-size: 11px; border-color: rgba(255, 255, 255, 0.2);">
+                  🔄 Reiniciar Chat
+                </button>
+              </div>
+            </div>
+
+            <!-- Chat Body -->
+            <div class="tg-chat-body" id="tg-chat-body">
+              <!-- Mensaje inicial del Bot -->
+              <div class="tg-msg tg-msg-bot">
+                👋 <strong>¡Hola! Bienvenido al entorno de demostración de Bots de Telegram de TiagoTech.</strong><br><br>
+                Este bot funciona de forma autónoma las 24 horas del día. Puede vender productos, validar pagos, moderar comunidades VIP o enviar alertas de tu empresa.<br><br>
+                <em>👇 Haz clic en una de las opciones para probar sus flujos en tiempo real:</em>
+                <span class="tg-msg-time">12:00</span>
+
+                <div class="tg-inline-keyboard">
+                  <button type="button" class="tg-inline-btn" data-action="catalogo">
+                    🛍️ Ver Catálogo & Precios
+                  </button>
+                  <button type="button" class="tg-inline-btn" data-action="vip">
+                    👑 Acceso a Canal VIP
+                  </button>
+                  <button type="button" class="tg-inline-btn" data-action="alerta">
+                    🔔 Alerta de Ventas (Empresa)
+                  </button>
+                  <button type="button" class="tg-inline-btn" data-action="soporte">
+                    💬 Contactar Soporte
+                  </button>
+                </div>
+              </div>
+
+              <!-- Indicador de escritura animado -->
+              <div class="tg-typing-indicator" id="tg-typing">
+                ✍️ TiagoTech Bot está escribiendo...
+              </div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="tg-input-bar">
+              <input type="text" id="tg-input" class="tg-chat-input" placeholder="Escribe un mensaje o comando (/start, /catalogo, /vip)..." autocomplete="off">
+              <button type="button" id="tg-send-btn" class="tg-send-btn" title="Enviar mensaje">
+                ➤
+              </button>
+            </div>
+          </div>
+
+          <p style="text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 12px; font-family: var(--font-code);">
+            ⚡ Tu Bot de Telegram oficial puede alojarse en servidores privados de alta velocidad con 99.9% de disponibilidad garantizada.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ⭐ VENTAJAS & CARACTERÍSTICAS TÉCNICAS
+         ========================================================================== -->
+    <section id="features" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">¿Qué Puedes Lograr con un <span>Bot de Telegram a la Medida?</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Telegram es la plataforma de mensajería más avanzada y flexible del mundo para automatizar negocios, comunidades y ventas sin bloqueos.
+      </p>
+
+      <div class="pos-modal-features-grid">
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(42, 171, 238, 0.15); border-color: rgba(42, 171, 238, 0.5); color: #2AABEE;">👑</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Gestión Automática de Canales VIP</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Monetiza tus contenidos o señales. El bot genera un enlace de invitación de un solo uso cuando el usuario paga y lo expulsa automáticamente si no renueva su cuota mensual.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(34, 197, 94, 0.15); border-color: var(--accent-secondary); color: var(--accent-secondary);">🔔</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Alertas Empresariales al Instante</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Recibe en tu propio Telegram cada venta realizada en tu web, avisos de nuevo lead interesado, alerta de stock bajo o recordatorios críticos sin tener que revisar correos.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(0, 132, 255, 0.15); border-color: var(--accent-primary); color: #fff;">🛍️</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Catálogos & Ventas por Bot</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Tus clientes pueden explorar fotos de productos, elegir tallas o complementos y solicitar su orden con botones visuales sin salir de Telegram.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(255, 189, 46, 0.15); border-color: rgba(255, 189, 46, 0.5); color: #FFBD2E;">💵</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Validación de Pagos Bimoneda</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Configurado para instruir pagos por Pago Móvil (Bs), Binance Pay (USDT) o Zelle, solicitando la captura o referencia para agilizar la entrega de productos o accesos.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.5); color: #C084FC;">📊</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Conexión a Hojas de Cálculo & CRM</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Todo cliente que interactúa con tu bot puede guardarse de inmediato en Google Sheets o tu base de datos de TiagoTech para seguimiento comercial futuro.
+          </p>
+        </div>
+
+        <div class="glass-card pos-feature-card">
+          <div class="system-icon" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.5); color: #F87171;">🛡️</div>
+          <h3 style="font-size: 17px; margin-bottom: 6px;">Moderación Anti-Spam de Grupos</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5;">
+            Protege tus comunidades y grupos de Telegram contra spam, bots maliciosos y enlaces prohibidos con captcha de bienvenida y silenciado automático.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         👥 IDEAL PARA QUIÉN ES ESTE SISTEMA
+         ========================================================================== -->
+    <section style="padding: var(--spacing-md) 0 var(--spacing-xl) 0;">
+      <h2 class="section-title">¿Para Quién es Ideal un <span>Bot de Telegram?</span></h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+        <div class="glass-card" style="padding: 20px;">
+          <h4 style="font-size: 16px; color: #2AABEE; margin-bottom: 8px;">👑 Creadores & Canales VIP</h4>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;">
+            Traders, analistas deportivos, mentores, cursos de inversión y academias que cobran suscripciones mensuales para dar acceso exclusivo.
+          </p>
+        </div>
+        <div class="glass-card" style="padding: 20px;">
+          <h4 style="font-size: 16px; color: var(--accent-secondary); margin-bottom: 8px;">🏢 Pequeñas & Medianas Empresas</h4>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;">
+            Comercios que desean recibir alertas internas de ventas, consultar inventarios por comando o dar respuestas inmediatas a clientes frecuentes.
+          </p>
+        </div>
+        <div class="glass-card" style="padding: 20px;">
+          <h4 style="font-size: 16px; color: #FFBD2E; margin-bottom: 8px;">👤 Emprendedores & Profesionales</h4>
+          <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;">
+            Freelancers y prestadores de servicios que desean automatizar la captación de leads, agendar consultas o filtrar prospectos calificados.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         💳 PLANES Y MODELOS DE ADQUISICIÓN
+         ========================================================================== -->
+    <section id="precios" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Plan y <span>Desarrollo a la Medida</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+        Cada bot se programa para resolver los objetivos específicos de tu comunidad o empresa.
+      </p>
+
+      <div class="modal-pricing-grid single-plan">
+        <div class="glass-card modal-price-card featured" style="text-align: center;">
+          <div class="m-badge">BOT DE TELEGRAM A LA MEDIDA</div>
+          <h4>Cotización Personalizada</h4>
+          <div class="m-price" style="font-size: 20px; font-weight: 700; color: #2AABEE; margin: 12px 0;">Plan a la Medida</div>
+          <p style="margin: 15px 0; font-size: 13px;">
+            Incluye diseño de flujos de conversación, configuración en BotFather, botones interactivos inline, base de datos privada en la nube, integración con métodos de pago o Google Sheets, despliegue en servidor 24/7 y capacitación guiada 1 a 1 de TiagoTech.
+          </p>
+          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+            <a href="#contacto" class="btn plan-btn" data-plan="Bot de Telegram para Personas o Empresas">Solicitar por Formulario</a>
+            <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20cotizar%20un%20Bot%20de%20Telegram%20a%20la%20medida%20para%20mi%20proyecto." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💳 Métodos de Pago Aceptados -->
+      <div class="payment-methods-box">
+        <div class="payment-methods-title">Métodos de Pago Aceptados</div>
+        <div class="payment-badges-row">
+          <span class="payment-badge">🇻🇪 Pago Móvil (Bs)</span>
+          <span class="payment-badge">🟡 Binance Pay / USDT</span>
+          <span class="payment-badge">🏦 Transferencia Bancaria</span>
+        </div>
+      </div>
+
+      <!-- 🛡️ Franja de Confianza y Garantías -->
+      <div class="trust-strip">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon">⚡</div>
+            <div>
+              <h5>Servidor 24/7 de Alta Velocidad</h5>
+              <p>Tu bot alojado en servidores en la nube con monitoreo constante para que nunca se quede dormido.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🔒</div>
+            <div>
+              <h5>Código Propio & Base de Datos Privada</h5>
+              <p>Tus datos, tokens y listas de miembros son 100% de tu propiedad y nunca se comparten.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🛠️</div>
+            <div>
+              <h5>Acompañamiento en la Puesta en Marcha</h5>
+              <p>Te enseñamos a vincular tu bot con tus canales, grupos o sistemas paso a paso.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🤝</div>
+            <div>
+              <h5>Soporte Técnico Directo 1 a 1</h5>
+              <p>Cuentas con atención directa de TiagoTech vía WhatsApp para actualizaciones o ajustes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         📬 FORMULARIO DE ADQUISICIÓN
+         ========================================================================== -->
+    <section id="contacto" style="padding: var(--spacing-md) 0 var(--spacing-xl) 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <h2 class="section-title">Solicitar <span>tu Bot de Telegram</span></h2>
+
+      <!-- Opción Rápida WhatsApp -->
+      <div style="max-width: 600px; margin: 0 auto var(--spacing-md) auto; text-align: center; padding: 18px; background: rgba(42, 171, 238, 0.08); border: 1px solid rgba(42, 171, 238, 0.3); border-radius: var(--border-radius-sm);">
+        <p style="color: #fff; font-size: 14px; margin-bottom: 12px; font-weight: 600;">
+          ¿Deseas una respuesta instantánea y cotizar tu bot hoy mismo por WhatsApp?
+        </p>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20solicitar%20un%20Bot%20de%20Telegram%20a%20la%20medida." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Chatear con TiagoTech
+        </a>
+      </div>
+
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="glass-card" style="padding: var(--spacing-md);">
+          <form id="pos-contact-form">
+            <input type="hidden" name="access_key" value="708e3b5c-fbbd-40ce-a539-878ba5b007f1">
+            <input type="hidden" name="subject" value="Nueva Solicitud de Bot de Telegram">
+            <input type="hidden" name="from_name" value="Portal TiagoTech Telegram">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
+
+            <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-name" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Nombre Personal / Empresa
+                </label>
+                <input type="text" id="form-name" name="name" required placeholder="Escribe tu nombre..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+
+              <div style="flex: 1; min-width: 250px;">
+                <label for="form-email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                  Correo Electrónico
+                </label>
+                <input type="email" id="form-email" name="email" required placeholder="tu@correo.com" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); transition: border-color 0.3s ease;">
+              </div>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-sm);">
+              <label for="form-plan" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                Sistema Seleccionado
+              </label>
+              <input type="text" id="form-plan" name="plan" readonly value="Bot de Telegram para Personas o Empresas" style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-tertiary); color: #2AABEE; font-family: var(--font-code); font-weight: 600; outline: none;">
+            </div>
+
+            <div style="margin-bottom: var(--spacing-md);">
+              <label for="form-msg" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-accent);">
+                ¿Qué deseas que haga tu Bot de Telegram?
+              </label>
+              <textarea id="form-msg" name="message" rows="5" required placeholder="Cuéntame sobre tu proyecto (ej: monetizar canal VIP de señales, atención a clientes 24/7, catálogo de productos, alertas internas)..." style="width: 100%; padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); background: var(--bg-primary); color: #fff; outline: none; font-family: var(--font-main); resize: vertical; transition: border-color 0.3s ease;"></textarea>
+            </div>
+
+            <button type="submit" id="pos-submit-btn" class="btn" style="width: 100%; background: linear-gradient(135deg, #2AABEE 0%, #0084FF 100%);">
+              <span>Enviar Solicitud</span>
+            </button>
+            <div id="pos-form-status" style="margin-top: 10px; text-align: center; font-size: 14px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 🧭 Footer -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="index.html#sistemas" style="color: var(--text-secondary); text-decoration: none;">Ver Todos los Sistemas</a>
+        <a href="t-bot.html" style="color: var(--accent-secondary); text-decoration: none;">T-Bot 🤖</a>
+        <a href="Catalogo_TiagoTech_Sistemas_2026.pdf" target="_blank" style="color: var(--text-secondary); text-decoration: none;">Catálogo PDF</a>
+        <a href="https://wa.me/584247046941" target="_blank" style="color: var(--accent-secondary); text-decoration: none;">WhatsApp Soporte</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       💬 WIDGET FLOTANTE PERMANENTE DE WHATSAPP
+       ========================================================================== -->
+  <div class="floating-wa-container" id="floating-wa">
+    <div class="floating-wa-popup" id="wa-popup">
+      <button class="wa-popup-close" id="wa-popup-close" aria-label="Cerrar mensaje">&times;</button>
+      <div class="wa-popup-header">
+        <span class="wa-status-dot"></span>
+        <span class="wa-status-text">TiagoTech en línea</span>
+      </div>
+      <p class="wa-popup-msg">
+        👋 ¡Hola! ¿Quieres desarrollar un Bot de Telegram para tu negocio o comunidad VIP? Escríbeme directo.
+      </p>
+      <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20viendo%20el%20sistema%20de%20Bots%20de%20Telegram%20y%20me%20gustar%C3%ADa%20consultar%20detalles." target="_blank" rel="noopener noreferrer" class="wa-popup-action">
+        <img src="assets/img/whatsapp.svg" alt="WhatsApp"> Iniciar conversación
+      </a>
+    </div>
+
+    <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20viendo%20el%20sistema%20de%20Bots%20de%20Telegram%20y%20me%20gustar%C3%ADa%20consultar%20detalles." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" id="wa-btn" aria-label="Chatear por WhatsApp" title="Chatear por WhatsApp">
+      <img src="assets/img/whatsapp.svg" alt="WhatsApp">
+      <span class="floating-wa-pulse"></span>
+      <span class="floating-wa-badge">1</span>
+    </a>
+  </div>
+
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Script interactivo del Simulador de Telegram -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Form handling
+      const form = document.getElementById('pos-contact-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const lastSubmit = sessionStorage.getItem('tiagotech_form_last_submit');
+          if (lastSubmit && (Date.now() - parseInt(lastSubmit, 10)) < 45000) {
+            alert('⏳ Por seguridad y control de spam, por favor espera unos segundos antes de enviar otra consulta, o escríbenos directamente a WhatsApp (+58 424-7046941).');
+            return;
+          }
+
+          const submitBtn = document.getElementById('pos-submit-btn');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>🔌 Enviando solicitud...</span>';
+          
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          })
+          .then(async (response) => {
+            let res = await response.json();
+            if (response.status === 200) {
+              sessionStorage.setItem('tiagotech_form_last_submit', Date.now().toString());
+              alert('✔️ ¡Solicitud enviada con éxito! Tiago se pondrá en contacto contigo muy pronto.');
+              form.reset();
+            } else {
+              alert('Ups, hubo un problema: ' + res.message);
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert('Error de conexión. Por favor verifica tu red.');
+          })
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          });
+        });
+      }
+
+      // ==================== TELEGRAM CHAT SIMULATOR ENGINE ====================
+      const chatBody = document.getElementById('tg-chat-body');
+      const input = document.getElementById('tg-input');
+      const sendBtn = document.getElementById('tg-send-btn');
+      const resetBtn = document.getElementById('tg-reset-btn');
+      const typingEl = document.getElementById('tg-typing');
+      const statusText = document.getElementById('tg-status-text');
+
+      function getTimeString() {
+        const d = new Date();
+        const hours = String(d.getHours()).padStart(2, '0');
+        const mins = String(d.getMinutes()).padStart(2, '0');
+        return `${hours}:${mins}`;
+      }
+
+      function scrollToBottom() {
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      function appendUserMsg(text) {
+        const msg = document.createElement('div');
+        msg.className = 'tg-msg tg-msg-user';
+        msg.innerHTML = `${text}<span class="tg-msg-time">${getTimeString()}</span>`;
+        chatBody.insertBefore(msg, typingEl);
+        scrollToBottom();
+      }
+
+      function appendBotMsg(htmlContent, inlineButtons = []) {
+        typingEl.style.display = 'block';
+        statusText.textContent = 'escribiendo...';
+        scrollToBottom();
+
+        setTimeout(() => {
+          typingEl.style.display = 'none';
+          statusText.textContent = 'bot • en línea 24/7';
+
+          const msg = document.createElement('div');
+          msg.className = 'tg-msg tg-msg-bot';
+
+          let buttonsHtml = '';
+          if (inlineButtons && inlineButtons.length > 0) {
+            buttonsHtml = '<div class="tg-inline-keyboard">';
+            inlineButtons.forEach(b => {
+              buttonsHtml += `<button type="button" class="tg-inline-btn" data-action="${b.action}">${b.text}</button>`;
+            });
+            buttonsHtml += '</div>';
+          }
+
+          msg.innerHTML = `${htmlContent}<span class="tg-msg-time">${getTimeString()}</span>${buttonsHtml}`;
+          chatBody.insertBefore(msg, typingEl);
+          scrollToBottom();
+
+          // Bind click to newly created inline buttons
+          msg.querySelectorAll('.tg-inline-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const act = btn.getAttribute('data-action');
+              handleAction(act, btn.textContent.trim());
+            });
+          });
+        }, 550);
+      }
+
+      function handleAction(action, label) {
+        appendUserMsg(label || action);
+
+        if (action === 'catalogo') {
+          appendBotMsg(
+            `📦 <strong>Catálogo Digital en Vivo:</strong><br><br>` +
+            `1️⃣ <strong>TiagoTech POS Bimoneda</strong> - Gestión de caja, inventario y ticket fiscal.<br>` +
+            `2️⃣ <strong>Menú QR Restaurantes</strong> - Pedidos directos a cocina por WhatsApp.<br>` +
+            `3️⃣ <strong>Citas & Barberías</strong> - Reservas 24/7 para tus clientes.<br>` +
+            `4️⃣ <strong>Bot de Telegram a Medida</strong> - Automatización de canales y ventas.<br><br>` +
+            `<em>Todos nuestros sistemas incluyen acompañamiento e instalación 1 a 1.</em>`,
+            [
+              { action: 'pagos', text: '💳 Ver Métodos de Pago' },
+              { action: 'inicio', text: '🔙 Menú Principal' }
+            ]
+          );
+        } else if (action === 'vip') {
+          appendBotMsg(
+            `👑 <strong>Acceso a Canal VIP / Membresía Automatizada:</strong><br><br>` +
+            `Este flujo es el que usarán tus miembros para suscribirse a tu canal:<br>` +
+            `• <strong>Costo mensual:</strong> $15 (o al cambio oficial en Bs)<br>` +
+            `• <strong>Beneficios:</strong> Señales diarias, análisis exclusivo y chat comunitario.<br><br>` +
+            `<em>Al confirmar el pago, el bot te enviará un link exclusivo que caduca automáticamente.</em>`,
+            [
+              { action: 'simular_pago', text: '✅ Ya realicé mi Pago' },
+              { action: 'pagos', text: '💵 Datos Bancarios' },
+              { action: 'inicio', text: '🔙 Volver' }
+            ]
+          );
+        } else if (action === 'alerta') {
+          appendBotMsg(
+            `🔔 <strong>[NOTIFICACIÓN DE VENTA EN TIEMPO REAL]</strong><br><br>` +
+            `👤 <strong>Cliente:</strong> Carlos Mendoza (@carlosm)<br>` +
+            `📦 <strong>Orden:</strong> Combo Doble Cheddar + Bebida<br>` +
+            `💰 <strong>Total:</strong> $12.50 (Aprox. 525 Bs)<br>` +
+            `🏦 <strong>Método:</strong> Pago Móvil Banesco (Ref: 489102)<br>` +
+            `⚡ <strong>Estado:</strong> Pagado & Enviado a Preparación.<br><br>` +
+            `<em>¡Así es como recibes cada movimiento de tu negocio en tu bolsillo!</em>`,
+            [
+              { action: 'alerta', text: '🔔 Disparar otra Alerta' },
+              { action: 'inicio', text: '🔙 Menú Principal' }
+            ]
+          );
+        } else if (action === 'soporte') {
+          appendBotMsg(
+            `💬 <strong>Soporte Técnico & Cotizaciones Directas:</strong><br><br>` +
+            `Detrás de este bot está el equipo de desarrollo de <strong>TiagoTech</strong>.<br><br>` +
+            `Puedes escribirnos directamente a nuestro WhatsApp oficial: <strong>+58 424-7046941</strong> para agendar una reunión o estructurar el bot de tu empresa.`,
+            [
+              { action: 'inicio', text: '🔙 Menú Principal' }
+            ]
+          );
+        } else if (action === 'simular_pago') {
+          appendBotMsg(
+            `🎉 <strong>¡Pago Verificado con Éxito!</strong><br><br>` +
+            `El bot verificó la referencia bancaria en la base de datos.<br><br>` +
+            `🔗 <strong>Tu enlace de acceso de 1 solo uso:</strong><br>` +
+            `<code>https://t.me/+TiagoTechVIP_Demo77X</code><br><br>` +
+            `<em>⚠️ Tienes 15 minutos para unirte. El enlace caducará tras tu ingreso.</em>`,
+            [
+              { action: 'inicio', text: '🔙 Volver al Inicio' }
+            ]
+          );
+        } else if (action === 'pagos') {
+          appendBotMsg(
+            `💵 <strong>Métodos de Pago Disponibles:</strong><br><br>` +
+            `🇻🇪 <strong>Pago Móvil:</strong> Banesco (0134) • CI: 12.345.678 • Tel: 0424-7046941<br>` +
+            `🟡 <strong>Binance Pay:</strong> ID 829104829 (USDT)<br>` +
+            `🏦 <strong>Transferencias Bancarias:</strong> Nacionales e Internacionales.<br><br>` +
+            `<em>Envía la captura de tu pago para activación inmediata.</em>`,
+            [
+              { action: 'simular_pago', text: '✅ Ya pagué' },
+              { action: 'inicio', text: '🔙 Menú Principal' }
+            ]
+          );
+        } else if (action === 'inicio') {
+          appendBotMsg(
+            `👋 <strong>Menú Principal de TiagoTech Bot:</strong><br><br>` +
+            `Selecciona el servicio que deseas consultar o escribe tu consulta en el teclado:`,
+            [
+              { action: 'catalogo', text: '🛍️ Catálogo & Precios' },
+              { action: 'vip', text: '👑 Acceso a Canal VIP' },
+              { action: 'alerta', text: '🔔 Alerta de Ventas' },
+              { action: 'soporte', text: '💬 Contactar Soporte' }
+            ]
+          );
+        }
+      }
+
+      // Initial buttons bind
+      document.querySelectorAll('.tg-inline-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const act = btn.getAttribute('data-action');
+          handleAction(act, btn.textContent.trim());
+        });
+      });
+
+      // Send on input
+      function handleUserSend() {
+        const text = input.value.trim();
+        if (!text) return;
+        input.value = '';
+
+        appendUserMsg(text);
+
+        const lower = text.toLowerCase();
+        if (lower.includes('start') || lower.includes('hola') || lower.includes('menu') || lower.includes('inicio')) {
+          setTimeout(() => handleAction('inicio', ''), 300);
+        } else if (lower.includes('catalogo') || lower.includes('precio') || lower.includes('producto')) {
+          setTimeout(() => handleAction('catalogo', ''), 300);
+        } else if (lower.includes('vip') || lower.includes('canal') || lower.includes('membresia')) {
+          setTimeout(() => handleAction('vip', ''), 300);
+        } else if (lower.includes('alerta') || lower.includes('venta') || lower.includes('notificacion')) {
+          setTimeout(() => handleAction('alerta', ''), 300);
+        } else if (lower.includes('pago') || lower.includes('banco') || lower.includes('binance')) {
+          setTimeout(() => handleAction('pagos', ''), 300);
+        } else {
+          setTimeout(() => {
+            appendBotMsg(
+              `🤖 Recibí tu consulta: <em>"${text}"</em>.<br><br>` +
+              `En un bot personalizado para tu empresa, esta pregunta puede ser respondida automáticamente por Inteligencia Artificial (Gemini/ChatGPT) o canalizada a un asesor humano.<br><br>` +
+              `¿Qué te gustaría probar a continuación?`,
+              [
+                { action: 'catalogo', text: '🛍️ Ver Catálogo' },
+                { action: 'vip', text: '👑 Probar Canal VIP' },
+                { action: 'soporte', text: '💬 WhatsApp Soporte' }
+              ]
+            );
+          }, 400);
+        }
+      }
+
+      sendBtn.addEventListener('click', handleUserSend);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleUserSend();
+        }
+      });
+
+      // Reset
+      resetBtn.addEventListener('click', () => {
+        chatBody.innerHTML = `
+          <div class="tg-msg tg-msg-bot">
+            👋 <strong>¡Hola de nuevo! Reiniciamos la demostración del Bot de Telegram.</strong><br><br>
+            <em>👇 Elige qué flujo te gustaría probar:</em>
+            <span class="tg-msg-time">${getTimeString()}</span>
+            <div class="tg-inline-keyboard">
+              <button type="button" class="tg-inline-btn" data-action="catalogo">🛍️ Ver Catálogo & Precios</button>
+              <button type="button" class="tg-inline-btn" data-action="vip">👑 Acceso a Canal VIP</button>
+              <button type="button" class="tg-inline-btn" data-action="alerta">🔔 Alerta de Ventas (Empresa)</button>
+              <button type="button" class="tg-inline-btn" data-action="soporte">💬 Contactar Soporte</button>
+            </div>
+          </div>
+          <div class="tg-typing-indicator" id="tg-typing">✍️ TiagoTech Bot está escribiendo...</div>
+        `;
+        // Rebind
+        chatBody.querySelectorAll('.tg-inline-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const act = btn.getAttribute('data-action');
+            handleAction(act, btn.textContent.trim());
+          });
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>

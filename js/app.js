@@ -833,8 +833,9 @@ document.addEventListener('DOMContentLoaded', () => {
       { goal: 'caja_citas', title: 'Cobro de servicios y comisiones', desc: 'Llevar la cuenta de lo que produjo cada barbero, estilista o doctor.', system: 'TiagoTech POS & Inventario', icon: '🛒', url: 'sistema-pos.html' }
     ],
     servicios: [
-      { goal: 'taller', title: 'Órdenes de servicio y rastreo de reparación', desc: 'Gestionar equipos/vehículos, repuestos y avisar por WhatsApp cuando estén listos.', system: 'Gestión de Talleres & Servicio Técnico', icon: '🔧', url: '#sistemas' },
-      { goal: 'cobranzas', title: 'Control de clientes morosos y cuentas por cobrar', desc: 'Semáforo de deudores y recordatorios formales de pago en 1 clic.', system: 'Control de Cobranzas & Cuentas por Cobrar', icon: '💵', url: '#sistemas' },
+      { goal: 'telegram_bot', title: 'Bot de Telegram para atención o canal VIP', desc: 'Monetizar suscripciones VIP o responder consultas de clientes automáticamente 24/7.', system: 'Bots de Telegram para Personas & Empresas', icon: '🤖', url: 'sistema-telegram-bot.html' },
+      { goal: 'taller', title: 'Órdenes de servicio y rastreo de reparación', desc: 'Gestionar equipos/vehículos, repuestos y avisar por WhatsApp cuando estén listos.', system: 'Gestión de Talleres & Servicio Técnico', icon: '🔧', url: 'sistema-talleres.html' },
+      { goal: 'cobranzas', title: 'Control de clientes morosos y cuentas por cobrar', desc: 'Semáforo de deudores y recordatorios formales de pago en 1 clic.', system: 'Control de Cobranzas & Cuentas por Cobrar', icon: '💵', url: 'sistema-cobranzas.html' },
       { goal: 'cotizador', title: 'Cotizaciones en PDF en 60 segundos', desc: 'Presupuestos ejecutivos con membrete listos para enviar por WhatsApp al cliente.', system: 'Facturador & Cotizador Express PDF', icon: '📄', url: 'sistema-cotizador.html' },
       { goal: 'dash_servicios', title: 'Control de proyectos y cobranzas', desc: 'Saber exactamente cuánto dinero tienes por cobrar de trabajos pendientes.', system: 'Dashboards & Analytics', icon: '📊', url: 'sistema-dashboard.html' }
     ],
