@@ -3,10 +3,13 @@
  * Brinda carga ultra-rápida, aceleración en caché y funcionamiento offline para TiagoTech
  */
 
-const CACHE_NAME = 'tiagotech-v2026-1';
+const CACHE_NAME = 'tiagotech-v2026-telegram-bot';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
+  '/t-bot.html',
+  '/sistema-telegram-bot.html',
+  '/sobre-nosotros.html',
   '/css/variables.css',
   '/css/main.css',
   '/css/tech-theme.css',
@@ -17,6 +20,7 @@ const STATIC_ASSETS = [
   '/assets/img/favicon.png',
   '/assets/img/tiagotech-symbol.png',
   '/assets/img/whatsapp.svg',
+  '/assets/img/T-Bot/TELEGRAM_thumb.webp',
   '/404.html'
 ];
 
