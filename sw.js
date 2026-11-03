@@ -3,7 +3,7 @@
  * Brinda carga ultra-rápida, aceleración en caché y funcionamiento offline para TiagoTech
  */
 
-const CACHE_NAME = 'tiagotech-v2026-tg-avatar';
+const CACHE_NAME = 'tiagotech-v2026-circle-avatar-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
