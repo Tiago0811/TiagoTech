@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T-Bot 🤖 | El Copiloto Inteligente de TiagoTech</title>
+  
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Conoce a T-Bot, el asistente inteligente y mascota oficial de TiagoTech. Tecnología amigable, automatización y soporte humano para comercios y pymes.">
+  <meta property="og:site_name" content="TiagoTech">
+  <meta property="og:title" content="T-Bot 🤖 | El Copiloto Inteligente de TiagoTech">
+  <meta property="og:description" content="Conoce a T-Bot: la cara amigable de la automatización comercial. Descubre sus especialidades para tiendas, talleres, restaurantes y más.">
+  <meta property="og:image" content="https://tiagotech.netlify.app/assets/video/tbot-greeting-poster.webp">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="T-Bot 🤖 - Copiloto Digital TiagoTech">
+  <meta name="twitter:description" content="Tecnología amigable que multiplica las ventas y el orden de tu negocio sin complicaciones.">
+  <meta name="twitter:image" content="https://tiagotech.netlify.app/assets/video/tbot-greeting-poster.webp">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css">
+
+  <style>
+    /* ==================== PAGE LAYOUT & HERO ==================== */
+    .tbot-page-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 100px var(--spacing-md) var(--spacing-xl) var(--spacing-md);
+    }
+
+    .tbot-hero-row {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    @media (max-width: 900px) {
+      .tbot-hero-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        text-align: center;
+      }
+    }
+
+    .tbot-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-secondary);
+      font-family: var(--font-code);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-sm);
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .tbot-hero-title {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: var(--spacing-sm);
+      color: #fff;
+      font-family: var(--font-accent);
+    }
+
+    .tbot-hero-title span {
+      background: linear-gradient(135deg, #0084FF 0%, #22C55E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 600px) {
+      .tbot-hero-title { font-size: 34px; }
+    }
+
+    .tbot-hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .tbot-pill-stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-md);
+    }
+
+    @media (max-width: 900px) {
+      .tbot-pill-stats { justify-content: center; }
+    }
+
+    .tbot-stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: rgba(10, 20, 36, 0.85);
+      border: 1px solid rgba(0, 132, 255, 0.25);
+      font-size: 13px;
+      color: #E2E8F0;
+      font-weight: 600;
+    }
+
+    .tbot-stat-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-secondary);
+      box-shadow: 0 0 8px var(--accent-secondary);
+    }
+
+    /* ==================== SMARTPHONE VIDEO MOCKUP ==================== */
+    .smartphone-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .smartphone-frame {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 9 / 16;
+      border-radius: 40px;
+      background: #030712;
+      border: 4px solid rgba(0, 132, 255, 0.45);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 132, 255, 0.25);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .smartphone-frame:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(34, 197, 94, 0.3);
+      border-color: rgba(34, 197, 94, 0.55);
+    }
+
+    /* Dynamic Island / Notch */
+    .smartphone-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 18px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+    }
+
+    .smartphone-camera {
+      width: 7px;
+      height: 7px;
+      background: #0d1b2a;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .smartphone-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 36px;
+    }
+
+    .phone-live-overlay {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      background: rgba(10, 20, 36, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 132, 255, 0.4);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 4;
+    }
+
+    .phone-sound-toggle-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .phone-sound-toggle-btn:hover {
+      background: var(--accent-primary);
+      transform: scale(1.1);
+    }
+
+    /* Glow backdrop behind phone */
+    .smartphone-glow-bg {
+      position: absolute;
+      width: 280px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 132, 255, 0.3) 0%, rgba(34, 197, 94, 0.15) 50%, transparent 70%);
+      filter: blur(40px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ==================== SUPERPOWERS CARDS ==================== */
+    .superpowers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .superpower-card {
+      padding: 24px;
+      border-radius: var(--border-radius-md);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .superpower-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 132, 255, 0.45);
+    }
+
+    .superpower-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+
+    .superpower-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .superpower-card p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ==================== SPECIALTIES UNIVERSE GRID ==================== */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .role-card {
+      background: rgba(10, 20, 36, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius-md);
+      padding: 16px;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .role-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-primary);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 132, 255, 0.2);
+    }
+
+    .role-avatar-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 2px solid rgba(0, 132, 255, 0.4);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    .role-avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .role-card:hover .role-avatar-wrapper img {
+      transform: scale(1.1);
+    }
+
+    .role-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .role-tag {
+      font-family: var(--font-code);
+      font-size: 11px;
+      color: var(--accent-secondary);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .role-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+
+    .role-link {
+      font-size: 12px;
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
+    }
+
+    .role-link:hover {
+      gap: 7px;
+      color: #38BDF8;
+    }
+
+    /* ==================== FINAL CTA BANNER ==================== */
+    .tbot-cta-box {
+      background: radial-gradient(circle at 50% 30%, rgba(0, 132, 255, 0.18) 0%, rgba(5, 12, 24, 0.95) 80%);
+      border: 1.5px solid rgba(0, 132, 255, 0.4);
+      border-radius: var(--border-radius-lg);
+      padding: 40px var(--spacing-md);
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 132, 255, 0.2);
+      margin-bottom: var(--spacing-xl);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎯 Custom Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- 🌌 Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Header Navigation -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
+      </a>
+      <nav>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#sistemas">Sistemas</a></li>
+          <li><a href="t-bot.html" style="color: var(--accent-secondary); font-weight: 700;">T-Bot 🤖</a></li>
+          <li><a href="index.html#asesor">Asesor Express</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+
+        <!-- 🍔 Hamburger button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <div class="mobile-identity-box" style="border-bottom: 1px solid var(--card-border); padding-bottom: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+      <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 32px; height: 32px; object-fit: contain;">
+      <div>
+        <div class="mobile-identity-title" style="color: #fff; font-size: 15px; font-weight: 800;">
+          Tiago<span style="color: var(--accent-secondary);">Tech</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 2px 0 0 0;">Soluciones de Software & Automatización</p>
+      </div>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" onclick="toggleMobileMenu()">Inicio</a></li>
+      <li><a href="index.html#sistemas" onclick="toggleMobileMenu()">Sistemas</a></li>
+      <li><a href="t-bot.html" style="color: var(--accent-secondary); font-weight: 700;">T-Bot 🤖</a></li>
+      <li><a href="index.html#asesor" onclick="toggleMobileMenu()">Asesor Express</a></li>
+      <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="index.html#contacto" onclick="toggleMobileMenu()">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+       🤖 MAIN T-BOT EXPERIENCE
+       ========================================================================== -->
+  <main class="tbot-page-container">
+
+    <a href="index.html" class="back-btn" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); text-decoration: none; font-weight: 600; font-family: var(--font-accent); margin-bottom: 24px; transition: color 0.3s ease;">
+      &larr; Volver al Inicio
+    </a>
+
+    <!-- ══════════ HERO SECTION CON SMARTPHONE MOCKUP ══════════ -->
+    <div class="tbot-hero-row">
+      <div>
+        <div class="tbot-tagline">
+          <span>🤖 EL COPILOTO DIGITAL DE TIAGOTECH</span>
+        </div>
+        <h1 class="tbot-hero-title">
+          Tecnología Amigable que <span>Hace Crecer tu Negocio</span>
+        </h1>
+        <p class="tbot-hero-desc">
+          <strong>T-Bot</strong> nació con una misión muy clara: romper el mito de que el software comercial debe ser frío, aburrido o difícil de usar. Es el asistente inteligente integrado en cada uno de los sistemas de <strong>TiagoTech</strong>, asegurando que tú y tus empleados gestionen inventario, citas, órdenes y cobros sin estrés.
+        </p>
+
+        <div class="tbot-pill-stats">
+          <div class="tbot-stat-badge">
+            <span class="dot"></span>
+            <span>10 Módulos Especializados</span>
+          </div>
+          <div class="tbot-stat-badge">
+            <span class="dot"></span>
+            <span>Operación en WhatsApp</span>
+          </div>
+          <div class="tbot-stat-badge">
+            <span class="dot"></span>
+            <span>Cero Enredos Técnicos</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-top: 20px;">
+          <a href="index.html#sistemas" class="btn">Explorar Sistemas</a>
+          <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estuve%20viendo%20a%20T-Bot%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20sistemas." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Chatear con Tiago & T-Bot
+          </a>
+        </div>
+      </div>
+
+      <!-- Smartphone Showcase con Video de T-Bot -->
+      <div class="smartphone-showcase">
+        <div class="smartphone-glow-bg"></div>
+        <div class="smartphone-frame">
+          <div class="smartphone-island">
+            <div class="smartphone-camera"></div>
+          </div>
+
+          <video id="tbot-hero-video" class="smartphone-video" autoplay muted loop playsinline preload="auto" poster="assets/video/tbot-greeting-poster.webp">
+            <source src="assets/video/tbot-greeting.mp4" type="video/mp4">
+            Tu navegador no soporta reproducción de video HTML5.
+          </video>
+
+          <div class="phone-live-overlay">
+            <div style="text-align: left;">
+              <div style="font-size: 11.5px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 6px;">
+                <span class="status-dot"></span> T-Bot en Vivo
+              </div>
+              <div style="font-size: 10px; color: var(--accent-secondary); font-family: var(--font-code);">
+                Saludando & Asistiendo 24/7
+              </div>
+            </div>
+            <button id="phone-sound-btn" class="phone-sound-toggle-btn" title="Silenciar / Activar Sonido" aria-label="Control de sonido">
+              🔇
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ LOS 4 SUPERPODERES DE T-BOT ══════════ -->
+    <h2 class="section-title">¿Qué Hace <span>T-Bot por tu Empresa?</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 650px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      T-Bot no es solo un personaje; es la filosofía con la que programamos cada línea de código para que tu negocio trabaje en piloto automático.
+    </p>
+
+    <div class="superpowers-grid">
+      <div class="glass-card superpower-card">
+        <span class="superpower-icon">📲</span>
+        <h3>Automatización por WhatsApp</h3>
+        <p>
+          T-Bot genera tickets digitales, recibos de abono, recordatorios de pago diplomáticos y confirmaciones de citas directamente formateados para WhatsApp en 1 solo clic.
+        </p>
+      </div>
+
+      <div class="glass-card superpower-card">
+        <span class="superpower-icon">💵</span>
+        <h3>Inteligencia Bimoneda ($ / Bs)</h3>
+        <p>
+          Cuadra tu caja, gestiona vueltos y calcula comisiones tanto en bolívares como en divisas sin calculadoras de mano ni pérdidas de dinero por tasas desactualizadas.
+        </p>
+      </div>
+
+      <div class="glass-card superpower-card">
+        <span class="superpower-icon">🧠</span>
+        <h3>Cero Curva de Aprendizaje</h3>
+        <p>
+          Interfaces limpias y botones claros. Tus cajeros, mecánicos o recepcionistas aprenden a dominar el sistema en menos de 5 minutos, sin necesidad de cursos complejos.
+        </p>
+      </div>
+
+      <div class="glass-card superpower-card">
+        <span class="superpower-icon">🛡️</span>
+        <h3>Respaldo Humano Directo</h3>
+        <p>
+          Detrás de T-Bot está el equipo de TiagoTech. Tienes soporte técnico 1 a 1 vía WhatsApp, garantía de prueba guiada y bases de datos 100% privadas y seguras.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════ EL UNIVERSO DE ESPECIALIDADES DE T-BOT ══════════ -->
+    <h2 class="section-title">El Universo de <span>Especialidades de T-Bot</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 680px; margin: -20px auto var(--spacing-lg) auto; font-size: 15px;">
+      Cada negocio tiene necesidades únicas. Por eso T-Bot cuenta con una versión adaptada para cada área de tu comercio:
+    </p>
+
+    <div class="roles-grid">
+      <!-- 1. Soporte -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/CONTACTO_thumb.webp" alt="T-Bot Soporte" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Soporte</div>
+        <div class="role-tag">ATENCIÓN 24/7</div>
+        <div class="role-desc">Resuelve dudas operativas y te guía en la puesta en marcha de tu sistema.</div>
+        <a href="index.html#contacto" class="role-link">Hablar Directo &rarr;</a>
+      </div>
+
+      <!-- 2. Seguridad -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/SEGURIDAD_thumb.webp" alt="T-Bot Seguridad" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Seguridad</div>
+        <div class="role-tag">BLINDAJE DE DATOS</div>
+        <div class="role-desc">Protege tus registros de ventas y garantiza que tu información nunca se pierda.</div>
+        <a href="index.html#garantia" class="role-link">Ver Garantía &rarr;</a>
+      </div>
+
+      <!-- 3. Formal B2B -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/FORMAL_thumb.webp" alt="T-Bot Formal" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Formal</div>
+        <div class="role-tag">PRESUPUESTOS B2B</div>
+        <div class="role-desc">Emite cotizaciones ejecutivas impecables en PDF para cerrar contratos empresariales.</div>
+        <a href="sistema-cotizador.html" class="role-link">Ver Módulo &rarr;</a>
+      </div>
+
+      <!-- 4. Cohete -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/COHETE_thumb.webp" alt="T-Bot Cohete" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Cohete</div>
+        <div class="role-tag">ACELERACIÓN DIGITAL</div>
+        <div class="role-desc">Tu asesor inteligente que te ayuda a elegir el sistema ideal en 30 segundos.</div>
+        <a href="index.html#asesor" class="role-link">Probar Asesor &rarr;</a>
+      </div>
+
+      <!-- 5. POS & Stock -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/TIAGOPOS_thumb.webp" alt="T-Bot POS" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot POS & Caja</div>
+        <div class="role-tag">FACTURACIÓN RÁPIDA</div>
+        <div class="role-desc">Frena fugas de mercancía y cuadra cajas en bolívares y divisas al instante.</div>
+        <a href="sistema-pos.html" class="role-link">Ver POS &rarr;</a>
+      </div>
+
+      <!-- 6. Gastronomía -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/MENUDIGITALQR_thumb.webp" alt="T-Bot Chef" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Chef</div>
+        <div class="role-tag">MENÚ QR & MESAS</div>
+        <div class="role-desc">Toma pedidos limpios desde mesas o delivery directo al WhatsApp de cocina.</div>
+        <a href="sistema-menu-qr.html" class="role-link">Ver Menú QR &rarr;</a>
+      </div>
+
+      <!-- 7. Citas & Agenda -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/AGENDARCITASBARBERIA_thumb.webp" alt="T-Bot Barber" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Barber & Turnos</div>
+        <div class="role-tag">AUTORESERVA 24/7</div>
+        <div class="role-desc">Llena los turnos de tu barbería o estética automáticamente desde Instagram.</div>
+        <a href="sistema-citas.html" class="role-link">Ver Citas &rarr;</a>
+      </div>
+
+      <!-- 8. Talleres -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/TALLERES_thumb.webp" alt="T-Bot Talleres" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Taller</div>
+        <div class="role-tag">ÓRDENES & RASTREO</div>
+        <div class="role-desc">Órdenes de servicio con fotos de entrada y rastreo web autónomo para clientes.</div>
+        <a href="sistema-talleres.html" class="role-link">Ver Talleres &rarr;</a>
+      </div>
+
+      <!-- 9. Cobranzas -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/CONTROLDECOBRANZAS_thumb.webp" alt="T-Bot Cobranzas" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Finanzas</div>
+        <div class="role-tag">COBROS DIPLOMÁTICOS</div>
+        <div class="role-desc">Semáforo visual de deudores y recordatorios cordiales sin fricciones.</div>
+        <a href="sistema-cobranzas.html" class="role-link">Ver Cobranzas &rarr;</a>
+      </div>
+
+      <!-- 10. Gimnasios -->
+      <div class="role-card">
+        <div class="role-avatar-wrapper">
+          <img src="assets/img/T-Bot/CONTROLDEMEMBRESIAS_thumb.webp" alt="T-Bot Gym" loading="lazy">
+        </div>
+        <div class="role-title">T-Bot Fitness</div>
+        <div class="role-tag">MEMBRESÍAS & PUERTA</div>
+        <div class="role-desc">Control de acceso rápido por cédula y cero morosos entrenando gratis.</div>
+        <a href="sistema-gym.html" class="role-link">Ver Gimnasios &rarr;</a>
+      </div>
+    </div>
+
+    <!-- ══════════ CALL TO ACTION FINAL ══════════ -->
+    <div class="tbot-cta-box">
+      <div style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-code); color: var(--accent-secondary); font-size: 12px; font-weight: 700; margin-bottom: 10px;">
+        <span class="status-dot"></span> PUESTA EN MARCHA EN 24-48 HORAS
+      </div>
+      <h2 style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px; font-family: var(--font-accent);">
+        Lleva a T-Bot a tu Negocio Hoy Mismo
+      </h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 24px auto; font-size: 15px; line-height: 1.6;">
+        Elige cualquiera de nuestros sistemas y recibe instalación guiada, capacitación 1 a 1 y acompañamiento permanente de TiagoTech.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap;">
+        <a href="index.html#sistemas" class="btn">Ver Catálogo Completo</a>
+        <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20activar%20un%20sistema%20con%20T-Bot%20para%20mi%20local." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Chatear con Tiago (+58 424-7046941)
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 🧭 Footer -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted);">
+        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">Inicio</a>
+        <a href="index.html#sistemas" style="color: var(--text-secondary); text-decoration: none;">Sistemas</a>
+        <a href="t-bot.html" style="color: var(--accent-secondary); text-decoration: none; font-weight: 700;">T-Bot 🤖</a>
+        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;">Sobre Nosotros</a>
+        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width: 16px; height: 16px;"> WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 💬 Floating WhatsApp Widget -->
+  <div class="floating-wa-container" id="floating-wa">
+    <div class="floating-wa-popup" id="wa-popup">
+      <button class="wa-popup-close" id="wa-popup-close" aria-label="Cerrar mensaje">&times;</button>
+      <div class="wa-popup-header">
+        <span class="wa-status-dot"></span>
+        <span class="wa-status-text">TiagoTech en línea</span>
+      </div>
+      <p class="wa-popup-msg">
+        👋 ¡Hola! ¿Quieres ver una demo en vivo de cualquiera de nuestros sistemas con T-Bot? Escríbeme directo.
+      </p>
+      <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20viendo%20la%20p%C3%A1gina%20de%20T-Bot%20y%20me%20gustar%C3%ADa%20consultar%20detalles." target="_blank" rel="noopener noreferrer" class="wa-popup-action">
+        <img src="assets/img/whatsapp.svg" alt="WhatsApp"> Iniciar conversación
+      </a>
+    </div>
+
+    <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20viendo%20la%20p%C3%A1gina%20de%20T-Bot%20y%20me%20gustar%C3%ADa%20consultar%20detalles." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" id="wa-btn" aria-label="Chatear por WhatsApp" title="Chatear por WhatsApp">
+      <img src="assets/img/whatsapp.svg" alt="WhatsApp">
+      <span class="floating-wa-pulse"></span>
+      <span class="floating-wa-badge">1</span>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Control de Sonido para el Video de T-Bot
+      const video = document.getElementById('tbot-hero-video');
+      const soundBtn = document.getElementById('phone-sound-btn');
+
+      if (video && soundBtn) {
+        soundBtn.addEventListener('click', () => {
+          if (video.muted) {
+            video.muted = false;
+            soundBtn.textContent = '🔊';
+            soundBtn.title = 'Silenciar Sonido';
+          } else {
+            video.muted = true;
+            soundBtn.textContent = '🔇';
+            soundBtn.title = 'Activar Sonido';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
