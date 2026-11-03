@@ -244,6 +244,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatbotPrompts = document.getElementById('chatbot-prompts');
 
   const KNOWLEDGE_BASE = {
+    telegram_bot: {
+      title: "🤖 Bots de Telegram para Personas & Empresas (T-Bot)",
+      tgUrl: "https://t.me/tiagotech_tbot_bot",
+      pageUrl: "sistema-telegram-bot.html",
+      text: "¡El nuevo sistema oficial de TiagoTech! Automatiza la atención de tu negocio, cobra suscripciones y monetiza comunidades en Telegram las 24 horas del día.\n\n" +
+            "✨ **Beneficios comerciales clave:**\n" +
+            "• **Monetización de Canales & Grupos VIP:** Cobro de membresías automáticas con enlaces de acceso temporales de 1 solo uso que se revocan si el usuario no renueva.\n" +
+            "• **Alertas y Notificaciones en Tiempo Real:** Recibe avisos instantáneos en tu teléfono cuando se registre una venta, nuevo pedido o balance.\n" +
+            "• **Menús y Botones Visuales Interactivos:** Menús rápidos con botones en pantalla, catálogos y respuestas 24/7 sin depender de WhatsApp.\n" +
+            "• **Integración Directa:** Conectado a tus bases de datos, sistemas web o pasarelas de pago (Pago Móvil, Binance Pay, transferencias).\n\n" +
+            "🤖 **T-Bot ya está activo en Telegram:** Puedes probarlo en vivo ahora mismo hablando con **@tiagotech_tbot_bot** tocando el botón azul de abajo.\n\n" +
+            "💼 **Cotización:** Planes y presupuestos a la medida según las funciones que requiera tu empresa o canal."
+    },
     custom: {
       title: "💻 Software & Sistemas Web 100% a la Medida (Personalizado)",
       text: "¡El servicio más solicitado y de mayor impacto de TiagoTech! Desarrollamos cualquier solución web o software creada desde cero para adaptarse a los flujos únicos de tu empresa.\n\n" +
@@ -366,6 +379,15 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="chatbot-systems-menu">
         <div class="chatbot-menu-header">📋 Sistemas disponibles (toca uno para ver detalles):</div>
         <div class="chatbot-systems-vertical-list">
+          <button type="button" class="chatbot-system-row chatbot-sys-featured" data-key="telegram_bot" style="border-color: rgba(42, 171, 238, 0.55); background: linear-gradient(135deg, rgba(42, 171, 238, 0.16) 0%, rgba(0, 132, 255, 0.10) 100%);">
+            <span class="chatbot-sys-icon">🤖</span>
+            <span class="chatbot-sys-info">
+              <strong style="color: #38BDF8;">Bots de Telegram para Negocios & VIP</strong>
+              <small style="color: #2AABEE; font-weight: 600;">⚡ NUEVO // Canales VIP, Automatización 24/7 & Pagos</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
           <button type="button" class="chatbot-system-row chatbot-sys-featured" data-key="custom" style="border-color: rgba(0, 132, 255, 0.45); background: linear-gradient(135deg, rgba(0, 132, 255, 0.12) 0%, rgba(34, 197, 94, 0.08) 100%);">
             <span class="chatbot-sys-icon">⭐</span>
             <span class="chatbot-sys-info">
@@ -474,6 +496,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="chatbot-sys-arrow">↓</span>
           </a>
 
+          <a href="https://t.me/tiagotech_tbot_bot" target="_blank" rel="noopener noreferrer" class="chatbot-system-row" style="text-decoration:none; color:inherit; border-color: rgba(42, 171, 238, 0.45); background: rgba(42, 171, 238, 0.08);">
+            <span class="chatbot-sys-icon"><img src="assets/img/T-Bot/TELEGRAMBOT_avatar.webp" alt="T-Bot" style="width:18px;height:18px;border-radius:50%;object-fit:cover;"></span>
+            <span class="chatbot-sys-info">
+              <strong style="color: #2AABEE;">Probar a T-Bot en Telegram 🤖</strong>
+              <small>Chatear con el bot oficial activo 24/7 (@tiagotech_tbot_bot)</small>
+            </span>
+            <span class="chatbot-sys-arrow">↗</span>
+          </a>
+
           <button type="button" class="chatbot-system-row chatbot-sys-whatsapp" data-key="whatsapp">
             <span class="chatbot-sys-icon"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon" style="width:16px;height:16px;"></span>
             <span class="chatbot-sys-info">
@@ -497,12 +528,29 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/• /g, '&bull; ');
 
+    let extraActionButtons = '';
+    if (item.tgUrl) {
+      extraActionButtons += `
+        <a href="${item.tgUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; justify-content:center; gap:7px; text-decoration:none; padding:9px 12px; font-size:12px; width:100%; box-sizing:border-box; background:linear-gradient(135deg, #2AABEE 0%, #0084FF 100%); color:#fff; border-radius:8px; font-weight:700; box-shadow:0 4px 14px rgba(42,171,238,0.4);">
+          🤖 Probar a T-Bot en Telegram (@tiagotech_tbot_bot)
+        </a>
+      `;
+    }
+    if (item.pageUrl) {
+      extraActionButtons += `
+        <a href="${item.pageUrl}" style="display:inline-flex; align-items:center; justify-content:center; gap:7px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box; border:1px solid #2AABEE; color:#38BDF8; border-radius:8px; font-weight:600; text-align:center; background:rgba(42,171,238,0.08);">
+          🌐 Ver Información Completa y Demo del Sistema
+        </a>
+      `;
+    }
+
     return `
       <div style="font-weight:700; font-size:13px; color:var(--accent-primary); margin-bottom:8px;">${item.title}</div>
       <div style="color:#e2e8f0; font-size:12px; line-height:1.5;">${bodyHtml}</div>
       <div style="display:flex; flex-direction:column; gap:7px; margin-top:12px;">
+        ${extraActionButtons}
         <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">
-          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Cotizar en WhatsApp (+58 424-7046941)
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Cotizar con Tiago en WhatsApp (+58 424-7046941)
         </a>
         <button type="button" class="chatbot-back-btn">📋 Ver lista de otros sistemas</button>
       </div>
@@ -606,7 +654,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Keyword matching NLP
       const clean = userText.toLowerCase();
 
-      if (clean.includes('personaliz') || clean.includes('a la medida') || clean.includes('medida') || clean.includes('custom') || clean.includes('software a medida') || clean.includes('sistema a la medida') || clean.includes('crear sistema') || clean.includes('programar') || clean.includes('desarrollo') || clean.includes('popular')) {
+      if (clean.includes('telegram') || clean.includes('t-bot') || clean.includes('tbot') || clean.includes('bot') || clean.includes('canal vip') || clean.includes('canales vip')) {
+        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.telegram_bot), true);
+      } else if (clean.includes('personaliz') || clean.includes('a la medida') || clean.includes('medida') || clean.includes('custom') || clean.includes('software a medida') || clean.includes('sistema a la medida') || clean.includes('crear sistema') || clean.includes('programar') || clean.includes('desarrollo') || clean.includes('popular')) {
         appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.custom), true);
       } else if (clean.includes('pos') || clean.includes('inventario') || clean.includes('stock') || clean.includes('caja') || clean.includes('factura')) {
         appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.pos), true);
