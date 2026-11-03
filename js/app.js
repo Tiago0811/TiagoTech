@@ -667,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const welcomeHtml = `
       <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; background: rgba(0, 132, 255, 0.08); border: 1px solid rgba(0, 132, 255, 0.22); padding: 10px 12px; border-radius: 10px;">
-        <img src="assets/img/T-Bot/tbot-thumbs-up.jpg" alt="T-Bot" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid var(--accent-secondary); box-shadow: 0 0 10px rgba(34, 197, 94, 0.35); flex-shrink: 0;">
+        <img src="assets/img/T-Bot/CONTACTO_thumb.webp" alt="T-Bot" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 2px solid var(--accent-secondary); box-shadow: 0 0 10px rgba(34, 197, 94, 0.35); flex-shrink: 0;">
         <div style="font-size: 12.5px; line-height: 1.5; color: #E2E8F0;">
           ¡Hola! 👋 Soy <strong style="color: #fff;">T-Bot</strong>, el copiloto inteligente de <strong style="color: #FFFFFF;">Tiago<span style="color: var(--accent-secondary);">Tech</span></strong>.<br>
           ¿Qué sistema necesitas para automatizar o multiplicar las ventas de tu negocio? Elige una opción:
