@@ -55,14 +55,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     // Seguimiento suave de la retícula orbital HUD (Hardware-composited Lerp)
-    (function animateRing() {
+    let ringRafId = null;
+    let isRingActive = true;
+    function animateRing() {
+      if (!isRingActive) return;
       ringX += (mouseX - ringX) * 0.22;
       ringY += (mouseY - ringY) * 0.22;
 
       cursorRing.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0)`;
 
-      requestAnimationFrame(animateRing);
-    })();
+      ringRafId = requestAnimationFrame(animateRing);
+    }
+    ringRafId = requestAnimationFrame(animateRing);
+
+    // Pausa de renderizado cuando la pestaña está en segundo plano (Ahorro de batería y CPU)
+    document.addEventListener('visibilitychange', () => {
+      isRingActive = !document.hidden;
+      if (isRingActive) {
+        if (!ringRafId) ringRafId = requestAnimationFrame(animateRing);
+      } else if (ringRafId) {
+        cancelAnimationFrame(ringRafId);
+        ringRafId = null;
+      }
+    });
 
     // Elementos interactivos que activan la retícula HUD "Target Locked"
     const TARGETS = 'a, button, .btn, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip, input, select, textarea';

@@ -81,6 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialise typewriter
   runTypewriter();
 
+  // Pausar efecto máquina de escribir si la pestaña está oculta
+  document.addEventListener('visibilitychange', () => {
+    typewriterActive = !document.hidden;
+    if (typewriterActive && techTitleEl) {
+      runTypewriter();
+    }
+  });
+
 
 
   // ==================== 👁️ SCROLL REVEALS (INTERSECTION OBSERVER) ====================
@@ -161,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       }
 
-      card.addEventListener('mouseenter', onMouseEnter);
-      card.addEventListener('mousemove', onMouseMove);
-      card.addEventListener('mouseleave', onMouseLeave);
+      card.addEventListener('mouseenter', onMouseEnter, { passive: true });
+      card.addEventListener('mousemove', onMouseMove, { passive: true });
+      card.addEventListener('mouseleave', onMouseLeave, { passive: true });
     });
   }
 
