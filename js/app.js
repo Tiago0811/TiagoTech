@@ -648,84 +648,146 @@ document.addEventListener('DOMContentLoaded', () => {
     }, delay);
   }
 
-  function handleUserQuery(userText, directKey = null) {
+  // Historial contextual para Gemini Flash Lite
+  const chatHistory = [];
+
+  function formatAIReply(replyText) {
+    let bodyHtml = escapeHtml(replyText)
+      .replace(/\n\n/g, '<br><br>')
+      .replace(/\n/g, '<br>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/• /g, '&bull; ');
+
+    const waText = encodeURIComponent('¡Hola Tiago! Estoy hablando con T-Bot en tu web y me gustaría recibir una cotización para mi negocio.');
+    const waUrl = `https://wa.me/584247046941?text=${waText}`;
+
+    return `
+      <div style="color:#e2e8f0; font-size:12.5px; line-height:1.55;">${bodyHtml}</div>
+      <div style="display:flex; flex-direction:column; gap:7px; margin-top:12px;">
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Cotizar con Tiago en WhatsApp (+58 424-7046941)
+        </a>
+        <a href="https://t.me/tiagotech_tbot_bot" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:7px 12px; font-size:11.5px; width:100%; box-sizing:border-box; background:rgba(42,171,238,0.12); border:1px solid #2AABEE; color:#38BDF8; border-radius:8px; font-weight:600;">
+          🤖 Probar a T-Bot en Telegram (@tiagotech_tbot_bot)
+        </a>
+        <button type="button" class="chatbot-back-btn">📋 Ver lista de todos los sistemas</button>
+      </div>
+    `;
+  }
+
+  function fallbackRuleResponse(userText) {
+    const clean = userText.toLowerCase();
+
+    if (clean.includes('telegram') || clean.includes('t-bot') || clean.includes('tbot') || clean.includes('bot') || clean.includes('canal vip') || clean.includes('canales vip')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.telegram_bot);
+    } else if (clean.includes('personaliz') || clean.includes('a la medida') || clean.includes('medida') || clean.includes('custom') || clean.includes('software a medida') || clean.includes('sistema a la medida') || clean.includes('crear sistema') || clean.includes('programar') || clean.includes('desarrollo') || clean.includes('popular')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.custom);
+    } else if (clean.includes('pos') || clean.includes('inventario') || clean.includes('stock') || clean.includes('caja') || clean.includes('factura')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.pos);
+    } else if (clean.includes('menú') || clean.includes('menu') || clean.includes('restaurante') || clean.includes('comida') || clean.includes('qr')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.menu_qr);
+    } else if (clean.includes('cita') || clean.includes('agenda') || clean.includes('barber') || clean.includes('peluquer') || clean.includes('spa')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.citas);
+    } else if (clean.includes('cotiz') || clean.includes('presupuesto') || clean.includes('recibo') || clean.includes('pdf')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.cotizador);
+    } else if (clean.includes('gym') || clean.includes('gimnasio') || clean.includes('socio') || clean.includes('membres')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.gym);
+    } else if (clean.includes('dash') || clean.includes('reporte') || clean.includes('excel') || clean.includes('analit')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.dashboard);
+    } else if (clean.includes('e-commerce') || clean.includes('ecommerce') || clean.includes('tienda') || clean.includes('carrito') || clean.includes('online')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.ecommerce);
+    } else if (clean.includes('pago') || clean.includes('binance') || clean.includes('usdt') || clean.includes('transferencia') || clean.includes('dolar') || clean.includes('bolivar')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.pagos);
+    } else if (clean.includes('garant') || clean.includes('soporte') || clean.includes('capacit') || clean.includes('instal')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.garantias);
+    } else if (clean.includes('sistema') || clean.includes('lista') || clean.includes('opciones')) {
+      return getSystemsMenuHtml();
+    } else if (clean.includes('precio') || clean.includes('costo') || clean.includes('cuanto vale') || clean.includes('plan')) {
+      return `<strong>📋 Planes y Cotización TiagoTech:</strong><br><br>` +
+        `Todos nuestros sistemas se cotizan de forma personalizada y accesible según las características y necesidades de tu negocio, sin tarifas ocultas ni comisiones por venta.<br><br>` +
+        `Todos incluyen soporte prioritario vía WhatsApp, hosting seguro y capacitación completa.<br><br>` +
+        `<div style="display:flex; flex-direction:column; gap:7px;">` +
+          `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20una%20cotizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
+            `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Solicitar Cotización en WhatsApp</a>` +
+          `<button type="button" class="chatbot-back-btn">📋 Ver lista de sistemas</button>` +
+        `</div>`;
+    } else if (clean.includes('hola') || clean.includes('buenas') || clean.includes('saludos') || clean.includes('que tal')) {
+      return `¡Hola! 👋 Es un placer saludarte. Soy el copiloto virtual inteligente de <strong>TiagoTech</strong>.<br><br>` +
+        getSystemsMenuHtml();
+    } else if (clean.includes('whatsapp') || clean.includes('contacto') || clean.includes('telefono') || clean.includes('tiago')) {
+      return `Puedes hablar directamente con Tiago en WhatsApp para una asesoría personalizada:<br><br>` +
+        `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20personalizada%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
+        `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir WhatsApp (+58 424-7046941)</a>` +
+        `<button type="button" class="chatbot-back-btn" style="margin-top:8px;">📋 Ver lista de otros sistemas</button>`;
+    } else {
+      return `Entendido. Para darte la mejor recomendación y cotización exacta para tu caso específico, puedes hablar directamente con Tiago en WhatsApp o elegir uno de nuestros sistemas:<br><br>` +
+        `<div style="display:flex; flex-direction:column; gap:7px;">` +
+          `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
+            `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Escribir a Tiago en WhatsApp</a>` +
+          `<button type="button" class="chatbot-back-btn">📋 Ver lista de sistemas</button>` +
+        `</div>`;
+    }
+  }
+
+  async function handleUserQuery(userText, directKey = null) {
     appendMessage('user', userText);
 
-    showTyping(() => {
-      if (directKey && KNOWLEDGE_BASE[directKey]) {
+    // 1. Clic directo a un sistema del menú (Respuesta instantánea)
+    if (directKey && KNOWLEDGE_BASE[directKey]) {
+      showTyping(() => {
         appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE[directKey]), true);
-        return;
-      }
+      }, 300);
+      chatHistory.push({ role: 'user', text: userText });
+      chatHistory.push({ role: 'bot', text: KNOWLEDGE_BASE[directKey].title });
+      return;
+    }
 
-      if (directKey === 'whatsapp') {
+    if (directKey === 'whatsapp') {
+      showTyping(() => {
         const html = `¿Quieres atención inmediata con Tiago para revisar o cotizar tu proyecto?<br><br>` +
           `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Vengo%20del%20asistente%20web%20y%20quiero%20cotizar%20un%20sistema." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
           `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir Chat en WhatsApp (+58 424-7046941)</a>` +
           `<button type="button" class="chatbot-back-btn" style="margin-top:8px;">📋 Ver lista de otros sistemas</button>`;
         appendMessage('bot', html, true);
-        return;
-      }
+      }, 300);
+      return;
+    }
 
-      // Keyword matching NLP
-      const clean = userText.toLowerCase();
+    // 2. Consulta libre escrita por el usuario: Conectar con Gemini Flash Lite
+    if (chatbotTyping) chatbotTyping.style.display = 'flex';
+    if (chatbotMessages) chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 
-      if (clean.includes('telegram') || clean.includes('t-bot') || clean.includes('tbot') || clean.includes('bot') || clean.includes('canal vip') || clean.includes('canales vip')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.telegram_bot), true);
-      } else if (clean.includes('personaliz') || clean.includes('a la medida') || clean.includes('medida') || clean.includes('custom') || clean.includes('software a medida') || clean.includes('sistema a la medida') || clean.includes('crear sistema') || clean.includes('programar') || clean.includes('desarrollo') || clean.includes('popular')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.custom), true);
-      } else if (clean.includes('pos') || clean.includes('inventario') || clean.includes('stock') || clean.includes('caja') || clean.includes('factura')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.pos), true);
-      } else if (clean.includes('menú') || clean.includes('menu') || clean.includes('restaurante') || clean.includes('comida') || clean.includes('qr')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.menu_qr), true);
-      } else if (clean.includes('cita') || clean.includes('agenda') || clean.includes('barber') || clean.includes('peluquer') || clean.includes('spa')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.citas), true);
-      } else if (clean.includes('cotiz') || clean.includes('presupuesto') || clean.includes('recibo') || clean.includes('pdf')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.cotizador), true);
-      } else if (clean.includes('gym') || clean.includes('gimnasio') || clean.includes('socio') || clean.includes('membres')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.gym), true);
-      } else if (clean.includes('dash') || clean.includes('reporte') || clean.includes('excel') || clean.includes('analit')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.dashboard), true);
-      } else if (clean.includes('e-commerce') || clean.includes('ecommerce') || clean.includes('tienda') || clean.includes('carrito') || clean.includes('online')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.ecommerce), true);
-      } else if (clean.includes('pago') || clean.includes('binance') || clean.includes('usdt') || clean.includes('transferencia') || clean.includes('dolar') || clean.includes('bolivar')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.pagos), true);
-      } else if (clean.includes('garant') || clean.includes('soporte') || clean.includes('capacit') || clean.includes('instal')) {
-        appendMessage('bot', formatSystemResponse(KNOWLEDGE_BASE.garantias), true);
-      } else if (clean.includes('sistema') || clean.includes('lista') || clean.includes('opciones')) {
-        appendMessage('bot', getSystemsMenuHtml(), true);
-      } else if (clean.includes('precio') || clean.includes('costo') || clean.includes('cuanto vale') || clean.includes('plan')) {
-        const html = `<strong>📋 Planes y Cotización TiagoTech:</strong><br><br>` +
-          `Todos nuestros sistemas se cotizan de forma personalizada y accesible según las características y necesidades de tu negocio, sin tarifas ocultas ni comisiones por venta.<br><br>` +
-          `Todos incluyen soporte prioritario vía WhatsApp, hosting seguro y capacitación completa.<br><br>` +
-          `<div style="display:flex; flex-direction:column; gap:7px;">` +
-            `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20una%20cotizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
-              `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Solicitar Cotización en WhatsApp</a>` +
-            `<button type="button" class="chatbot-back-btn">📋 Ver lista de sistemas</button>` +
-          `</div>`;
-        appendMessage('bot', html, true);
-      } else if (clean.includes('hola') || clean.includes('buenas') || clean.includes('saludos') || clean.includes('que tal')) {
-        const html = `¡Hola! 👋 Es un placer saludarte. Soy el asistente virtual inteligente de <strong>TiagoTech</strong>.<br><br>` +
-          getSystemsMenuHtml();
-        appendMessage('bot', html, true);
-      } else if (clean.includes('whatsapp') || clean.includes('contacto') || clean.includes('telefono') || clean.includes('tiago')) {
-        const html = `Puedes hablar directamente con Tiago en WhatsApp para una asesoría personalizada:<br><br>` +
-          `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20personalizada%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
-          `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Abrir WhatsApp (+58 424-7046941)</a>` +
-          `<button type="button" class="chatbot-back-btn" style="margin-top:8px;">📋 Ver lista de otros sistemas</button>`;
-        appendMessage('bot', html, true);
-      } else {
-        const html = `Entendido. Para darte la mejor recomendación y cotización exacta para tu caso específico, puedes hablar directamente con Tiago en WhatsApp o elegir uno de nuestros sistemas:<br><br>` +
-          `<div style="display:flex; flex-direction:column; gap:7px;">` +
-            `<a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Quiero%20asesor%C3%ADa%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; padding:8px 12px; font-size:11.5px; width:100%; box-sizing:border-box;">` +
-              `<img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon"> Escribir a Tiago en WhatsApp</a>` +
-            `<button type="button" class="chatbot-back-btn">📋 Ver lista de sistemas</button>` +
-          `</div>`;
-        appendMessage('bot', html, true);
+    try {
+      const response = await fetch('/api/tbot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userText,
+          history: chatHistory.slice(-4)
+        })
+      });
+
+      if (chatbotTyping) chatbotTyping.style.display = 'none';
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.reply) {
+          appendMessage('bot', formatAIReply(data.reply), true);
+          chatHistory.push({ role: 'user', text: userText });
+          chatHistory.push({ role: 'bot', text: data.reply });
+          return;
+        }
       }
-    });
+      throw new Error('Fallback needed');
+    } catch (err) {
+      // 3. Fallback inteligente: si falla la red o cuota, responde con el motor local
+      if (chatbotTyping) chatbotTyping.style.display = 'none';
+      appendMessage('bot', fallbackRuleResponse(userText), true);
+    }
   }
 
   function initChatbot() {
+    chatHistory.length = 0;
     if (!chatbotMessages) return;
     chatbotMessages.innerHTML = '';
     if (chatbotPrompts) chatbotPrompts.innerHTML = '';

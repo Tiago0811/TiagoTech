@@ -1,5 +1,14 @@
 [build]
   publish = "."
+  functions = "netlify/functions"
+
+# ==============================================================================
+# 🔀 REDIRECCIONES & ENDPOINTS API
+# ==============================================================================
+[[redirects]]
+  from = "/api/tbot"
+  to = "/.netlify/functions/tbot"
+  status = 200
 
 # ==============================================================================
 # 🛡️ CABECERAS GLOBALES DE SEGURIDAD & HARDENING (TIAGOTECH)
