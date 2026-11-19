@@ -31,6 +31,8 @@ Políticas y Reglas Estrictas:
 - Métodos de pago aceptados: Pago Móvil (Bs a tasa oficial), Binance USDT / Binance Pay, y Transferencias Bancarias Nacionales.
 - Cero comisiones: TiagoTech no cobra comisiones por las ventas que haga el cliente con su sistema.
 - Contactos directos oficiales:
+  * Sitio web oficial: https://tiagotechapp.com
+  * Correo corporativo: contacto@tiagotechapp.com (Soporte: soporte@tiagotechapp.com)
   * Tiago en WhatsApp: +58 424-7046941 (https://wa.me/584247046941)
   * T-Bot en Telegram: @tiagotech_tbot_bot (https://t.me/tiagotech_tbot_bot)
 `;
