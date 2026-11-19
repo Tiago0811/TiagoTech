@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Página Principal / Landing -->
   <url>
-    <loc>https://tiagotech.netlify.app/</loc>
+    <loc>https://tiagotechapp.com/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,7 +10,7 @@
 
   <!-- Software y Sistemas a la Medida (Servicio Estrella) -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-personalizado.html</loc>
+    <loc>https://tiagotechapp.com/sistema-personalizado.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -18,7 +18,7 @@
 
   <!-- TiagoTech POS & Control de Inventario -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-pos.html</loc>
+    <loc>https://tiagotechapp.com/sistema-pos.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -26,7 +26,7 @@
 
   <!-- Menú Digital QR + WhatsApp -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-menu-qr.html</loc>
+    <loc>https://tiagotechapp.com/sistema-menu-qr.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -34,7 +34,7 @@
 
   <!-- Citas & Agenda Web 24/7 -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-citas.html</loc>
+    <loc>https://tiagotechapp.com/sistema-citas.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -42,7 +42,7 @@
 
   <!-- Facturador & Cotizador Express PDF -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-cotizador.html</loc>
+    <loc>https://tiagotechapp.com/sistema-cotizador.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -50,7 +50,7 @@
 
   <!-- Control de Membresías & Gimnasios -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-gym.html</loc>
+    <loc>https://tiagotechapp.com/sistema-gym.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -58,7 +58,7 @@
 
   <!-- E-Commerce & Tienda Online -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-ecommerce.html</loc>
+    <loc>https://tiagotechapp.com/sistema-ecommerce.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -66,7 +66,7 @@
 
   <!-- Dashboards & Reportes Analíticos -->
   <url>
-    <loc>https://tiagotech.netlify.app/sistema-dashboard.html</loc>
+    <loc>https://tiagotechapp.com/sistema-dashboard.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -74,7 +74,7 @@
 
   <!-- Sobre Nosotros -->
   <url>
-    <loc>https://tiagotech.netlify.app/sobre-nosotros.html</loc>
+    <loc>https://tiagotechapp.com/sobre-nosotros.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
