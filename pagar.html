@@ -666,16 +666,22 @@
 
         <!-- Formulario Final de Comprobante -->
         <form id="submit-pay-form" style="display: flex; flex-direction: column; gap: 14px;">
-          <div>
-            <label for="ref-input" style="display: block; font-size: 13px; font-weight: 700; color: #E2E8F0; margin-bottom: 6px;">
-              🔢 Número de Referencia / ID de Transacción *
-            </label>
-            <input type="text" id="ref-input" class="pay-input" placeholder="Ej: últimos 6 dígitos o referencia completa" maxlength="60" required>
+          <div style="font-size: 12.5px; color: #93C5FD; background: rgba(0, 132, 255, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 9px 13px;">
+            💡 <strong>Solo necesitas completar uno:</strong> escribe el <strong>Nro. de Referencia</strong> <em>o</em> sube la <strong>Captura del Comprobante</strong> (o ambos si prefieres).
           </div>
 
           <div>
-            <label style="display: block; font-size: 13px; font-weight: 700; color: #E2E8F0; margin-bottom: 6px;">
-              📸 Captura o Foto del Comprobante *
+            <label for="ref-input" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 700; color: #E2E8F0; margin-bottom: 6px;">
+              <span>🔢 Número de Referencia / ID de Transacción</span>
+              <span id="ref-opt-badge" style="font-size: 11px; font-family: var(--font-code); color: #38BDF8; font-weight: 600;">Referencia o captura</span>
+            </label>
+            <input type="text" id="ref-input" class="pay-input" placeholder="Ej: últimos 6 dígitos o referencia completa" maxlength="60">
+          </div>
+
+          <div>
+            <label style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 700; color: #E2E8F0; margin-bottom: 6px;">
+              <span>📸 Captura o Foto del Comprobante</span>
+              <span id="proof-opt-badge" style="font-size: 11px; font-family: var(--font-code); color: #38BDF8; font-weight: 600;">Opcional si ingresas referencia</span>
             </label>
             <input type="file" id="proof-input" accept="image/jpeg,image/png,image/webp" style="display: none;">
             <div class="proof-dropzone" id="proof-dropzone">
@@ -761,6 +767,6 @@
 
   <script src="js/canvas-bg.js"></script>
   <script src="js/app.js?v=20261119-pay"></script>
-  <script src="js/pagar.js?v=20261119-pay"></script>
+  <script src="js/pagar.js?v=20261119-flex"></script>
 </body>
 </html>

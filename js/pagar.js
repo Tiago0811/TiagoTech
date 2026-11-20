@@ -346,11 +346,51 @@ document.addEventListener('DOMContentLoaded', () => {
         proofFileInfo.textContent = `${file.name} (optimizado a ${approxKb} KB)`;
         proofDropzone.style.display = 'none';
         proofPreviewWrap.style.display = 'flex';
+        updateProofRequirementBadges();
       };
       img.onerror = () => showError(submitError, 'No pudimos leer esa imagen. Intenta con otra captura.');
       img.src = ev.target.result;
     };
     reader.readAsDataURL(file);
+  }
+
+  const refOptBadge = document.getElementById('ref-opt-badge');
+  const proofOptBadge = document.getElementById('proof-opt-badge');
+
+  function updateProofRequirementBadges() {
+    const hasRef = (refInput?.value || '').trim().length >= 4;
+    const hasProof = !!state.proofBase64;
+    if (hasRef || hasProof) hideError(submitError);
+
+    if (refOptBadge) {
+      if (hasRef) {
+        refOptBadge.textContent = '✅ Referencia lista';
+        refOptBadge.style.color = '#4ADE80';
+      } else if (hasProof) {
+        refOptBadge.textContent = 'Opcional ✓ (ya subiste captura)';
+        refOptBadge.style.color = '#4ADE80';
+      } else {
+        refOptBadge.textContent = 'Referencia o captura';
+        refOptBadge.style.color = '#38BDF8';
+      }
+    }
+
+    if (proofOptBadge) {
+      if (hasProof) {
+        proofOptBadge.textContent = '✅ Captura lista';
+        proofOptBadge.style.color = '#4ADE80';
+      } else if (hasRef) {
+        proofOptBadge.textContent = 'Opcional ✓ (ya ingresaste referencia)';
+        proofOptBadge.style.color = '#4ADE80';
+      } else {
+        proofOptBadge.textContent = 'Opcional si ingresas referencia';
+        proofOptBadge.style.color = '#38BDF8';
+      }
+    }
+  }
+
+  if (refInput) {
+    refInput.addEventListener('input', updateProofRequirementBadges);
   }
 
   if (proofDropzone && proofInput) {
@@ -380,6 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
       proofPreviewImg.src = '';
       proofPreviewWrap.style.display = 'none';
       proofDropzone.style.display = 'flex';
+      updateProofRequirementBadges();
     });
   }
 
@@ -391,16 +432,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!state.client) return;
       const reference = (refInput.value || '').trim();
-      if (reference.length < 4) {
-        return showError(submitError, 'Ingresa el número de referencia o ID de operación (mínimo 4 dígitos).');
-      }
-      if (!state.proofBase64) {
-        return showError(submitError, 'Adjunta la foto o captura de tu comprobante de pago para poder verificarlo.');
+      const hasRef = reference.length >= 4;
+      const hasProof = !!state.proofBase64;
+
+      if (!hasRef && !hasProof) {
+        return showError(submitError, 'Ingresa el número de referencia (mínimo 4 dígitos) o adjunta la captura del comprobante.');
       }
 
       const oldText = submitPayBtn.innerHTML;
       submitPayBtn.disabled = true;
-      submitPayBtn.innerHTML = '⏳ Enviando comprobante seguro...';
+      submitPayBtn.innerHTML = '⏳ Enviando reporte seguro...';
 
       try {
         const res = await fetch('/api/pay/submit', {
@@ -412,8 +453,8 @@ document.addEventListener('DOMContentLoaded', () => {
             payment_method: state.selectedMethod,
             reference,
             payer_note: (noteInput.value || '').trim(),
-            proof_base64: state.proofBase64,
-            proof_mime: state.proofMime
+            proof_base64: state.proofBase64 || '',
+            proof_mime: state.proofMime || ''
           })
         });
         const data = await res.json();
@@ -426,6 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
         refInput.value = '';
         noteInput.value = '';
         if (proofRemoveBtn) proofRemoveBtn.click();
+        updateProofRequirementBadges();
 
         startTracking(data.payment_id, data.status_token, data.amount_usd, data.amount_bs);
       } catch (err) {

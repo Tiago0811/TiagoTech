@@ -195,7 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
                  data-proof-file="${esc(p.proof_filename)}"
                  data-proof-meta="${esc(p.business_name)} • $${esc(p.amount_usd)} USD (${esc(p.amount_bs)}) • Ref: ${esc(p.reference)}"
                  title="Clic para ampliar comprobante">
-          ` : ''}
+          ` : `
+            <div style="width:72px;height:72px;border-radius:10px;border:1px dashed rgba(56,189,248,0.4);background:rgba(0,132,255,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:#38BDF8;text-align:center;flex-shrink:0;padding:4px;">
+              <span style="font-size:20px;">🔢</span>
+              <span>Solo Ref.</span>
+            </div>
+          `}
           <div style="flex:1; min-width:190px;">
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
               <strong style="color:#fff; font-size:15px;">${esc(p.business_name)}</strong>
