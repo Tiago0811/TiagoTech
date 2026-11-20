@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Elementos interactivos que activan la retícula HUD "Target Locked"
-    const TARGETS = 'a, button, .btn, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip, input, select, textarea';
+    const TARGETS = 'a, button, .btn, .btn-adm, .admin-filter-btn, .proof-thumb, .copy-mini-btn, .month-pill-btn, .pay-method-tab, .proof-dropzone, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip, input, select, textarea';
 
     let isTargetHovered = false;
     document.addEventListener('mouseover', (e) => {

@@ -17,20 +17,6 @@
   <link rel="stylesheet" href="css/tech-theme.css?v=20261119-pay">
 
   <style>
-    /* Restaurar cursor nativo en el Panel Admin (sobrescribe cursor: none de main.css) */
-    *, *::before, *::after {
-      cursor: auto !important;
-    }
-    a, button, select, [role="button"], .btn, .btn-adm, .admin-filter-btn {
-      cursor: pointer !important;
-    }
-    input[type="text"], input[type="password"], input[type="number"], textarea {
-      cursor: text !important;
-    }
-    .proof-thumb {
-      cursor: zoom-in !important;
-    }
-
     body {
       min-height: 100vh;
     }
@@ -313,6 +299,9 @@
   </style>
 </head>
 <body>
+  <!-- 🎯 Puntero Personalizado TiagoTech -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
   <canvas id="bg-canvas"></canvas>
 
   <!-- 🔐 VISTA 1: LOGIN ADMINISTRADOR -->
@@ -542,6 +531,7 @@
   <div id="admin-toast" class="admin-toast"></div>
 
   <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js?v=20261119-cursor"></script>
   <script src="js/admin.js?v=20261119-pay"></script>
 </body>
 </html>
