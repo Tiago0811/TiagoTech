@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Pagos & Recibos Oficiales | TiagoTech</title>
+  <meta name="description" content="Consulta tu estado de cuenta, calcula tu mensualidad a tasa oficial BCV, reporta tu pago por Pago Móvil o Binance Pay y descarga tu recibo oficial PDF de TiagoTech.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tiagotechapp.com/pagar">
+
+  <meta property="og:title" content="Portal de Pagos & Recibos | TiagoTech">
+  <meta property="og:description" content="Paga tu mensualidad en segundos y descarga tu Recibo Oficial en PDF con sello digital.">
+  <meta property="og:image" content="https://tiagotechapp.com/assets/img/og-banner.jpg">
+  <meta property="og:url" content="https://tiagotechapp.com/pagar">
+  <meta property="og:type" content="website">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0084FF">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css?v=20261119-pay">
+
+  <style>
+    .pay-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pay-hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .pay-bcv-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(0, 132, 255, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      font-family: var(--font-code);
+      font-size: 13px;
+      color: #E2E8F0;
+      margin-top: 14px;
+    }
+
+    .pay-bcv-pill strong {
+      color: #4ADE80;
+      font-size: 14px;
+    }
+
+    .pay-card {
+      background: rgba(13, 21, 38, 0.88);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(14px);
+      margin-bottom: 22px;
+    }
+
+    .pay-lookup-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .pay-input {
+      width: 100%;
+      background: rgba(8, 12, 20, 0.92);
+      border: 1.5px solid rgba(148, 163, 184, 0.28);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: #fff;
+      font-size: 15px;
+      font-family: var(--font-code);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pay-input:focus {
+      border-color: #0084FF;
+      box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.22);
+    }
+
+    .pay-error-box {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid rgba(239, 68, 68, 0.45);
+      color: #FCA5A5;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .pay-account-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+    }
+
+    .pay-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      font-family: var(--font-code);
+      letter-spacing: 0.4px;
+    }
+
+    .pay-status-badge.status-ok {
+      background: rgba(34, 197, 94, 0.16);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      color: #4ADE80;
+    }
+
+    .pay-status-badge.status-pending {
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.55);
+      color: #FBBF24;
+    }
+
+    .pay-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .pay-metric-box {
+      background: rgba(8, 12, 20, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .pay-metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      margin-bottom: 6px;
+    }
+
+    .pay-metric-val {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .pay-receipt-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(0, 132, 255, 0.10));
+      border: 1px solid rgba(34, 197, 94, 0.42);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 22px;
+    }
+
+    .month-pills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    .month-pill-btn {
+      background: rgba(8, 12, 20, 0.82);
+      border: 1.5px solid rgba(148, 163, 184, 0.22);
+      border-radius: 12px;
+      padding: 12px 10px;
+      color: #CBD5E1;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .month-pill-btn:hover {
+      border-color: #38BDF8;
+      color: #fff;
+    }
+
+    .month-pill-btn.active {
+      background: linear-gradient(135deg, rgba(0, 132, 255, 0.26), rgba(34, 197, 94, 0.18));
+      border-color: #38BDF8;
+      color: #fff;
+      box-shadow: 0 0 16px rgba(0, 132, 255, 0.28);
+    }
+
+    .pay-total-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: rgba(0, 132, 255, 0.1);
+      border: 1px solid rgba(0, 132, 255, 0.35);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+    }
+
+    .pay-method-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .pay-method-tab {
+      background: rgba(8, 12, 20, 0.85);
+      border: 1.5px solid rgba(148, 163, 184, 0.22);
+      border-radius: 12px;
+      padding: 13px 14px;
+      color: #CBD5E1;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .pay-method-tab.active {
+      background: rgba(0, 132, 255, 0.2);
+      border-color: #38BDF8;
+      color: #fff;
+    }
+
+    .pay-bank-panel {
+      background: rgba(8, 12, 20, 0.78);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 22px;
+    }
+
+    .bank-detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.14);
+      font-size: 14px;
+    }
+
+    .bank-detail-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .copy-mini-btn {
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38BDF8;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-mini-btn:hover {
+      background: rgba(56, 189, 248, 0.28);
+      color: #fff;
+    }
+
+    .copy-mini-btn.copied {
+      background: rgba(34, 197, 94, 0.25);
+      border-color: #22C55E;
+      color: #4ADE80;
+    }
+
+    .proof-dropzone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 2px dashed rgba(56, 189, 248, 0.4);
+      border-radius: 14px;
+      padding: 26px 18px;
+      background: rgba(0, 132, 255, 0.05);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .proof-dropzone:hover, .proof-dropzone.dragover {
+      border-color: #22C55E;
+      background: rgba(34, 197, 94, 0.08);
+    }
+
+    .proof-preview-wrap {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      background: rgba(8, 12, 20, 0.85);
+      border: 1px solid rgba(34, 197, 94, 0.45);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .proof-preview-wrap img {
+      width: 68px;
+      height: 68px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .track-card {
+      text-align: center;
+      padding: 36px 26px;
+    }
+
+    .track-icon-circle {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin-bottom: 18px;
+    }
+
+    .track-icon-circle.pending {
+      background: rgba(0, 132, 255, 0.16);
+      border: 2px solid #38BDF8;
+      box-shadow: 0 0 30px rgba(0, 132, 255, 0.35);
+      animation: pulseTrack 2s infinite;
+    }
+
+    .track-icon-circle.approved {
+      background: rgba(34, 197, 94, 0.2);
+      border: 2px solid #22C55E;
+      box-shadow: 0 0 35px rgba(34, 197, 94, 0.45);
+    }
+
+    .track-icon-circle.rejected {
+      background: rgba(239, 68, 68, 0.18);
+      border: 2px solid #EF4444;
+    }
+
+    @keyframes pulseTrack {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    @media (max-width: 680px) {
+      .pay-card { padding: 20px 16px; }
+      .pay-lookup-row { flex-direction: column; }
+      .pay-metrics-grid { grid-template-columns: 1fr; }
+      .month-pills-grid { grid-template-columns: repeat(2, 1fr); }
+      .pay-method-tabs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🧭 Cabecera -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo" id="main-logo" title="TiagoTech - Inicio">
+        <span class="code-tag">&lt;</span><span class="logo-text">Tiago<span class="logo-accent">Tech</span></span><span class="code-tag"> /&gt;</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#sistemas">Sistemas</a></li>
+          <li><a href="t-bot.html" style="color: var(--accent-secondary); font-weight: 700;">T-Bot 🤖</a></li>
+          <li><a href="pagar.html" style="color: #38BDF8; font-weight: 800;">💳 Pagar</a></li>
+          <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📱 Menú Móvil -->
+  <div class="mobile-nav-overlay" id="mobile-nav-menu">
+    <div class="mobile-identity-box" style="border-bottom: 1px solid var(--card-border); padding-bottom: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+      <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 32px; height: 32px; object-fit: contain;">
+      <div>
+        <div class="mobile-identity-title" style="color: #fff; font-size: 15px; font-weight: 800;">
+          Tiago<span style="color: var(--accent-secondary);">Tech</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 2px 0 0 0;">Portal Oficial de Pagos & Recibos</p>
+      </div>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="index.html#sistemas">Sistemas</a></li>
+      <li><a href="t-bot.html" style="color: var(--accent-secondary); font-weight: 700;">T-Bot 🤖</a></li>
+      <li><a href="pagar.html" style="color: #38BDF8; font-weight: 800;">💳 Pagar Mensualidad</a></li>
+      <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- 💳 CONTENIDO PRINCIPAL -->
+  <main class="pay-wrapper">
+    <div class="pay-hero">
+      <div class="tech-tagline" style="justify-content: center;">PORTAL OFICIAL DE PAGOS &amp; RECIBOS PDF</div>
+      <h1 style="font-size: clamp(26px, 4.5vw, 38px); margin: 10px 0 8px;">
+        Paga tu Mensualidad <span style="color: var(--accent-secondary);">en Segundos</span>
+      </h1>
+      <p style="color: var(--text-secondary); font-size: 15px; max-width: 600px; margin: 0 auto;">
+        Consulta tu estado de cuenta por Cédula o RIF, calcula tu monto exacto a tasa oficial BCV, reporta tu pago y descarga tu Recibo Oficial con sello digital.
+      </p>
+      <div class="pay-bcv-pill">
+        <span>🇻🇪 Tasa Oficial BCV hoy:</span>
+        <strong id="live-bcv-rate">Cargando...</strong>
+        <span id="live-bcv-date" style="font-size: 11px; color: var(--text-muted);"></span>
+      </div>
+    </div>
+
+    <!-- PASO 1: CONSULTA POR CÉDULA / RIF -->
+    <section class="pay-card" id="lookup-card">
+      <h2 style="font-size: 19px; margin: 0 0 6px; color: #fff;">🔍 Consulta tu Estado de Cuenta</h2>
+      <p style="font-size: 13.5px; color: var(--text-secondary); margin: 0;">
+        Ingresa la <strong>Cédula o RIF</strong> con la que registraste tu sistema en TiagoTech (puedes escribir solo los números).
+      </p>
+
+      <form id="lookup-form" autocomplete="off">
+        <div class="pay-lookup-row">
+          <input type="text" id="cedula-input" class="pay-input" placeholder="Ej: V-28515043 o 28515043" maxlength="20" required aria-label="Cédula o RIF">
+          <button type="submit" id="lookup-btn" class="btn" style="white-space: nowrap; padding: 14px 24px;">
+            🔍 Consultar Cuenta
+          </button>
+        </div>
+        <div id="lookup-error" class="pay-error-box"></div>
+      </form>
+
+      <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--text-muted);">
+        <span>🔒 Privacidad protegida</span>
+        <span>⚡ Tasa BCV en vivo</span>
+        <span>📄 Recibo PDF instantáneo</span>
+        <span>🤖 También en <a href="https://t.me/tiagotech_tbot_bot" target="_blank" rel="noopener noreferrer" style="color: #2AABEE; text-decoration: none; font-weight: 600;">@tiagotech_tbot_bot</a></span>
+      </div>
+    </section>
+
+    <!-- PASO 2: ESTADO DE CUENTA + RECIBO + REPORTE DE PAGO -->
+    <section id="account-section" style="display: none;">
+      <div class="pay-card">
+        <div class="pay-account-header">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px;">
+              <h2 id="acc-business" style="margin: 0; font-size: 22px; color: #fff;">—</h2>
+              <span id="acc-status-badge" class="pay-status-badge status-ok">🟢 AL DÍA</span>
+            </div>
+            <div style="font-size: 13px; color: var(--text-secondary); display: flex; flex-wrap: wrap; gap: 12px;">
+              <span>👤 Titular: <strong id="acc-holder" style="color: #E2E8F0;">—</strong></span>
+              <span>🪪 ID: <code id="acc-cedula" style="color: #38BDF8;">—</code></span>
+              <span>💻 <strong id="acc-system" style="color: #E2E8F0;">—</strong></span>
+            </div>
+          </div>
+          <button type="button" id="change-client-btn" class="btn btn-outline" style="padding: 7px 14px; font-size: 12px;">
+            🔄 Otra Cédula
+          </button>
+        </div>
+
+        <div class="pay-metrics-grid">
+          <div class="pay-metric-box">
+            <div class="pay-metric-label">Mensualidad</div>
+            <div class="pay-metric-val" id="acc-monthly-usd" style="color: #4ADE80;">$0 USD</div>
+          </div>
+          <div class="pay-metric-box">
+            <div class="pay-metric-label">Equivalente 1 Mes (BCV)</div>
+            <div class="pay-metric-val" id="acc-monthly-bs" style="color: #38BDF8;">Bs. 0,00</div>
+          </div>
+          <div class="pay-metric-box">
+            <div class="pay-metric-label">Próximo Corte</div>
+            <div class="pay-metric-val" id="acc-next-due" style="font-size: 15px;">—</div>
+          </div>
+        </div>
+
+        <!-- Banner de Recibo Oficial Descargable -->
+        <div class="pay-receipt-banner" id="latest-receipt-box">
+          <div>
+            <div style="font-weight: 800; color: #4ADE80; font-size: 14px; margin-bottom: 3px;">
+              🧾 Recibo Oficial Disponible para Descarga
+            </div>
+            <div id="latest-receipt-meta" style="font-size: 12.5px; color: #CBD5E1;">—</div>
+          </div>
+          <a id="latest-receipt-download" href="#" class="btn" style="background: linear-gradient(135deg, #22C55E, #16A34A); padding: 10px 18px; font-size: 13px;">
+            📥 Descargar PDF
+          </a>
+        </div>
+
+        <!-- Formulario de Reporte de Pago -->
+        <h3 id="pay-section-heading" style="font-size: 18px; color: #fff; margin: 6px 0 4px;">Reportar Pago de Mensualidad</h3>
+        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">
+          1. Selecciona cuántos meses deseas cancelar &rarr; 2. Realiza la transferencia &rarr; 3. Adjunta tu comprobante.
+        </p>
+
+        <div class="month-pills-grid">
+          <button type="button" class="month-pill-btn active" data-months="1">1 Mes</button>
+          <button type="button" class="month-pill-btn" data-months="2">2 Meses</button>
+          <button type="button" class="month-pill-btn" data-months="3">3 Meses</button>
+          <button type="button" class="month-pill-btn" data-months="6">6 Meses</button>
+        </div>
+
+        <div class="pay-total-banner">
+          <div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: #93C5FD; font-family: var(--font-code);">Total a Transferir</div>
+            <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 2px;">
+              <strong id="summary-total-usd" style="font-size: 24px; color: #fff;">$0 USD</strong>
+              <span style="color: #64748B;">/</span>
+              <strong id="summary-total-bs" style="font-size: 20px; color: #4ADE80;">Bs. 0,00</strong>
+            </div>
+          </div>
+          <div id="summary-rate-note" style="font-size: 11.5px; color: var(--text-muted); font-family: var(--font-code);">—</div>
+        </div>
+
+        <!-- Pestañas de Método de Pago -->
+        <div class="pay-method-tabs">
+          <button type="button" class="pay-method-tab active" data-method="pago_movil">
+            🇻🇪 Pago Móvil (Bs)
+          </button>
+          <button type="button" class="pay-method-tab" data-method="binance">
+            🟡 Binance Pay (USDT)
+          </button>
+        </div>
+
+        <!-- Datos Pago Móvil -->
+        <div class="pay-bank-panel" id="panel-pago-movil">
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Banco</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: #fff;">Banco de Venezuela (0102)</strong>
+              <button type="button" class="copy-mini-btn" data-copy="0102">📋 Copiar</button>
+            </div>
+          </div>
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Teléfono</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: #fff; font-family: var(--font-code);">0424-7046941</strong>
+              <button type="button" class="copy-mini-btn" data-copy="04247046941">📋 Copiar</button>
+            </div>
+          </div>
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Cédula</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: #fff; font-family: var(--font-code);">V-28.515.043</strong>
+              <button type="button" class="copy-mini-btn" data-copy="28515043">📋 Copiar</button>
+            </div>
+          </div>
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Monto Exacto (BCV)</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong id="pm-amount-display" style="color: #4ADE80; font-family: var(--font-code);">Bs. 0,00</strong>
+              <button type="button" class="copy-mini-btn" data-copy="__PM_AMOUNT__">📋 Copiar</button>
+            </div>
+          </div>
+          <div style="margin-top: 12px; text-align: right;">
+            <button type="button" class="copy-mini-btn" data-copy="__PM_ALL__" style="padding: 7px 14px;">
+              📋 Copiar todos los datos de Pago Móvil
+            </button>
+          </div>
+        </div>
+
+        <!-- Datos Binance Pay -->
+        <div class="pay-bank-panel" id="panel-binance" style="display: none;">
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Binance Pay ID</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: #FACC15; font-family: var(--font-code);">1189979753</strong>
+              <button type="button" class="copy-mini-btn" data-copy="1189979753">📋 Copiar</button>
+            </div>
+          </div>
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Correo Binance</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: #fff; font-family: var(--font-code);">tiagolozada2001@gmail.com</strong>
+              <button type="button" class="copy-mini-btn" data-copy="tiagolozada2001@gmail.com">📋 Copiar</button>
+            </div>
+          </div>
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Titular</span>
+            <strong style="color: #fff;">Santiago Lozada</strong>
+          </div>
+          <div class="bank-detail-row">
+            <span style="color: var(--text-muted);">Monto Exacto</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong id="bn-amount-display" style="color: #4ADE80; font-family: var(--font-code);">0 USDT</strong>
+              <button type="button" class="copy-mini-btn" data-copy="__BN_AMOUNT__">📋 Copiar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario Final de Comprobante -->
+        <form id="submit-pay-form" style="display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <label for="ref-input" style="display: block; font-size: 13px; font-weight: 700; color: #E2E8F0; margin-bottom: 6px;">
+              🔢 Número de Referencia / ID de Transacción *
+            </label>
+            <input type="text" id="ref-input" class="pay-input" placeholder="Ej: últimos 6 dígitos o referencia completa" maxlength="60" required>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 13px; font-weight: 700; color: #E2E8F0; margin-bottom: 6px;">
+              📸 Captura o Foto del Comprobante *
+            </label>
+            <input type="file" id="proof-input" accept="image/jpeg,image/png,image/webp" style="display: none;">
+            <div class="proof-dropzone" id="proof-dropzone">
+              <span style="font-size: 30px;">📤</span>
+              <strong style="color: #fff; font-size: 14px;">Toca aquí para subir la captura del pago</strong>
+              <span style="font-size: 12px; color: var(--text-muted);">JPG, PNG o WEBP • Compresión automática para celular</span>
+            </div>
+            <div class="proof-preview-wrap" id="proof-preview-wrap">
+              <img id="proof-preview-img" src="" alt="Vista previa del comprobante">
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-weight: 700; color: #4ADE80; font-size: 13px;">✅ Comprobante cargado</div>
+                <div id="proof-file-info" style="font-size: 12px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">—</div>
+              </div>
+              <button type="button" id="proof-remove-btn" class="copy-mini-btn" style="border-color: rgba(239,68,68,0.5); color: #FCA5A5; background: rgba(239,68,68,0.12);">
+                🗑️ Quitar
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label for="note-input" style="display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">
+              📝 Nota opcional (ej. nombre del titular que transfirió)
+            </label>
+            <input type="text" id="note-input" class="pay-input" placeholder="Opcional..." maxlength="200" style="font-family: var(--font-main); font-size: 14px;">
+          </div>
+
+          <div id="submit-error" class="pay-error-box"></div>
+
+          <button type="submit" id="submit-pay-btn" class="btn" style="width: 100%; justify-content: center; padding: 15px 24px; font-size: 15px; background: linear-gradient(135deg, #0084FF 0%, #22C55E 100%);">
+            🚀 Enviar Comprobante para Verificación
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- PASO 3: SEGUIMIENTO EN TIEMPO REAL + DESCARGA DE RECIBO PDF -->
+    <section id="tracking-section" style="display: none;">
+      <div class="pay-card track-card">
+        <div id="track-icon" class="track-icon-circle pending">⏳</div>
+        <h2 id="track-title" style="font-size: 22px; color: #fff; margin: 0 0 10px;">Comprobante Recibido — En Verificación</h2>
+        <p id="track-subtitle" style="font-size: 14px; color: var(--text-secondary); max-width: 540px; margin: 0 auto 22px; line-height: 1.6;"></p>
+
+        <div style="display: inline-flex; gap: 20px; flex-wrap: wrap; justify-content: center; background: rgba(8,12,20,0.85); border: 1px solid rgba(148,163,184,0.2); border-radius: 12px; padding: 12px 20px; margin-bottom: 24px; font-family: var(--font-code); font-size: 13px;">
+          <span>Ticket: <strong id="track-ticket-id" style="color: #38BDF8;">—</strong></span>
+          <span>Monto: <strong id="track-amount" style="color: #4ADE80;">—</strong></span>
+        </div>
+
+        <div id="track-actions" style="display: flex; flex-direction: column; gap: 10px; max-width: 380px; margin: 0 auto;"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 🦶 Pie de Página -->
+  <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; background: rgba(0,0,0,0.3);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+      <p style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 20px; height: 20px; vertical-align: middle;">
+        <span>&copy; 2026 <strong style="color: #fff;">Tiago<span style="color: var(--accent-secondary);">Tech</span></strong> • Portal de Pagos Oficial</span>
+      </p>
+      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
+        <a href="mailto:pagos@tiagotechapp.com" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">📧 pagos@tiagotechapp.com</a>
+        <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">Inicio</a>
+        <a href="admin.html" style="color: var(--text-muted); text-decoration: none; font-size: 12px;" title="Panel Administrativo TiagoTech">🔐 Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botones Flotantes -->
+  <div class="floating-wa-container">
+    <div class="floating-buttons-stack">
+      <a href="https://t.me/tiagotech_tbot_bot" target="_blank" rel="noopener noreferrer" class="floating-tg-btn" aria-label="Hablar con T-Bot en Telegram" title="Hablar con T-Bot en Telegram (@tiagotech_tbot_bot)" style="padding:0;overflow:visible;">
+        <img src="assets/img/T-Bot/TELEGRAMBOT_avatar.webp" alt="T-Bot Telegram" class="floating-tg-avatar" style="width:100%!important;height:100%!important;border-radius:50%!important;object-fit:cover!important;display:block!important;">
+        <span class="floating-tg-pulse"></span>
+        <span class="floating-channel-badge">BOT</span>
+        <span class="floating-channel-tooltip">T-Bot en Telegram 🤖</span>
+      </a>
+      <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estoy%20en%20el%20portal%20de%20pagos%20de%20TiagoTech%20y%20necesito%20ayuda." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" id="wa-btn" aria-label="Chatear por WhatsApp" title="Soporte de Pagos por WhatsApp">
+        <img src="assets/img/whatsapp.svg" alt="WhatsApp">
+        <span class="floating-wa-pulse"></span>
+        <span class="floating-wa-badge">1</span>
+      </a>
+    </div>
+  </div>
+
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/app.js?v=20261119-pay"></script>
+  <script src="js/pagar.js?v=20261119-pay"></script>
+</body>
+</html>

@@ -3,10 +3,11 @@
  * Brinda carga ultra-rápida, aceleración en caché y funcionamiento offline para TiagoTech
  */
 
-const CACHE_NAME = 'tiagotech-v2026-tbot-gemini-v6';
+const CACHE_NAME = 'tiagotech-v2026-portal-pagos-v7';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
+  '/pagar.html',
   '/t-bot.html',
   '/sistema-telegram-bot.html',
   '/sobre-nosotros.html',
@@ -63,8 +64,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Ignorar APIs externas y servicios de correo
-  if (url.hostname.includes('web3forms.com')) {
+  // Ignorar APIs dinámicas, panel admin y servicios externos
+  if (
+    url.hostname.includes('web3forms.com') ||
+    url.pathname.startsWith('/api/') ||
+    url.pathname === '/admin' ||
+    url.pathname === '/admin.html'
+  ) {
     return;
   }
 

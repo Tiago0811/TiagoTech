@@ -372,12 +372,14 @@ document.addEventListener('DOMContentLoaded', () => {
             "💼 **Planes y Cotización:** Cotización personalizada según catálogo y módulos requeridos."
     },
     pagos: {
-      title: "💳 Métodos de Pago Disponibles",
-      text: "Para la contratación de cualquiera de los sistemas, aceptamos:\n\n" +
-            "1. 🇻🇪 **Pago Móvil (Bs)**: A tasa oficial del día.\n" +
+      title: "💳 Portal de Pagos & Métodos Disponibles",
+      pageUrl: "pagar.html",
+      text: "Si ya eres cliente de TiagoTech, puedes consultar tu estado de cuenta, ver tu monto exacto a tasa oficial BCV, reportar tu pago y descargar tu Recibo Oficial PDF directamente en nuestro Portal de Pagos.\n\n" +
+            "Aceptamos:\n" +
+            "1. 🇻🇪 **Pago Móvil (Bs)**: Banco de Venezuela (0102) a tasa oficial BCV del día.\n" +
             "2. 🟡 **Binance Pay / USDT**: Pagos instantáneos sin comisiones vía criptoactivos estables.\n" +
             "3. 🏦 **Transferencia Bancaria Nacional**: Cuentas bancarias venezolanas disponibles.\n\n" +
-            "La activación y configuración de tu sistema se inicia inmediatamente tras la confirmación del pago."
+            "La activación y emisión de tu Recibo Oficial en PDF se procesa al confirmar tu pago."
     },
     garantias: {
       title: "🛡️ Garantías y Soporte TiagoTech",
@@ -492,6 +494,15 @@ document.addEventListener('DOMContentLoaded', () => {
             </span>
             <span class="chatbot-sys-arrow">›</span>
           </button>
+
+          <a href="pagar.html" class="chatbot-system-row" style="text-decoration:none; color:inherit; border-color: rgba(34, 197, 94, 0.45); background: rgba(34, 197, 94, 0.08);">
+            <span class="chatbot-sys-icon">💳</span>
+            <span class="chatbot-sys-info">
+              <strong style="color: #4ADE80;">Pagar Mensualidad / Recibo PDF</strong>
+              <small>Consulta tu cuenta por Cédula, tasa BCV y descarga tu recibo</small>
+            </span>
+            <span class="chatbot-sys-arrow">↗</span>
+          </a>
 
           <button type="button" class="chatbot-system-row" data-key="pagos">
             <span class="chatbot-sys-icon">💳</span>

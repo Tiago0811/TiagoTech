@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Privado de Clientes & Pagos | TiagoTech</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0084FF">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-theme.css?v=20261119-pay">
+
+  <style>
+    body {
+      min-height: 100vh;
+    }
+
+    .adm-login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .adm-login-card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(13, 21, 38, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 20px;
+      padding: 34px 28px;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(16px);
+      text-align: center;
+    }
+
+    .adm-input {
+      width: 100%;
+      background: rgba(8, 12, 20, 0.94);
+      border: 1.5px solid rgba(148, 163, 184, 0.28);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .adm-input:focus {
+      border-color: #0084FF;
+      box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.22);
+    }
+
+    .adm-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .adm-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: rgba(13, 21, 38, 0.88);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    .adm-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .adm-kpi-card {
+      background: rgba(13, 21, 38, 0.86);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 14px;
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .adm-kpi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      margin-bottom: 6px;
+    }
+
+    .adm-kpi-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .adm-panel {
+      background: rgba(13, 21, 38, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 22px;
+      backdrop-filter: blur(12px);
+    }
+
+    .adm-panel.highlight-pending {
+      border-color: rgba(245, 158, 11, 0.55);
+      box-shadow: 0 0 28px rgba(245, 158, 11, 0.12);
+    }
+
+    .pending-pay-card, .client-row-card, .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: rgba(8, 12, 20, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 13px;
+      padding: 15px 16px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .client-row-card.is-ok {
+      border-left: 3px solid #22C55E;
+    }
+
+    .client-row-card.is-pending {
+      border-left: 3px solid #F59E0B;
+    }
+
+    .client-row-main {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .client-row-actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .proof-thumb {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1.5px solid #38BDF8;
+      cursor: zoom-in;
+      flex-shrink: 0;
+    }
+
+    .mini-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-code);
+    }
+
+    .tag-green { background: rgba(34, 197, 94, 0.16); color: #4ADE80; border: 1px solid rgba(34, 197, 94, 0.4); }
+    .tag-amber { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .tag-blue { background: rgba(0, 132, 255, 0.16); color: #38BDF8; border: 1px solid rgba(0, 132, 255, 0.4); }
+
+    .btn-adm {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 8px 13px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-adm-green { background: rgba(34, 197, 94, 0.18); border-color: rgba(34, 197, 94, 0.5); color: #4ADE80; }
+    .btn-adm-green:hover { background: #22C55E; color: #052e16; }
+
+    .btn-adm-blue { background: rgba(0, 132, 255, 0.16); border-color: rgba(56, 189, 248, 0.45); color: #38BDF8; }
+    .btn-adm-blue:hover { background: #0084FF; color: #fff; }
+
+    .btn-adm-wa { background: rgba(37, 211, 102, 0.16); border-color: rgba(37, 211, 102, 0.45); color: #4ADE80; }
+    .btn-adm-wa:hover { background: #25D366; color: #052e16; }
+
+    .btn-adm-red { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.45); color: #FCA5A5; }
+    .btn-adm-red:hover { background: #EF4444; color: #fff; }
+
+    .btn-adm-ghost { background: rgba(148, 163, 184, 0.1); border-color: rgba(148, 163, 184, 0.25); color: #CBD5E1; }
+    .btn-adm-ghost:hover { border-color: #fff; color: #fff; }
+
+    .admin-filter-btn {
+      background: rgba(8, 12, 20, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: #CBD5E1;
+      border-radius: 9px;
+      padding: 8px 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .admin-filter-btn.active {
+      background: rgba(0, 132, 255, 0.22);
+      border-color: #38BDF8;
+      color: #fff;
+    }
+
+    .adm-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 16, 0.82);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .adm-modal {
+      width: 100%;
+      max-width: 520px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #0D1526;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+    }
+
+    .adm-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .adm-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #94A3B8;
+      margin-bottom: 5px;
+    }
+
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10000;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid #22C55E;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(14px);
+      pointer-events: none;
+      transition: all 0.25s ease;
+    }
+
+    .admin-toast.show { opacity: 1; transform: translateY(0); }
+    .admin-toast.err { border-color: #EF4444; color: #FCA5A5; }
+
+    @media (max-width: 640px) {
+      .adm-form-grid { grid-template-columns: 1fr; }
+      .adm-panel { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🔐 VISTA 1: LOGIN ADMINISTRADOR -->
+  <section class="adm-login-screen" id="admin-login-view" style="display: none;">
+    <div class="adm-login-card">
+      <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 52px; height: 52px; margin-bottom: 12px;">
+      <h1 style="font-size: 22px; margin: 0 0 6px; color: #fff;">Panel Privado TiagoTech</h1>
+      <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 22px;">
+        Acceso exclusivo de administración de clientes, cobros y recibos PDF.
+      </p>
+      <form id="admin-login-form" style="display: flex; flex-direction: column; gap: 12px; text-align: left;">
+        <div>
+          <label for="admin-password" style="display: block; font-size: 12px; color: #94A3B8; margin-bottom: 6px;">Contraseña Maestra</label>
+          <input type="password" id="admin-password" class="adm-input" placeholder="••••••••••••" required autocomplete="current-password">
+        </div>
+        <div id="admin-login-error" style="display: none; color: #FCA5A5; font-size: 13px; background: rgba(239,68,68,0.14); border: 1px solid rgba(239,68,68,0.4); border-radius: 8px; padding: 9px 12px;"></div>
+        <button type="submit" id="admin-login-btn" class="btn" style="width: 100%; justify-content: center; padding: 13px;">
+          🔓 Entrar al Panel
+        </button>
+      </form>
+      <div style="margin-top: 18px; font-size: 12px;">
+        <a href="index.html" style="color: var(--text-muted); text-decoration: none;">← Volver a tiagotechapp.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📊 VISTA 2: DASHBOARD ADMINISTRATIVO -->
+  <main class="adm-container" id="admin-dash-view" style="display: none;">
+    <div class="adm-topbar">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 34px; height: 34px;">
+        <div>
+          <div style="font-weight: 800; font-size: 17px; color: #fff;">
+            Tiago<span style="color: var(--accent-secondary);">Tech</span> <span class="mini-tag tag-blue" style="margin-left: 6px;">ADMIN PANEL</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted);">Gestión en vivo de Clientes, Pagos Web &amp; Recibos PDF</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button type="button" id="btn-new-client" class="btn-adm btn-adm-green">➕ Nuevo Cliente</button>
+        <button type="button" id="btn-sync-sheets" class="btn-adm btn-adm-blue">🔄 Sincronizar Sheets</button>
+        <button type="button" id="btn-refresh-dash" class="btn-adm btn-adm-ghost">↻ Actualizar</button>
+        <a href="pagar.html" target="_blank" class="btn-adm btn-adm-ghost">💳 Portal Pagos</a>
+        <button type="button" id="btn-logout" class="btn-adm btn-adm-red">🚪 Salir</button>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="adm-kpi-grid">
+      <div class="adm-kpi-card">
+        <div class="adm-kpi-label">👥 Total Clientes</div>
+        <div class="adm-kpi-val" id="kpi-total-clients">—</div>
+      </div>
+      <div class="adm-kpi-card">
+        <div class="adm-kpi-label">🟢 Al Día</div>
+        <div class="adm-kpi-val" id="kpi-up-to-date" style="color: #4ADE80;">—</div>
+      </div>
+      <div class="adm-kpi-card">
+        <div class="adm-kpi-label">🟠 Pendientes</div>
+        <div class="adm-kpi-val" id="kpi-pending" style="color: #FBBF24;">—</div>
+      </div>
+      <div class="adm-kpi-card">
+        <div class="adm-kpi-label">💵 Cobrado / Proyectado</div>
+        <div class="adm-kpi-val" id="kpi-mrr">—</div>
+      </div>
+      <div class="adm-kpi-card">
+        <div class="adm-kpi-label">🇻🇪 Tasa BCV</div>
+        <div class="adm-kpi-val" id="kpi-bcv" style="font-size: 18px; color: #38BDF8;">—</div>
+      </div>
+      <div class="adm-kpi-card">
+        <div class="adm-kpi-label">🖥️ Salud VPS</div>
+        <div class="adm-kpi-val" id="kpi-vps" style="font-size: 14px; color: #CBD5E1; margin-top: 4px;">—</div>
+      </div>
+    </div>
+
+    <!-- BANDEJA DE PAGOS WEB PENDIENTES -->
+    <section class="adm-panel highlight-pending" id="pending-payments-section" style="display: none;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+        <h2 style="margin: 0; font-size: 18px; color: #FBBF24;">🔔 Pagos Web Esperando Aprobación</h2>
+        <span id="pending-count-badge" class="mini-tag tag-amber">0</span>
+      </div>
+      <div id="pending-payments-list"></div>
+    </section>
+
+    <!-- DIRECTORIO COMPLETO DE CLIENTES -->
+    <section class="adm-panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;">
+        <h2 style="margin: 0; font-size: 18px; color: #fff;">📋 Directorio de Clientes</h2>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; flex: 1; justify-content: flex-end;">
+          <input type="text" id="client-search-input" class="adm-input" placeholder="🔍 Buscar negocio, nombre, cédula o sistema..." style="max-width: 300px; padding: 8px 12px; font-size: 13px;">
+          <button type="button" class="admin-filter-btn active" data-filter="ALL">Todos</button>
+          <button type="button" class="admin-filter-btn" data-filter="AL_DIA">🟢 Al Día</button>
+          <button type="button" class="admin-filter-btn" data-filter="PENDIENTE">🟠 Pendientes</button>
+        </div>
+      </div>
+      <div id="clients-list-container"></div>
+    </section>
+
+    <!-- HISTORIAL DE RECIBOS PDF -->
+    <section class="adm-panel">
+      <h2 style="margin: 0 0 14px; font-size: 18px; color: #fff;">🧾 Últimos Recibos Oficiales Emitidos</h2>
+      <div id="receipts-list-container"></div>
+    </section>
+  </main>
+
+  <!-- MODAL CREAR / EDITAR CLIENTE -->
+  <div class="adm-modal-backdrop" id="client-modal">
+    <div class="adm-modal">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 id="client-modal-title" style="margin: 0; color: #fff; font-size: 17px;">➕ Nuevo Cliente</h3>
+        <button type="button" data-close-modal class="btn-adm btn-adm-ghost" style="padding: 4px 10px;">✕</button>
+      </div>
+      <form id="client-form" style="display: flex; flex-direction: column; gap: 12px;">
+        <input type="hidden" name="clean_cedula">
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label>Cédula o RIF *</label>
+            <input type="text" name="cedula" class="adm-input" placeholder="Ej: V-28515043" required>
+          </div>
+          <div class="adm-field">
+            <label>Teléfono WhatsApp</label>
+            <input type="text" name="phone" class="adm-input" placeholder="Ej: 04247046941">
+          </div>
+          <div class="adm-field">
+            <label>Nombre del Cliente *</label>
+            <input type="text" name="client_name" class="adm-input" placeholder="Nombre y apellido" required>
+          </div>
+          <div class="adm-field">
+            <label>Nombre del Negocio *</label>
+            <input type="text" name="business_name" class="adm-input" placeholder="Ej: Barbería Elite" required>
+          </div>
+          <div class="adm-field" style="grid-column: 1 / -1;">
+            <label>Sistema Contratado</label>
+            <input type="text" name="system_name" class="adm-input" placeholder="Ej: Sistema POS & Inventario">
+          </div>
+          <div class="adm-field">
+            <label>Mensualidad ($ USD)</label>
+            <input type="number" step="0.01" min="1" name="monthly_fee" class="adm-input" value="20" required>
+          </div>
+          <div class="adm-field">
+            <label>Día de Corte (1-31)</label>
+            <input type="number" min="1" max="31" name="due_day" class="adm-input" value="5" required>
+          </div>
+          <div class="adm-field">
+            <label>Mes Pendiente / Corte</label>
+            <input type="text" name="pending_month" class="adm-input" placeholder="Ej: Diciembre 2026">
+          </div>
+          <div class="adm-field">
+            <label>Estado</label>
+            <select name="status" class="adm-input">
+              <option value="PENDIENTE">🟠 Pendiente</option>
+              <option value="AL_DIA">🟢 Al Día</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
+          <button type="button" id="client-delete-btn" class="btn-adm btn-adm-red" style="display: none;">🗑️ Eliminar</button>
+          <div style="display: flex; gap: 8px; margin-left: auto;">
+            <button type="button" data-close-modal class="btn-adm btn-adm-ghost">Cancelar</button>
+            <button type="submit" class="btn-adm btn-adm-green" style="padding: 9px 18px;">💾 Guardar Cliente</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL REGISTRAR PAGO MANUAL -->
+  <div class="adm-modal-backdrop" id="manual-pay-modal">
+    <div class="adm-modal" style="max-width: 440px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="margin: 0; color: #4ADE80; font-size: 17px;">✅ Registrar Pago &amp; Emitir PDF</h3>
+        <button type="button" data-close-modal class="btn-adm btn-adm-ghost" style="padding: 4px 10px;">✕</button>
+      </div>
+      <div id="mp-client-label" style="font-size: 13px; color: #38BDF8; margin-bottom: 14px; font-weight: 600;"></div>
+      <form id="manual-pay-form" style="display: flex; flex-direction: column; gap: 12px;">
+        <input type="hidden" name="cedula">
+        <input type="hidden" name="monthly_base">
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label>Meses a Aprobar</label>
+            <select name="months" class="adm-input">
+              <option value="1">1 Mes</option>
+              <option value="2">2 Meses</option>
+              <option value="3">3 Meses</option>
+              <option value="6">6 Meses</option>
+              <option value="12">12 Meses</option>
+            </select>
+          </div>
+          <div class="adm-field">
+            <label>Monto Total ($ USD)</label>
+            <input type="number" step="0.01" name="amount_usd" class="adm-input" required>
+          </div>
+        </div>
+        <div class="adm-field">
+          <label>Método de Pago</label>
+          <select name="payment_method" class="adm-input">
+            <option value="Pago Móvil (BDV 0102)">Pago Móvil (BDV 0102)</option>
+            <option value="Binance Pay (USDT)">Binance Pay (USDT)</option>
+            <option value="Efectivo USD / COP">Efectivo USD / COP</option>
+            <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+          </select>
+        </div>
+        <div class="adm-field">
+          <label>Referencia</label>
+          <input type="text" name="reference" class="adm-input" placeholder="Ej: 123456 o Efectivo">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px;">
+          <button type="button" data-close-modal class="btn-adm btn-adm-ghost">Cancelar</button>
+          <button type="submit" class="btn-adm btn-adm-green" style="padding: 10px 18px;">✅ Aprobar y Generar PDF</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL VISOR DE COMPROBANTE -->
+  <div class="adm-modal-backdrop" id="proof-modal">
+    <div class="adm-modal" style="max-width: 640px; text-align: center;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <strong id="proof-modal-meta" style="color: #E2E8F0; font-size: 13px;">Comprobante</strong>
+        <button type="button" data-close-modal class="btn-adm btn-adm-ghost" style="padding: 4px 10px;">✕</button>
+      </div>
+      <img id="proof-modal-img" src="" alt="Comprobante ampliado" style="max-width: 100%; max-height: 75vh; border-radius: 12px; border: 1px solid rgba(56,189,248,0.35);">
+    </div>
+  </div>
+
+  <div id="admin-toast" class="admin-toast"></div>
+
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/admin.js?v=20261119-pay"></script>
+</body>
+</html>
