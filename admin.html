@@ -17,6 +17,20 @@
   <link rel="stylesheet" href="css/tech-theme.css?v=20261119-pay">
 
   <style>
+    /* Restaurar cursor nativo en el Panel Admin (sobrescribe cursor: none de main.css) */
+    *, *::before, *::after {
+      cursor: auto !important;
+    }
+    a, button, select, [role="button"], .btn, .btn-adm, .admin-filter-btn {
+      cursor: pointer !important;
+    }
+    input[type="text"], input[type="password"], input[type="number"], textarea {
+      cursor: text !important;
+    }
+    .proof-thumb {
+      cursor: zoom-in !important;
+    }
+
     body {
       min-height: 100vh;
     }
