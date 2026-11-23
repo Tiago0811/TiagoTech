@@ -269,6 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "• **Control de Fiados + WhatsApp:** Lleva cuentas por cobrar, registra abonos y envía cobros por WhatsApp en 1 toque.\n" +
             "• **Recibos PDF con tu Logo y RIF:** Comprobantes profesionales listos para compartir.\n" +
             "• **Cierre de Caja y Ganancia Neta:** Desglose por Efectivo $, Pago Móvil, Efectivo Bs, Binance o Zelle restando tus gastos.\n\n" +
+            "💰 **Planes de Lanzamiento CuadraCaja:**\n" +
+            "• **Prueba Gratis:** $0 por 7 días completos.\n" +
+            "• **Plan Mensual (Lanzamiento solo este mes):** $5 USD/mes *(precio regular después: $8/mes)*.\n" +
+            "• **Plan Anual:** $50 USD/año *(máximo ahorro)*.\n\n" +
             "📲 **Descarga el APK directo y pide tu cuenta de prueba gratis tocando abajo.**"
     },
     telegram_bot: {
