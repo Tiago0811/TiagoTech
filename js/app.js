@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Elementos interactivos que activan la retícula HUD "Target Locked"
-    const TARGETS = 'a, button, .btn, .btn-adm, .admin-filter-btn, .proof-thumb, .copy-mini-btn, .month-pill-btn, .pay-method-tab, .proof-dropzone, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip, input, select, textarea';
+    const TARGETS = 'a, button, .btn, .cc-btn-apk, .cc-quick-chip, .btn-adm, .admin-filter-btn, .proof-thumb, .copy-mini-btn, .month-pill-btn, .pay-method-tab, .proof-dropzone, .btn-whatsapp, .chatbot-bubble, .chatbot-system-row, .chatbot-back-btn, .mobile-menu-btn, .glass-card, .system-card, .faq-item summary, .step-option-btn, .chip, input, select, textarea';
 
     let isTargetHovered = false;
     document.addEventListener('mouseover', (e) => {
@@ -259,6 +259,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatbotPrompts = document.getElementById('chatbot-prompts');
 
   const KNOWLEDGE_BASE = {
+    cuadracaja: {
+      title: "📱 CuadraCaja — App Android de Ventas, Fiados e Inventario",
+      pageUrl: "cuadracaja.html",
+      text: "¡La nueva App móvil oficial de TiagoTech para Android (v1.2.2) con respaldo automático en la nube 24/7!\n\n" +
+            "✨ **¿Qué puedes hacer con CuadraCaja desde tu celular?**\n" +
+            "• **Carrito Multi-Producto:** Suma varios productos, calcula USD y Bs al instante y descuenta inventario automático.\n" +
+            "• **Tasa BCV en Vivo:** Actualización oficial automática y calculadora rápida USD ⇄ Bs.\n" +
+            "• **Control de Fiados + WhatsApp:** Lleva cuentas por cobrar, registra abonos y envía cobros por WhatsApp en 1 toque.\n" +
+            "• **Recibos PDF con tu Logo y RIF:** Comprobantes profesionales listos para compartir.\n" +
+            "• **Cierre de Caja y Ganancia Neta:** Desglose por Efectivo $, Pago Móvil, Efectivo Bs, Binance o Zelle restando tus gastos.\n\n" +
+            "📲 **Descarga el APK directo y pide tu cuenta de prueba gratis tocando abajo.**"
+    },
     telegram_bot: {
       title: "🤖 Bots de Telegram para Personas & Empresas (T-Bot)",
       tgUrl: "https://t.me/tiagotech_tbot_bot",
@@ -396,6 +408,15 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="chatbot-systems-menu">
         <div class="chatbot-menu-header">📋 Sistemas disponibles (toca uno para ver detalles):</div>
         <div class="chatbot-systems-vertical-list">
+          <button type="button" class="chatbot-system-row chatbot-sys-featured" data-key="cuadracaja" style="border-color: rgba(34, 197, 94, 0.55); background: linear-gradient(135deg, rgba(34, 197, 94, 0.16) 0%, rgba(14, 165, 233, 0.10) 100%);">
+            <span class="chatbot-sys-icon">📱</span>
+            <span class="chatbot-sys-info">
+              <strong style="color: #4ADE80;">CuadraCaja — App Android</strong>
+              <small style="color: #38BDF8; font-weight: 600;">⚡ NUEVA APP // Ventas, Fiados, BCV &amp; Recibos PDF</small>
+            </span>
+            <span class="chatbot-sys-arrow">›</span>
+          </button>
+
           <button type="button" class="chatbot-system-row chatbot-sys-featured" data-key="telegram_bot" style="border-color: rgba(42, 171, 238, 0.55); background: linear-gradient(135deg, rgba(42, 171, 238, 0.16) 0%, rgba(0, 132, 255, 0.10) 100%);">
             <span class="chatbot-sys-icon">🤖</span>
             <span class="chatbot-sys-info">
@@ -689,7 +710,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function fallbackRuleResponse(userText) {
     const clean = userText.toLowerCase();
 
-    if (clean.includes('telegram') || clean.includes('t-bot') || clean.includes('tbot') || clean.includes('bot') || clean.includes('canal vip') || clean.includes('canales vip')) {
+    if (clean.includes('cuadracaja') || clean.includes('cuadra caja') || clean.includes('fiado') || clean.includes('apk') || clean.includes('android')) {
+      return formatSystemResponse(KNOWLEDGE_BASE.cuadracaja);
+    } else if (clean.includes('telegram') || clean.includes('t-bot') || clean.includes('tbot') || clean.includes('bot') || clean.includes('canal vip') || clean.includes('canales vip')) {
       return formatSystemResponse(KNOWLEDGE_BASE.telegram_bot);
     } else if (clean.includes('personaliz') || clean.includes('a la medida') || clean.includes('medida') || clean.includes('custom') || clean.includes('software a medida') || clean.includes('sistema a la medida') || clean.includes('crear sistema') || clean.includes('programar') || clean.includes('desarrollo') || clean.includes('popular')) {
       return formatSystemResponse(KNOWLEDGE_BASE.custom);

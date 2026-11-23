@@ -3,10 +3,11 @@
  * Brinda carga ultra-rápida, aceleración en caché y funcionamiento offline para TiagoTech
  */
 
-const CACHE_NAME = 'tiagotech-v2026-clean-nav-v8';
+const CACHE_NAME = 'tiagotech-v2026-cuadracaja-v9';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
+  '/cuadracaja.html',
   '/pagar.html',
   '/t-bot.html',
   '/sistema-telegram-bot.html',
@@ -64,10 +65,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Ignorar APIs dinámicas, panel admin y servicios externos
+  // Ignorar APIs dinámicas, descargas APK, panel admin y servicios externos
   if (
     url.hostname.includes('web3forms.com') ||
     url.pathname.startsWith('/api/') ||
+    url.pathname.startsWith('/downloads/') ||
     url.pathname === '/admin' ||
     url.pathname === '/admin.html'
   ) {

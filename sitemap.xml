@@ -72,6 +72,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- App Android Oficial CuadraCaja -->
+  <url>
+    <loc>https://tiagotechapp.com/cuadracaja</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
   <!-- Portal Oficial de Pagos y Recibos PDF -->
   <url>
     <loc>https://tiagotechapp.com/pagar</loc>
