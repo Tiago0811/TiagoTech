@@ -3,7 +3,7 @@
  * Brinda carga ultra-rápida, aceleración en caché y funcionamiento offline para TiagoTech
  */
 
-const CACHE_NAME = 'tiagotech-v2026-portal-pagos-v7';
+const CACHE_NAME = 'tiagotech-v2026-clean-nav-v8';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

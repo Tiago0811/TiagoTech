@@ -323,6 +323,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   height: 80px;
 }
 
@@ -334,6 +335,8 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--font-accent);
   letter-spacing: -0.5px;
   transition: all var(--transition-speed) var(--transition-ease);
@@ -391,18 +394,23 @@ nav {
 
 .nav-links {
   display: flex;
+  align-items: center;
   list-style: none;
-  gap: var(--spacing-md);
+  gap: 22px;
 }
 
 .nav-links a {
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14.5px;
   transition: color var(--transition-speed) ease, text-shadow 0.3s ease;
   position: relative;
   padding: 4px 0;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .nav-links a::after {
