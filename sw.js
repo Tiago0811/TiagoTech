@@ -3,7 +3,7 @@
  * Brinda carga ultra-rápida, aceleración en caché y funcionamiento offline para TiagoTech
  */
 
-const CACHE_NAME = 'tiagotech-v2026-cuadracaja-v9';
+const CACHE_NAME = 'tiagotech-v2026-devtools-100-v10';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

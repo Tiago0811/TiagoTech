@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activar Cuenta | CuadraCaja by TiagoTech</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/img/cuadracaja-icon.png">
+  <style>
+    :root {
+      --bg: #090e1a;
+      --surface: #111827;
+      --border: #26334d;
+      --blue: #0ea5e9;
+      --green: #22c55e;
+      --red: #ef4444;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at top right, rgba(14,165,233,.14), transparent 45%),
+                  radial-gradient(circle at bottom left, rgba(34,197,94,.12), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    }
+    .head { text-align: center; margin-bottom: 22px; }
+    .head img { width: 72px; height: 72px; border-radius: 18px; margin-bottom: 10px; }
+    .head h1 { font-size: 22px; font-weight: 900; }
+    .head .sub { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
+    .biz-pill {
+      margin: 12px 0 18px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(14,165,233,.1);
+      border: 1px solid rgba(14,165,233,.3);
+      font-size: 14px;
+      text-align: center;
+    }
+    .field { margin-bottom: 14px; }
+    label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #0b1220;
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+    }
+    input:focus { border-color: var(--blue); }
+    .btn {
+      width: 100%;
+      padding: 13px 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15.5px;
+      font-weight: 800;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: #04101d;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+    .alert {
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      margin-bottom: 14px;
+      display: none;
+    }
+    .alert.err { display: block; background: rgba(239,68,68,.14); border: 1px solid rgba(239,68,68,.45); color: #fca5a5; }
+    .alert.ok { display: block; background: rgba(34,197,94,.14); border: 1px solid rgba(34,197,94,.45); color: #86efac; }
+    .center-msg { text-align: center; color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="head">
+      <img src="assets/img/cuadracaja-icon.png" alt="CuadraCaja" width="34" height="34">
+      <h1>CuadraCaja</h1>
+      <div class="sub">Crea tu contraseña personal de acceso</div>
+    </div>
+
+    <div id="state-loading" class="center-msg">Verificando tu enlace de activación...</div>
+
+    <div id="state-error" style="display:none;">
+      <div class="alert err" id="err-box"></div>
+      <a href="https://wa.me/584247046941?text=Hola%20Tiago%2C%20necesito%20un%20nuevo%20enlace%20para%20activar%20mi%20cuenta%20de%20CuadraCaja." class="btn" target="_blank" rel="noopener">
+        💬 Solicitar nuevo enlace por WhatsApp
+      </a>
+    </div>
+
+    <form id="activate-form" style="display:none;">
+      <div class="biz-pill" id="biz-info"></div>
+      <div class="alert err" id="form-err" style="display:none;"></div>
+      <div class="field">
+        <label for="p1">Nueva contraseña (mínimo 6 caracteres)</label>
+        <input id="p1" type="password" minlength="6" required placeholder="••••••••" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label for="p2">Confirmar contraseña</label>
+        <input id="p2" type="password" minlength="6" required placeholder="••••••••" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn" id="submit-btn">🔐 Guardar Contraseña y Activar</button>
+    </form>
+
+    <div id="state-success" style="display:none; text-align:center;">
+      <div class="alert ok" id="ok-box"></div>
+      <p class="center-msg" style="margin-bottom:18px;">
+        Ya puedes abrir la app <strong>CuadraCaja</strong> en tu celular e iniciar sesión con tu correo y la contraseña que acabas de crear.
+      </p>
+      <a href="/downloads/CuadraCaja.apk" download class="btn">⬇️ Descargar CuadraCaja (Android)</a>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const token = (params.get('token') || '').trim();
+    const loadingEl = document.getElementById('state-loading');
+    const errorEl = document.getElementById('state-error');
+    const errBox = document.getElementById('err-box');
+    const formEl = document.getElementById('activate-form');
+    const bizInfo = document.getElementById('biz-info');
+    const formErr = document.getElementById('form-err');
+    const successEl = document.getElementById('state-success');
+    const okBox = document.getElementById('ok-box');
+
+    async function init() {
+      if (!token) {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errBox.textContent = 'Enlace incompleto o inválido.';
+        return;
+      }
+      try {
+        const r = await fetch('/app-api/v1/auth/activation-info?token=' + encodeURIComponent(token));
+        const d = await r.json();
+        loadingEl.style.display = 'none';
+        if (!d.ok) {
+          errorEl.style.display = 'block';
+          errBox.textContent = d.message || 'Este enlace no es válido o ya venció.';
+          return;
+        }
+        bizInfo.innerHTML = `<strong>${d.businessName}</strong><br><span style="color:#94a3b8;font-size:13px;">${d.email}</span>`;
+        formEl.style.display = 'block';
+      } catch {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errBox.textContent = 'Error conectando con el servidor. Intenta recargar la página.';
+      }
+    }
+
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formErr.style.display = 'none';
+      const p1 = document.getElementById('p1').value;
+      const p2 = document.getElementById('p2').value;
+      if (p1.length < 6) {
+        formErr.style.display = 'block';
+        formErr.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+        return;
+      }
+      if (p1 !== p2) {
+        formErr.style.display = 'block';
+        formErr.textContent = 'Las contraseñas no coinciden.';
+        return;
+      }
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Guardando...';
+      try {
+        const r = await fetch('/app-api/v1/auth/activate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, password: p1 })
+        });
+        const d = await r.json();
+        if (!d.ok) {
+          formErr.style.display = 'block';
+          formErr.textContent = d.message || 'No se pudo activar la cuenta.';
+          btn.disabled = false;
+          btn.textContent = '🔐 Guardar Contraseña y Activar';
+          return;
+        }
+        formEl.style.display = 'none';
+        successEl.style.display = 'block';
+        okBox.textContent = `✅ ¡Cuenta activada para ${d.businessName}! (${d.email})`;
+      } catch {
+        formErr.style.display = 'block';
+        formErr.textContent = 'Error de conexión. Intenta nuevamente.';
+        btn.disabled = false;
+        btn.textContent = '🔐 Guardar Contraseña y Activar';
+      }
+    });
+
+    init();
+  </script>
+</body>
+</html>

@@ -307,7 +307,7 @@
   <!-- 🔐 VISTA 1: LOGIN ADMINISTRADOR -->
   <section class="adm-login-screen" id="admin-login-view" style="display: none;">
     <div class="adm-login-card">
-      <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 52px; height: 52px; margin-bottom: 12px;">
+      <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 52px; height: 52px; margin-bottom: 12px;" width="52" height="52">
       <h1 style="font-size: 22px; margin: 0 0 6px; color: #fff;">Panel Privado TiagoTech</h1>
       <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 22px;">
         Acceso exclusivo de administración de clientes, cobros y recibos PDF.
@@ -332,7 +332,7 @@
   <main class="adm-container" id="admin-dash-view" style="display: none;">
     <div class="adm-topbar">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 34px; height: 34px;">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 34px; height: 34px;" width="34" height="34">
         <div>
           <div style="font-weight: 800; font-size: 17px; color: #fff;">
             Tiago<span style="color: var(--accent-secondary);">Tech</span> <span class="mini-tag tag-blue" style="margin-left: 6px;">ADMIN PANEL</span>
@@ -392,7 +392,7 @@
       <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;">
         <h2 style="margin: 0; font-size: 18px; color: #fff;">📋 Directorio de Clientes</h2>
         <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; flex: 1; justify-content: flex-end;">
-          <input type="text" id="client-search-input" class="adm-input" placeholder="🔍 Buscar negocio, nombre, cédula o sistema..." style="max-width: 300px; padding: 8px 12px; font-size: 13px;">
+          <input type="text" id="client-search-input" class="adm-input" placeholder="🔍 Buscar negocio, nombre, cédula o sistema..." style="max-width: 300px; padding: 8px 12px; font-size: 13px;" aria-label="Buscar clientes por negocio, nombre, cédula o sistema">
           <button type="button" class="admin-filter-btn active" data-filter="ALL">Todos</button>
           <button type="button" class="admin-filter-btn" data-filter="AL_DIA">🟢 Al Día</button>
           <button type="button" class="admin-filter-btn" data-filter="PENDIENTE">🟠 Pendientes</button>
@@ -420,39 +420,39 @@
         <div class="adm-form-grid">
           <div class="adm-field">
             <label>Cédula o RIF *</label>
-            <input type="text" name="cedula" class="adm-input" placeholder="Ej: V-28515043" required>
+            <input type="text" name="cedula" class="adm-input" placeholder="Ej: V-28515043" required aria-label="Cédula o RIF del cliente">
           </div>
           <div class="adm-field">
             <label>Teléfono WhatsApp</label>
-            <input type="text" name="phone" class="adm-input" placeholder="Ej: 04247046941">
+            <input type="text" name="phone" class="adm-input" placeholder="Ej: 04247046941" aria-label="Teléfono WhatsApp del cliente">
           </div>
           <div class="adm-field">
             <label>Nombre del Cliente *</label>
-            <input type="text" name="client_name" class="adm-input" placeholder="Nombre y apellido" required>
+            <input type="text" name="client_name" class="adm-input" placeholder="Nombre y apellido" required aria-label="Nombre completo del cliente">
           </div>
           <div class="adm-field">
             <label>Nombre del Negocio *</label>
-            <input type="text" name="business_name" class="adm-input" placeholder="Ej: Barbería Elite" required>
+            <input type="text" name="business_name" class="adm-input" placeholder="Ej: Barbería Elite" required aria-label="Nombre del negocio">
           </div>
           <div class="adm-field" style="grid-column: 1 / -1;">
             <label>Sistema Contratado</label>
-            <input type="text" name="system_name" class="adm-input" placeholder="Ej: Sistema POS & Inventario">
+            <input type="text" name="system_name" class="adm-input" placeholder="Ej: Sistema POS & Inventario" aria-label="Sistema contratado">
           </div>
           <div class="adm-field">
             <label>Mensualidad ($ USD)</label>
-            <input type="number" step="0.01" min="1" name="monthly_fee" class="adm-input" value="20" required>
+            <input type="number" step="0.01" min="1" name="monthly_fee" class="adm-input" value="20" required aria-label="Mensualidad en dólares USD">
           </div>
           <div class="adm-field">
             <label>Día de Corte (1-31)</label>
-            <input type="number" min="1" max="31" name="due_day" class="adm-input" value="5" required>
+            <input type="number" min="1" max="31" name="due_day" class="adm-input" value="5" required aria-label="Día de corte mensual">
           </div>
           <div class="adm-field">
             <label>Mes Pendiente / Corte</label>
-            <input type="text" name="pending_month" class="adm-input" placeholder="Ej: Diciembre 2026">
+            <input type="text" name="pending_month" class="adm-input" placeholder="Ej: Diciembre 2026" aria-label="Mes pendiente o de corte">
           </div>
           <div class="adm-field">
             <label>Estado</label>
-            <select name="status" class="adm-input">
+            <select name="status" class="adm-input" aria-label="Estado de pago del cliente">
               <option value="PENDIENTE">🟠 Pendiente</option>
               <option value="AL_DIA">🟢 Al Día</option>
             </select>
@@ -478,12 +478,12 @@
       </div>
       <div id="mp-client-label" style="font-size: 13px; color: #38BDF8; margin-bottom: 14px; font-weight: 600;"></div>
       <form id="manual-pay-form" style="display: flex; flex-direction: column; gap: 12px;">
-        <input type="hidden" name="cedula">
+        <input type="hidden" name="cedula" aria-label="Cédula o RIF del cliente">
         <input type="hidden" name="monthly_base">
         <div class="adm-form-grid">
           <div class="adm-field">
             <label>Meses a Aprobar</label>
-            <select name="months" class="adm-input">
+            <select name="months" class="adm-input" aria-label="Cantidad de meses a aprobar">
               <option value="1">1 Mes</option>
               <option value="2">2 Meses</option>
               <option value="3">3 Meses</option>
@@ -493,12 +493,12 @@
           </div>
           <div class="adm-field">
             <label>Monto Total ($ USD)</label>
-            <input type="number" step="0.01" name="amount_usd" class="adm-input" required>
+            <input type="number" step="0.01" name="amount_usd" class="adm-input" required aria-label="Monto total en dólares USD">
           </div>
         </div>
         <div class="adm-field">
           <label>Método de Pago</label>
-          <select name="payment_method" class="adm-input">
+          <select name="payment_method" class="adm-input" aria-label="Método de pago utilizado">
             <option value="Pago Móvil (BDV 0102)">Pago Móvil (BDV 0102)</option>
             <option value="Binance Pay (USDT)">Binance Pay (USDT)</option>
             <option value="Efectivo USD / COP">Efectivo USD / COP</option>
@@ -507,7 +507,7 @@
         </div>
         <div class="adm-field">
           <label>Referencia</label>
-          <input type="text" name="reference" class="adm-input" placeholder="Ej: 123456 o Efectivo">
+          <input type="text" name="reference" class="adm-input" placeholder="Ej: 123456 o Efectivo" aria-label="Número de referencia del pago">
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px;">
           <button type="button" data-close-modal class="btn-adm btn-adm-ghost">Cancelar</button>
