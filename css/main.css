@@ -309,7 +309,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 1100;
   background: rgba(var(--accent-rgb), 0.02);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -624,47 +624,52 @@ nav {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 80%;
+  width: 82%;
   max-width: 320px;
   height: 100vh;
-  z-index: 105;
-  background: rgba(10, 10, 12, 0.85);
+  height: 100dvh;
+  z-index: 1050;
+  background: rgba(10, 12, 18, 0.95);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border-left: 1px solid var(--card-border);
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5), inset 10px 0 30px rgba(var(--accent-rgb), 0.02);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6), inset 10px 0 30px rgba(var(--accent-rgb), 0.02);
   display: flex;
   flex-direction: column;
-  padding: 100px var(--spacing-md) var(--spacing-xl) var(--spacing-md);
-  transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color var(--transition-speed) ease;
+  padding: 86px 20px 36px 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  transition: right 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color var(--transition-speed) ease;
 }
 
 .mobile-nav-overlay.active {
   right: 0;
   border-color: var(--accent-primary);
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(var(--accent-rgb), 0.15);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(var(--accent-rgb), 0.18);
 }
 
 .mobile-nav-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 8px;
   margin-bottom: auto;
+  padding-bottom: 24px;
 }
 
 .mobile-nav-links a {
   color: var(--text-primary);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   font-family: var(--font-accent);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 8px 12px;
+  letter-spacing: 0.8px;
+  padding: 10px 12px;
   border-left: 2px solid transparent;
   display: block;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .mobile-nav-links a:hover {

@@ -111,14 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileNavMenu = document.getElementById('mobile-nav-menu');
 
+  function closeMobileMenu() {
+    if (!mobileNavMenu) return;
+    mobileNavMenu.classList.remove('active');
+    if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
   window.toggleMobileMenu = function() {
-    if (mobileNavMenu) {
-      mobileNavMenu.classList.toggle('active');
-      if (mobileMenuBtn) {
-        mobileMenuBtn.classList.toggle('active');
-      }
-      document.body.style.overflow = mobileNavMenu.classList.contains('active') ? 'hidden' : '';
-    }
+    if (!mobileNavMenu) return;
+    const willOpen = !mobileNavMenu.classList.contains('active');
+    mobileNavMenu.classList.toggle('active', willOpen);
+    if (mobileMenuBtn) mobileMenuBtn.classList.toggle('active', willOpen);
+    document.body.style.overflow = willOpen ? 'hidden' : '';
   };
 
   if (mobileMenuBtn && mobileNavMenu) {
@@ -127,10 +132,36 @@ document.addEventListener('DOMContentLoaded', () => {
       window.toggleMobileMenu();
     });
 
-    // Close when clicking outside
+    // Manejo confiable de todos los enlaces dentro del menú móvil (scroll a anclas + navegación)
+    mobileNavMenu.querySelectorAll('a').forEach((link) => {
+      // Limpiar posibles onclick inline legados para evitar doble toggle
+      if (link.hasAttribute('onclick')) {
+        link.removeAttribute('onclick');
+      }
+      link.addEventListener('click', (e) => {
+        const href = (link.getAttribute('href') || '').trim();
+        if (href.startsWith('#') && href.length > 1) {
+          const targetEl = document.querySelector(href);
+          if (targetEl) {
+            e.preventDefault();
+            closeMobileMenu();
+            setTimeout(() => {
+              const headerOffset = 76;
+              const y = targetEl.getBoundingClientRect().top + window.scrollY - headerOffset;
+              window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+              if (history.replaceState) history.replaceState(null, '', href);
+            }, 60);
+            return;
+          }
+        }
+        closeMobileMenu();
+      });
+    });
+
+    // Cerrar al tocar fuera del menú
     document.addEventListener('click', (e) => {
-      if (mobileNavMenu.classList.contains('active') && !mobileNavMenu.contains(e.target) && e.target !== mobileMenuBtn) {
-        window.toggleMobileMenu();
+      if (mobileNavMenu.classList.contains('active') && !mobileNavMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        closeMobileMenu();
       }
     });
   }
