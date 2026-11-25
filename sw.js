@@ -65,13 +65,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Ignorar APIs dinámicas, descargas APK, panel admin y servicios externos
+  // Ignorar APIs dinámicas, descargas APK y servicios externos
   if (
     url.hostname.includes('web3forms.com') ||
     url.pathname.startsWith('/api/') ||
-    url.pathname.startsWith('/downloads/') ||
-    url.pathname === '/admin' ||
-    url.pathname === '/admin.html'
+    url.pathname.startsWith('/downloads/')
   ) {
     return;
   }
