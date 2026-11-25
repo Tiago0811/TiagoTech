@@ -31,8 +31,8 @@
 
   <!-- Core Styles TiagoTech -->
   <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/main.css?v=20261123-nav">
-  <link rel="stylesheet" href="css/tech-theme.css?v=20261119-pay">
+  <link rel="stylesheet" href="css/main.css?v=20261125-mob">
+  <link rel="stylesheet" href="css/tech-theme.css?v=20261125-mob">
 
   <style>
     .cc-main {
@@ -452,6 +452,26 @@
       .cc-hero-desc { margin-left: auto; margin-right: auto; }
       .cc-cta-row, .cc-trust-strip { justify-content: center; }
     }
+
+    @media (max-width: 520px) {
+      .cc-hero-badge {
+        font-size: 10.5px;
+        padding: 5px 12px;
+        letter-spacing: 0.2px;
+        white-space: nowrap;
+      }
+      .cc-cta-row {
+        flex-direction: column;
+        width: 100%;
+      }
+      .cc-btn-apk,
+      .cc-cta-row .btn-whatsapp {
+        width: 100%;
+        font-size: 14px;
+        padding: 13px 16px;
+        white-space: nowrap;
+      }
+    }
   </style>
 </head>
 <body>
@@ -516,7 +536,7 @@
     <!-- HERO 2 COLUMNAS CON MOCKUP ANDROID INTERACTIVO -->
     <section class="cc-hero-grid">
       <div>
-        <div class="cc-hero-badge">📱 APP ANDROID OFICIAL • v1.2.2 • EN LA NUBE</div>
+        <div class="cc-hero-badge">📱 APP ANDROID • v1.2.2 • EN LA NUBE</div>
         <h1 class="cc-hero-title">
           Cuadra tus <span>Ventas, Fiados e Inventario</span> desde tu celular
         </h1>

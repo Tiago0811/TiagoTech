@@ -53,6 +53,7 @@
   display: block;
   width: 8px;
   height: 8px;
+  flex-shrink: 0;
   background-color: var(--accent-primary);
   border-radius: 50%;
   box-shadow: var(--glow-shadow);
@@ -535,11 +536,15 @@
 /* Mobile Styling */
 @media (max-width: 992px) {
   .hero-tech {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     padding-top: var(--spacing-md);
     min-height: auto;
+  }
+
+  .hero-tech-actions {
+    justify-content: center;
   }
   
   .hero-subtitle-tech {
@@ -555,6 +560,13 @@
 }
 
 @media (max-width: 768px) {
+  .tech-tagline {
+    font-size: 12px;
+    line-height: 1.35;
+    max-width: 100%;
+    justify-content: center;
+  }
+
   .hero-title-tech {
     font-size: 32px !important;
     line-height: 1.2;
@@ -1290,25 +1302,44 @@
 
 @media (max-width: 768px) {
   .floating-wa-container {
-    bottom: 16px;
-    left: 16px;
+    bottom: 12px;
+    left: 10px;
+    gap: 8px;
+  }
+  .floating-buttons-stack {
+    gap: 8px;
   }
   .floating-wa-popup {
-    max-width: 230px;
+    max-width: 220px;
     padding: 10px 12px;
   }
   .floating-wa-btn {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
+    opacity: 0.92;
   }
   .floating-wa-btn img {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
+  }
+  .floating-wa-badge {
+    width: 17px;
+    height: 17px;
+    font-size: 9.5px;
+    top: -3px;
+    right: -3px;
   }
   .floating-tg-btn {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     padding: 0 !important;
+    opacity: 0.92;
+  }
+  .floating-channel-badge {
+    font-size: 8px;
+    padding: 1.5px 4px;
+    top: -3px;
+    right: -4px;
   }
   .floating-tg-btn img,
   .floating-tg-btn .floating-tg-avatar,
