@@ -32,7 +32,7 @@
   <!-- Core Styles TiagoTech -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css?v=20261125-menu">
-  <link rel="stylesheet" href="css/tech-theme.css?v=20261125-mob">
+  <link rel="stylesheet" href="css/tech-theme.css?v=20261127-cards">
 
   <style>
     .cc-main {
@@ -522,7 +522,7 @@
     <ul class="mobile-nav-links">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="index.html#sistemas">Sistemas</a></li>
-      <li><a href="cuadracaja.html" style="color: #22C55E; font-weight: 800;">📱 App CuadraCaja</a></li>
+      <li><a href="cuadracaja.html" style="color: #22C55E; font-weight: 800;">📱 CuadraCaja</a></li>
       <li><a href="t-bot.html" style="color: var(--accent-secondary); font-weight: 700;">T-Bot 🤖</a></li>
       <li><a href="sobre-nosotros.html">Nosotros</a></li>
       <li><a href="index.html#contacto">Contacto</a></li>
@@ -821,7 +821,6 @@
       <div class="cc-pay-pills">
         <span class="tech-badge" style="padding: 7px 14px; font-size: 13px;">🇻🇪 Pago Móvil (Bs a tasa BCV)</span>
         <span class="tech-badge" style="padding: 7px 14px; font-size: 13px;">🟡 Binance Pay / USDT</span>
-        <span class="tech-badge" style="padding: 7px 14px; font-size: 13px;">🏦 Transferencia Bancaria</span>
       </div>
 
       <div class="cc-cta-row" style="justify-content: center; margin-bottom: 0;">
@@ -871,20 +870,18 @@
           </span>
         </div>
         <div style="display: flex; align-items: center; gap: 8px;">
-          <button id="chatbot-reset-btn" class="chatbot-close" title="Volver al menú principal" aria-label="Reiniciar chat" style="font-size: 16px;">🔄</button>
-          <button id="chatbot-close" class="chatbot-close" title="Cerrar chat" aria-label="Cerrar">&times;</button>
+          <button class="chatbot-reset-btn" id="chatbot-reset-btn" title="Reiniciar conversación" aria-label="Reiniciar chat">🔄</button>
+          <button class="chatbot-close-btn" id="chatbot-close" title="Cerrar" aria-label="Cerrar">&times;</button>
         </div>
       </div>
 
       <div class="chatbot-messages" id="chatbot-messages"></div>
-      <div class="chatbot-typing" id="chatbot-typing"><span></span><span></span><span></span></div>
-      <div class="chatbot-prompts" id="chatbot-prompts"></div>
+      <div class="chatbot-typing" id="chatbot-typing" style="display: none;"><span></span><span></span><span></span></div>
+      <div class="chatbot-prompts" id="chatbot-prompts" style="display: none;"></div>
 
-      <form class="chatbot-input-area" id="chatbot-form">
-        <input type="text" id="chatbot-input" placeholder="Pregunta sobre CuadraCaja, sistemas o pagos..." autocomplete="off" aria-label="Escribir pregunta para T-Bot">
-        <button type="submit" aria-label="Enviar">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-        </button>
+      <form class="chatbot-input-bar" id="chatbot-form">
+        <input type="text" id="chatbot-input" class="chatbot-input-field" placeholder="Pregunta sobre CuadraCaja, sistemas o pagos..." autocomplete="off" aria-label="Escribir pregunta para T-Bot">
+        <button type="submit" id="chatbot-send-btn" class="chatbot-send-btn" title="Enviar mensaje" aria-label="Enviar">➤</button>
       </form>
     </div>
   </div>
