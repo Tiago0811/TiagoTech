@@ -24,7 +24,7 @@
   <!-- Shared Stylesheets -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css?v=20261125-menu">
-  <link rel="stylesheet" href="css/tech-theme.css?v=20261103-circle">
+  <link rel="stylesheet" href="css/tech-theme.css?v=20261127-cards">
 
   <style>
     /* ==================== PAGE LAYOUT & HERO ==================== */
@@ -100,7 +100,8 @@
     }
 
     @media (max-width: 900px) {
-      .tbot-pill-stats { justify-content: center; }
+      .tbot-pill-stats,
+      .tbot-hero-actions { justify-content: center; }
     }
 
     .tbot-stat-badge {
@@ -475,9 +476,10 @@
     <ul class="mobile-nav-links">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="index.html#sistemas">Sistemas</a></li>
+      <li><a href="cuadracaja.html" style="color: #22C55E; font-weight: 700;">📱 CuadraCaja</a></li>
       <li><a href="t-bot.html" style="color: var(--accent-secondary); font-weight: 700;">T-Bot 🤖</a></li>
       <li><a href="index.html#asesor">Asesor Express</a></li>
-      <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="sobre-nosotros.html">Nosotros</a></li>
       <li><a href="index.html#contacto">Contacto</a></li>
       <li><a href="pagar.html" style="color: #38BDF8; font-weight: 700;">💳 Pagar Mensualidad</a></li>
     </ul>
@@ -487,10 +489,6 @@
        🤖 MAIN T-BOT EXPERIENCE
        ========================================================================== -->
   <main class="tbot-page-container">
-
-    <a href="index.html" class="back-btn" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); text-decoration: none; font-weight: 600; font-family: var(--font-accent); margin-bottom: 24px; transition: color 0.3s ease;">
-      &larr; Volver al Inicio
-    </a>
 
     <!-- ══════════ HERO SECTION CON SMARTPHONE MOCKUP ══════════ -->
     <div class="tbot-hero-row">
@@ -508,7 +506,7 @@
         <div class="tbot-pill-stats">
           <div class="tbot-stat-badge">
             <span class="dot"></span>
-            <span>11 Módulos Especializados</span>
+            <span>12+ Sistemas y App</span>
           </div>
           <div class="tbot-stat-badge">
             <span class="dot"></span>
@@ -520,12 +518,12 @@
           </div>
         </div>
 
-        <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-top: 20px;">
+        <div class="tbot-hero-actions" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-top: 20px;">
           <a href="https://t.me/tiagotech_tbot_bot" target="_blank" rel="noopener noreferrer" class="btn" style="background: #2AABEE; color: #fff; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
-            <span>🤖 Hablar con T-Bot en Telegram (@tiagotech_tbot_bot)</span>
+            <span>🤖 Probar en Telegram</span>
           </a>
           <a href="https://wa.me/584247046941?text=%C2%A1Hola%20Tiago!%20Estuve%20viendo%20a%20T-Bot%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20consultar%20sobre%20tus%20sistemas." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-            <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon" width="20" height="20"> Hablar con Tiago en WhatsApp (Humano 1 a 1)
+            <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="btn-whatsapp-icon" width="20" height="20"> WhatsApp Directo
           </a>
           <a href="index.html#sistemas" class="btn btn-outline">Ver Sistemas</a>
         </div>
@@ -647,7 +645,7 @@
       <!-- 3. Formal B2B -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/FORMAL_thumb.webp" alt="T-Bot Formal" loading="lazy">
+          <img src="assets/img/T-Bot/FORMAL_thumb.webp" alt="T-Bot Formal" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Formal</div>
         <div class="role-tag">PRESUPUESTOS B2B</div>
@@ -658,7 +656,7 @@
       <!-- 4. Cohete -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/COHETE_thumb.webp" alt="T-Bot Cohete" loading="lazy" width="56" height="56">
+          <img src="assets/img/T-Bot/COHETE_thumb.webp" alt="T-Bot Cohete" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Cohete</div>
         <div class="role-tag">ACELERACIÓN DIGITAL</div>
@@ -669,7 +667,7 @@
       <!-- 5. POS & Stock -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/TIAGOPOS_thumb.webp" alt="T-Bot POS" loading="lazy">
+          <img src="assets/img/T-Bot/TIAGOPOS_thumb.webp" alt="T-Bot POS" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot POS & Caja</div>
         <div class="role-tag">FACTURACIÓN RÁPIDA</div>
@@ -680,7 +678,7 @@
       <!-- 6. Gastronomía -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/MENUDIGITALQR_thumb.webp" alt="T-Bot Chef" loading="lazy">
+          <img src="assets/img/T-Bot/MENUDIGITALQR_thumb.webp" alt="T-Bot Chef" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Chef</div>
         <div class="role-tag">MENÚ QR & MESAS</div>
@@ -691,7 +689,7 @@
       <!-- 7. Citas & Agenda -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/AGENDARCITASBARBERIA_thumb.webp" alt="T-Bot Barber" loading="lazy">
+          <img src="assets/img/T-Bot/AGENDARCITASBARBERIA_thumb.webp" alt="T-Bot Barber" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Barber & Turnos</div>
         <div class="role-tag">AUTORESERVA 24/7</div>
@@ -702,7 +700,7 @@
       <!-- 8. Talleres -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/TALLERES_thumb.webp" alt="T-Bot Talleres" loading="lazy">
+          <img src="assets/img/T-Bot/TALLERES_thumb.webp" alt="T-Bot Talleres" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Taller</div>
         <div class="role-tag">ÓRDENES & RASTREO</div>
@@ -713,7 +711,7 @@
       <!-- 9. Cobranzas -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/CONTROLDECOBRANZAS_thumb.webp" alt="T-Bot Cobranzas" loading="lazy">
+          <img src="assets/img/T-Bot/CONTROLDECOBRANZAS_thumb.webp" alt="T-Bot Cobranzas" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Finanzas</div>
         <div class="role-tag">COBROS DIPLOMÁTICOS</div>
@@ -724,7 +722,7 @@
       <!-- 10. Gimnasios -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/CONTROLDEMEMBRESIAS_thumb.webp" alt="T-Bot Gym" loading="lazy">
+          <img src="assets/img/T-Bot/CONTROLDEMEMBRESIAS_thumb.webp" alt="T-Bot Gym" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Fitness</div>
         <div class="role-tag">MEMBRESÍAS & PUERTA</div>
@@ -735,7 +733,7 @@
       <!-- 11. Telegram -->
       <div class="role-card">
         <div class="role-avatar-wrapper">
-          <img src="assets/img/T-Bot/TELEGRAM_thumb.webp?v=2" onerror="this.onerror=null;this.src='assets/img/T-Bot/TELEGRAM.jpg';" alt="T-Bot Telegram" loading="lazy">
+          <img src="assets/img/T-Bot/TELEGRAM_thumb.webp?v=2" onerror="this.onerror=null;this.src='assets/img/T-Bot/TELEGRAM.jpg';" alt="T-Bot Telegram" loading="lazy" width="100" height="100">
         </div>
         <div class="role-title">T-Bot Telegram</div>
         <div class="role-tag">BOTS & COMUNIDADES</div>
@@ -745,12 +743,23 @@
           <a href="https://t.me/tiagotech_tbot_bot" target="_blank" rel="noopener noreferrer" class="role-link" style="color: #2AABEE; font-weight: 700;">Abrir Bot ✈️</a>
         </div>
       </div>
+
+      <!-- 12. CuadraCaja Android -->
+      <div class="role-card" style="border-color: rgba(34, 197, 94, 0.45);">
+        <div class="role-avatar-wrapper" style="border-color: rgba(34, 197, 94, 0.65); background: #0B1922; padding: 10px;">
+          <img src="assets/img/cuadracaja-icon.png" alt="CuadraCaja App Android" loading="lazy" width="100" height="100" style="object-fit: contain; object-position: center;">
+        </div>
+        <div class="role-title">App CuadraCaja</div>
+        <div class="role-tag" style="color: #4ADE80;">ANDROID EN LA NUBE</div>
+        <div class="role-desc">Ventas, fiados por WhatsApp, recibos PDF con logo y tasa BCV en vivo en tu celular.</div>
+        <a href="cuadracaja.html" class="role-link" style="color: #4ADE80;">Ver App &rarr;</a>
+      </div>
     </div>
 
     <!-- ══════════ CALL TO ACTION FINAL ══════════ -->
     <div class="tbot-cta-box">
       <div style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-code); color: var(--accent-secondary); font-size: 12px; font-weight: 700; margin-bottom: 10px;">
-        <span class="status-dot"></span> PUESTA EN MARCHA EN 24-48 HORAS
+        <span class="status-dot"></span> PUESTA EN MARCHA EN 24 A 72 HORAS
       </div>
       <h2 style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px; font-family: var(--font-accent);">
         Lleva a T-Bot a tu Negocio Hoy Mismo
@@ -768,24 +777,57 @@
 
   </main>
 
-  <!-- 🧭 Footer -->
+  <!-- 🧭 Footer Oficial TiagoTech -->
   <footer style="border-top: 1px solid var(--card-border); padding: var(--spacing-md) 0; margin-top: var(--spacing-xl); background: rgba(0,0,0,0.3);">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
-      <p style="font-size: 13px; color: var(--text-muted);">
-        &copy; 2026 <span style="color: var(--accent-primary); font-weight: 700;">TiagoTech</span>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <p style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; margin: 0;">
+        <img src="assets/img/tiagotech-symbol.png" alt="TiagoTech" style="width: 20px; height: 20px; vertical-align: middle;" width="20" height="20">
+        <span>&copy; 2026 <strong style="color: #fff;">Tiago<span style="color: var(--accent-secondary);">Tech</span></strong>. Soluciones Digitales y Software a Medida. Todos los derechos reservados.</span>
       </p>
-      <div style="display: flex; gap: var(--spacing-sm); font-size: 13px; font-family: var(--font-accent); flex-wrap: wrap;">
-        <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">Inicio</a>
-        <a href="index.html#sistemas" style="color: var(--text-secondary); text-decoration: none;">Sistemas</a>
-        <a href="t-bot.html" style="color: var(--accent-secondary); text-decoration: none; font-weight: 700;">T-Bot 🤖</a>
-        <a href="sobre-nosotros.html" style="color: var(--text-secondary); text-decoration: none;">Sobre Nosotros</a>
-        <a href="https://wa.me/584247046941" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
-          <img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width: 16px; height: 16px;" width="16" height="16"> WhatsApp
-        </a>
-        <a href="mailto:contacto@tiagotechapp.com" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">📧 contacto@tiagotechapp.com</a>
+      <div style="display: flex; align-items: center; gap: 14px; font-size: 13px; font-family: var(--font-accent);">
+        <a href="mailto:contacto@tiagotechapp.com" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;" title="Correo Corporativo TiagoTech">📧 contacto@tiagotechapp.com</a>
       </div>
     </div>
   </footer>
+
+  <!-- 🤖 CHATBOT ASISTENTE IA DE TIAGOTECH (T-BOT) -->
+  <div class="chatbot-widget" id="tech-chatbot">
+    <div class="chatbot-bubble" id="chatbot-bubble" title="Chatear con T-Bot • Asistente Oficial TiagoTech">
+      <div class="chatbot-bubble-avatar" id="chatbot-avatar-bubble">
+        <img src="assets/img/T-Bot/tbot-perfil_avatar.webp" alt="T-Bot Asistente IA TiagoTech" style="object-position: center 20%;" width="58" height="58">
+      </div>
+      <div class="chatbot-pulse"></div>
+    </div>
+
+    <div class="chatbot-window" id="chatbot-window">
+      <div class="chatbot-header">
+        <div class="chatbot-header-avatar" id="chatbot-avatar-header">
+          <img src="assets/img/T-Bot/tbot-perfil_avatar.webp" alt="T-Bot Copiloto TiagoTech" style="object-position: center 20%;" width="58" height="58">
+        </div>
+        <div class="chatbot-header-info">
+          <h4 id="chatbot-title" style="display: flex; align-items: center; gap: 6px;">
+            T-Bot <span style="font-size: 9px; background: rgba(34, 197, 94, 0.15); color: var(--accent-secondary); border: 1px solid rgba(34, 197, 94, 0.35); padding: 1px 6px; border-radius: 10px; font-family: var(--font-code);">AI CO-PILOT</span>
+          </h4>
+          <span id="chatbot-subtitle" style="font-size: 10px; color: var(--accent-secondary); font-weight: 600; display: flex; align-items: center; gap: 5px;">
+            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-secondary); box-shadow: 0 0 6px var(--accent-secondary);"></span> En línea • Asistente Oficial TiagoTech
+          </span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="chatbot-reset-btn" id="chatbot-reset-btn" title="Reiniciar conversación" aria-label="Reiniciar chat">🔄</button>
+          <button class="chatbot-close-btn" id="chatbot-close" title="Cerrar" aria-label="Cerrar">&times;</button>
+        </div>
+      </div>
+
+      <div class="chatbot-messages" id="chatbot-messages"></div>
+      <div class="chatbot-typing" id="chatbot-typing" style="display: none;"><span></span><span></span><span></span></div>
+      <div class="chatbot-prompts" id="chatbot-prompts" style="display: none;"></div>
+
+      <form class="chatbot-input-bar" id="chatbot-form">
+        <input type="text" id="chatbot-input" class="chatbot-input-field" placeholder="Pregunta sobre sistemas, precios, pagos..." autocomplete="off" aria-label="Escribir pregunta para T-Bot">
+        <button type="submit" id="chatbot-send-btn" class="chatbot-send-btn" title="Enviar mensaje" aria-label="Enviar">➤</button>
+      </form>
+    </div>
+  </div>
 
   <!-- 💬 Floating WhatsApp Widget -->
   <div class="floating-wa-container" id="floating-wa">
