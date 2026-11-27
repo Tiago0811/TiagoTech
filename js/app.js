@@ -425,7 +425,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "Aceptamos:\n" +
             "1. 🇻🇪 **Pago Móvil (Bs)**: Banco de Venezuela (0102) a tasa oficial BCV del día.\n" +
             "2. 🟡 **Binance Pay / USDT**: Pagos instantáneos sin comisiones vía criptoactivos estables.\n" +
-            "3. 🏦 **Transferencia Bancaria Nacional**: Cuentas bancarias venezolanas disponibles.\n\n" +
             "La activación y emisión de tu Recibo Oficial en PDF se procesa al confirmar tu pago."
     },
     garantias: {
